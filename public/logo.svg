@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <style>
+    text {
+      font-family: monospace;
+      font-size: 50px;
+    }
+    .removed {
+      fill: red;
+    }
+    .added {
+      fill: green;
+    }
+    .removed_bg {
+      fill: #ffcccc;
+    }
+    .added_bg {
+      fill: #ccffcc;
+    }
+  </style>
+  <rect x="0" y="62" width="256" height="68" class="removed_bg" />
+  <text x="10" y="110" class="removed">- evm</text>
+  <rect x="0" y="130" width="256" height="68" class="added_bg" />
+  <text x="10" y="180" class="added">+ diff</text>
+</svg>
