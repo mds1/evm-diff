@@ -13,12 +13,15 @@
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
     "@vercel/analytics": "^1.0.1",
+    "@wagmi/chains": "^0.3.1",
     "next": "13.4.0",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "viem": "^0.3.37"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/node": "18.16.3",
     "@types/react": "18.2.5",
