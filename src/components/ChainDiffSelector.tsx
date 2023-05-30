@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Chain, chains } from '@/chains';
-import { ChainSelector } from '@/components/ui/ChainSelector';
+import { ChainDiffSelectorChainCombobox } from '@/components/ui/ChainDiffSelectorChainCombobox';
 
-export const ChainDiff = () => {
+export const ChainDiffSelector = () => {
   const router = useRouter();
   const [base, setBase] = useState(chains.mainnet);
   const [target, setTarget] = useState(chains.optimism);
@@ -23,8 +23,13 @@ export const ChainDiff = () => {
         <div className='sm:mx-auto sm:w-full sm:max-w-[480px]'>
           <div className='bg-secondary px-6 py-12 shadow sm:rounded-lg sm:px-12'>
             <form className='space-y-6' onSubmit={onSubmit}>
-              <ChainSelector chains={chainsArray} value={base} onChange={setBase} label='Compare' />
-              <ChainSelector
+              <ChainDiffSelectorChainCombobox
+                chains={chainsArray}
+                value={base}
+                onChange={setBase}
+                label='Compare'
+              />
+              <ChainDiffSelectorChainCombobox
                 chains={chainsArray}
                 value={target}
                 onChange={setTarget}

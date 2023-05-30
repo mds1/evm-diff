@@ -11,7 +11,7 @@ interface Props {
   onChange: (chain: Chain) => void;
 }
 
-export const ChainSelector = ({ label, chains, value, onChange }: Props) => {
+export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange }: Props) => {
   const [query, setQuery] = useState('');
   const [chain, setChain] = useState(value);
 
