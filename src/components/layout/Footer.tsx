@@ -30,7 +30,7 @@ const navigation = [
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className='bg-primary'>
+    <footer>
       <div className='flex flex-wrap items-center justify-between px-4 py-6 sm:px-6 md:justify-between lg:px-8'>
         <div className='col-span-full md:order-2'>
           <p className='text-secondary text-center text-sm'>
