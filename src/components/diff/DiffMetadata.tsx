@@ -89,7 +89,7 @@ const formatFieldInfo = (field: MetadataKey, contents: Metadata[MetadataKey]) =>
   return JSON.stringify(contents);
 };
 
-export const MetadataDiff = ({ base, target, onlyShowDiff }: Props) => {
+export const DiffMetadata = ({ base, target, onlyShowDiff }: Props) => {
   const fields = Object.keys(base) as MetadataKey[];
   return (
     <>

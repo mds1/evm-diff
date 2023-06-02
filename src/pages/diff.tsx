@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Chain, chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
-import { MetadataDiff } from '@/components/diff/MetadataDiff';
+import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { Toggle } from '@/components/ui/Toggle';
 
 const Diff = () => {
@@ -65,7 +65,7 @@ const Diff = () => {
           let content = <></>;
           if (section === 'metadata') {
             content = (
-              <MetadataDiff
+              <DiffMetadata
                 base={baseChain[section as keyof Chain]}
                 target={targetChain[section as keyof Chain]}
                 onlyShowDiff={onlyShowDiff}
