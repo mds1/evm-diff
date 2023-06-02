@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Chain, chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { MetadataDiff } from '@/components/diff/MetadataDiff';
+import { Toggle } from '@/components/ui/Toggle';
 
 const Diff = () => {
   // -------- Parse query parameters --------
@@ -38,6 +40,8 @@ const Diff = () => {
 
   // -------- Show diff --------
 
+  const [onlyShowDiff, setOnlyShowDiff] = useState(true);
+
   const SectionHeader = ({ section }: { section: string }) => {
     if (section === 'metadata') section = 'Metadata';
 
@@ -54,6 +58,7 @@ const Diff = () => {
     const sections = Object.keys(baseChain);
     return (
       <main>
+        <Toggle enabled={onlyShowDiff} setEnabled={setOnlyShowDiff} label='Only show differences' />
         {sections.map((section) => {
           const header = <SectionHeader section={section} />;
 
@@ -63,6 +68,7 @@ const Diff = () => {
               <MetadataDiff
                 base={baseChain[section as keyof Chain]}
                 target={targetChain[section as keyof Chain]}
+                onlyShowDiff={onlyShowDiff}
               />
             );
           }

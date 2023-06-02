@@ -4,7 +4,7 @@
 
 @layer base {
   .hyperlink {
-    @apply text-green-600 no-underline hover:text-green-700 dark:text-green-500 dark:hover:text-green-400;
+    @apply cursor-pointer text-green-600 no-underline hover:text-green-700 dark:text-green-500 dark:hover:text-green-400;
   }
 
   .text-primary {
