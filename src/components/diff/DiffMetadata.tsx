@@ -109,11 +109,11 @@ export const DiffMetadata = ({ base, target, onlyShowDiff }: Props) => {
           showField && (
             <div
               key={field}
-              className='flex justify-between border-b border-zinc-500/10 py-1 dark:border-zinc-500/20'
+              className='flex items-center justify-between border-b border-zinc-500/10 py-1 dark:border-zinc-500/20'
             >
-              <div>{formatFieldInfo(field, base[field])}</div>
-              <div className='text-center'>{formatFieldDisplayName(field)}</div>
-              <div>{formatFieldInfo(field, target[field])}</div>
+              <div className='flex-1'>{formatFieldInfo(field, base[field])}</div>
+              <div className='flex-1 text-center'>{formatFieldDisplayName(field)}</div>
+              <div className='flex-1'>{formatFieldInfo(field, target[field])}</div>
             </div>
           )
         );
