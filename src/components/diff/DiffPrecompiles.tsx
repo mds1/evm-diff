@@ -38,7 +38,6 @@ export const DiffPrecompiles = ({ base, target, onlyShowDiff }: Props) => {
 
         const isEqual = JSON.stringify(basePrecompile) === JSON.stringify(targetPrecompile);
         const showPrecompile = !isEqual || !onlyShowDiff;
-        console.log('isEqual', isEqual);
 
         return (
           showPrecompile && (

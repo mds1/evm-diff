@@ -1,6 +1,7 @@
 import { mainnet as mainnetMetadata } from '@wagmi/chains';
 import { Chain, Precompile } from '@/chains';
 
+// TODO the input and output fields are not used yet therefore not all of them are filled out.
 export const precompiles: Precompile[] = [
   {
     address: '0x0000000000000000000000000000000000000001',
@@ -46,6 +47,106 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L50',
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L30',
     ],
+  },
+  {
+    address: '0x0000000000000000000000000000000000000002',
+    name: 'SHA2-256',
+    description: 'SHA2-256 hash function',
+    minGas: 60,
+    input: [
+      {
+        byteStart: 0,
+        byteLength: -1, // -1 to indicate variable length.
+        name: 'inputData',
+        description: 'Data to be hashed with SHA2-256',
+      },
+    ],
+    output: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'hash',
+        description: 'The SHA-256 hash of the input data',
+      },
+    ],
+    references: [],
+  },
+  {
+    address: '0x0000000000000000000000000000000000000003',
+    name: 'RIPEMD-160',
+    description: 'RIPEMD-160 hash function',
+    minGas: 600,
+    input: [
+      {
+        byteStart: 0,
+        byteLength: -1, // -1 to indicate variable length.
+        name: 'inputData',
+        description: 'Data to be hashed with RIPEMD-160',
+      },
+    ],
+    output: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'hash',
+        description: 'The resulting 20-byte hash right aligned to 32 bytes',
+      },
+    ],
+    references: [],
+  },
+  {
+    address: '0x0000000000000000000000000000000000000004',
+    name: 'identity',
+    description: 'Returns the input',
+    minGas: 15,
+    input: [],
+    output: [],
+    references: [],
+  },
+  {
+    address: '0x0000000000000000000000000000000000000005',
+    name: 'modexp',
+    description: 'Arbitrary-precision exponentiation under modulo',
+    minGas: 200,
+    input: [],
+    output: [],
+    references: [],
+  },
+  {
+    address: '0x0000000000000000000000000000000000000006',
+    name: 'ecAdd',
+    description: "Point addition (ADD) on the elliptic curve 'alt_bn128'",
+    minGas: 150,
+    input: [],
+    output: [],
+    references: [],
+  },
+  {
+    address: '0x0000000000000000000000000000000000000007',
+    name: 'ecMul',
+    description: "Scalar multiplication (MUL) on the elliptic curve 'alt_bn128'",
+    minGas: 6000,
+    input: [],
+    output: [],
+    references: [],
+  },
+  {
+    address: '0x0000000000000000000000000000000000000008',
+    name: 'ecPairing',
+    description: "Bilinear function on groups on the elliptic curve 'alt_bn128'",
+    minGas: 45000,
+    input: [],
+    output: [],
+    references: [],
+  },
+  {
+    address: '0x0000000000000000000000000000000000000009',
+    name: 'blake2f',
+    description: 'Compression function F used in the BLAKE2 cryptographic hashing algorithm',
+    minGas: 0,
+    input: [],
+    output: [],
+    references: [],
   },
 ];
 

@@ -8,19 +8,24 @@ type PrecompileParam = {
   description: string;
 };
 
-// Some precompiles are contracts that the chain places at a specific address,
-// which is why some fields are optional.
+export type Predeploy = {
+  address: Address;
+  name: string;
+  description: string;
+  deprecated: boolean;
+};
+
 export type Precompile = {
   address: Address;
   name: string;
   description: string;
-  minGas?: number;
-  input?: PrecompileParam[];
-  output?: PrecompileParam[];
+  minGas: number;
+  input: PrecompileParam[];
+  output: PrecompileParam[];
   references: string[];
 };
 
 export type Chain = {
   metadata: Metadata;
-  precompiles: Precompile[];
+  precompiles: (Precompile | Predeploy)[];
 };

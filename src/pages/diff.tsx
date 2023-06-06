@@ -45,7 +45,7 @@ const Diff = () => {
 
   const SectionHeader = ({ section }: { section: string }) => {
     if (section === 'metadata') section = 'Metadata';
-    else if (section === 'precompiles') section = 'Precompiles';
+    else if (section === 'precompiles') section = 'Precompiles and Predeploys';
 
     return (
       <h2 className='border-b border-zinc-500/10 text-center font-bold dark:border-zinc-500/20'>
