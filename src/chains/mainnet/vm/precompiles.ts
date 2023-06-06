@@ -1,5 +1,4 @@
-import { mainnet as mainnetMetadata } from '@wagmi/chains';
-import { Chain, Precompile } from '@/chains';
+import { Precompile } from '@/chains';
 
 // TODO the input and output fields are not used yet therefore not all of them are filled out.
 export const precompiles: Precompile[] = [
@@ -149,8 +148,3 @@ export const precompiles: Precompile[] = [
     references: [],
   },
 ];
-
-export const mainnet: Chain = {
-  metadata: mainnetMetadata,
-  precompiles,
-};

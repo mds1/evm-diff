@@ -1,9 +1,8 @@
-import { optimism as optimismMetadata } from '@wagmi/chains';
-import { Chain, Precompile, Predeploy } from '@/chains';
-import { precompiles as mainnetPrecompiles } from '@/chains/mainnet';
+import { Precompile, Predeploy } from '@/chains';
+import { precompiles as mainnetPrecompiles } from '@/chains/mainnet/vm/precompiles';
 
 // https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md
-const precompiles: (Precompile | Predeploy)[] = [
+export const precompiles: (Precompile | Predeploy)[] = [
   ...mainnetPrecompiles,
   {
     address: '0x4200000000000000000000000000000000000000',
@@ -144,8 +143,3 @@ const precompiles: (Precompile | Predeploy)[] = [
     references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
   },
 ];
-
-export const optimism: Chain = {
-  metadata: optimismMetadata,
-  precompiles,
-};

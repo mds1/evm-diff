@@ -1,9 +1,8 @@
-import { arbitrum as arbitrumMetadata } from '@wagmi/chains';
-import { Chain, Precompile, Predeploy } from '@/chains';
-import { precompiles as mainnetPrecompiles } from '@/chains/mainnet';
+import { Precompile, Predeploy } from '@/chains';
+import { precompiles as mainnetPrecompiles } from '@/chains/mainnet/vm/precompiles';
 
 // https://developer.arbitrum.io/useful-addresses#arbitrum-precompiles-l2-same-on-all-arb-chains
-const precompiles: (Precompile | Predeploy)[] = [
+export const precompiles: (Precompile | Predeploy)[] = [
   ...mainnetPrecompiles,
   {
     address: '0x5288c571Fd7aD117beA99bF60FE0846C4E84F933',
@@ -140,8 +139,3 @@ const precompiles: (Precompile | Predeploy)[] = [
     references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
   },
 ];
-
-export const arbitrum: Chain = {
-  metadata: arbitrumMetadata,
-  precompiles,
-};
