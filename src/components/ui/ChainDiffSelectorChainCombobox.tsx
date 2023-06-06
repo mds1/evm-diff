@@ -29,6 +29,11 @@ export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange 
           );
         });
 
+  const chainLogoUrl = (chain: Chain) => {
+    if (chain.metadata.id === 42161) return 'https://icons.llamao.fi/icons/chains/rsz_arbitrum.jpg';
+    return `https://icons.llamao.fi/icons/chains/rsz_${chain.metadata.name.toLowerCase()}.jpg`;
+  };
+
   return (
     <Combobox
       as='div'
@@ -68,7 +73,7 @@ export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange 
                   <>
                     <div className='flex items-center'>
                       <img
-                        src={chain.imageUrl}
+                        src={chainLogoUrl(chain)}
                         alt=''
                         className='h-6 w-6 flex-shrink-0 rounded-full'
                       />
