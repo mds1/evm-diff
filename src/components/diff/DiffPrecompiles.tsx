@@ -1,13 +1,13 @@
 import { Address, getAddress } from 'viem';
-import { Precompile } from '@/chains';
+import { Precompile, Predeploy } from '@/chains';
 
 type Props = {
-  base: Precompile[];
-  target: Precompile[];
+  base: (Precompile | Predeploy)[];
+  target: (Precompile | Predeploy)[];
   onlyShowDiff: boolean;
 };
 
-const formatPrecompile = (contents: Precompile | undefined) => {
+const formatPrecompile = (contents: Precompile | Predeploy | undefined) => {
   if (!contents) return <p>Not present</p>;
   return (
     <>
