@@ -67,7 +67,9 @@ export const precompiles: Precompile[] = [
         description: 'The SHA-256 hash of the input data',
       },
     ],
-    references: [],
+    references: [
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/sha256.py'
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000003',
@@ -90,7 +92,9 @@ export const precompiles: Precompile[] = [
         description: 'The resulting 20-byte hash right aligned to 32 bytes',
       },
     ],
-    references: [],
+    references: [
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/ripemd160.py'
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000004',
@@ -113,7 +117,9 @@ export const precompiles: Precompile[] = [
         description: 'Same as the input',
       },
     ],
-    references: [],
+    references: [
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/identity.py',
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000005',
@@ -166,7 +172,10 @@ export const precompiles: Precompile[] = [
         description: 'Result of the computation, with the same number of bytes as M',
       }
     ],
-    references: [],
+    references: [
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py',
+      'https://eips.ethereum.org/EIPS/eip-2565'
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000006',
@@ -213,7 +222,9 @@ export const precompiles: Precompile[] = [
         description: "Y coordinate of the result point on the elliptic curve 'alt_bn128'",
       }
     ],
-    references: [],
+    references: [
+      'https://eips.ethereum.org/EIPS/eip-196'
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000007',
@@ -254,7 +265,9 @@ export const precompiles: Precompile[] = [
         description: "Y coordinate of the result point on the elliptic curve 'alt_bn128'",
       }
     ],
-    references: [],
+    references: [
+      'https://eips.ethereum.org/EIPS/eip-196'
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000008',
@@ -307,7 +320,9 @@ export const precompiles: Precompile[] = [
         description: "1 if the pairing was a success, 0 otherwise",
       },
     ],
-    references: [],
+    references: [
+      'https://eips.ethereum.org/EIPS/eip-197'
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000009',
@@ -354,6 +369,9 @@ export const precompiles: Precompile[] = [
         description: "State vector (8 8-byte little-endian unsigned integer)",
       },
     ],
-    references: [],
+    references: [
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/blake2f.py',
+      'https://eips.ethereum.org/EIPS/eip-152'
+    ],
   },
 ];
