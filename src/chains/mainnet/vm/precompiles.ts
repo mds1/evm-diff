@@ -1,6 +1,5 @@
 import { Precompile } from '@/chains';
 
-// TODO the input and output fields are not used yet therefore not all of them are filled out.
 export const precompiles: Precompile[] = [
   {
     address: '0x0000000000000000000000000000000000000001',
@@ -98,8 +97,22 @@ export const precompiles: Precompile[] = [
     name: 'identity',
     description: 'Returns the input',
     minGas: 15,
-    input: [],
-    output: [],
+    input: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'data',
+        description: 'Input data',
+      },
+    ],
+    output: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'data',
+        description: 'Same as the input',
+      },
+    ],
     references: [],
   },
   {
@@ -107,8 +120,52 @@ export const precompiles: Precompile[] = [
     name: 'modexp',
     description: 'Arbitrary-precision exponentiation under modulo',
     minGas: 200,
-    input: [],
-    output: [],
+    input: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'Bsize',
+        description: 'Byte size of B',
+      },
+      {
+        byteStart: 32,
+        byteLength: 32,
+        name: 'Esize',
+        description: 'Byte size of E',
+      },
+      {
+        byteStart: 64,
+        byteLength: 32,
+        name: 'Msize',
+        description: 'Byte size of M',
+      },
+      {
+        byteStart: 96,
+        byteLength: 96 + 32,
+        name: 'B',
+        description: 'Base as unsigned integer',
+      },
+      {
+        byteStart: 96 + 32,
+        byteLength: 96 + 32 + 32,
+        name: 'E',
+        description: 'Exponent as unsigned integer, if zero, then B ** E will be one',
+      },
+      {
+        byteStart: 96 + 32 + 32,
+        byteLength: 96 + 32 + 32 + 32,
+        name: 'M',
+        description: 'Modulo as unsigned integer, if zero, then returns zero',
+      },
+    ],
+    output: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'value',
+        description: 'Result of the computation, with the same number of bytes as M',
+      }
+    ],
     references: [],
   },
   {
@@ -116,8 +173,46 @@ export const precompiles: Precompile[] = [
     name: 'ecAdd',
     description: "Point addition (ADD) on the elliptic curve 'alt_bn128'",
     minGas: 150,
-    input: [],
-    output: [],
+    input: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'x1',
+        description: "X coordinate of the first point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 32,
+        byteLength: 32,
+        name: 'y1',
+        description: "Y coordinate of the first point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 64,
+        byteLength: 32,
+        name: 'x2',
+        description: "X coordinate of the second point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 96,
+        byteLength: 32,
+        name: 'y2',
+        description: "Y coordinate of the second point on the elliptic curve 'alt_bn128'",
+      },
+    ],
+    output: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'x',
+        description: "X coordinate of the result point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 32,
+        byteLength: 32,
+        name: 'y',
+        description: "Y coordinate of the result point on the elliptic curve 'alt_bn128'",
+      }
+    ],
     references: [],
   },
   {
@@ -125,8 +220,40 @@ export const precompiles: Precompile[] = [
     name: 'ecMul',
     description: "Scalar multiplication (MUL) on the elliptic curve 'alt_bn128'",
     minGas: 6000,
-    input: [],
-    output: [],
+    input: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'x1',
+        description: "X coordinate of the first point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 32,
+        byteLength: 32,
+        name: 'y1',
+        description: "Y coordinate of the first point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 64,
+        byteLength: 32,
+        name: 's',
+        description: "Scalar to use for the multiplication",
+      },
+    ],
+    output: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'x',
+        description: "X coordinate of the result point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 32,
+        byteLength: 32,
+        name: 'y',
+        description: "Y coordinate of the result point on the elliptic curve 'alt_bn128'",
+      }
+    ],
     references: [],
   },
   {
@@ -134,8 +261,52 @@ export const precompiles: Precompile[] = [
     name: 'ecPairing',
     description: "Bilinear function on groups on the elliptic curve 'alt_bn128'",
     minGas: 45000,
-    input: [],
-    output: [],
+    input: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'x1',
+        description: "X coordinate of the first point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 32,
+        byteLength: 32,
+        name: 'y1',
+        description: "Y coordinate of the first point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 64,
+        byteLength: 32,
+        name: 'x3',
+        description: "X coordinate of the third point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 96,
+        byteLength: 32,
+        name: 'x2',
+        description: "X coordinate of the second point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 128,
+        byteLength: 32,
+        name: 'y3',
+        description: "Y coordinate of the third point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 160,
+        byteLength: 32,
+        name: 'y2',
+        description: "Y coordinate of the second point on the elliptic curve 'alt_bn128'",
+      },
+    ],
+    output: [
+      {
+        byteStart: 0,
+        byteLength: 32,
+        name: 'success',
+        description: "1 if the pairing was a success, 0 otherwise",
+      },
+    ],
     references: [],
   },
   {
@@ -143,8 +314,46 @@ export const precompiles: Precompile[] = [
     name: 'blake2f',
     description: 'Compression function F used in the BLAKE2 cryptographic hashing algorithm',
     minGas: 0,
-    input: [],
-    output: [],
+    input: [
+      {
+        byteStart: 0,
+        byteLength: 4,
+        name: 'rounds',
+        description: "Number of rounds (big-endian unsigned integer)",
+      },
+      {
+        byteStart: 4,
+        byteLength: 64,
+        name: 'h',
+        description: "State vector (8 8-byte little-endian unsigned integer)",
+      },
+      {
+        byteStart: 68,
+        byteLength: 128,
+        name: 'm',
+        description: "Message block vector (16 8-byte little-endian unsigned integer)",
+      },
+      {
+        byteStart: 196,
+        byteLength: 16,
+        name: 't',
+        description: "Offset counters (2 8-byte little-endian integer)",
+      },
+      {
+        byteStart: 212,
+        byteLength: 1,
+        name: 'f',
+        description: "Y coordinate of the third point on the elliptic curve 'alt_bn128'",
+      },
+    ],
+    output: [
+      {
+        byteStart: 0,
+        byteLength: 64,
+        name: 'h',
+        description: "State vector (8 8-byte little-endian unsigned integer)",
+      },
+    ],
     references: [],
   },
 ];
