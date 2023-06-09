@@ -68,7 +68,7 @@ export const precompiles: Precompile[] = [
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/sha256.py'
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/sha256.py',
     ],
   },
   {
@@ -93,7 +93,7 @@ export const precompiles: Precompile[] = [
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/ripemd160.py'
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/ripemd160.py',
     ],
   },
   {
@@ -170,11 +170,11 @@ export const precompiles: Precompile[] = [
         byteLength: 32,
         name: 'value',
         description: 'Result of the computation, with the same number of bytes as M',
-      }
+      },
     ],
     references: [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py',
-      'https://eips.ethereum.org/EIPS/eip-2565'
+      'https://eips.ethereum.org/EIPS/eip-2565',
     ],
   },
   {
@@ -220,11 +220,9 @@ export const precompiles: Precompile[] = [
         byteLength: 32,
         name: 'y',
         description: "Y coordinate of the result point on the elliptic curve 'alt_bn128'",
-      }
+      },
     ],
-    references: [
-      'https://eips.ethereum.org/EIPS/eip-196'
-    ],
+    references: ['https://eips.ethereum.org/EIPS/eip-196'],
   },
   {
     address: '0x0000000000000000000000000000000000000007',
@@ -248,7 +246,7 @@ export const precompiles: Precompile[] = [
         byteStart: 64,
         byteLength: 32,
         name: 's',
-        description: "Scalar to use for the multiplication",
+        description: 'Scalar to use for the multiplication',
       },
     ],
     output: [
@@ -263,11 +261,9 @@ export const precompiles: Precompile[] = [
         byteLength: 32,
         name: 'y',
         description: "Y coordinate of the result point on the elliptic curve 'alt_bn128'",
-      }
+      },
     ],
-    references: [
-      'https://eips.ethereum.org/EIPS/eip-196'
-    ],
+    references: ['https://eips.ethereum.org/EIPS/eip-196'],
   },
   {
     address: '0x0000000000000000000000000000000000000008',
@@ -317,12 +313,10 @@ export const precompiles: Precompile[] = [
         byteStart: 0,
         byteLength: 32,
         name: 'success',
-        description: "1 if the pairing was a success, 0 otherwise",
+        description: '1 if the pairing was a success, 0 otherwise',
       },
     ],
-    references: [
-      'https://eips.ethereum.org/EIPS/eip-197'
-    ],
+    references: ['https://eips.ethereum.org/EIPS/eip-197'],
   },
   {
     address: '0x0000000000000000000000000000000000000009',
@@ -334,25 +328,25 @@ export const precompiles: Precompile[] = [
         byteStart: 0,
         byteLength: 4,
         name: 'rounds',
-        description: "Number of rounds (big-endian unsigned integer)",
+        description: 'Number of rounds (big-endian unsigned integer)',
       },
       {
         byteStart: 4,
         byteLength: 64,
         name: 'h',
-        description: "State vector (8 8-byte little-endian unsigned integer)",
+        description: 'State vector (8 8-byte little-endian unsigned integer)',
       },
       {
         byteStart: 68,
         byteLength: 128,
         name: 'm',
-        description: "Message block vector (16 8-byte little-endian unsigned integer)",
+        description: 'Message block vector (16 8-byte little-endian unsigned integer)',
       },
       {
         byteStart: 196,
         byteLength: 16,
         name: 't',
-        description: "Offset counters (2 8-byte little-endian integer)",
+        description: 'Offset counters (2 8-byte little-endian integer)',
       },
       {
         byteStart: 212,
@@ -366,12 +360,12 @@ export const precompiles: Precompile[] = [
         byteStart: 0,
         byteLength: 64,
         name: 'h',
-        description: "State vector (8 8-byte little-endian unsigned integer)",
+        description: 'State vector (8 8-byte little-endian unsigned integer)',
       },
     ],
     references: [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/blake2f.py',
-      'https://eips.ethereum.org/EIPS/eip-152'
+      'https://eips.ethereum.org/EIPS/eip-152',
     ],
   },
 ];
