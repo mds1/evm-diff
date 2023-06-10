@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { Combobox } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { Chain } from '@/chains/types';
 import { classNames } from '@/lib/utils';
-import Image from 'next/image';
 
 interface Props {
   label: string;
