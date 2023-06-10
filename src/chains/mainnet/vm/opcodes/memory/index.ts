@@ -1,4 +1,4 @@
-import { Opcode } from '@/chains/types';
+import { Opcode } from '@/types/opcode';
 import { mstore } from './mstore';
 
 export const opcodes: Opcode[] = [mstore];

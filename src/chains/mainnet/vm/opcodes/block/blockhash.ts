@@ -1,4 +1,4 @@
-import { Opcode } from '@/chains/types';
+import { Opcode } from '@/types/opcode';
 
 export const blockhash: Opcode = {
   number: 40,

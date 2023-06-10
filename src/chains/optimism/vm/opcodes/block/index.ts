@@ -1,5 +1,5 @@
 import { blockhash } from '@/chains/mainnet/vm/opcodes/block/blockhash';
-import { Opcode } from '@/chains/types';
+import { Opcode } from '@/types/opcode';
 import { number } from './number';
 
 const modifiedOpcodes: Opcode[] = [number];

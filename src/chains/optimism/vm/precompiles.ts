@@ -1,5 +1,5 @@
-import { Precompile, Predeploy } from '@/chains';
 import { precompiles as mainnetPrecompiles } from '@/chains/mainnet/vm/precompiles';
+import { Precompile, Predeploy } from '@/types/precompiles';
 
 // https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md
 export const precompiles: (Precompile | Predeploy)[] = [

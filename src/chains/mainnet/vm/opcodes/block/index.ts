@@ -1,4 +1,4 @@
-import { Opcode } from '@/chains/types';
+import { Opcode } from '@/types/opcode';
 import { blockhash } from './blockhash';
 import { number } from './number';
 

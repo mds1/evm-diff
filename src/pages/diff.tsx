@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Chain, chains } from '@/chains';
+import { chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { Toggle } from '@/components/ui/Toggle';
+import { Chain } from '@/types/chain';
 
 const Diff = () => {
   // -------- Parse query parameters --------

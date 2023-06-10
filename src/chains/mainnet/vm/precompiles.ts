@@ -1,4 +1,4 @@
-import { Precompile } from '@/chains';
+import { Precompile } from '@/types/precompiles';
 
 // TODO the input and output fields are not used yet therefore not all of them are filled out.
 export const precompiles: Precompile[] = [
