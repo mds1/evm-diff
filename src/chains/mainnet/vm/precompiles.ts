@@ -69,6 +69,8 @@ export const precompiles: Precompile[] = [
     ],
     references: [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/sha256.py',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L51',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L31',
     ],
   },
   {
@@ -94,6 +96,8 @@ export const precompiles: Precompile[] = [
     ],
     references: [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/ripemd160.py',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L53',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L32',
     ],
   },
   {
@@ -119,6 +123,8 @@ export const precompiles: Precompile[] = [
     ],
     references: [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/identity.py',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L55',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L33',
     ],
   },
   {
@@ -147,19 +153,19 @@ export const precompiles: Precompile[] = [
       },
       {
         byteStart: 96,
-        byteLength: 96 + 32,
+        byteLength: '96 + Bsize',
         name: 'B',
         description: 'Base as unsigned integer',
       },
       {
-        byteStart: 96 + 32,
-        byteLength: 96 + 32 + 32,
+        byteStart: '96 + Bsize',
+        byteLength: '96 + Bsize + Esize',
         name: 'E',
         description: 'Exponent as unsigned integer, if zero, then B ** E will be one',
       },
       {
-        byteStart: 96 + 32 + 32,
-        byteLength: 96 + 32 + 32 + 32,
+        byteStart: '96 + Bsize + Esize',
+        byteLength: '96 + Bsize + Esize + Msize',
         name: 'M',
         description: 'Modulo as unsigned integer, if zero, then returns zero',
       },
@@ -167,14 +173,15 @@ export const precompiles: Precompile[] = [
     output: [
       {
         byteStart: 0,
-        byteLength: 32,
+        byteLength: 'Msize',
         name: 'value',
         description: 'Result of the computation, with the same number of bytes as M',
       },
     ],
     references: [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py',
-      'https://eips.ethereum.org/EIPS/eip-2565',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py#L167',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L34',
     ],
   },
   {
@@ -222,7 +229,11 @@ export const precompiles: Precompile[] = [
         description: "Y coordinate of the result point on the elliptic curve 'alt_bn128'",
       },
     ],
-    references: ['https://eips.ethereum.org/EIPS/eip-196'],
+    references: [
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L33',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L45',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L35',
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000007',
@@ -263,7 +274,11 @@ export const precompiles: Precompile[] = [
         description: "Y coordinate of the result point on the elliptic curve 'alt_bn128'",
       },
     ],
-    references: ['https://eips.ethereum.org/EIPS/eip-196'],
+    references: [
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#72',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#84',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#36',
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000008',
@@ -286,26 +301,38 @@ export const precompiles: Precompile[] = [
       {
         byteStart: 64,
         byteLength: 32,
-        name: 'x3',
-        description: "X coordinate of the third point on the elliptic curve 'alt_bn128'",
-      },
-      {
-        byteStart: 96,
-        byteLength: 32,
         name: 'x2',
         description: "X coordinate of the second point on the elliptic curve 'alt_bn128'",
       },
       {
+        byteStart: 96,
+        byteLength: 32,
+        name: 'y2',
+        description: "Y coordinate of the second point on the elliptic curve 'alt_bn128'",
+      },
+      {
         byteStart: 128,
+        byteLength: 32,
+        name: 'x3',
+        description: "X coordinate of the third point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 160,
         byteLength: 32,
         name: 'y3',
         description: "Y coordinate of the third point on the elliptic curve 'alt_bn128'",
       },
       {
-        byteStart: 160,
+        byteStart: 192,
         byteLength: 32,
-        name: 'y2',
-        description: "Y coordinate of the second point on the elliptic curve 'alt_bn128'",
+        name: 'xn',
+        description: "X coordinate of the N point on the elliptic curve 'alt_bn128'",
+      },
+      {
+        byteStart: 224,
+        byteLength: 32,
+        name: 'yn',
+        description: "Y coordinate of the N point on the elliptic curve 'alt_bn128'",
       },
     ],
     output: [
@@ -316,13 +343,17 @@ export const precompiles: Precompile[] = [
         description: '1 if the pairing was a success, 0 otherwise',
       },
     ],
-    references: ['https://eips.ethereum.org/EIPS/eip-197'],
+    references: [
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#107',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#119',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#37',
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000009',
     name: 'blake2f',
     description: 'Compression function F used in the BLAKE2 cryptographic hashing algorithm',
-    minGas: 0,
+    minGas: 1,
     input: [
       {
         byteStart: 0,
@@ -365,7 +396,8 @@ export const precompiles: Precompile[] = [
     ],
     references: [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/blake2f.py',
-      'https://eips.ethereum.org/EIPS/eip-152',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L59',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#38',
     ],
   },
 ];

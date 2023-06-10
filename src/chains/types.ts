@@ -2,8 +2,8 @@ import { Chain as Metadata } from '@wagmi/chains';
 import { Address } from 'viem';
 
 type PrecompileParam = {
-  byteStart: number;
-  byteLength: number;
+  byteStart: number | string;
+  byteLength: number | string;
   name: string;
   description: string;
 };
