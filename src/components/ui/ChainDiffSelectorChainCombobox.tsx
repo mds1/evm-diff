@@ -3,6 +3,7 @@ import { Combobox } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { Chain } from '@/chains/types';
 import { classNames } from '@/lib/utils';
+import Image from 'next/image';
 
 interface Props {
   label: string;
@@ -72,7 +73,7 @@ export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange 
                 {({ active, selected }) => (
                   <>
                     <div className='flex items-center'>
-                      <img
+                      <Image
                         src={chainLogoUrl(chain)}
                         alt=''
                         className='h-6 w-6 flex-shrink-0 rounded-full'
