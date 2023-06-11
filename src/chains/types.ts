@@ -23,6 +23,7 @@ export type Precompile = {
   input: PrecompileParam[];
   output: PrecompileParam[];
   references: string[];
+  notes?: string[];
 };
 
 export type Chain = {

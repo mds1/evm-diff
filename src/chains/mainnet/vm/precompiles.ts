@@ -45,6 +45,9 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L50',
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L30',
     ],
+    notes: [
+      "If an address cannot be recovered, or not enough gas was given, then there is no return data. Note that the return data is the address that issued the signature but it won't verify the signature.",
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000002',
@@ -55,7 +58,7 @@ export const precompiles: Precompile[] = [
       {
         byteStart: 0,
         byteLength: -1, // -1 to indicate variable length.
-        name: 'inputData',
+        name: 'data',
         description: 'Data to be hashed with SHA2-256',
       },
     ],
@@ -72,6 +75,7 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L51',
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L31',
     ],
+    notes: ['If not enough gas was given, then there is no return data.'],
   },
   {
     address: '0x0000000000000000000000000000000000000003',
@@ -82,7 +86,7 @@ export const precompiles: Precompile[] = [
       {
         byteStart: 0,
         byteLength: -1, // -1 to indicate variable length.
-        name: 'inputData',
+        name: 'data',
         description: 'Data to be hashed with RIPEMD-160',
       },
     ],
@@ -99,6 +103,7 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L53',
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L32',
     ],
+    notes: ['If not enough gas was given, then there is no return data.'],
   },
   {
     address: '0x0000000000000000000000000000000000000004',
@@ -108,23 +113,27 @@ export const precompiles: Precompile[] = [
     input: [
       {
         byteStart: 0,
-        byteLength: 32,
+        byteLength: -1, // -1 to indicate variable length.
         name: 'data',
-        description: 'Input data',
+        description: 'Data to return',
       },
     ],
     output: [
       {
         byteStart: 0,
-        byteLength: 32,
+        byteLength: -1, // -1 to indicate variable length.
         name: 'data',
-        description: 'Same as the input',
+        description: 'Data from input',
       },
     ],
     references: [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/identity.py',
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L55',
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L33',
+    ],
+    notes: [
+      'If not enough gas was given, then there is no return data.',
+      'The identity function is typically used to copy a chunk of memory.',
     ],
   },
   {
@@ -159,13 +168,13 @@ export const precompiles: Precompile[] = [
       },
       {
         byteStart: '96 + Bsize',
-        byteLength: '96 + Bsize + Esize',
+        byteLength: 'Bsize + Esize',
         name: 'E',
         description: 'Exponent as unsigned integer, if zero, then B ** E will be one',
       },
       {
         byteStart: '96 + Bsize + Esize',
-        byteLength: '96 + Bsize + Esize + Msize',
+        byteLength: 'Bsize + Esize + Msize',
         name: 'M',
         description: 'Modulo as unsigned integer, if zero, then returns zero',
       },
@@ -183,6 +192,7 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py#L167',
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L34',
     ],
+    notes: ['If not enough gas was given, then there is no return data.'],
   },
   {
     address: '0x0000000000000000000000000000000000000006',
@@ -194,25 +204,25 @@ export const precompiles: Precompile[] = [
         byteStart: 0,
         byteLength: 32,
         name: 'x1',
-        description: "X coordinate of the first point on the elliptic curve 'alt_bn128'",
+        description: "x-coordinate of the first point on the elliptic curve 'alt_bn128'",
       },
       {
         byteStart: 32,
         byteLength: 32,
         name: 'y1',
-        description: "Y coordinate of the first point on the elliptic curve 'alt_bn128'",
+        description: "y-coordinate of the first point on the elliptic curve 'alt_bn128'",
       },
       {
         byteStart: 64,
         byteLength: 32,
         name: 'x2',
-        description: "X coordinate of the second point on the elliptic curve 'alt_bn128'",
+        description: "x-coordinate of the second point on the elliptic curve 'alt_bn128'",
       },
       {
         byteStart: 96,
         byteLength: 32,
         name: 'y2',
-        description: "Y coordinate of the second point on the elliptic curve 'alt_bn128'",
+        description: "y-coordinate of the second point on the elliptic curve 'alt_bn128'",
       },
     ],
     output: [
@@ -220,19 +230,24 @@ export const precompiles: Precompile[] = [
         byteStart: 0,
         byteLength: 32,
         name: 'x',
-        description: "X coordinate of the result point on the elliptic curve 'alt_bn128'",
+        description: "x-coordinate of the result point on the elliptic curve 'alt_bn128'",
       },
       {
         byteStart: 32,
         byteLength: 32,
         name: 'y',
-        description: "Y coordinate of the result point on the elliptic curve 'alt_bn128'",
+        description: "y-coordinate of the result point on the elliptic curve 'alt_bn128'",
       },
     ],
     references: [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L33',
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L45',
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L35',
+    ],
+    notes: [
+      'If the input is not valid, or if not enough gas was given, then there is no return data.',
+      'The gas cost is fixed at 150. However, if the input does not allow to compute a valid result, all the gas sent is consumed.',
+      'The point at infinity is encoded with both field x and y at 0.',
     ],
   },
   {
@@ -245,13 +260,13 @@ export const precompiles: Precompile[] = [
         byteStart: 0,
         byteLength: 32,
         name: 'x1',
-        description: "X coordinate of the first point on the elliptic curve 'alt_bn128'",
+        description: "x-coordinate of the first point on the elliptic curve 'alt_bn128'",
       },
       {
         byteStart: 32,
         byteLength: 32,
         name: 'y1',
-        description: "Y coordinate of the first point on the elliptic curve 'alt_bn128'",
+        description: "y-coordinate of the first point on the elliptic curve 'alt_bn128'",
       },
       {
         byteStart: 64,
@@ -265,19 +280,24 @@ export const precompiles: Precompile[] = [
         byteStart: 0,
         byteLength: 32,
         name: 'x',
-        description: "X coordinate of the result point on the elliptic curve 'alt_bn128'",
+        description: "x-coordinate of the result point on the elliptic curve 'alt_bn128'",
       },
       {
         byteStart: 32,
         byteLength: 32,
         name: 'y',
-        description: "Y coordinate of the result point on the elliptic curve 'alt_bn128'",
+        description: "y-coordinate of the result point on the elliptic curve 'alt_bn128'",
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#72',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#84',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#36',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L72',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L84',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L36',
+    ],
+    notes: [
+      'If the input is not valid, or if not enough gas was given, then there is no return data.',
+      'The gas cost is fixed at 6000. However, if the input does not allow to compute a valid result, all the gas sent is consumed.',
+      'The point at infinity is encoded with both field x and y at 0.',
     ],
   },
   {
@@ -290,49 +310,39 @@ export const precompiles: Precompile[] = [
         byteStart: 0,
         byteLength: 32,
         name: 'x1',
-        description: "X coordinate of the first point on the elliptic curve 'alt_bn128'",
+        description: "x-coordinate of the first point on the elliptic curve 'alt_bn128'",
       },
       {
         byteStart: 32,
         byteLength: 32,
         name: 'y1',
-        description: "Y coordinate of the first point on the elliptic curve 'alt_bn128'",
+        description: "y-coordinate of the first point on the elliptic curve 'alt_bn128'",
       },
       {
         byteStart: 64,
         byteLength: 32,
         name: 'x2',
-        description: "X coordinate of the second point on the elliptic curve 'alt_bn128'",
+        description: "x-coordinate of the second point on the elliptic curve 'alt_bn128'",
       },
       {
         byteStart: 96,
         byteLength: 32,
         name: 'y2',
-        description: "Y coordinate of the second point on the elliptic curve 'alt_bn128'",
-      },
-      {
-        byteStart: 128,
-        byteLength: 32,
-        name: 'x3',
-        description: "X coordinate of the third point on the elliptic curve 'alt_bn128'",
-      },
-      {
-        byteStart: 160,
-        byteLength: 32,
-        name: 'y3',
-        description: "Y coordinate of the third point on the elliptic curve 'alt_bn128'",
+        description: "y-coordinate of the second point on the elliptic curve 'alt_bn128'",
       },
       {
         byteStart: 192,
         byteLength: 32,
         name: 'xn',
-        description: "X coordinate of the N point on the elliptic curve 'alt_bn128'",
+        description:
+          "x-coordinate of the n-th point on the elliptic curve 'alt_bn128', where n must be a multiple of 3",
       },
       {
         byteStart: 224,
         byteLength: 32,
         name: 'yn',
-        description: "Y coordinate of the N point on the elliptic curve 'alt_bn128'",
+        description:
+          "y-coordinate of the n-th point on the elliptic curve 'alt_bn128', where n must be a multiple of 3",
       },
     ],
     output: [
@@ -344,16 +354,21 @@ export const precompiles: Precompile[] = [
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#107',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#119',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#37',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L107',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L119',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L37',
+    ],
+    notes: [
+      'The input must always be a multiple of 6 32-byte values. 0 inputs is valid and returns 1.',
+      'If the input is not valid, or if not enough gas was given, then there is no return data.',
+      'The point at infinity is encoded with both field x and y at 0.',
     ],
   },
   {
     address: '0x0000000000000000000000000000000000000009',
     name: 'blake2f',
     description: 'Compression function F used in the BLAKE2 cryptographic hashing algorithm',
-    minGas: 1,
+    minGas: 0,
     input: [
       {
         byteStart: 0,
@@ -383,7 +398,7 @@ export const precompiles: Precompile[] = [
         byteStart: 212,
         byteLength: 1,
         name: 'f',
-        description: "Y coordinate of the third point on the elliptic curve 'alt_bn128'",
+        description: 'Final block indicator flag (0 or 1)',
       },
     ],
     output: [
@@ -394,10 +409,14 @@ export const precompiles: Precompile[] = [
         description: 'State vector (8 8-byte little-endian unsigned integer)',
       },
     ],
+    notes: [
+      'If the input is not valid, or if not enough gas was given, then there is no return data.',
+      'Of the input does not allow to compute a valid result, all the gas sent is consumed.',
+    ],
     references: [
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/blake2f.py',
       'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L59',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#38',
+      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L38',
     ],
   },
 ];
