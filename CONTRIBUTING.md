@@ -1,6 +1,6 @@
 # Contributing
 
-This repo uses Next.js, Tailwind CSS, TypeScript, pnpm, and viem. To get started:
+This repo uses [Next.js](https://github.com/vercel/next.js/), [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss), [TypeScript](https://github.com/microsoft/TypeScript), [pnpm](https://github.com/pnpm/pnpm), and [viem](https://github.com/wagmi-dev/viem). To get started:
 
 ```sh
 # Install dependencies.
