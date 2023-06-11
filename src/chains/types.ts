@@ -12,25 +12,25 @@ type Variable = {
   name: string;
   description: string;
   expression?: string;
-}
+};
 
 type GasComputation = {
   name: string;
   description: string;
   expression: string;
   variables: Variable[];
-}
+};
 
 type Memory = {
   before: string;
   after: string;
-}
+};
 
 type Example = {
-  input: (string | string[]);
+  input: string | string[];
   output?: string;
   memory?: Memory;
-}
+};
 
 export type Predeploy = {
   address: Address;
@@ -62,7 +62,7 @@ export type Opcode = {
   errorCases: string[];
   notes: string[];
   references: string[];
-}
+};
 
 export type Chain = {
   metadata: Metadata;

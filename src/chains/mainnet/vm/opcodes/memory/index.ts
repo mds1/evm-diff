@@ -1,6 +1,4 @@
-import { Opcode } from "@/chains/types";
-import { mstore } from "./mstore";
+import { Opcode } from '@/chains/types';
+import { mstore } from './mstore';
 
-export const opcodes: Opcode[] = [
-  mstore,
-];
+export const opcodes: Opcode[] = [mstore];
