@@ -23,6 +23,6 @@ export const number: Opcode = {
   references: [
     'https://www.evm.codes/#43?fork=shanghai',
     'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/block.py#L126',
-    'https://community.optimism.io/docs/developers/build/differences/#opcode-differences',
+    'https://developer.arbitrum.io/time#arbitrum-block-numbers',
   ],
 };
