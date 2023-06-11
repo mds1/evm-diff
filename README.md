@@ -32,4 +32,4 @@ See the open [issues](https://github.com/mds1/evm-diff/issues) for current needs
 If you want to contribute, please see [CONTRIBUTING.md](./CONTRIBUTING.md).
 **Some issues have bounties attached**, which will be paid out on Optimism in OP tokens.[^1] Please be sure to read [CONTRIBUTING.md](./CONTRIBUTING.md) to understand how the bounty process works.
 
-[^1]: Thanks to Optimism RPGF, these bounties were made possible by an [RPGF grant](https://optimism.mirror.xyz/Upn_LtV2-3SviXgX_PE_LyA7YI00jQyoM1yf55ltvvI) I received for [Multicall3](https://github.com/mds1/multicall).
+[^1]: Thanks to Optimism RPGF, as these bounties were made possible by an [RPGF grant](https://optimism.mirror.xyz/Upn_LtV2-3SviXgX_PE_LyA7YI00jQyoM1yf55ltvvI) I received for [Multicall3](https://github.com/mds1/multicall).
