@@ -52,22 +52,6 @@ export const precompiles: (Precompile | Predeploy)[] = [
     references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
   },
   {
-    address: '0x467194771dAe2967Aef3ECbEDD3Bf9a310C76C65',
-    name: 'L2 Dai Gateway',
-    description:
-      'Handles minting and burning of Arbitrum DAI based on messages from L1 Dai Gateway or withdrawals.',
-    deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
-  },
-  {
-    address: '0x6D2457a4ad276000A615295f7A80F79E48CcD318',
-    name: 'L2 Livepeer Gateway',
-    description:
-      'Handles minting and burning of Arbitrum Livepeer based on messages from L1 Livepeer Gateway or withdrawals.',
-    deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
-  },
-  {
     address: '0x0000000000000000000000000000000000000064',
     name: 'ArbSys',
     description:
@@ -140,13 +124,6 @@ export const precompiles: (Precompile | Predeploy)[] = [
     name: 'ArbFunctionTable',
     description:
       'Allows aggregators to manage function tables for one form of transaction compression.',
-    deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
-  },
-  {
-    address: '0x7eCfBaa8742fDf5756DAC92fbc8b90a19b8815bF',
-    name: 'L2 Multicall',
-    description: 'Multicall contract on Arbitrum to group multiple functions calls, and results.',
     deprecated: false,
     references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
   },
