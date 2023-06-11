@@ -14,7 +14,7 @@ type Variable = {
   expression?: string;
 }
 
-type Computation = {
+type GasComputation = {
   name: string;
   description: string;
   expression: string;
@@ -54,7 +54,7 @@ export type Opcode = {
   name: string;
   description: string;
   minGas: number;
-  gasComputation?: (number | Computation);
+  gasComputation?: GasComputation;
   inputs: Variable[];
   outputs: Variable[];
   examples: Example[];
