@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
+import { DiffOpcodes } from '@/components/diff/DiffOpcode';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { Toggle } from '@/components/ui/Toggle';
 import { Chain } from '@/types/chain';
@@ -47,6 +48,7 @@ const Diff = () => {
   const SectionHeader = ({ section }: { section: string }) => {
     if (section === 'metadata') section = 'Metadata';
     else if (section === 'precompiles') section = 'Precompiles and Predeploys';
+    else if (section === 'opcodes') section = 'Opcodes';
 
     return (
       <h2 className='border-b border-zinc-500/10 text-center font-bold dark:border-zinc-500/20'>
@@ -79,6 +81,14 @@ const Diff = () => {
               <DiffPrecompiles
                 base={baseChain.precompiles}
                 target={targetChain.precompiles}
+                onlyShowDiff={onlyShowDiff}
+              />
+            );
+          } else if (section === 'opcodes') {
+            content = (
+              <DiffOpcodes
+                base={baseChain.opcodes}
+                target={targetChain.opcodes}
                 onlyShowDiff={onlyShowDiff}
               />
             );

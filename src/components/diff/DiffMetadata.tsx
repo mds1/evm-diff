@@ -2,6 +2,7 @@ import { Chain as Metadata } from '@wagmi/chains';
 import { getAddress } from 'viem';
 import { classNames } from '@/lib/utils';
 import { ExternalLink } from '../layout/ExternalLink';
+import { toUppercase } from './utils';
 
 type MetadataKey = keyof Metadata;
 
@@ -10,8 +11,6 @@ type Props = {
   target: Metadata;
   onlyShowDiff: boolean;
 };
-
-const toUppercase = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 const hiddenField = (field: MetadataKey) => {
   return ['network'].includes(field);
