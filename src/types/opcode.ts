@@ -1,4 +1,4 @@
-type Variable = {
+export type Variable = {
   name: string;
   description: string;
   expression?: string;
@@ -16,10 +16,15 @@ type Memory = {
   after: string;
 };
 
-type Example = {
+export type Example = {
   input: string | string[];
   output?: string;
   memory?: Memory;
+};
+
+export type Reference = {
+  name: string;
+  url: string;
 };
 
 export type Opcode = {
@@ -34,5 +39,5 @@ export type Opcode = {
   playgroundLink?: string;
   errorCases: string[];
   notes: string[];
-  references: string[];
+  references: Reference[];
 };

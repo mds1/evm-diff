@@ -21,7 +21,13 @@ export const number: Opcode = {
   errorCases: ['Not enough gas', 'Stack overflow'],
   notes: [],
   references: [
-    'https://www.evm.codes/#43?fork=shanghai',
-    'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/block.py#L126',
+    {
+      name: 'evm.codes',
+      url: 'https://www.evm.codes/#43?fork=shanghai',
+    },
+    {
+      name: 'execution-specs',
+      url: 'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/block.py#L126',
+    },
   ],
 };

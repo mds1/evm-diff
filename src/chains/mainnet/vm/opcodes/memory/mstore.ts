@@ -44,14 +44,14 @@ export const mstore: Opcode = {
     {
       input: ['0', '0xFF'],
       memory: {
-        before: '0',
+        before: '',
         after: '0x00000000000000000000000000000000000000000000000000000000000000FF',
       },
     },
     {
       input: ['1', '0xFF'],
       memory: {
-        before: '0',
+        before: '',
         after: '0x0000000000000000000000000000000000000000000000000000000000000000FF',
       },
     },
@@ -61,8 +61,17 @@ export const mstore: Opcode = {
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   notes: [],
   references: [
-    'https://www.evm.codes/#52?fork=shanghai',
-    'https://www.evm.codes/about#memoryexpansion',
-    'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/memory.py#L27',
+    {
+      name: 'evm.codes',
+      url: 'https://www.evm.codes/#52?fork=shanghai',
+    },
+    {
+      name: 'memory expansion',
+      url: 'https://www.evm.codes/about#memoryexpansion',
+    },
+    {
+      name: 'execution-specs',
+      url: 'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/memory.py#L27',
+    },
   ],
 };

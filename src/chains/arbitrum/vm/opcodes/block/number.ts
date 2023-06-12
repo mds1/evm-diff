@@ -21,8 +21,17 @@ export const number: Opcode = {
   errorCases: ['Not enough gas.', 'Stack overflow.'],
   notes: [],
   references: [
-    'https://www.evm.codes/#43?fork=shanghai',
-    'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/block.py#L126',
-    'https://community.optimism.io/docs/developers/build/differences/#opcode-differences',
+    {
+      name: 'evm.codes',
+      url: 'https://www.evm.codes/#43?fork=shanghai',
+    },
+    {
+      name: 'differences between Ethereum and Arbitrum block numbers',
+      url: 'https://developer.arbitrum.io/time#arbitrum-block-numbers',
+    },
+    {
+      name: 'execution-specs',
+      url: 'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/block.py#L126',
+    },
   ],
 };

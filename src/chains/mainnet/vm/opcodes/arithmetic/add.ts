@@ -32,7 +32,13 @@ export const add: Opcode = {
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   notes: [],
   references: [
-    'https://www.evm.codes/#01?fork=shanghai',
-    'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/arithmetic.py#L30',
+    {
+      name: 'evm.codes',
+      url: 'https://www.evm.codes/#01?fork=shanghai',
+    },
+    {
+      name: 'execution-specs',
+      url: 'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/arithmetic.py#L30',
+    },
   ],
 };
