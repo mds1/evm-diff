@@ -1,7 +1,7 @@
 import { Opcode } from '@/chains/types';
 
 export const mstore: Opcode = {
-  number: 52,
+  number: 0x52,
   name: 'mstore',
   description: 'Save word to memory',
   minGas: 3,

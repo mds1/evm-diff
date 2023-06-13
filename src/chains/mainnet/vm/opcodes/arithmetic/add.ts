@@ -1,7 +1,7 @@
 import { Opcode } from '@/chains/types';
 
 export const add: Opcode = {
-  number: 1,
+  number: 0x1,
   name: 'add',
   description: 'Addition operation',
   minGas: 3,

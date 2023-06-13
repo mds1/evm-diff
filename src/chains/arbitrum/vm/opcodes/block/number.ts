@@ -1,7 +1,7 @@
 import { Opcode } from '@/chains/types';
 
 export const number: Opcode = {
-  number: 43,
+  number: 0x43,
   name: 'number',
   description: 'L2 block number',
   minGas: 2,

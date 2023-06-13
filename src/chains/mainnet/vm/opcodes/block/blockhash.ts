@@ -1,7 +1,7 @@
 import { Opcode } from '@/chains/types';
 
 export const blockhash: Opcode = {
-  number: 40,
+  number: 0x40,
   name: 'blockhash',
   description: 'Get the hash of one of the 256 most recent complete blocks',
   minGas: 20,
