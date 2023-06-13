@@ -1,6 +1,10 @@
 import { Chain as Metadata } from '@wagmi/chains';
 import { Address } from 'viem';
 
+type Only<T, K extends keyof T> = {
+  [P in K]: T[P];
+};
+
 type PrecompileParam = {
   byteStart: number;
   byteLength: number;
@@ -64,8 +68,10 @@ export type Opcode = {
   references: string[];
 };
 
+export type UndefinedOpcode = Only<Opcode, 'number' | 'name' | 'description' | 'references'>;
+
 export type OpcodeMap = {
-  [key: number]: Opcode;
+  [key: number]: Opcode | UndefinedOpcode;
 };
 
 export type Chain = {
