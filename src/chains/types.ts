@@ -70,6 +70,8 @@ export type Opcode = {
 
 export type UndefinedOpcode = Only<Opcode, 'number' | 'name' | 'description' | 'references'>;
 
+export type OpcodeWithoutPlaygroundLink = Omit<Opcode, 'playgroundLink'>;
+
 export type OpcodeMap = {
   [key: number]: Opcode | UndefinedOpcode;
 };

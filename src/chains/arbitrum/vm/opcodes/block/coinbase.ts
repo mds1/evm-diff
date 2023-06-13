@@ -1,6 +1,6 @@
-import { Opcode } from '@/chains/types';
+import { OpcodeWithoutPlaygroundLink } from '@/chains/types';
 
-export const coinbase: Opcode = {
+export const coinbase: OpcodeWithoutPlaygroundLink = {
   number: 0x41,
   name: 'coinbase',
   description:
