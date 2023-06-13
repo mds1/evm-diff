@@ -64,8 +64,12 @@ export type Opcode = {
   references: string[];
 };
 
+export type OpcodeMap = {
+  [key: number]: Opcode;
+};
+
 export type Chain = {
   metadata: Metadata;
   precompiles: (Precompile | Predeploy)[];
-  opcodes: Opcode[];
+  opcodes: OpcodeMap;
 };
