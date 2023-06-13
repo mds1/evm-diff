@@ -72,12 +72,8 @@ export type UndefinedOpcode = Only<Opcode, 'number' | 'name' | 'description' | '
 
 export type OpcodeWithoutPlaygroundLink = Omit<Opcode, 'playgroundLink'>;
 
-export type OpcodeMap = {
-  [key: number]: Opcode | UndefinedOpcode;
-};
-
 export type Chain = {
   metadata: Metadata;
   precompiles: (Precompile | Predeploy)[];
-  opcodes: OpcodeMap;
+  opcodes: (Opcode | UndefinedOpcode)[];
 };

@@ -1,10 +1,10 @@
 import { opcodes as mainnetOpcodes } from '@/chains/mainnet/vm/opcodes';
-import { OpcodeMap } from '@/chains/types';
+import { Opcode } from '@/chains/types';
 import { coinbase } from './block/coinbase';
 import { number } from './block/number';
 
-export const opcodes: OpcodeMap = {
+export const opcodes: Record<number, Opcode> = {
   ...mainnetOpcodes,
-  0x41: coinbase,
-  0x43: number,
+  ...{ [coinbase.number]: coinbase },
+  ...{ [number.number]: number },
 };
