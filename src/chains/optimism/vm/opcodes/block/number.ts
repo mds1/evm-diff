@@ -5,7 +5,6 @@ export const number: Opcode = {
   name: 'number',
   description: "Get the L2 block's number",
   minGas: 2,
-  inputs: [],
   outputs: [
     {
       name: 'blockNumber',
@@ -14,12 +13,10 @@ export const number: Opcode = {
   ],
   examples: [
     {
-      input: [],
       output: '1636704767',
     },
   ],
   errorCases: ['Not enough gas', 'Stack overflow'],
-  notes: [],
   references: [
     'https://www.evm.codes/#43?fork=shanghai',
     'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/block.py#L126',

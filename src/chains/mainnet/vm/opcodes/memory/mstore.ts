@@ -39,7 +39,6 @@ export const mstore: Opcode = {
       description: '32-bytes value to write in the memory',
     },
   ],
-  outputs: [],
   examples: [
     {
       input: ['0', '0xFF'],
@@ -59,7 +58,6 @@ export const mstore: Opcode = {
   playgroundLink:
     'https://www.evm.codes/playground?unit=Wei&codeType=Mnemonic&code=%27z1v0wyz2v1w%27~yPUSH1%20z%2F%2F%20Example%20y%5CnwyMSTOREyv~0xFF~%01vwyz~_',
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
-  notes: [],
   references: [
     'https://www.evm.codes/#52?fork=shanghai',
     'https://www.evm.codes/about#memoryexpansion',

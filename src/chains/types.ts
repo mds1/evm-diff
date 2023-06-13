@@ -27,7 +27,7 @@ type Memory = {
 };
 
 type Example = {
-  input: string | string[];
+  input?: string | string[];
   output?: string;
   memory?: Memory;
 };
@@ -55,12 +55,12 @@ export type Opcode = {
   description: string;
   minGas: number;
   gasComputation?: GasComputation;
-  inputs: Variable[];
-  outputs: Variable[];
+  inputs?: Variable[];
+  outputs?: Variable[];
   examples: Example[];
   playgroundLink?: string;
   errorCases: string[];
-  notes: string[];
+  notes?: string[];
   references: string[];
 };
 
