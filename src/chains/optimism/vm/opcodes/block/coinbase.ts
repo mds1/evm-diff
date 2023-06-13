@@ -1,5 +1,6 @@
 import { UndefinedOpcode } from '@/chains/types';
 
+// TODO: It's not clear if this opcode is a no-op or if it will revert.
 export const coinbase: UndefinedOpcode = {
   number: 0x41,
   name: 'coinbase',
