@@ -6,7 +6,7 @@ import { number } from './block/number';
 import { mstore } from './memory/mstore';
 
 export const opcodes: OpcodeMap = {
-  0x1: add,
+  0x01: add,
   0x40: blockhash,
   0x41: coinbase,
   0x43: number,
