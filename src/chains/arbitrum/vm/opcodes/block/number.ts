@@ -3,7 +3,7 @@ import { Opcode } from '@/chains/types';
 export const number: Opcode = {
   number: 0x43,
   name: 'number',
-  description: "Get the L1 block number",
+  description: 'Get the L1 block number',
   minGas: 2,
   outputs: [
     {
