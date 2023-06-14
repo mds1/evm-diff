@@ -13,5 +13,5 @@ export const number: Opcode = {
       name: 'differences between Arbitrum and Ethereum',
       url: 'https://developer.arbitrum.io/solidity-support',
     },
-  ]
+  ],
 };
