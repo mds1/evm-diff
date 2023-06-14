@@ -1,5 +1,5 @@
-import { Precompile, Predeploy } from '@/chains';
 import { precompiles as mainnetPrecompiles } from '@/chains/mainnet/vm/precompiles';
+import { Precompile, Predeploy } from '@/types';
 
 // https://developer.arbitrum.io/useful-addresses#arbitrum-precompiles-l2-same-on-all-arb-chains
 export const precompiles: (Precompile | Predeploy)[] = [

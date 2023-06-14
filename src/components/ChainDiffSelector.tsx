@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Chain, chains } from '@/chains';
+import { chains } from '@/chains';
 import { ChainDiffSelectorChainCombobox } from '@/components/ui/ChainDiffSelectorChainCombobox';
+import { Chain } from '@/types';
 
 export const ChainDiffSelector = () => {
   const router = useRouter();

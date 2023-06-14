@@ -1,4 +1,4 @@
-import { Precompile } from '@/chains';
+import { Precompile } from '@/types';
 
 export const precompiles: Precompile[] = [
   {

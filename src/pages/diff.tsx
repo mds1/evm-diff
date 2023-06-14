@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Chain, chains } from '@/chains';
+import { chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
 import { Toggle } from '@/components/ui/Toggle';
+import { Chain } from '@/types';
 
 const SECTION_MAP: Record<string, string> = {
   metadata: 'Metadata',
