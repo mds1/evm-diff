@@ -41,9 +41,9 @@ export const precompiles: Precompile[] = [
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/ecrecover.py',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L50',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L30',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/ecrecover.py',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L50',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L30',
     ],
     notes: [
       "If an address cannot be recovered, or not enough gas was given, then there is no return data. Note that the return data is the address that issued the signature but it won't verify the signature.",
@@ -71,9 +71,9 @@ export const precompiles: Precompile[] = [
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/sha256.py',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L51',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L31',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/sha256.py',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L51',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L31',
     ],
     notes: ['If not enough gas was given, then there is no return data.'],
   },
@@ -99,9 +99,9 @@ export const precompiles: Precompile[] = [
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/ripemd160.py',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L53',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L32',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/ripemd160.py',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L53',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L32',
     ],
     notes: ['If not enough gas was given, then there is no return data.'],
   },
@@ -127,9 +127,9 @@ export const precompiles: Precompile[] = [
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/identity.py',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L55',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L33',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/identity.py',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L55',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L33',
     ],
     notes: [
       'If not enough gas was given, then there is no return data.',
@@ -188,9 +188,9 @@ export const precompiles: Precompile[] = [
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py#L167',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L34',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py#L167',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L34',
     ],
     notes: ['If not enough gas was given, then there is no return data.'],
   },
@@ -240,9 +240,9 @@ export const precompiles: Precompile[] = [
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L33',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L45',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L35',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L33',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L45',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L35',
     ],
     notes: [
       'If the input is not valid, or if not enough gas was given, then there is no return data.',
@@ -290,9 +290,9 @@ export const precompiles: Precompile[] = [
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L72',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L84',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L36',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L72',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L84',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L36',
     ],
     notes: [
       'If the input is not valid, or if not enough gas was given, then there is no return data.',
@@ -354,9 +354,9 @@ export const precompiles: Precompile[] = [
       },
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L107',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L119',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L37',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L107',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L119',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L37',
     ],
     notes: [
       'The input must always be a multiple of 6 32-byte values. 0 inputs is valid and returns 1.',
@@ -414,9 +414,9 @@ export const precompiles: Precompile[] = [
       'Of the input does not allow to compute a valid result, all the gas sent is consumed.',
     ],
     references: [
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/blake2f.py',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/gas.py#L59',
-      'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L38',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/blake2f.py',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L59',
+      'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L38',
     ],
   },
 ];
