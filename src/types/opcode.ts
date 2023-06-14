@@ -1,4 +1,4 @@
-type Variable = {
+export type Variable = {
   name: string;
   description: string;
   expression?: string;
@@ -9,7 +9,7 @@ type Memory = {
   after: string;
 };
 
-type Example = {
+export type Example = {
   input?: string | string[];
   output?: string;
   memory?: Memory;
@@ -22,7 +22,7 @@ type GasComputation = {
   variables: Variable[];
 };
 
-type Reference = {
+export type Reference = {
   name: string;
   url: string;
 };

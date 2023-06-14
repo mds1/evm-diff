@@ -14,3 +14,5 @@ export const sortedArrayByField = <T extends number | string | symbol, U, K exte
     return 0;
   });
 };
+
+export const toUppercase = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
