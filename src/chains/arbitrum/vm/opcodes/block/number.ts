@@ -9,7 +9,9 @@ export const number: Opcode = {
   examples: [{ output: '1636704767' }],
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
-    'https://www.evm.codes/#43?fork=shanghai',
-    'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/block.py#L126',
-  ],
+    {
+      name: 'differences between Arbitrum and Ethereum',
+      url: 'https://developer.arbitrum.io/solidity-support',
+    },
+  ]
 };

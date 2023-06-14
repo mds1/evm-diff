@@ -15,7 +15,13 @@ export const add: Opcode = {
     'https://www.evm.codes/playground?unit=Wei&codeType=Mnemonic&code=%27y1z0z0twwy2v32%200xsssszt%27~uuuuzv1%201y%2F%2F%20Example%20w%5CnvwPUSHuFFtwADDs~~%01stuvwyz~_',
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
-    'https://www.evm.codes/#01?fork=shanghai',
-    'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/arithmetic.py#L30',
+    {
+      name: 'evm.codes',
+      url: 'https://www.evm.codes/#01?fork=shanghai',
+    },
+    {
+      name: 'execution-specs',
+      url: 'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/arithmetic.py#L30',
+    },
   ],
 };

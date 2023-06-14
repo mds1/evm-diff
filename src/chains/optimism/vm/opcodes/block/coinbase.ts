@@ -6,6 +6,9 @@ export const coinbase: Pick<Opcode, 'number' | 'name' | 'description' | 'referen
   name: 'coinbase',
   description: 'The opcode is not defined on Optimism',
   references: [
-    'https://community.optimism.io/docs/developers/build/differences/#opcode-differences',
+    {
+      name: 'differences between Optimism and Ethereum opcodes',
+      url: 'https://community.optimism.io/docs/developers/build/differences/#opcode-differences',
+    }
   ],
 };

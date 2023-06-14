@@ -59,8 +59,17 @@ export const mstore: Opcode = {
     'https://www.evm.codes/playground?unit=Wei&codeType=Mnemonic&code=%27z1v0wyz2v1w%27~yPUSH1%20z%2F%2F%20Example%20y%5CnwyMSTOREyv~0xFF~%01vwyz~_',
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
-    'https://www.evm.codes/#52?fork=shanghai',
-    'https://www.evm.codes/about#memoryexpansion',
-    'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/memory.py#L27',
+    {
+      name: 'evm.codes',
+      url: 'https://www.evm.codes/#52?fork=shanghai',
+    },
+    {
+      name: 'memory expansion',
+      url: 'https://www.evm.codes/about#memoryexpansion',
+    },
+    {
+      name: 'execution-specs',
+      url: 'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/memory.py#L27',
+    },
   ],
 };
