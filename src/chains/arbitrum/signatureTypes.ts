@@ -11,8 +11,8 @@ const arbitrumDepositTx: SignatureType = {
   signs: 'transaction',
   references: [
     txTypeDocs,
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/transaction.go#L48',
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/arb_types.go#L338-L344',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/transaction.go#L48',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/arb_types.go#L371-L377',
   ],
 };
 
@@ -26,8 +26,8 @@ const arbitrumUnsignedTx: SignatureType = {
   signs: 'transaction',
   references: [
     txTypeDocs,
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/transaction.go#L49',
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/arb_types.go#L43-L53',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/transaction.go#L49',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/arb_types.go#L48-L58',
   ],
 };
 
@@ -41,8 +41,8 @@ const arbitrumContractTx: SignatureType = {
   signs: 'transaction',
   references: [
     txTypeDocs,
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/transaction.go#L50',
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/arb_types.go#L104-L114',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/transaction.go#L50',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/arb_types.go#L116-L126',
   ],
 };
 
@@ -55,8 +55,8 @@ const arbitrumSubmitRetryableTx: SignatureType = {
   signs: 'transaction',
   references: [
     txTypeDocs,
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/transaction.go#L52',
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/arb_types.go#L232-L247',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/transaction.go#L52',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/arb_types.go#L258-L273',
   ],
 };
 
@@ -70,8 +70,8 @@ const arbitrumRetryTx: SignatureType = {
   signs: 'transaction',
   references: [
     txTypeDocs,
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/transaction.go#L51',
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/arb_types.go#L161-L176',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/transaction.go#L51',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/arb_types.go#L180-L194',
   ],
 };
 
@@ -82,8 +82,8 @@ const arbitrumInternalTx: SignatureType = {
   signs: 'transaction',
   references: [
     txTypeDocs,
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/transaction.go#L53',
-    'https://github.com/OffchainLabs/go-ethereum/blob/master/core/types/arb_types.go#L387-L390',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/transaction.go#L53',
+    'https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/arb_types.go#L424-L427',
   ],
 };
 

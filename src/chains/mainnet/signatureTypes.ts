@@ -2,7 +2,7 @@ import { SignatureType } from '@/chains';
 
 const eip2718 = 'https://eips.ethereum.org/EIPS/eip-2718';
 const sigTypes =
-  'https://github.com/ethereum/execution-specs/blob/master/lists/signature-types/README.md';
+  'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/lists/signature-types/README.md';
 
 // Some signature prefix bytes are invalid because they collide with the initial byte of valid RLP
 // encoded transactions. The range of invalid prefix bytes is 0xc0-0xff, which is a length of 64.
