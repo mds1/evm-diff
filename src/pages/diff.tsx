@@ -4,7 +4,14 @@ import { Chain, chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
+import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
 import { Toggle } from '@/components/ui/Toggle';
+
+const SECTION_MAP: Record<string, string> = {
+  metadata: 'Metadata',
+  precompiles: 'Precompiles and Predeploys',
+  signatureTypes: 'Transaction and Signature Types',
+};
 
 const Diff = () => {
   // -------- Parse query parameters --------
@@ -43,17 +50,11 @@ const Diff = () => {
 
   const [onlyShowDiff, setOnlyShowDiff] = useState(true);
 
-  const SectionHeader = ({ section }: { section: string }) => {
-    if (section === 'metadata') section = 'Metadata';
-    else if (section === 'precompiles') section = 'Precompiles and Predeploys';
-
-    return (
-      <h2 className='border-b border-zinc-500/10 text-center font-bold dark:border-zinc-500/20'>
-        {section}
-      </h2>
-    );
-  };
-
+  const SectionHeader = ({ section }: { section: string }) => (
+    <h2 className='border-b border-zinc-500/10 text-center font-bold dark:border-zinc-500/20'>
+      {SECTION_MAP[section] || section}
+    </h2>
+  );
   // We take `baseChain` and `targetChain` as arguments to ensure that they are not `undefined`
   // and remove the need for `?` and `!` operators.
   const DiffDiv = ({ baseChain, targetChain }: { baseChain: Chain; targetChain: Chain }) => {
@@ -78,6 +79,14 @@ const Diff = () => {
               <DiffPrecompiles
                 base={baseChain.precompiles}
                 target={targetChain.precompiles}
+                onlyShowDiff={onlyShowDiff}
+              />
+            );
+          } else if (section === 'signatureTypes') {
+            content = (
+              <DiffSignatureTypes
+                base={baseChain.signatureTypes}
+                target={targetChain.signatureTypes}
                 onlyShowDiff={onlyShowDiff}
               />
             );

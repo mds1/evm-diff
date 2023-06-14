@@ -5,9 +5,20 @@ type Only<T, K extends keyof T> = {
   [P in K]: T[P];
 };
 
+export type SignatureType = {
+  prefixByte: number;
+  description: string;
+  // The data that is RLP encoded and signed to generate a signed transaction.
+  signedData: string[] | undefined;
+  // Some signature types are used to sign transactions, others are used to sign data.
+  signs: 'transaction' | 'data' | undefined;
+  references: string[];
+  notes?: string[];
+};
+
 type PrecompileParam = {
-  byteStart: number;
-  byteLength: number;
+  byteStart: number | string;
+  byteLength: number | string;
   name: string;
   description: string;
 };
@@ -51,6 +62,7 @@ export type Precompile = {
   input: PrecompileParam[];
   output: PrecompileParam[];
   references: string[];
+  notes?: string[];
 };
 
 export type Opcode = {
@@ -75,5 +87,6 @@ export type OpcodeWithoutPlaygroundLink = Omit<Opcode, 'playgroundLink'>;
 export type Chain = {
   metadata: Metadata;
   precompiles: (Precompile | Predeploy)[];
+  signatureTypes: SignatureType[];
   opcodes: (Opcode | UndefinedOpcode)[];
 };

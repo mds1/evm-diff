@@ -1,3 +1,4 @@
+// Takes an arbitrary number of class names, filtering out any falsey values.
 export const classNames = (...classes: (string | boolean)[]) => classes.filter(Boolean).join(' ');
 
 // Given a `record` (i.e. an object), return an array of its values sorted by the given `field`.
