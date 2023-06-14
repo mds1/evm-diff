@@ -1,5 +1,5 @@
-import { SignatureType } from '@/chains';
 import { signatureTypes as mainnetSignatureTypes } from '@/chains/mainnet/signatureTypes';
+import { SignatureType } from '@/types';
 
 const depositTx: SignatureType = {
   prefixByte: 0x7e,

@@ -1,5 +1,5 @@
 import { pad } from 'viem';
-import { SignatureType } from '@/chains';
+import { SignatureType } from '@/types';
 
 type Props = {
   base: SignatureType[];

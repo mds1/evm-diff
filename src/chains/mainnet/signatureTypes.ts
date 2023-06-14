@@ -1,4 +1,4 @@
-import { SignatureType } from '@/chains';
+import { SignatureType } from '@/types';
 
 const eip2718 = 'https://eips.ethereum.org/EIPS/eip-2718';
 const sigTypes =

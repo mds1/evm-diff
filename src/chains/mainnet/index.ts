@@ -1,6 +1,6 @@
 import { mainnet as mainnetMetadata } from '@wagmi/chains';
-import { Chain } from '@/chains';
 import { sortedArrayByField } from '@/lib/utils';
+import { Chain } from '@/types';
 import { signatureTypes } from './signatureTypes';
 import { opcodes } from './vm/opcodes';
 import { precompiles } from './vm/precompiles';

@@ -1,5 +1,5 @@
-import { SignatureType } from '@/chains';
 import { signatureTypes as mainnetSignatureTypes } from '@/chains/mainnet/signatureTypes';
+import { SignatureType } from '@/types';
 
 const txTypeDocs = 'https://developer.arbitrum.io/arbos/geth#transaction-types';
 

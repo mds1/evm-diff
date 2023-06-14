@@ -1,5 +1,5 @@
 import { Address, getAddress } from 'viem';
-import { Precompile, Predeploy } from '@/chains';
+import { Precompile, Predeploy } from '@/types';
 
 type Props = {
   base: (Precompile | Predeploy)[];

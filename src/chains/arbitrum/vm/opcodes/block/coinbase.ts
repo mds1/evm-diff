@@ -1,4 +1,4 @@
-import { Opcode } from '@/chains/types';
+import { Opcode } from '@/types';
 
 export const coinbase: Omit<Opcode, 'playgroundLink'> = {
   number: 0x41,
@@ -11,5 +11,10 @@ export const coinbase: Omit<Opcode, 'playgroundLink'> = {
   ],
   examples: [{ output: '2500000000000000' }],
   errorCases: [],
-  references: ['https://developer.arbitrum.io/solidity-support'],
+  references: [
+    {
+      name: 'differences between Arbitrum and Ethereum opcodes',
+      url: 'https://developer.arbitrum.io/solidity-support',
+    },
+  ],
 };

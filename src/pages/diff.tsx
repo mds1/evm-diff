@@ -1,16 +1,28 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Chain, chains } from '@/chains';
+import { chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
+import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
 import { Toggle } from '@/components/ui/Toggle';
+import { Chain } from '@/types';
 
-const SECTION_MAP: Record<string, string> = {
-  metadata: 'Metadata',
-  precompiles: 'Precompiles and Predeploys',
-  signatureTypes: 'Transaction and Signature Types',
+interface Props<T> {
+  base: T;
+  target: T;
+  onlyShowDiff: boolean;
+}
+
+const SECTION_MAP: Record<
+  string,
+  { title: string; component: React.ComponentType<Props<any>>; hide?: boolean }
+> = {
+  metadata: { title: 'Metadata', component: DiffMetadata },
+  precompiles: { title: 'Precompiles and Predeploys', component: DiffPrecompiles },
+  signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
+  opcodes: { title: 'Opcodes', component: DiffOpcodes, hide: true },
 };
 
 const Diff = () => {
@@ -52,9 +64,25 @@ const Diff = () => {
 
   const SectionHeader = ({ section }: { section: string }) => (
     <h2 className='border-b border-zinc-500/10 text-center font-bold dark:border-zinc-500/20'>
-      {SECTION_MAP[section] || section}
+      {SECTION_MAP[section].title || section}
     </h2>
   );
+
+  const SectionComponent = ({
+    section,
+    base,
+    target,
+    onlyShowDiff,
+  }: {
+    section: string;
+    base: Chain[keyof Chain];
+    target: Chain[keyof Chain];
+    onlyShowDiff: boolean;
+  }) => {
+    const Component = SECTION_MAP[section].component;
+    return <Component {...{ base, target, onlyShowDiff }} />;
+  };
+
   // We take `baseChain` and `targetChain` as arguments to ensure that they are not `undefined`
   // and remove the need for `?` and `!` operators.
   const DiffDiv = ({ baseChain, targetChain }: { baseChain: Chain; targetChain: Chain }) => {
@@ -63,39 +91,15 @@ const Diff = () => {
       <main>
         <Toggle enabled={onlyShowDiff} setEnabled={setOnlyShowDiff} label='Only show differences' />
         {sections.map((section) => {
-          const header = <SectionHeader section={section} />;
+          const hideComponent = SECTION_MAP[section].hide;
+          if (hideComponent) return <></>;
 
-          let content = <></>;
-          if (section === 'metadata') {
-            content = (
-              <DiffMetadata
-                base={baseChain.metadata}
-                target={targetChain.metadata}
-                onlyShowDiff={onlyShowDiff}
-              />
-            );
-          } else if (section === 'precompiles') {
-            content = (
-              <DiffPrecompiles
-                base={baseChain.precompiles}
-                target={targetChain.precompiles}
-                onlyShowDiff={onlyShowDiff}
-              />
-            );
-          } else if (section === 'signatureTypes') {
-            content = (
-              <DiffSignatureTypes
-                base={baseChain.signatureTypes}
-                target={targetChain.signatureTypes}
-                onlyShowDiff={onlyShowDiff}
-              />
-            );
-          }
-
+          const base = baseChain[section as keyof Chain];
+          const target = targetChain[section as keyof Chain];
           return (
             <div key={section}>
-              {header}
-              {content}
+              <SectionHeader section={section} />
+              <SectionComponent {...{ section, base, target, onlyShowDiff }} />
             </div>
           );
         })}
