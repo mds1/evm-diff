@@ -1,3 +1,4 @@
+import { ETH_SPECS_COMMIT_ID } from '@/lib/constants';
 import { Opcode } from '@/types';
 
 export const mstore: Opcode = {
@@ -67,7 +68,7 @@ export const mstore: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: 'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/memory.py#L27',
+      url: `https://github.com/ethereum/execution-specs/blob/${ETH_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/memory.py#L27`,
     },
   ],
 };
