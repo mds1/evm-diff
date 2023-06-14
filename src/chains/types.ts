@@ -33,7 +33,7 @@ type GasComputation = {
 };
 
 type Memory = {
-  before: string;
+  before?: string;
   after: string;
 };
 
