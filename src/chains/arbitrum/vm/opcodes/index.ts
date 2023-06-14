@@ -1,5 +1,5 @@
 import { opcodes as mainnetOpcodes } from '@/chains/mainnet/vm/opcodes';
-import { Opcode } from '@/chains/types';
+import { Opcode } from '@/types';
 import { coinbase } from './block/coinbase';
 import { number } from './block/number';
 

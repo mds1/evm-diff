@@ -1,4 +1,4 @@
-import { Opcode } from '@/chains/types';
+import { Opcode } from '@/types';
 import { add } from './arithmetic/add';
 import { blockhash } from './block/blockhash';
 import { coinbase } from './block/coinbase';

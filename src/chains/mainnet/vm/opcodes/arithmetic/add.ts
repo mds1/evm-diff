@@ -1,4 +1,4 @@
-import { Opcode } from '@/chains/types';
+import { Opcode } from '@/types';
 
 export const add: Opcode = {
   number: 0x01,

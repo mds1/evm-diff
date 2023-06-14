@@ -1,4 +1,4 @@
-import { Opcode } from '@/chains/types';
+import { Opcode } from '@/types';
 
 export const coinbase: Omit<Opcode, 'playgroundLink'> = {
   number: 0x41,
