@@ -9,8 +9,7 @@ export const coinbase: OpcodeWithoutPlaygroundLink = {
   outputs: [
     {
       name: 'constant',
-      description:
-        'A constant value of since there is no specific address associated with the block reward on Arbitrum',
+      description: 'A constant value of zero',
       expression: '2500000000000000',
     },
   ],
@@ -19,6 +18,6 @@ export const coinbase: OpcodeWithoutPlaygroundLink = {
       output: '2500000000000000',
     },
   ],
-  errorCases: ['TODO'],
+  errorCases: [],
   references: ['https://developer.arbitrum.io/solidity-support'],
 };
