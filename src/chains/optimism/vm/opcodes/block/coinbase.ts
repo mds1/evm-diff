@@ -1,7 +1,7 @@
-import { UndefinedOpcode } from '@/chains/types';
+import { Opcode } from '@/chains/types';
 
 // TODO: It's not clear if this opcode is a no-op or if it will revert.
-export const coinbase: UndefinedOpcode = {
+export const coinbase: Pick<Opcode, 'number' | 'name' | 'description' | 'references'> = {
   number: 0x41,
   name: 'coinbase',
   description: 'The opcode is not defined on Optimism',

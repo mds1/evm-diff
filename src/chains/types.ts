@@ -1,10 +1,6 @@
 import { Chain as Metadata } from '@wagmi/chains';
 import { Address } from 'viem';
 
-type Only<T, K extends keyof T> = {
-  [P in K]: T[P];
-};
-
 export type SignatureType = {
   prefixByte: number;
   description: string;
@@ -80,13 +76,9 @@ export type Opcode = {
   references: string[];
 };
 
-export type UndefinedOpcode = Only<Opcode, 'number' | 'name' | 'description' | 'references'>;
-
-export type OpcodeWithoutPlaygroundLink = Omit<Opcode, 'playgroundLink'>;
-
 export type Chain = {
   metadata: Metadata;
   precompiles: (Precompile | Predeploy)[];
   signatureTypes: SignatureType[];
-  opcodes: (Opcode | UndefinedOpcode)[];
+  opcodes: Partial<Opcode>[];
 };
