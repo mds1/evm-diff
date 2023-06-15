@@ -13,7 +13,7 @@ export const number: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('43'),
+      url: evmCodesOpcodesLink(0x43),
     },
     {
       name: 'execution-specs',

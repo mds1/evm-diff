@@ -45,7 +45,7 @@ export const exp: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('0a'),
+      url: evmCodesOpcodesLink(0x0a),
     },
     {
       name: 'execution-specs',

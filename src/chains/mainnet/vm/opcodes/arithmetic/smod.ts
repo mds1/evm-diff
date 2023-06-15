@@ -43,7 +43,7 @@ export const smod: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('07'),
+      url: evmCodesOpcodesLink(0x07),
     },
     {
       name: 'execution-specs',

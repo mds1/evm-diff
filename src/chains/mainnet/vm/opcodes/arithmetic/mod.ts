@@ -34,7 +34,7 @@ export const mod: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('06'),
+      url: evmCodesOpcodesLink(0x06),
     },
     {
       name: 'execution-specs',

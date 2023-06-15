@@ -13,7 +13,7 @@ export const coinbase: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('41'),
+      url: evmCodesOpcodesLink(0x41),
     },
     {
       name: 'execution-specs',

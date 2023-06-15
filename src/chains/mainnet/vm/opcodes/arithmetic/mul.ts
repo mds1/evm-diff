@@ -33,7 +33,7 @@ export const mul: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('02'),
+      url: evmCodesOpcodesLink(0x02),
     },
     {
       name: 'execution-specs',

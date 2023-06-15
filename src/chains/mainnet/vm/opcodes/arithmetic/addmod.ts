@@ -39,7 +39,7 @@ export const addmod: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('08'),
+      url: evmCodesOpcodesLink(0x08),
     },
     {
       name: 'execution-specs',

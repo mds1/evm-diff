@@ -67,7 +67,7 @@ export const mstore: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('52'),
+      url: evmCodesOpcodesLink(0x52),
     },
     {
       name: 'memory expansion',

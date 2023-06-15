@@ -31,7 +31,7 @@ export const blockhash: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('40'),
+      url: evmCodesOpcodesLink(0x40),
     },
     {
       name: 'execution-specs',

@@ -1,3 +1,4 @@
+import { pad } from 'viem';
 import {
   ETHEREUM_EXECUTION_SPECS_COMMIT_ID,
   ETHEREUM_EXECUTION_SPECS_URL,
@@ -19,11 +20,17 @@ export enum OpcodeGroups {
   System = 'system',
 }
 
+// Returns a hex string padded to 2 characters and without a leading `0x`.
+const formatOpcodeNumber = (n: number) => {
+  return n.toString(16).padStart(2, '0');
+}; 
+
 export const ethSpecsOpcodeSrc = (group: OpcodeGroups, line: number): string =>
   `${ETHEREUM_EXECUTION_SPECS_URL}/blob/${ETHEREUM_EXECUTION_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/${group}.py#${line}`;
 
-export const evmCodesOpcodesLink = (opcodeNumber: string): string =>
-  `${EVM_OPCODES_URL}/#${opcodeNumber}`;
+export const evmCodesOpcodesLink = (opcodeNumber: number): string => {
+  return `${EVM_OPCODES_URL}/#${formatOpcodeNumber(opcodeNumber)}`;
+};
 
 export const evmCodesPlaygroundLink = (codeParam: string): string =>
   `${EVM_OPCODES_URL}/playground?unit=Wei&codeType=Mnemonic&code=${codeParam}`;

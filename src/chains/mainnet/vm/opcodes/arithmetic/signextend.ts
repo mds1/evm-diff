@@ -31,7 +31,7 @@ export const signextend: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('0b'),
+      url: evmCodesOpcodesLink(0x0b),
     },
     {
       name: 'execution-specs',

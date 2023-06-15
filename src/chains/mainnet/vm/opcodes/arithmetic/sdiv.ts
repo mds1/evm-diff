@@ -43,7 +43,7 @@ export const sdiv: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('05'),
+      url: evmCodesOpcodesLink(0x05),
     },
     {
       name: 'execution-specs',

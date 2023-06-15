@@ -43,7 +43,7 @@ export const mulmod: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink('09'),
+      url: evmCodesOpcodesLink(0x08),
     },
     {
       name: 'execution-specs',
