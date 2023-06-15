@@ -1,6 +1,16 @@
 import { Opcode } from '@/types';
 
-export const number: Opcode = {
+export const number: Pick<
+  Opcode,
+  | 'number'
+  | 'name'
+  | 'description'
+  | 'minGas'
+  | 'outputs'
+  | 'examples'
+  | 'errorCases'
+  | 'references'
+> = {
   number: 0x43,
   name: 'number',
   description: 'Get the L1 block number',
