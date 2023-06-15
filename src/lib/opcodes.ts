@@ -23,7 +23,7 @@ export enum OpcodeGroups {
 // Returns a hex string padded to 2 characters and without a leading `0x`.
 const formatOpcodeNumber = (n: number) => {
   return n.toString(16).padStart(2, '0');
-}; 
+};
 
 export const ethSpecsOpcodeSrc = (group: OpcodeGroups, line: number): string =>
   `${ETHEREUM_EXECUTION_SPECS_URL}/blob/${ETHEREUM_EXECUTION_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/${group}.py#${line}`;
