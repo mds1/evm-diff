@@ -1,4 +1,4 @@
-import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
+import { MainnetHardforks, getHardforksFrom } from '@/chains/mainnet/hardforks';
 import {
   OpcodeGroups,
   ethSpecsOpcodeSrc,
@@ -41,5 +41,5 @@ export const div: Opcode = {
       url: ethSpecsOpcodeSrc(OpcodeGroups.Arithmetic, 111),
     },
   ],
-  supportedHardforks: getHardforksFrom(Hardforks.Frontier),
+  supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),
 };

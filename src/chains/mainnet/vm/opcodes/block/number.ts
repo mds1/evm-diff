@@ -1,4 +1,4 @@
-import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
+import { MainnetHardforks, getHardforksFrom } from '@/chains/mainnet/hardforks';
 import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
@@ -20,5 +20,5 @@ export const number: Opcode = {
       url: ethSpecsOpcodeSrc(OpcodeGroups.Block, 126),
     },
   ],
-  supportedHardforks: getHardforksFrom(Hardforks.Frontier),
+  supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),
 };

@@ -1,4 +1,4 @@
-import { Hardforks } from './hardforks';
+import { MainnetHardforks } from '@/chains/mainnet/hardforks';
 
 // Website
 export const SITE_NAME = 'EVM Diff';
@@ -8,7 +8,7 @@ export const COMPANY_URL = 'https://twitter.com/msolomon44';
 export const GITHUB_URL = 'https://github.com/mds1/evm-diff';
 export const TWITTER_URL = 'https://twitter.com/msolomon44';
 
-export const CURRENT_MAINNET_HARDFORK = Hardforks.Shanghai;
+export const CURRENT_MAINNET_HARDFORK = MainnetHardforks.Shanghai;
 
 // References
 export const ETHEREUM_EXECUTION_SPECS_URL = 'https://github.com/ethereum/execution-specs';
