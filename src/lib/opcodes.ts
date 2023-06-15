@@ -1,4 +1,4 @@
-import { ETH_SPECS_COMMIT_ID } from './constants';
+import { ETHEREUM_EXECUTION_SPECS_URL, ETHEREUM_EXECUTION_SPECS_COMMIT_ID, EVM_OPCODES_URL } from './constants';
 
 export enum OpcodeGroups {
   Arithmetic = 'arithmetic',
@@ -16,7 +16,10 @@ export enum OpcodeGroups {
 }
 
 export const ethSpecsOpcodeSrc = (group: OpcodeGroups, line: number): string =>
-  `https://github.com/ethereum/execution-specs/blob/${ETH_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/${group}.py#${line}`;
+  `${ETHEREUM_EXECUTION_SPECS_URL}/blob/${ETHEREUM_EXECUTION_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/${group}.py#${line}`;
 
 export const evmCodesOpcodesLink = (opcodeNumber: string): string =>
-  `https://www.evm.codes/#${opcodeNumber}`;
+  `${EVM_OPCODES_URL}/#${opcodeNumber}`;
+
+export const evmCodesPlaygroundLink = (codeParam: string): string =>
+  `${EVM_OPCODES_URL}/playground?unit=Wei&codeType=Mnemonic&code=${codeParam}`;
