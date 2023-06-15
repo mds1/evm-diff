@@ -78,7 +78,6 @@ const formatStringList = (title: string, array: string[] | undefined) => {
 };
 
 const formatReference = (r: Reference) => {
-  let text = r.name ? r.name : 'link';
   return (
     <p className='text-secondary text-sm'>
       <ExternalLink href={r.url} text={r.name ? r.name.toLowerCase() : 'link'} />
