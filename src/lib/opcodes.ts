@@ -1,4 +1,8 @@
-import { ETHEREUM_EXECUTION_SPECS_URL, ETHEREUM_EXECUTION_SPECS_COMMIT_ID, EVM_OPCODES_URL } from './constants';
+import {
+  ETHEREUM_EXECUTION_SPECS_COMMIT_ID,
+  ETHEREUM_EXECUTION_SPECS_URL,
+  EVM_OPCODES_URL,
+} from './constants';
 
 export enum OpcodeGroups {
   Arithmetic = 'arithmetic',

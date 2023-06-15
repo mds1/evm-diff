@@ -1,5 +1,10 @@
 import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
-import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
+import {
+  OpcodeGroups,
+  ethSpecsOpcodeSrc,
+  evmCodesOpcodesLink,
+  evmCodesPlaygroundLink,
+} from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const signextend: Opcode = {
@@ -19,8 +24,9 @@ export const signextend: Opcode = {
     },
     { input: ['0', '0x7F'], output: '0x7F' },
   ],
-  playgroundLink:
-    'https://www.evm.codes/playground?unit=Wei&codeType=Mnemonic&code=%27z1~xFywwz2~x7y%27~wPUSH1%200z%2F%2F%20Example%20yF~wSIGNEXTENDw%5Cn%01wyz~_',
+  playgroundLink: evmCodesPlaygroundLink(
+    '%27z1~xFywwz2~x7y%27~wPUSH1%200z%2F%2F%20Example%20yF~wSIGNEXTENDw%5Cn%01wyz~_'
+  ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
     {

@@ -1,5 +1,10 @@
 import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
-import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
+import {
+  OpcodeGroups,
+  ethSpecsOpcodeSrc,
+  evmCodesOpcodesLink,
+  evmCodesPlaygroundLink,
+} from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const sdiv: Opcode = {
@@ -28,8 +33,9 @@ export const sdiv: Opcode = {
       output: '2',
     },
   ],
-  playgroundLink:
-    'https://www.evm.codes/playground?unit=Wei&codeType=Mnemonic&code=%27y1vvszzy2wrFwrEs%27~uuuz%5Cny%2F%2F%20Example%20wt32%200xr~vt1%2010uFFFtzPUSHszSDIVr~~~%01rstuvwyz~_',
+  playgroundLink: evmCodesPlaygroundLink(
+    '%27y1vvszzy2wrFwrEs%27~uuuz%5Cny%2F%2F%20Example%20wt32%200xr~vt1%2010uFFFtzPUSHszSDIVr~~~%01rstuvwyz~_'
+  ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   notes: [
     'All values are treated as two’s complement signed 256-bit integers. Note the overflow semantic when −2**255 is negated.',

@@ -1,5 +1,10 @@
 import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
-import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
+import {
+  OpcodeGroups,
+  ethSpecsOpcodeSrc,
+  evmCodesOpcodesLink,
+  evmCodesPlaygroundLink,
+} from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const mulmod: Opcode = {
@@ -30,8 +35,9 @@ export const mulmod: Opcode = {
       output: '9',
     },
   ],
-  playgroundLink:
-    'https://www.evm.codes/playground?unit=Wei&codeType=Mnemonic&code=%27y1v8v10v10twwy2v12usust%27~rrrrzwPUSHy%2F%2F%20Example%20w%5Cnvz1%20uz32%200xstwMULMODs~~~~rFF%01rstuvwyz~_',
+  playgroundLink: evmCodesPlaygroundLink(
+    '%27y1v8v10v10twwy2v12usust%27~rrrrzwPUSHy%2F%2F%20Example%20w%5Cnvz1%20uz32%200xstwMULMODs~~~~rFF%01rstuvwyz~_'
+  ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   notes: ['All intermediate calculations of this operation are not subject to the 2**256 modulo.'],
   references: [

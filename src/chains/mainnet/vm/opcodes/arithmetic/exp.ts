@@ -1,5 +1,10 @@
 import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
-import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
+import {
+  OpcodeGroups,
+  ethSpecsOpcodeSrc,
+  evmCodesOpcodesLink,
+  evmCodesPlaygroundLink,
+} from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const exp: Opcode = {
@@ -32,8 +37,9 @@ export const exp: Opcode = {
     { input: ['10', '2'], output: '100' },
     { input: ['2', '2'], output: '4' },
   ],
-  playgroundLink:
-    'https://www.evm.codes/playground?unit=Wei&codeType=Mnemonic&code=%27z1~2~10wyyz2~2~2w%27~yPUSH1%20z%2F%2F%20Example%20y%5CnwyEXP%01wyz~_',
+  playgroundLink: evmCodesPlaygroundLink(
+    '%27z1~2~10wyyz2~2~2w%27~yPUSH1%20z%2F%2F%20Example%20y%5CnwyEXP%01wyz~_'
+  ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   notes: ['All intermediate calculations of this operation are not subject to the 2**256 modulo.'],
   references: [
