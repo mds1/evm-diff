@@ -17,3 +17,6 @@ export enum OpcodeGroups {
 
 export const ethSpecsOpcodeSrc = (group: OpcodeGroups, line: number): string =>
   `https://github.com/ethereum/execution-specs/blob/${ETH_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/${group}.py#${line}`;
+
+export const evmCodesLink = (opcodeNumber: string): string =>
+  `https://www.evm.codes/#${opcodeNumber}`;
