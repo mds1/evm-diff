@@ -1,5 +1,5 @@
 import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
-import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesLink } from '@/lib/opcodes';
+import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const mstore: Opcode = {
@@ -61,7 +61,7 @@ export const mstore: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesLink('52'),
+      url: evmCodesOpcodesLink('52'),
     },
     {
       name: 'memory expansion',

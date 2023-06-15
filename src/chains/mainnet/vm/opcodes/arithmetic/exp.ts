@@ -1,5 +1,5 @@
 import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
-import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesLink } from '@/lib/opcodes';
+import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const exp: Opcode = {
@@ -39,7 +39,7 @@ export const exp: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesLink('0a'),
+      url: evmCodesOpcodesLink('0a'),
     },
     {
       name: 'execution-specs',
