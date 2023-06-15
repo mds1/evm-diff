@@ -1,5 +1,5 @@
-import { ETH_SPECS_COMMIT_ID } from '@/lib/constants';
 import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
+import { OpcodeGroups, ethSpecsOpcodeSrc } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const number: Opcode = {
@@ -17,7 +17,7 @@ export const number: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: `https://github.com/ethereum/execution-specs/blob/${ETH_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/block.py#L126`,
+      url: ethSpecsOpcodeSrc(OpcodeGroups.Block, 126),
     },
   ],
   supportedHardforks: getHardforksFrom(Hardforks.Frontier),

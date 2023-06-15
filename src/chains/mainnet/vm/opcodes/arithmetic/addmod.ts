@@ -1,5 +1,5 @@
-import { ETH_SPECS_COMMIT_ID } from '@/lib/constants';
 import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
+import { OpcodeGroups, ethSpecsOpcodeSrc } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const addmod: Opcode = {
@@ -37,7 +37,7 @@ export const addmod: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: `https://github.com/ethereum/execution-specs/blob/${ETH_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/arithmetic.py#234`,
+      url: ethSpecsOpcodeSrc(OpcodeGroups.Arithmetic, 234),
     },
   ],
   supportedHardforks: getHardforksFrom(Hardforks.Frontier),

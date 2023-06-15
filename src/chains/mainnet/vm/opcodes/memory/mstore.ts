@@ -1,5 +1,5 @@
-import { ETH_SPECS_COMMIT_ID } from '@/lib/constants';
 import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
+import { OpcodeGroups, ethSpecsOpcodeSrc } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const mstore: Opcode = {
@@ -69,7 +69,7 @@ export const mstore: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: `https://github.com/ethereum/execution-specs/blob/${ETH_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/memory.py#L27`,
+      url: ethSpecsOpcodeSrc(OpcodeGroups.Memory, 27),
     },
   ],
   supportedHardforks: getHardforksFrom(Hardforks.Frontier),
