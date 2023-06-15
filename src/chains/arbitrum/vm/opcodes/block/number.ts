@@ -1,16 +1,6 @@
 import { Opcode } from '@/types';
 
-export const number: Pick<
-  Opcode,
-  | 'number'
-  | 'name'
-  | 'description'
-  | 'minGas'
-  | 'outputs'
-  | 'examples'
-  | 'errorCases'
-  | 'references'
-> = {
+export const number: Omit<Opcode, 'supportedHardforks'> = {
   number: 0x43,
   name: 'number',
   description: 'Get the L1 block number',

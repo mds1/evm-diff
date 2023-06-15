@@ -1,9 +1,6 @@
 import { Opcode } from '@/types';
 
-export const coinbase: Pick<
-  Opcode,
-  'number' | 'name' | 'description' | 'outputs' | 'examples' | 'references'
-> = {
+export const coinbase: Omit<Opcode, 'minGas' | 'errorCases' | 'supportedHardforks'> = {
   number: 0x41,
   name: 'coinbase',
   description:
