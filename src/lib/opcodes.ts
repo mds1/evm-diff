@@ -20,7 +20,7 @@ export enum OpcodeGroups {
   System = 'system',
 }
 
-// Returns a hex string padded to 2 characters and without a leading `0x`.
+// Returns a hex string (without the '0x' prefix) padded to 2 characters.
 const formatOpcodeNumber = (n: number) => {
   return n.toString(16).padStart(2, '0');
 };
