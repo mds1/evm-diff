@@ -40,4 +40,5 @@ export type Opcode = {
   errorCases: string[];
   notes?: string[];
   references: Reference[];
+  supportedHardforks: string[];
 };

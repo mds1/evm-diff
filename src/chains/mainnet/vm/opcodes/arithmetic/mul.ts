@@ -1,4 +1,5 @@
 import { ETH_SPECS_COMMIT_ID } from '@/lib/constants';
+import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
 import { Opcode } from '@/types';
 
 export const mul: Opcode = {
@@ -33,4 +34,5 @@ export const mul: Opcode = {
       url: `https://github.com/ethereum/execution-specs/blob/${ETH_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/arithmetic.py#L84`,
     },
   ],
+  supportedHardforks: getHardforksFrom(Hardforks.Frontier),
 };

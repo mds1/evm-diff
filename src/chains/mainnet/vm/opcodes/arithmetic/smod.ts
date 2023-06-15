@@ -1,4 +1,5 @@
 import { ETH_SPECS_COMMIT_ID } from '@/lib/constants';
+import { Hardforks, getHardforksFrom } from '@/lib/hardforks';
 import { Opcode } from '@/types';
 
 export const smod: Opcode = {
@@ -43,4 +44,5 @@ export const smod: Opcode = {
       url: `https://github.com/ethereum/execution-specs/blob/${ETH_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/arithmetic.py#L174`,
     },
   ],
+  supportedHardforks: getHardforksFrom(Hardforks.Frontier),
 };

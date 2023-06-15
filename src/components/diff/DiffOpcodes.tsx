@@ -1,3 +1,4 @@
+import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import { classNames } from '@/lib/utils';
 import { toUppercase } from '@/lib/utils';
 import { Example, Opcode, Reference, Variable } from '@/types';
@@ -85,10 +86,34 @@ const formatReference = (r: Reference) => {
   );
 };
 
+const formatHardfork = (array: string[]) => {
+  if (array == undefined || array.length == 0)
+    return <p>No information provided on supported hard forks.</p>;
+  const length = array.length;
+  if (length == CURRENT_MAINNET_HARDFORK + 1)
+    return (
+      <p>
+        Supported since <b>{array[0]}</b> hard fork.
+      </p>
+    );
+  if (length == 1)
+    return (
+      <p>
+        Supported only in <b>{array[0]}</b> hard fork.
+      </p>
+    );
+  return (
+    <p>
+      Supported between <b>{array[0]}</b> and <b>{array[length - 1]}</b> hard forks.
+    </p>
+  );
+};
+
 const formatOpcode = (opcode: Opcode | undefined) => {
   if (!opcode) return <p>Not present</p>;
   return (
     <>
+      {formatHardfork(opcode.supportedHardforks)}
       <p className='text-secondary text-sm'>⛽️ Minimum Gas: {opcode.minGas}</p>
       {formatVariables('Inputs', opcode.inputs)}
       {formatVariables('Outputs', opcode.outputs)}
