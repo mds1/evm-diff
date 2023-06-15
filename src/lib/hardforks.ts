@@ -26,10 +26,9 @@ export const getHardforksFrom = (startingHardfork: Hardforks): string[] =>
 // Retrieve an array of hardforks from a starting hardfork to an ending hardfork (exclusive).
 export const getHardforksFromTo = (start: Hardforks, end: Hardforks): string[] => {
   if (start > end) {
-    console.error(
+    throw new Error(
       `Error: the starting hard fork ${Hardforks[start]} (index: ${start}) occured after the ending hard fork ${Hardforks[end]} (index: ${end}). Arguments are wrong or must have been reversed.`
     );
-    return [];
   }
 
   // Create an array made of all the enum key indexes following by all the stringified keys.
