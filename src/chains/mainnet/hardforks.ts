@@ -23,7 +23,7 @@ export enum MainnetHardforks {
 export const getHardforksFrom = (startingHardfork: MainnetHardforks): string[] =>
   getHardforksFromTo(startingHardfork, CURRENT_MAINNET_HARDFORK);
 
-// Retrieve an array of hardforks from a starting hardfork to an ending hardfork (exclusive).
+// Retrieve an array of hardforks from a starting hardfork to an ending hardfork (inclusive).
 export const getHardforksFromTo = (start: MainnetHardforks, end: MainnetHardforks): string[] => {
   if (start > end) {
     throw new Error(
@@ -37,5 +37,5 @@ export const getHardforksFromTo = (start: MainnetHardforks, end: MainnetHardfork
   const array = Object.keys(MainnetHardforks);
   const length = array.length / 2;
   const keys = array.slice(length);
-  return keys.slice(start, end);
+  return keys.slice(start, end + 1);
 };
