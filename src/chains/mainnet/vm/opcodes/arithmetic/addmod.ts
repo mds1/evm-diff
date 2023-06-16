@@ -43,7 +43,7 @@ export const addmod: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(OpcodeGroups.Arithmetic, 234),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Arithmetic, 234),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

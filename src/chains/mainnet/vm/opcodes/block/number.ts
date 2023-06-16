@@ -17,7 +17,7 @@ export const number: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(OpcodeGroups.Block, 126),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Block, 126),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

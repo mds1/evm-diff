@@ -47,7 +47,7 @@ export const mulmod: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(OpcodeGroups.Arithmetic, 265),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Arithmetic, 265),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

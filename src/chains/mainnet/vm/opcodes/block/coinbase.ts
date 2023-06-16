@@ -17,7 +17,7 @@ export const coinbase: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(OpcodeGroups.Block, 60),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Block, 60),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

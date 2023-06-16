@@ -75,7 +75,7 @@ export const mstore: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(OpcodeGroups.Memory, 27),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Memory, 27),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

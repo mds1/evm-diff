@@ -35,7 +35,7 @@ export const sub: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(OpcodeGroups.Arithmetic, 57),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Arithmetic, 57),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

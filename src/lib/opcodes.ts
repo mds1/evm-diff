@@ -1,4 +1,6 @@
 import { pad } from 'viem';
+import { MainnetHardforks } from '@/chains/mainnet/hardforks';
+import { Opcode } from '@/types';
 import {
   ETHEREUM_EXECUTION_SPECS_COMMIT_ID,
   ETHEREUM_EXECUTION_SPECS_URL,
@@ -25,8 +27,18 @@ const formatOpcodeNumber = (n: number) => {
   return n.toString(16).padStart(2, '0');
 };
 
-export const ethSpecsOpcodeSrc = (group: OpcodeGroups, line: number): string =>
-  `${ETHEREUM_EXECUTION_SPECS_URL}/blob/${ETHEREUM_EXECUTION_SPECS_COMMIT_ID}/src/ethereum/shanghai/vm/instructions/${group}.py#${line}`;
+// Return a unique id for each opcode (the opcode number is not sufficient because opcodes can have
+// the same value such as `block.difficulty` and `block.prev_randao`).
+export const id = (opcode: Opcode): string => `${opcode.number}+${opcode.name}`;
+
+export const ethSpecsOpcodeSrc = (
+  hardfork: MainnetHardforks,
+  group: OpcodeGroups,
+  line: number
+): string =>
+  `${ETHEREUM_EXECUTION_SPECS_URL}/blob/${ETHEREUM_EXECUTION_SPECS_COMMIT_ID}/src/ethereum/${MainnetHardforks[
+    hardfork
+  ].toLowerCase()}/vm/instructions/${group}.py#${line}`;
 
 export const evmCodesOpcodesLink = (opcodeNumber: number): string => {
   return `${EVM_OPCODES_URL}/#${formatOpcodeNumber(opcodeNumber)}`;

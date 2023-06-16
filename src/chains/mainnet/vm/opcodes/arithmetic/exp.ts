@@ -49,7 +49,7 @@ export const exp: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(OpcodeGroups.Arithmetic, 296),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Arithmetic, 296),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

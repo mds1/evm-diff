@@ -38,7 +38,7 @@ export const div: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(OpcodeGroups.Arithmetic, 111),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Arithmetic, 111),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

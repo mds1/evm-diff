@@ -35,7 +35,7 @@ export const blockhash: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(OpcodeGroups.Block, 22),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Block, 22),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

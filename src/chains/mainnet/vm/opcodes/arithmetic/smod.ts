@@ -47,7 +47,7 @@ export const smod: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(OpcodeGroups.Arithmetic, 174),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Arithmetic, 174),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

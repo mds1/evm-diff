@@ -1,4 +1,5 @@
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
+import { id } from '@/lib/opcodes';
 import { classNames } from '@/lib/utils';
 import { toUppercase } from '@/lib/utils';
 import { Example, Opcode, Reference, Variable } from '@/types';
@@ -170,16 +171,17 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props) => {
   if (!Array.isArray(base) || !Array.isArray(target)) return <></>;
 
   // Generate a sorted list of all opcode numbers from both base and target.
-  const sortedNumbers = [...base.map((p) => p.number), ...target.map((p) => p.number)].sort(
-    (a, b) => a - b
-  );
+  const sortedNumbers = [
+    ...base.map((opcode) => id(opcode)),
+    ...target.map((opcode) => id(opcode)),
+  ].sort((a, b) => a.localeCompare(b));
   const opcodeNumbers = [...new Set(sortedNumbers)];
 
   return (
     <>
-      {opcodeNumbers.map((n) => {
-        const baseOpcode = base.find((p) => p.number === n);
-        const targetOpcode = target.find((p) => p.number === n);
+      {opcodeNumbers.map((opcodeId) => {
+        const baseOpcode = base.find((opcode) => id(opcode) === opcodeId);
+        const targetOpcode = target.find((opcode) => id(opcode) === opcodeId);
 
         const isEqual = JSON.stringify(baseOpcode) === JSON.stringify(targetOpcode);
         const showOpcode = !isEqual || !onlyShowDiff;
@@ -187,13 +189,13 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props) => {
         return (
           showOpcode && (
             <div
-              key={n}
+              key={opcodeId}
               className='flex items-center justify-between border-b border-zinc-500/10 py-1 dark:border-zinc-500/20'
             >
               <div className='flex-1'>{formatOpcode(baseOpcode)}</div>
               <p className='flex-1 text-center'>
                 <p>
-                  {baseOpcode?.name} (#{n})
+                  {baseOpcode?.name} (#{baseOpcode?.number})
                 </p>
                 <p className='text-secondary text-sm'>{baseOpcode?.description}</p>
               </p>
