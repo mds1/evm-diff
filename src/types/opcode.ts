@@ -2,6 +2,7 @@ export type Variable = {
   name: string;
   description: string;
   expression?: string;
+  variables?: Variable[];
 };
 
 type Memory = {
