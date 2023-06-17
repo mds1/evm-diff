@@ -13,8 +13,14 @@ export const smod: Opcode = {
   description: 'Signed modulo remainder operation',
   minGas: 5,
   inputs: [
-    { name: 'a', description: 'The integer numerator' },
-    { name: 'b', description: 'The integer denominator' },
+    {
+      name: 'a',
+      description: 'The integer numerator',
+    },
+    {
+      name: 'b',
+      description: 'The integer denominator',
+    },
   ],
   outputs: [
     {
@@ -24,7 +30,10 @@ export const smod: Opcode = {
     },
   ],
   examples: [
-    { input: ['10', '3'], output: '1' },
+    {
+      input: ['10', '3'],
+      output: '1',
+    },
     {
       input: [
         '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8',

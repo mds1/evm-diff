@@ -7,8 +7,17 @@ export const number: Opcode = {
   name: 'number',
   description: "Get the block's number",
   minGas: 2,
-  outputs: [{ name: 'blockNumber', description: 'The current block number' }],
-  examples: [{ output: '1636704767' }],
+  outputs: [
+    {
+      name: 'blockNumber',
+      description: 'The current block number',
+    },
+  ],
+  examples: [
+    {
+      output: '1636704767',
+    },
+  ],
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
     {

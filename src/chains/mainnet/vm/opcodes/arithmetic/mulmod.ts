@@ -13,9 +13,18 @@ export const mulmod: Opcode = {
   description: 'Modulo multiplication operation',
   minGas: 8,
   inputs: [
-    { name: 'a', description: 'The first integer value to multiply' },
-    { name: 'b', description: 'The second integer value to multiply' },
-    { name: 'N', description: 'The integer denominator' },
+    {
+      name: 'a',
+      description: 'The first integer value to multiply',
+    },
+    {
+      name: 'b',
+      description: 'The second integer value to multiply',
+    },
+    {
+      name: 'N',
+      description: 'The integer denominator',
+    },
   ],
   outputs: [
     {
@@ -25,7 +34,10 @@ export const mulmod: Opcode = {
     },
   ],
   examples: [
-    { input: ['10', '10', '8'], output: '4' },
+    {
+      input: ['10', '10', '8'],
+      output: '4',
+    },
     {
       input: [
         '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
@@ -39,7 +51,7 @@ export const mulmod: Opcode = {
     '%27y1v8v10v10twwy2v12usust%27~rrrrzwPUSHy%2F%2F%20Example%20w%5Cnvz1%20uz32%200xstwMULMODs~~~~rFF%01rstuvwyz~_'
   ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
-  notes: ['All intermediate calculations of this operation are not subject to the 2**256 modulo.'],
+  notes: ['All intermediate calculations of this operation are not subject to the 2**256 modulo'],
   references: [
     {
       name: 'evm.codes',

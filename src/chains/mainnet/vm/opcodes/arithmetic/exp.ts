@@ -14,7 +14,7 @@ export const exp: Opcode = {
   minGas: 10,
   gasComputation: {
     name: 'dynamic_gas',
-    description: 'The dynamic gas cost of the function.',
+    description: 'The dynamic gas cost of the function',
     expression: '50 * exponent_byte_size',
     variables: [
       {
@@ -24,24 +24,36 @@ export const exp: Opcode = {
     ],
   },
   inputs: [
-    { name: 'a', description: 'The integer base' },
-    { name: 'exponent', description: 'The integer exponent' },
+    {
+      name: 'a',
+      description: 'The integer base',
+    },
+    {
+      name: 'exponent',
+      description: 'The integer exponent',
+    },
   ],
   outputs: [
     {
       name: 'a ** exponent',
-      description: 'The integer result of the exponential operation modulo 2**256.',
+      description: 'The integer result of the exponential operation modulo 2**256',
     },
   ],
   examples: [
-    { input: ['10', '2'], output: '100' },
-    { input: ['2', '2'], output: '4' },
+    {
+      input: ['10', '2'],
+      output: '100',
+    },
+    {
+      input: ['2', '2'],
+      output: '4',
+    },
   ],
   playgroundLink: evmCodesPlaygroundLink(
     '%27z1~2~10wyyz2~2~2w%27~yPUSH1%20z%2F%2F%20Example%20y%5CnwyEXP%01wyz~_'
   ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
-  notes: ['All intermediate calculations of this operation are not subject to the 2**256 modulo.'],
+  notes: ['All intermediate calculations of this operation are not subject to the 2**256 modulo'],
   references: [
     {
       name: 'evm.codes',

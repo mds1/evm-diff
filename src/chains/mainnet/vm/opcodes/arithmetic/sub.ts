@@ -13,12 +13,26 @@ export const sub: Opcode = {
   description: 'Subtraction operation',
   minGas: 3,
   inputs: [
-    { name: 'a', description: 'The first integer value' },
-    { name: 'b', description: 'The second integer value to subtract to the first' },
+    {
+      name: 'a',
+      description: 'The first integer value',
+    },
+    {
+      name: 'b',
+      description: 'The second integer value to subtract to the first',
+    },
   ],
-  outputs: [{ name: 'a - b', description: 'The integer result of the subtraction modulo 2**256' }],
+  outputs: [
+    {
+      name: 'a - b',
+      description: 'The integer result of the subtraction modulo 2**256',
+    },
+  ],
   examples: [
-    { input: ['10', '10'], output: '0' },
+    {
+      input: ['10', '10'],
+      output: '0',
+    },
     {
       input: ['0', '1'],
       output: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',

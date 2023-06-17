@@ -13,9 +13,18 @@ export const addmod: Opcode = {
   description: 'Modulo addition operation',
   minGas: 8,
   inputs: [
-    { name: 'a', description: 'The first integer value to add' },
-    { name: 'b', description: 'The second integer value to add' },
-    { name: 'N', description: 'The integer denominator' },
+    {
+      name: 'a',
+      description: 'The first integer value to add',
+    },
+    {
+      name: 'b',
+      description: 'The second integer value to add',
+    },
+    {
+      name: 'N',
+      description: 'The integer denominator',
+    },
   ],
   outputs: [
     {
@@ -25,7 +34,10 @@ export const addmod: Opcode = {
     },
   ],
   examples: [
-    { input: ['10', '10', '8'], output: '4' },
+    {
+      input: ['10', '10', '8'],
+      output: '4',
+    },
     {
       input: ['0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF', '2', '2'],
       output: '1',
@@ -35,7 +47,7 @@ export const addmod: Opcode = {
     '%27y1z8z10z10vwwy2z2z2u32%200xssssv%27~ttttzu1%20y%2F%2F%20Example%20w%5CnvwADDMODuwPUSHtFFs~~%01stuvwyz~_'
   ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
-  notes: ['All intermediate calculations of this operation are not subject to the 2**256 modulo.'],
+  notes: ['All intermediate calculations of this operation are not subject to the 2**256 modulo'],
   references: [
     {
       name: 'evm.codes',

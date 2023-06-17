@@ -13,14 +13,26 @@ export const mul: Opcode = {
   description: 'Multiplication operation',
   minGas: 5,
   inputs: [
-    { name: 'a', description: 'The first integer value to multiply' },
-    { name: 'b', description: 'The second integer value to multiply' },
+    {
+      name: 'a',
+      description: 'The first integer value to multiply',
+    },
+    {
+      name: 'b',
+      description: 'The second integer value to multiply',
+    },
   ],
   outputs: [
-    { name: 'a * b', description: 'The integer result of the multiplication modulo 2**256' },
+    {
+      name: 'a * b',
+      description: 'The integer result of the multiplication modulo 2**256',
+    },
   ],
   examples: [
-    { input: ['10', '10'], output: '100' },
+    {
+      input: ['10', '10'],
+      output: '100',
+    },
     {
       input: ['0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF', '2'],
       output: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE',

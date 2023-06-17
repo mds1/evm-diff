@@ -13,8 +13,14 @@ export const div: Opcode = {
   description: 'Multiplication operation',
   minGas: 5,
   inputs: [
-    { name: 'a', description: 'The integer numerator' },
-    { name: 'b', description: 'The integer denominator' },
+    {
+      name: 'a',
+      description: 'The integer numerator',
+    },
+    {
+      name: 'b',
+      description: 'The integer denominator',
+    },
   ],
   outputs: [
     {
@@ -24,8 +30,14 @@ export const div: Opcode = {
     },
   ],
   examples: [
-    { input: ['10', '10'], output: '1' },
-    { input: ['1', '2'], output: '0' },
+    {
+      input: ['10', '10'],
+      output: '1',
+    },
+    {
+      input: ['1', '2'],
+      output: '0',
+    },
   ],
   playgroundLink: evmCodesPlaygroundLink(
     '%27z1~10~10wyyz2~2~1w%27~yPUSH1%20z%2F%2F%20Example%20y%5CnwyDIV%01wyz~_'

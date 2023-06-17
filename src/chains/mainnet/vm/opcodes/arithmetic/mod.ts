@@ -13,8 +13,14 @@ export const mod: Opcode = {
   description: 'Modulo remainder operation',
   minGas: 5,
   inputs: [
-    { name: 'a', description: 'The integer numerator' },
-    { name: 'b', description: 'The integer denominator' },
+    {
+      name: 'a',
+      description: 'The integer numerator',
+    },
+    {
+      name: 'b',
+      description: 'The integer denominator',
+    },
   ],
   outputs: [
     {
@@ -24,8 +30,14 @@ export const mod: Opcode = {
     },
   ],
   examples: [
-    { input: ['10', '3'], output: '1' },
-    { input: ['17', '5'], output: '2' },
+    {
+      input: ['10', '3'],
+      output: '1',
+    },
+    {
+      input: ['17', '5'],
+      output: '2',
+    },
   ],
   playgroundLink: evmCodesPlaygroundLink(
     '%27z1~3~10wyyz2~5~17w%27~yPUSH1%20z%2F%2F%20Example%20y%5CnwyMOD%01wyz~_'

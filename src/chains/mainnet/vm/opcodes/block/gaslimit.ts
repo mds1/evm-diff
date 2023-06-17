@@ -7,8 +7,17 @@ export const gaslimit: Opcode = {
   name: 'gaslimit',
   description: "Get the block's gas limit",
   minGas: 2,
-  outputs: [{ name: 'gasLimit', description: 'The current block gas limit' }],
-  examples: [{ output: '0xffffffffffff' }],
+  outputs: [
+    {
+      name: 'gasLimit',
+      description: 'The current block gas limit',
+    },
+  ],
+  examples: [
+    {
+      output: '0xffffffffffff',
+    },
+  ],
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
     {

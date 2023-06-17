@@ -13,8 +13,14 @@ export const sdiv: Opcode = {
   description: 'Signed integer division operation (truncated)',
   minGas: 5,
   inputs: [
-    { name: 'a', description: 'The integer numerator' },
-    { name: 'b', description: 'The integer denominator' },
+    {
+      name: 'a',
+      description: 'The integer numerator',
+    },
+    {
+      name: 'b',
+      description: 'The integer denominator',
+    },
   ],
   outputs: [
     {
@@ -24,7 +30,10 @@ export const sdiv: Opcode = {
     },
   ],
   examples: [
-    { input: ['10', '10'], output: '1' },
+    {
+      input: ['10', '10'],
+      output: '1',
+    },
     {
       input: [
         '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE',

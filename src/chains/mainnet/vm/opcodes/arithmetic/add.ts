@@ -13,12 +13,26 @@ export const add: Opcode = {
   description: 'Addition operation',
   minGas: 3,
   inputs: [
-    { name: 'a', description: 'The first integer value to add' },
-    { name: 'b', description: 'The second integer value to add' },
+    {
+      name: 'a',
+      description: 'The first integer value to add',
+    },
+    {
+      name: 'b',
+      description: 'The second integer value to add',
+    },
   ],
-  outputs: [{ name: 'a + b', description: 'The integer result of the addition modulo 2**256' }],
+  outputs: [
+    {
+      name: 'a + b',
+      description: 'The integer result of the addition modulo 2**256',
+    },
+  ],
   examples: [
-    { input: ['10', '20'], output: '30' },
+    {
+      input: ['10', '20'],
+      output: '30',
+    },
     {
       input: ['0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF', '1'],
       output: '0',

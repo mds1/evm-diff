@@ -7,8 +7,17 @@ export const difficulty: Opcode = {
   name: 'difficulty',
   description: "Get the block's difficulty",
   minGas: 2,
-  outputs: [{ name: 'difficulty', description: 'The current block difficulty' }],
-  examples: [{ output: '10995000000000000' }],
+  outputs: [
+    {
+      name: 'difficulty',
+      description: 'The current block difficulty',
+    },
+  ],
+  examples: [
+    {
+      output: '10995000000000000',
+    },
+  ],
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
     {
