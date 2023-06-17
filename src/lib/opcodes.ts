@@ -38,7 +38,7 @@ export const ethSpecsOpcodeSrc = (
 ): string =>
   `${ETHEREUM_EXECUTION_SPECS_URL}/blob/${ETHEREUM_EXECUTION_SPECS_COMMIT_ID}/src/ethereum/${MainnetHardforks[
     hardfork
-  ].toLowerCase()}/vm/instructions/${group}.py#${line}`;
+  ].toLowerCase()}/vm/instructions/${group}.py#L${line}`;
 
 export const evmCodesOpcodesLink = (opcodeNumber: number): string => {
   return `${EVM_OPCODES_URL}/#${formatOpcodeNumber(opcodeNumber)}`;
