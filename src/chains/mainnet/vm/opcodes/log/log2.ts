@@ -77,7 +77,7 @@ export const log2: Omit<Opcode, 'examples'> = {
     {
       name: 'topic2',
       description: 'The 32-byte value of the second topic',
-    }
+    },
   ],
   errorCases: [
     'Not enough gas',
