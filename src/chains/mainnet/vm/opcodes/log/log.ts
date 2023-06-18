@@ -4,16 +4,16 @@ import { Opcode } from '@/types';
 
 export const log = (n: number): Omit<Opcode, 'examples'> => {
   if (n < 0 || n > 4) {
-    throw new Error('Push number must be between 1 and 32');
+    throw new Error('Log number must be between 1 and 32');
   }
-  const hexNumber = 0xa0 + n;
+  const number = 0xa0 + n;
   const description = `Append log record with ${
     n == 0 ? 'no topic' : n == 1 ? '1 topic' : `${n} topics`
   }`;
   return {
-    number: hexNumber,
+    number,
     name: `log${n}`,
-    description: description,
+    description,
     minGas: 375 * (1 + n),
     gasComputation: {
       name: 'gas_cost',
@@ -88,7 +88,7 @@ export const log = (n: number): Omit<Opcode, 'examples'> => {
     references: [
       {
         name: 'evm.codes',
-        url: evmCodesOpcodesLink(hexNumber),
+        url: evmCodesOpcodesLink(number),
       },
       {
         name: 'execution-specs',
