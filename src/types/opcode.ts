@@ -6,7 +6,7 @@ export type Variable = {
 };
 
 type Memory = {
-  before?: string;
+  before: string;
   after: string;
 };
 
