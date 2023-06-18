@@ -3,6 +3,7 @@ import { id } from '@/lib/opcodes';
 import { classNames, formatPrefixByte } from '@/lib/utils';
 import { toUppercase } from '@/lib/utils';
 import { Example, Opcode, Reference, Variable } from '@/types';
+import { GasComputation } from '@/types/opcode';
 import { ExternalLink } from '../layout/ExternalLink';
 
 type Props = {
@@ -11,7 +12,7 @@ type Props = {
   onlyShowDiff: boolean;
 };
 
-const formatHardfork = (array: string[]) => {
+const formatHardfork = (array: string[]): JSX.Element => {
   if (array == undefined || array.length == 0)
     return <p>No information provided on supported hard forks.</p>;
   const length = array.length;
@@ -34,7 +35,7 @@ const formatHardfork = (array: string[]) => {
   );
 };
 
-const formatVariables = (title: string, array?: Variable[]) => {
+const formatVariables = (title: string, array?: Variable[]): JSX.Element => {
   return (
     <>
       <h3 className={classNames('font-bold', 'mt-2')}>{toUppercase(title)}</h3>
@@ -51,7 +52,7 @@ const formatVariables = (title: string, array?: Variable[]) => {
   );
 };
 
-const formatVariable = (v: Variable) => {
+const formatVariable = (v: Variable): JSX.Element => {
   return (
     <>
       <p>
@@ -75,7 +76,7 @@ const formatVariable = (v: Variable) => {
   );
 };
 
-const formatReference = (r: Reference) => {
+const formatReference = (r: Reference): JSX.Element => {
   return (
     <p className='text-secondary text-sm'>
       <ExternalLink href={r.url} text={r.name ? r.name.toLowerCase() : 'link'} />
@@ -83,7 +84,7 @@ const formatReference = (r: Reference) => {
   );
 };
 
-const formatExample = (e: Example, id: number) => {
+const formatExample = (e: Example, id: number): JSX.Element => {
   const input = e.input ? '[' + e.input.toString() + ']' : '[]';
   const output = '[' + (e.output ? e.output : '') + ']';
   return (
@@ -125,7 +126,59 @@ const formatStorage = (record: Record<string, string>): JSX.Element => {
   return <ul>{keyValues}</ul>;
 };
 
-const formatStringList = (title: string, array: string[] | undefined) => {
+const formatGasComputation = (gc: GasComputation | undefined): JSX.Element => {
+  if (!gc) return <></>;
+  return (
+    <>
+      <h3 className={classNames('font-bold', 'mt-2')}>Gas Computation</h3>
+      <p>The gas cost of the function.</p>
+      <p className='text-secondary text-sm'>gas_cost = static_gas_cost + dynamic_gas_cost</p>
+
+      <h4 className={classNames('font-bold', 'mt-4')}>{'>'} Static gas cost</h4>
+      {gc.staticGasCost && (
+        <>
+          <p className={classNames('text-secondary text-sm')}>
+            static_gas_cost = {gc.staticGasCost.expression}
+          </p>
+          {gc.staticGasCost.variables && (
+            <>
+              <h5 className={classNames('font-bold', 'mt-4')}>Sub-variables (static_gas_cost)</h5>
+              <ul>
+                {gc.staticGasCost.variables.map((v) => (
+                  <li key={v.name}>{formatVariable(v)}</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </>
+      )}
+
+      <h4 className={classNames('font-bold', 'mt-4')}>{'>'} Dynamic gas cost</h4>
+      {gc.dynamicGasCost && (
+        <>
+          <p className={classNames('text-secondary text-sm')}>
+            dynamic_gas_cost = {gc.dynamicGasCost.expression}
+          </p>
+          {gc.dynamicGasCost.variables && (
+            <>
+              <h5 className={classNames('font-bold', 'mt-4')}>Sub-variables (dynamic_gas_cost)</h5>
+              <ul>
+                {gc.dynamicGasCost.variables.map((v) => (
+                  <li key={v.name}>{formatVariable(v)}</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </>
+      )}
+
+      <h4 className={classNames('font-bold', 'mt-4')}>{'>'} Refunds</h4>
+      <p>{gc.refunds}</p>
+    </>
+  );
+};
+
+const formatStringList = (title: string, array: string[] | undefined): JSX.Element => {
   if (array === undefined || array.length === 0) return <></>;
   return (
     <>
@@ -139,7 +192,7 @@ const formatStringList = (title: string, array: string[] | undefined) => {
   );
 };
 
-const formatOpcode = (opcode: Opcode | undefined) => {
+const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {
   if (!opcode) return <p>Not present</p>;
   return (
     <>
@@ -147,7 +200,6 @@ const formatOpcode = (opcode: Opcode | undefined) => {
       <p className='text-secondary text-sm'>⛽️ Minimum Gas: {opcode.minGas}</p>
       {formatVariables('Inputs', opcode.inputs)}
       {formatVariables('Outputs', opcode.outputs)}
-
       {opcode.examples !== undefined && opcode.examples.length > 0 && (
         <>
           <h3 className={classNames('font-bold', 'mt-2')}>Examples</h3>
@@ -163,57 +215,7 @@ const formatOpcode = (opcode: Opcode | undefined) => {
           </ul>
         </>
       )}
-
-      {opcode.gasComputation && (
-        <>
-          <h3 className={classNames('font-bold', 'mt-2')}>Gas Computation</h3>
-          <p>The gas cost of the function.</p>
-          <p className='text-secondary text-sm'>gas_cost = static_gas_cost + dynamic_gas_cost</p>
-
-          <h4 className={classNames('font-bold', 'mt-4')}>{'>'} Static gas cost</h4>
-          {opcode.gasComputation.staticGasCost && (
-            <>
-              <p className={classNames('text-secondary text-sm')}>
-                static_gas_cost = {opcode.gasComputation.staticGasCost.expression}
-              </p>
-              {opcode.gasComputation.staticGasCost.variables && (
-                <>
-                  <h5 className={classNames('font-bold', 'mt-4')}>
-                    Sub-variables (static_gas_cost)
-                  </h5>
-                  <ul>
-                    {opcode.gasComputation.staticGasCost.variables.map((v) => (
-                      <li key={v.name}>{formatVariable(v)}</li>
-                    ))}
-                  </ul>
-                </>
-              )}
-            </>
-          )}
-
-          <h4 className={classNames('font-bold', 'mt-4')}>{'>'} Dynamic gas cost</h4>
-          {opcode.gasComputation.dynamicGasCost && (
-            <>
-              <p className={classNames('text-secondary text-sm')}>
-                dynamic_gas_cost = {opcode.gasComputation.dynamicGasCost.expression}
-              </p>
-              {opcode.gasComputation.dynamicGasCost.variables && (
-                <>
-                  <h5 className={classNames('font-bold', 'mt-4')}>
-                    Sub-variables (dynamic_gas_cost)
-                  </h5>
-                  <ul>
-                    {opcode.gasComputation.dynamicGasCost.variables.map((v) => (
-                      <li key={v.name}>{formatVariable(v)}</li>
-                    ))}
-                  </ul>
-                </>
-              )}
-            </>
-          )}
-        </>
-      )}
-
+      {formatGasComputation(opcode.gasComputation)}
       {formatStringList('Error Cases', opcode.errorCases)}
       {formatStringList('Notes', opcode.notes)}
       {opcode.references.length > 0 && (
@@ -230,7 +232,7 @@ const formatOpcode = (opcode: Opcode | undefined) => {
   );
 };
 
-export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props) => {
+export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element => {
   if (!Array.isArray(base) || !Array.isArray(target)) return <></>;
 
   // Generate a sorted list of all opcode numbers from both base and target.
