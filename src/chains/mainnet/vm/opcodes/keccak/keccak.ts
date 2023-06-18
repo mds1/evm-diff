@@ -13,52 +13,43 @@ export const keccak: Opcode = {
   description: 'Compute Keccak-256 hash',
   minGas: 30,
   gasComputation: {
-    name: 'gas_cost',
-    description: 'The gas cost of the function',
-    expression: 'static_gas + dynamic_gas',
-    variables: [
-      {
-        name: 'static_gas',
-        description: 'The static gas cost of the function',
-        expression: '30',
-      },
-      {
-        name: 'dynamic_gas',
-        description: 'The dynamic gas cost of the function',
-        expression: '6 * minimum_word_size + memory_expansion_cost',
-        variables: [
-          {
-            name: 'minimum_word_size',
-            description: 'The minimum size of the word to hash',
-            expression: '(size + 31) / 32',
-          },
-          {
-            name: 'Memory expansion',
-            description:
-              'During a smart contract execution, memory can be accessed with opcodes. When an offset is first accessed (either read or write), memory may trigger an expansion, which costs gas. Memory expansion may be triggered when the byte offset (modulo 32) accessed is bigger than previous offsets. If a larger offset trigger of memory expansion occurs, the cost of accessing the higher offset is computed and removed from the total gas available at the current call context. Thus, only the additional bytes of memory must be paid for.',
-            expression: 'memory_expansion_cost = new_memory_cost - last_memory_cost',
-            variables: [
-              {
-                name: 'memory_cost',
-                description: 'The memory cost function for a given machine state',
-                expression: '(memory_size_word ** 2) / 512 + (3 * memory_size_word)',
-              },
-              {
-                name: 'memory_size_word',
-                description:
-                  'Number of (32-byte) words required for memory after the operation in question',
-                expression: '(memory_byte_size + 31) / 32',
-              },
-              {
-                name: 'memory_byte_size',
-                description:
-                  'The highest referenced memory address after the operation in question (in bytes)',
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    staticGasCost: {
+      expression: '30',
+    },
+    dynamicGasCost: {
+      expression: '6 * minimum_word_size + memory_expansion_cost',
+      variables: [
+        {
+          name: 'minimum_word_size',
+          description: 'The minimum size of the word to hash',
+          expression: '(size + 31) / 32',
+        },
+        {
+          name: 'Memory expansion',
+          description:
+            'During a smart contract execution, memory can be accessed with opcodes. When an offset is first accessed (either read or write), memory may trigger an expansion, which costs gas. Memory expansion may be triggered when the byte offset (modulo 32) accessed is bigger than previous offsets. If a larger offset trigger of memory expansion occurs, the cost of accessing the higher offset is computed and removed from the total gas available at the current call context. Thus, only the additional bytes of memory must be paid for.',
+          expression: 'memory_expansion_cost = new_memory_cost - last_memory_cost',
+          variables: [
+            {
+              name: 'memory_cost',
+              description: 'The memory cost function for a given machine state',
+              expression: '(memory_size_word ** 2) / 512 + (3 * memory_size_word)',
+            },
+            {
+              name: 'memory_size_word',
+              description:
+                'Number of (32-byte) words required for memory after the operation in question',
+              expression: '(memory_byte_size + 31) / 32',
+            },
+            {
+              name: 'memory_byte_size',
+              description:
+                'The highest referenced memory address after the operation in question (in bytes)',
+            },
+          ],
+        },
+      ],
+    },
   },
   inputs: [
     {

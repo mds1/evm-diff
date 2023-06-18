@@ -37,10 +37,10 @@ const formatVariable = (v: Variable) => {
       {v.expression && (
         <>
           <p className='text-secondary text-sm'>
+            <h5 className={classNames('font-bold', 'mt-4')}>Sub-variables ({v.name})</h5>
             {v.name} = {v.expression}
             {v.variables && (
               <>
-                <h5 className={classNames('font-bold', 'mt-3')}>Sub-variables ({v.name})</h5>
                 <ul>{v.variables.map((subvariables, id) => formatVariable(subvariables))}</ul>
               </>
             )}
@@ -142,19 +142,51 @@ const formatOpcode = (opcode: Opcode | undefined) => {
 
       {opcode.gasComputation && (
         <>
-          <h3 className={classNames('font-bold', 'mt-2')}>
-            Gas Computation: {toUppercase(opcode.gasComputation.name)}
-          </h3>
-          <p>{opcode.gasComputation.description}</p>
-          <p className='text-secondary text-sm'>
-            {opcode.gasComputation.name} = {opcode.gasComputation.expression}
-          </p>
-          <h4 className={classNames('font-bold', 'mt-3')}>Variables</h4>
-          <ul>
-            {opcode.gasComputation.variables.map((v) => (
-              <li key={v.name}>{formatVariable(v)}</li>
-            ))}
-          </ul>
+          <h3 className={classNames('font-bold', 'mt-2')}>Gas Computation</h3>
+          <p>The gas cost of the function.</p>
+          <p className='text-secondary text-sm'>gas_cost = static_gas_cost + dynamic_gas_cost</p>
+
+          <h4 className={classNames('font-bold', 'mt-4')}>{'>'} Static gas cost</h4>
+          {opcode.gasComputation.staticGasCost && (
+            <>
+              <p className={classNames('text-secondary text-sm')}>
+                static_gas_cost = {opcode.gasComputation.staticGasCost.expression}
+              </p>
+              {opcode.gasComputation.staticGasCost.variables && (
+                <>
+                  <h5 className={classNames('font-bold', 'mt-4')}>
+                    Sub-variables (static_gas_cost)
+                  </h5>
+                  <ul>
+                    {opcode.gasComputation.staticGasCost.variables.map((v) => (
+                      <li key={v.name}>{formatVariable(v)}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </>
+          )}
+
+          <h4 className={classNames('font-bold', 'mt-4')}>{'>'} Dynamic gas cost</h4>
+          {opcode.gasComputation.dynamicGasCost && (
+            <>
+              <p className={classNames('text-secondary text-sm')}>
+                dynamic_gas_cost = {opcode.gasComputation.dynamicGasCost.expression}
+              </p>
+              {opcode.gasComputation.dynamicGasCost.variables && (
+                <>
+                  <h5 className={classNames('font-bold', 'mt-4')}>
+                    Sub-variables (dynamic_gas_cost)
+                  </h5>
+                  <ul>
+                    {opcode.gasComputation.dynamicGasCost.variables.map((v) => (
+                      <li key={v.name}>{formatVariable(v)}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </>
+          )}
         </>
       )}
 

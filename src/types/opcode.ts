@@ -16,11 +16,11 @@ export type Example = {
   memory?: Memory;
 };
 
+type ComputationCost = Partial<Variable> & Required<Pick<Variable, 'expression'>>
+
 type GasComputation = {
-  name: string;
-  description: string;
-  expression: string;
-  variables: Variable[];
+  staticGasCost: ComputationCost;
+  dynamicGasCost: ComputationCost;
 };
 
 export type Reference = {

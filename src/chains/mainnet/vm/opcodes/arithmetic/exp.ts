@@ -13,15 +13,18 @@ export const exp: Opcode = {
   description: 'Exponential operation',
   minGas: 10,
   gasComputation: {
-    name: 'dynamic_gas',
-    description: 'The dynamic gas cost of the function',
-    expression: '50 * exponent_byte_size',
-    variables: [
-      {
-        name: 'exponent_byte_size',
-        description: 'The exponent representation in bytes',
-      },
-    ],
+    staticGasCost: {
+      expression: '10',
+    },
+    dynamicGasCost: {
+      expression: '50 * exponent_byte_size',
+      variables: [
+        {
+          name: 'exponent_byte_size',
+          description: 'The exponent representation in bytes',
+        },
+      ],
+    },
   },
   inputs: [
     {
