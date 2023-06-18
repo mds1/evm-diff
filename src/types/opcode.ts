@@ -27,6 +27,7 @@ type ComputationCost = Partial<Variable> & Required<Pick<Variable, 'expression'>
 type GasComputation = {
   staticGasCost: ComputationCost;
   dynamicGasCost: ComputationCost;
+  refunds?: string;
 };
 
 export type Reference = {
@@ -40,7 +41,6 @@ export type Opcode = {
   description: string;
   minGas: number;
   gasComputation?: GasComputation;
-  refunds?: string;
   inputs?: Variable[];
   outputs?: Variable[];
   examples: Example[];
