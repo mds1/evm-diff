@@ -16,7 +16,7 @@ export type Example = {
   memory?: Memory;
 };
 
-type ComputationCost = Partial<Variable> & Required<Pick<Variable, 'expression'>>
+type ComputationCost = Partial<Variable> & Required<Pick<Variable, 'expression'>>;
 
 type GasComputation = {
   staticGasCost: ComputationCost;
