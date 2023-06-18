@@ -109,6 +109,18 @@ const formatExample = (e: Example, id: number): JSX.Element => {
           {e.storage.after && formatStorage(e.storage.after)}
         </>
       )}
+      {e.calldata && (
+        <>
+          <h5 className={classNames('font-bold', 'mt-4')}>Calldata</h5>
+          {e.calldata}
+        </>
+      )}
+      {e.code && (
+        <>
+          <h5 className={classNames('font-bold', 'mt-4')}>Code</h5>
+          {e.code}
+        </>
+      )}
     </>
   );
 };
