@@ -23,7 +23,7 @@ export enum OpcodeGroups {
 }
 
 // Returns a hex string (without the '0x' prefix) padded to 2 characters.
-const formatOpcodeNumber = (n: number) => {
+const formatOpcodeNumber = (n: number): string => {
   return n.toString(16).padStart(2, '0');
 };
 

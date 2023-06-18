@@ -12,7 +12,7 @@ type Memory = {
 
 export type Example = {
   input?: string | string[];
-  output?: string;
+  output?: string | string[];
   memory?: Memory;
 };
 

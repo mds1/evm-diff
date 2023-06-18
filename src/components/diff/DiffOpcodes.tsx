@@ -38,6 +38,12 @@ const formatVariable = (v: Variable) => {
         <>
           <p className='text-secondary text-sm'>
             {v.name} = {v.expression}
+            {v.variables && (
+              <>
+                <h5 className={classNames('font-bold', 'mt-3')}>Sub-variables ({v.name})</h5>
+                <ul>{v.variables.map((subvariables, id) => formatVariable(subvariables))}</ul>
+              </>
+            )}
           </p>
           <br />
         </>
@@ -140,8 +146,9 @@ const formatOpcode = (opcode: Opcode | undefined) => {
             Gas Computation: {toUppercase(opcode.gasComputation.name)}
           </h3>
           <p>{opcode.gasComputation.description}</p>
-          <h4 className={classNames('font-bold', 'mt-3')}>Expression</h4>
-          <p className='text-secondary text-sm'>{opcode.gasComputation.expression}</p>
+          <p className='text-secondary text-sm'>
+            {opcode.gasComputation.name} = {opcode.gasComputation.expression}
+          </p>
           <h4 className={classNames('font-bold', 'mt-3')}>Variables</h4>
           <ul>
             {opcode.gasComputation.variables.map((v) => (
