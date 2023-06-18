@@ -21,7 +21,7 @@ export const pop: Opcode = {
   ],
   examples: [
     {
-      input: ['125985'],
+      input: '125985',
     },
   ],
   playgroundLink: evmCodesPlaygroundLink('%27PUSH3%20125985%5CnPOP%27_'),

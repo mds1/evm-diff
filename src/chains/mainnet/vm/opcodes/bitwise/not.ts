@@ -26,7 +26,7 @@ export const not: Opcode = {
   ],
   examples: [
     {
-      input: ['0'],
+      input: '0',
       output: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
     },
   ],
