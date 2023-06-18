@@ -7,10 +7,10 @@ import {
 } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
-export const mstore: Opcode = {
-  number: 0x52,
-  name: 'mstore',
-  description: 'Save word to memory',
+export const mstore8: Opcode = {
+  number: 0x53,
+  name: 'mstore8',
+  description: 'Save byte to memory',
   minGas: 3,
   gasComputation: {
     staticGasCost: {
@@ -48,41 +48,37 @@ export const mstore: Opcode = {
     },
     {
       name: 'value',
-      description: 'The 32-bytes value to write in the memory',
+      description: 'The 1-byte value to write in the memory (the least significant byte of the 32-byte stack value).',
     },
   ],
   examples: [
     {
-      input: ['0', '0xFF'],
+      input: ['0', '0xFFFF'],
       memory: {
         before: '',
-        after: '0x00000000000000000000000000000000000000000000000000000000000000FF',
+        after: '0xFF',
       },
     },
     {
       input: ['1', '0xFF'],
       memory: {
-        before: '',
-        after: '0x0000000000000000000000000000000000000000000000000000000000000000FF',
+        before: '0xFF',
+        after: '0xFFFF',
       },
     },
   ],
   playgroundLink: evmCodesPlaygroundLink(
-    '%27z1v0wyz2v1w%27~yPUSH1%20z%2F%2F%20Example%20y%5CnwyMSTOREyv~0xFF~%01vwyz~_'
+    '%27z1v2%200xFFFFy0w~z2y0xFFy1w%27~%5Cnz%2F%2F%20Example%20yv1%20w~MSTORE8~v~PUSH%01vwyz~_'
   ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x52),
-    },
-    {
-      name: 'memory expansion',
-      url: 'https://www.evm.codes/about#memoryexpansion',
+      url: evmCodesOpcodesLink(0x53),
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Memory, 27),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Memory, 58),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

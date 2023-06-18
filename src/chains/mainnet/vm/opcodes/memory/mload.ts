@@ -7,10 +7,10 @@ import {
 } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
-export const mstore: Opcode = {
-  number: 0x52,
-  name: 'mstore',
-  description: 'Save word to memory',
+export const mload: Opcode = {
+  number: 0x51,
+  name: 'mload',
+  description: 'Load word from memory',
   minGas: 3,
   gasComputation: {
     staticGasCost: {
@@ -46,35 +46,39 @@ export const mstore: Opcode = {
       name: 'offset',
       description: 'The offset in the memory in bytes',
     },
+  ],
+  outputs: [
     {
       name: 'value',
-      description: 'The 32-bytes value to write in the memory',
-    },
+      description: 'The 32 bytes in memory starting at that offset. If it goes beyond its current size (see MSIZE), writes 0s.',
+    }
   ],
   examples: [
     {
-      input: ['0', '0xFF'],
+      input: '0',
+      output: '0xFF',
       memory: {
-        before: '',
+        before: '0x00000000000000000000000000000000000000000000000000000000000000FF',
         after: '0x00000000000000000000000000000000000000000000000000000000000000FF',
       },
     },
     {
-      input: ['1', '0xFF'],
+      input: '1',
+      output: '0xFF00',
       memory: {
-        before: '',
-        after: '0x0000000000000000000000000000000000000000000000000000000000000000FF',
+        before: '0x00000000000000000000000000000000000000000000000000000000000000FF',
+        after: '0x00000000000000000000000000000000000000000000000000000000000000FF',
       },
     },
   ],
   playgroundLink: evmCodesPlaygroundLink(
-    '%27z1v0wyz2v1w%27~yPUSH1%20z%2F%2F%20Example%20y%5CnwyMSTOREyv~0xFF~%01vwyz~_'
+    '%27qPut%20thkstatkin%20memoryg32%200xfffffdFFv0zMSTOREw1v0jw2v1jz%27~dddz%5CnwzzqExamplkvg1%20q%2F%2F%20ke%20jzMLOADgzPUSHf~~d00%01dfgjkqvwz~_'
   ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x52),
+      url: evmCodesOpcodesLink(0x51),
     },
     {
       name: 'memory expansion',
@@ -82,7 +86,7 @@ export const mstore: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Memory, 27),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Memory, 90),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),
