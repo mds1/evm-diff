@@ -24,7 +24,7 @@ export type Example = {
 
 type ComputationCost = Partial<Variable> & Required<Pick<Variable, 'expression'>>;
 
-type GasComputation = {
+export type GasComputation = {
   staticGasCost: ComputationCost;
   dynamicGasCost: ComputationCost;
   refunds?: string;
