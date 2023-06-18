@@ -52,6 +52,19 @@ const formatVariable = (v: Variable) => {
   );
 };
 
+const formatStorage = (record: Record<string, string>): JSX.Element => {
+  if (!record || record === undefined) return <></>;
+  const keyValues: JSX.Element[] = [];
+  for (const key in record) {
+    keyValues.push(
+      <li key={key}>
+        {key}: {record[key]}
+      </li>
+    );
+  }
+  return <ul>{keyValues}</ul>;
+};
+
 const formatExample = (e: Example, id: number) => {
   const input = e.input ? '[' + e.input.toString() + ']' : '[]';
   const output = '[' + (e.output ? e.output : '') + ']';
@@ -61,9 +74,20 @@ const formatExample = (e: Example, id: number) => {
       {input} {'=>'} {output}
       {e.memory && (
         <>
-          <p>Memory</p>
+          <h5 className={classNames('font-bold', 'mt-4')}>Memory</h5>
+          <h6 className={classNames('font-bold', 'mt-5')}>{'>'} Before</h6>
           <p>- Before: {e.memory.before ? e.memory.before : '[]'}</p>
+          <h6 className={classNames('font-bold', 'mt-5')}>{'>'} After</h6>
           <p>- After: {e.memory.after ? e.memory.after : '[]'}</p>
+        </>
+      )}
+      {e.storage && (
+        <>
+          <h5 className={classNames('font-bold', 'mt-4')}>Storage</h5>
+          <h6 className={classNames('font-bold', 'mt-5')}>{'>'} Before</h6>
+          {e.storage.before && formatStorage(e.storage.before)}
+          <h6 className={classNames('font-bold', 'mt-5')}>{'>'} After</h6>
+          {e.storage.after && formatStorage(e.storage.after)}
         </>
       )}
     </>

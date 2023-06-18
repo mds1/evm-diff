@@ -10,10 +10,16 @@ type Memory = {
   after: string;
 };
 
+export type Storage = {
+  before: Record<string, string>;
+  after: Record<string, string>;
+};
+
 export type Example = {
   input?: string | string[];
   output?: string | string[];
   memory?: Memory;
+  storage?: Storage;
 };
 
 type ComputationCost = Partial<Variable> & Required<Pick<Variable, 'expression'>>;
@@ -34,6 +40,7 @@ export type Opcode = {
   description: string;
   minGas: number;
   gasComputation?: GasComputation;
+  refunds?: string;
   inputs?: Variable[];
   outputs?: Variable[];
   examples: Example[];
