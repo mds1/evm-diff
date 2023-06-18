@@ -82,6 +82,10 @@ export const log = (n: number): Omit<Opcode, 'examples'> => {
         url: evmCodesOpcodesLink(number),
       },
       {
+        name: 'memory expansion',
+        url: 'https://www.evm.codes/about#memoryexpansion',
+      },
+      {
         name: 'execution-specs',
         url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Log, 84 + n),
       },

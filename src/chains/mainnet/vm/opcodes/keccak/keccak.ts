@@ -91,6 +91,10 @@ export const keccak: Opcode = {
       url: evmCodesOpcodesLink(0x20),
     },
     {
+      name: 'memory expansion',
+      url: 'https://www.evm.codes/about#memoryexpansion',
+    },
+    {
       name: 'execution-specs',
       url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Keccak, 30),
     },
