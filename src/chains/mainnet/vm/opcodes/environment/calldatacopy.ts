@@ -49,7 +49,7 @@ export const calldatacopy: Opcode = {
           ],
         },
       ],
-    }
+    },
   },
   inputs: [
     {
@@ -63,7 +63,7 @@ export const calldatacopy: Opcode = {
     {
       name: 'size',
       description: 'The byte size to copy',
-    }
+    },
   ],
   examples: [
     {
@@ -71,7 +71,7 @@ export const calldatacopy: Opcode = {
       calldata: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       memory: {
         before: '0',
-        after: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+        after: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       },
     },
     {
@@ -79,11 +79,13 @@ export const calldatacopy: Opcode = {
       calldata: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       memory: {
         before: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
-        after: '0xFF00000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+        after: '0xFF00000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       },
     },
   ],
-  playgroundLink: evmCodesPlaygroundLink('%27z1~32~0ywwz2~8~31y%27~wPUSH1%20z%2F%2F%20Example%20y~0wCALLDATACOPYw%5Cn%01wyz~_&callData=0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'),
+  playgroundLink: evmCodesPlaygroundLink(
+    '%27z1~32~0ywwz2~8~31y%27~wPUSH1%20z%2F%2F%20Example%20y~0wCALLDATACOPYw%5Cn%01wyz~_&callData=0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+  ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
     {

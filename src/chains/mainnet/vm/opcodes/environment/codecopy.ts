@@ -49,7 +49,7 @@ export const codecopy: Opcode = {
           ],
         },
       ],
-    }
+    },
   },
   inputs: [
     {
@@ -63,7 +63,7 @@ export const codecopy: Opcode = {
     {
       name: 'size',
       description: 'The byte size to copy',
-    }
+    },
   ],
   examples: [
     {
@@ -72,18 +72,20 @@ export const codecopy: Opcode = {
       memory: {
         before: '',
         after: '0x7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
-      }
+      },
     },
     {
       input: ['0', '31', '8'],
       code: '0x7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
       memory: {
         before: '0x7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
-        after: '0x7F00000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F'
+        after: '0x7F00000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
       },
     },
   ],
-  playgroundLink: evmCodesPlaygroundLink('%27qPutwbeginning%20ofwcodXtowexpected%20valueZ30VxWWWWWZ32VyyqRemovewvalues%20fromwstackTTj1~32~0_j2~8~31_%27~Z1%20zFFFFFFy%5Cnw%20thXq%2F%2F%20jyyqExamplX_~0yCODECOPYZyPUSHXe%20WzzV%200TyPOP%01TVWXZ_jqwyz~_'),
+  playgroundLink: evmCodesPlaygroundLink(
+    '%27qPutwbeginning%20ofwcodXtowexpected%20valueZ30VxWWWWWZ32VyyqRemovewvalues%20fromwstackTTj1~32~0_j2~8~31_%27~Z1%20zFFFFFFy%5Cnw%20thXq%2F%2F%20jyyqExamplX_~0yCODECOPYZyPUSHXe%20WzzV%200TyPOP%01TVWXZ_jqwyz~_'
+  ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   notes: ['For out of bound bytes, 0s will be copied.'],
   references: [

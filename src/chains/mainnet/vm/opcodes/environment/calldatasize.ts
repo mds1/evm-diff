@@ -21,7 +21,7 @@ export const calldatasize: Opcode = {
   examples: [
     {
       output: '1',
-      calldata: '0xFF'
+      calldata: '0xFF',
     },
   ],
   playgroundLink: evmCodesPlaygroundLink('%27CALLDATASIZE%27_&callData=0xFF'),

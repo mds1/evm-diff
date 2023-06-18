@@ -16,12 +16,13 @@ export const calldataload: Opcode = {
     {
       name: 'i',
       description: 'The byte offset in the calldata',
-    }
+    },
   ],
   outputs: [
     {
       name: 'data[i]',
-      description: 'The 32-byte value starting from the given offset of the calldata. All bytes after the end of the calldata are set to 0.',
+      description:
+        'The 32-byte value starting from the given offset of the calldata. All bytes after the end of the calldata are set to 0.',
     },
   ],
   examples: [
@@ -36,7 +37,9 @@ export const calldataload: Opcode = {
       calldata: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
     },
   ],
-  playgroundLink: evmCodesPlaygroundLink('%27~1w0yzz~2w31y%27~%2F%2F%20Example%20z%5CnyzCALLDATALOADwzPUSH1%20%01wyz~_&callData=0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'),
+  playgroundLink: evmCodesPlaygroundLink(
+    '%27~1w0yzz~2w31y%27~%2F%2F%20Example%20z%5CnyzCALLDATALOADwzPUSH1%20%01wyz~_&callData=0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'
+  ),
   errorCases: ['Not enough gas', 'Not enough values on stack'],
   references: [
     {

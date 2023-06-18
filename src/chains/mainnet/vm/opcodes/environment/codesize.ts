@@ -23,9 +23,13 @@ export const codesize: Opcode = {
       output: '32',
     },
   ],
-  playgroundLink: evmCodesPlaygroundLink('%27%2F%2F%20Add%20som~instructions%20to%20increas~th~cod~sizeyPUSH29%200yPOPyyCODESIZE%27~e%20y%5Cn%01y~_'),
+  playgroundLink: evmCodesPlaygroundLink(
+    '%27%2F%2F%20Add%20som~instructions%20to%20increas~th~cod~sizeyPUSH29%200yPOPyyCODESIZE%27~e%20y%5Cn%01y~_'
+  ),
   errorCases: ['Not enough gas', 'Stack overflow'],
-  notes: ['Each instruction occupies one byte. In the case of a PUSH instruction, the bytes that need to be pushed are encoded after that, it thus increases the codesize accordingly.'],
+  notes: [
+    'Each instruction occupies one byte. In the case of a PUSH instruction, the bytes that need to be pushed are encoded after that, it thus increases the codesize accordingly.',
+  ],
   references: [
     {
       name: 'evm.codes',
