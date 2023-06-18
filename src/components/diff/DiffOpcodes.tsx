@@ -11,6 +11,29 @@ type Props = {
   onlyShowDiff: boolean;
 };
 
+const formatHardfork = (array: string[]) => {
+  if (array == undefined || array.length == 0)
+    return <p>No information provided on supported hard forks.</p>;
+  const length = array.length;
+  if (length == CURRENT_MAINNET_HARDFORK + 1)
+    return (
+      <p>
+        Supported since <b>{array[0]}</b> hard fork.
+      </p>
+    );
+  if (length == 1)
+    return (
+      <p>
+        Supported only in <b>{array[0]}</b> hard fork.
+      </p>
+    );
+  return (
+    <p>
+      Supported between <b>{array[0]}</b> and <b>{array[length - 1]}</b> hard forks.
+    </p>
+  );
+};
+
 const formatVariables = (title: string, array?: Variable[]) => {
   return (
     <>
@@ -52,17 +75,12 @@ const formatVariable = (v: Variable) => {
   );
 };
 
-const formatStorage = (record: Record<string, string>): JSX.Element => {
-  if (!record || record === undefined) return <></>;
-  const keyValues: JSX.Element[] = [];
-  for (const key in record) {
-    keyValues.push(
-      <li key={key}>
-        {key}: {record[key]}
-      </li>
-    );
-  }
-  return <ul>{keyValues}</ul>;
+const formatReference = (r: Reference) => {
+  return (
+    <p className='text-secondary text-sm'>
+      <ExternalLink href={r.url} text={r.name ? r.name.toLowerCase() : 'link'} />
+    </p>
+  );
 };
 
 const formatExample = (e: Example, id: number) => {
@@ -94,6 +112,19 @@ const formatExample = (e: Example, id: number) => {
   );
 };
 
+const formatStorage = (record: Record<string, string>): JSX.Element => {
+  if (!record || record === undefined) return <></>;
+  const keyValues: JSX.Element[] = [];
+  for (const key in record) {
+    keyValues.push(
+      <li key={key}>
+        {key}: {record[key]}
+      </li>
+    );
+  }
+  return <ul>{keyValues}</ul>;
+};
+
 const formatStringList = (title: string, array: string[] | undefined) => {
   if (array === undefined || array.length === 0) return <></>;
   return (
@@ -105,37 +136,6 @@ const formatStringList = (title: string, array: string[] | undefined) => {
         ))}
       </ul>
     </>
-  );
-};
-
-const formatReference = (r: Reference) => {
-  return (
-    <p className='text-secondary text-sm'>
-      <ExternalLink href={r.url} text={r.name ? r.name.toLowerCase() : 'link'} />
-    </p>
-  );
-};
-
-const formatHardfork = (array: string[]) => {
-  if (array == undefined || array.length == 0)
-    return <p>No information provided on supported hard forks.</p>;
-  const length = array.length;
-  if (length == CURRENT_MAINNET_HARDFORK + 1)
-    return (
-      <p>
-        Supported since <b>{array[0]}</b> hard fork.
-      </p>
-    );
-  if (length == 1)
-    return (
-      <p>
-        Supported only in <b>{array[0]}</b> hard fork.
-      </p>
-    );
-  return (
-    <p>
-      Supported between <b>{array[0]}</b> and <b>{array[length - 1]}</b> hard forks.
-    </p>
   );
 };
 
