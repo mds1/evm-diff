@@ -1,6 +1,6 @@
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import { id } from '@/lib/opcodes';
-import { classNames } from '@/lib/utils';
+import { classNames, formatPrefixByte } from '@/lib/utils';
 import { toUppercase } from '@/lib/utils';
 import { Example, Opcode, Reference, Variable } from '@/types';
 import { ExternalLink } from '../layout/ExternalLink';
@@ -202,7 +202,7 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props) => {
               <div className='flex-1'>{formatOpcode(baseOpcode)}</div>
               <p className='flex-1 text-center'>
                 <p>
-                  {baseOpcode?.name} (#{baseOpcode?.number})
+                  {baseOpcode?.name} (#{baseOpcode?.number && formatPrefixByte(baseOpcode?.number)})
                 </p>
                 <p className='text-secondary text-sm'>{baseOpcode?.description}</p>
               </p>
