@@ -50,8 +50,9 @@ export const mload: Opcode = {
   outputs: [
     {
       name: 'value',
-      description: 'The 32 bytes in memory starting at that offset. If it goes beyond its current size (see MSIZE), writes 0s.',
-    }
+      description:
+        'The 32 bytes in memory starting at that offset. If it goes beyond its current size (see MSIZE), writes 0s.',
+    },
   ],
   examples: [
     {

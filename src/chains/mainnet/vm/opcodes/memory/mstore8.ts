@@ -48,7 +48,8 @@ export const mstore8: Opcode = {
     },
     {
       name: 'value',
-      description: 'The 1-byte value to write in the memory (the least significant byte of the 32-byte stack value).',
+      description:
+        'The 1-byte value to write in the memory (the least significant byte of the 32-byte stack value).',
     },
   ],
   examples: [

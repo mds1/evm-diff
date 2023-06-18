@@ -1,8 +1,8 @@
 import { Opcode } from '@/types';
-import { mstore } from './mstore';
-import { mstore8 } from './mstore8';
 import { mload } from './mload';
 import { msize } from './msize';
+import { mstore } from './mstore';
+import { mstore8 } from './mstore8';
 
 export const opcodes: Record<number, Partial<Opcode>> = {
   [mload.number]: mload,
