@@ -10,7 +10,7 @@ import { Opcode } from '@/types';
 export const iszero: Opcode = {
   number: 0x15,
   name: 'iszero',
-  description: 'Zero Equality Comparison',
+  description: 'Simple NOT (or non-zero )operator',
   minGas: 3,
   inputs: [
     {
