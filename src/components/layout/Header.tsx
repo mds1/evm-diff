@@ -17,11 +17,11 @@ export const Header = () => {
         if you want to contribute.
       </div>
       <div>
-        <div className='flex items-center justify-between px-4 py-6 sm:px-6 md:space-x-10'>
+        <div className='flex items-center justify-between px-4 py-2 sm:px-6 sm:py-6 md:space-x-10'>
           <div>
             <Link href='/' className='flex'>
               <span className='sr-only'>{COMPANY_NAME}</span>
-              <Image className='h-14' src={logo} alt='logo' />
+              <Image className='h-8 sm:h-14' src={logo} alt='logo' />
             </Link>
           </div>
         </div>
