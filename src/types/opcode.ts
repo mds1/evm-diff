@@ -22,6 +22,7 @@ export type Example = {
   storage?: Storage;
   calldata?: string;
   code?: string;
+  returndata?: string;
 };
 
 type ComputationCost = Partial<Variable> & Required<Pick<Variable, 'expression'>>;

@@ -7,17 +7,17 @@ import {
 } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
-export const codecopy: Opcode = {
-  number: 0x39,
-  name: 'codecopy',
-  description: 'Copy code running in current environment to memory',
-  minGas: 3,
+export const extcodecopy: Opcode = {
+  number: 0x3c,
+  name: 'extcodecopy',
+  description: "Copy an account's code to memory",
+  minGas: 100,
   gasComputation: {
     staticGasCost: {
-      expression: '3',
+      expression: '0',
     },
     dynamicGasCost: {
-      expression: '3 * minimum_word_size + memory_expansion_cost',
+      expression: '3 * minimum_word_size + memory_expansion_cost + address_access_cost',
       variables: [
         {
           name: 'minimum_word_size',
@@ -48,10 +48,19 @@ export const codecopy: Opcode = {
             },
           ],
         },
+        {
+          name: 'address_access_cost',
+          description: 'The cost of accessing the address',
+          expression: '100 if the accessed address is warm, 2600 otherwise',
+        },
       ],
     },
   },
   inputs: [
+    {
+      name: 'address',
+      description: 'The 20-byte address of the contract to query',
+    },
     {
       name: 'destOffset',
       description: 'The byte offset in the memory where the result will be copied',
@@ -67,31 +76,31 @@ export const codecopy: Opcode = {
   ],
   examples: [
     {
-      input: ['0', '0', '32'],
-      code: '0x7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
+      input: ['0x43a61f3f4c73ea0d444c5c1c1a8544067a86219b', '0', '0', '32'],
+      code: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       memory: {
         before: '',
-        after: '0x7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
+        after: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       },
     },
     {
-      input: ['0', '31', '8'],
-      code: '0x7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
+      input: ['0x43a61f3f4c73ea0d444c5c1c1a8544067a86219b', '0', '31', '8'],
+      code: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       memory: {
-        before: '0x7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
-        after: '0x7F00000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
+        before: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
+        after: '0xFF00000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       },
     },
   ],
   playgroundLink: evmCodesPlaygroundLink(
-    '%27qPutwbeginning%20ofwcodXtowexpected%20valueZ30VxWWWWWZ32VyyqRemovewvalues%20fromwstackTTj1~32~0_j2~8~31_%27~Z1%20zFFFFFFy%5Cnw%20thXq%2F%2F%20jyyqExamplX_~0yCODECOPYZyPUSHXe%20WzzV%200TyPOP%01TVWXZ_jqwyz~_'
+    '%27jCNQthat%20cNZwith%20.9%20aGcodeK7qqqqqqqqqIWK96_5260206_F3JJJJJ0!W(C-gZwithgQcodBabove~41IIzCREATE%20jPutsgnew%20ZaddresGongstack(Cleargmemory%20forge*esIIWI!WL1!IVL2~8~31V%27~)1%20z%5Cnq999Fj%2F%2F%20g%20thB_000Zcontract%20WzMSTOREVIzDUP4zEXTCODECOPYQconstructor%20N-Ga%20L(E*BK).0xJ___I~0Gs%20Be%209FF.32%20-reate*xampl)zPUSH(zzj!~32%01!()*-.9BGIJKLNQVWZ_gjqz~_'
   ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   notes: ['For out of bound bytes, 0s will be copied'],
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x39),
+      url: evmCodesOpcodesLink(0x3c),
     },
     {
       name: 'memory expansion',
@@ -99,7 +108,7 @@ export const codecopy: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Environment, 270),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Environment, 350),
     },
   ],
   supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),

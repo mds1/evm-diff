@@ -7,10 +7,10 @@ import {
 } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
-export const codecopy: Opcode = {
-  number: 0x39,
-  name: 'codecopy',
-  description: 'Copy code running in current environment to memory',
+export const returndatacopy: Opcode = {
+  number: 0x3e,
+  name: 'returndatacopy',
+  description: 'Copy output data from the previous call to memory',
   minGas: 3,
   gasComputation: {
     staticGasCost: {
@@ -58,7 +58,7 @@ export const codecopy: Opcode = {
     },
     {
       name: 'offset',
-      description: 'The byte offset in the code to copy',
+      description: 'The byte offset in the return data from the last executed sub context to copy',
     },
     {
       name: 'size',
@@ -68,30 +68,35 @@ export const codecopy: Opcode = {
   examples: [
     {
       input: ['0', '0', '32'],
-      code: '0x7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
+      returndata: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       memory: {
         before: '',
-        after: '0x7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
+        after: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       },
     },
     {
-      input: ['0', '31', '8'],
-      code: '0x7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
+      input: ['32', '31', '1'],
+      returndata: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       memory: {
-        before: '0x7DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
-        after: '0x7F00000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F',
+        before: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
+        after: '0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF',
       },
     },
   ],
   playgroundLink: evmCodesPlaygroundLink(
-    '%27qPutwbeginning%20ofwcodXtowexpected%20valueZ30VxWWWWWZ32VyyqRemovewvalues%20fromwstackTTj1~32~0_j2~8~31_%27~Z1%20zFFFFFFy%5Cnw%20thXq%2F%2F%20jyyqExamplX_~0yCODECOPYZyPUSHXe%20WzzV%200TyPOP%01TVWXZ_jqwyz~_'
+    '%27jCKVthat%20cK(wich%20return-32%20*Z7F7ggggggggggFJ_Z*6Q527*F6Q526020.!_Zq06020526029.00~64_Breatef(withfVcod)above~77JJzCREATE%20jPutsfnew%20(addres-onfstackBallfdeployed%20XJJJJzDUP584%200xg*zSTATICCALLBlearfstackzPOPzPOPBlearfmemoryJJ_J!_J~64_zG1!JJWG2~1~31!W%27~81%20z%5CnqQQQj%2F%2F%20g***f%20th)_zMSTOREZ832%200xXcontractWzRETURNDATACOPYzVconstructor%20Q000Kreate-a%20J~0GzjExampl)BzzjC8zPUSH.6QF3qqqq-s%20*FF)e%20(X%20!~32%01!()*-.8BGJKQVWXZ_fgjqz~_'
   ),
-  errorCases: ['Not enough gas', 'Not enough values on the stack'],
-  notes: ['For out of bound bytes, 0s will be copied'],
+  errorCases: [
+    'Not enough gas',
+    'Not enough values on the stack',
+    'The addition offset + size overflows',
+    'The result of `offset` plus `size` is larger than RETURNDATASIZE.',
+  ],
+  notes: ['A sub context can be created with CALL, CALLCODE, DELEGATECALL or STATICCALL'],
   references: [
     {
       name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x39),
+      url: evmCodesOpcodesLink(0x3e),
     },
     {
       name: 'memory expansion',
@@ -99,8 +104,8 @@ export const codecopy: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Environment, 270),
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Environment, 406),
     },
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),
+  supportedHardforks: getHardforksFrom(MainnetHardforks.Byzantium),
 };

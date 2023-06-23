@@ -121,6 +121,12 @@ const formatExample = (e: Example, id: number): JSX.Element => {
           {e.code}
         </>
       )}
+      {e.returndata && (
+        <>
+          <h5 className={classNames('font-bold', 'mt-4')}>Return Data</h5>
+          {e.returndata}
+        </>
+      )}
     </>
   );
 };
