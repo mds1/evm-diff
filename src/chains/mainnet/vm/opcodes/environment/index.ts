@@ -8,11 +8,11 @@ import { caller } from './caller';
 import { callvalue } from './callvalue';
 import { codecopy } from './codecopy';
 import { codesize } from './codesize';
-import { gasprice } from './gasprice';
-import { origin } from './origin';
 import { extcodecopy } from './extcodecopy';
 import { extcodehash } from './extcodehash';
 import { extcodesize } from './extcodesize';
+import { gasprice } from './gasprice';
+import { origin } from './origin';
 import { returndatacopy } from './returndatacopy';
 import { returndatasize } from './returndatasize';
 

@@ -29,7 +29,8 @@ export const extcodehash: Opcode = {
   outputs: [
     {
       name: 'hash',
-      description: 'The hash of the chosen account\'s code, the empty hash (0xc5d24601...) if the account has no code, or 0 if the account does not exist or has been destroyed.',
+      description:
+        "The hash of the chosen account's code, the empty hash (0xc5d24601...) if the account has no code, or 0 if the account does not exist or has been destroyed.",
     },
   ],
   examples: [
