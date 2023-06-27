@@ -16,6 +16,7 @@ export type Storage = {
 };
 
 export type Example = {
+  description?: string;
   input?: string | string[];
   output?: string | string[];
   memory?: Memory;

@@ -90,6 +90,7 @@ const formatExample = (e: Example, id: number): JSX.Element => {
   return (
     <>
       <h4 className={classNames('font-bold', 'mt-3')}>Example #{id}</h4>
+      {e.description && <p>{e.description}</p>}
       {input} {'=>'} {output}
       {e.memory && (
         <>
