@@ -7,7 +7,7 @@ interface Props {
 
 export const Layout = ({ children }: Props) => {
   return (
-    <div className='relative isolate flex min-h-screen flex-col bg-zinc-50 dark:bg-zinc-900'>
+    <div className='relative isolate flex min-h-screen flex-col bg-zinc-50 dark:bg-zinc-1000'>
       <Header />
       <main className='text-primary my-4 h-full w-full flex-1 px-4 sm:px-6 md:justify-between lg:px-8'>
         {children}
