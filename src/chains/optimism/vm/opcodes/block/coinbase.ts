@@ -4,10 +4,10 @@ import { Opcode } from '@/types';
 export const coinbase: Omit<Opcode, 'minGas' | 'examples' | 'errorCases' | 'supportedHardforks'> = {
   number: 0x41,
   name: 'coinbase',
-  description: 'The opcode is not defined on Optimism',
+  description: 'The opcode not defined',
   references: [
     {
-      name: 'differences between Optimism and Ethereum opcodes',
+      name: 'Differences between Optimism and Ethereum opcodes',
       url: 'https://community.optimism.io/docs/developers/build/differences/#opcode-differences',
     },
   ],
