@@ -4,11 +4,11 @@ import { callcode } from './callcode';
 import { create } from './create';
 import { create2 } from './create2';
 import { delegatecall } from './delegatecall';
+import { invalid } from './invalid';
 import { _return } from './return';
 import { revert } from './revert';
 import { selfdestruct } from './selfdestruct';
 import { staticcall } from './staticcall';
-import { invalid } from './invalid';
 
 export const opcodes: Record<number, Partial<Opcode>> = {
   [call.number]: call,
