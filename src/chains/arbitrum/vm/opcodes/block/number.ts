@@ -10,7 +10,7 @@ export const number: Omit<Opcode, 'supportedHardforks'> = {
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
     {
-      name: 'differences between Arbitrum and Ethereum',
+      name: 'Differences between Arbitrum and Ethereum',
       url: 'https://developer.arbitrum.io/solidity-support',
     },
   ],

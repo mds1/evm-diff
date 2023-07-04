@@ -11,7 +11,7 @@ export const coinbase: Omit<Opcode, 'minGas' | 'errorCases' | 'supportedHardfork
   examples: [{ output: '2500000000000000' }],
   references: [
     {
-      name: 'differences between Arbitrum and Ethereum opcodes',
+      name: 'Differences between Arbitrum and Ethereum opcodes',
       url: 'https://developer.arbitrum.io/solidity-support',
     },
   ],
