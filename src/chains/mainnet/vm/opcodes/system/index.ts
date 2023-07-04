@@ -8,6 +8,7 @@ import { _return } from './return';
 import { revert } from './revert';
 import { selfdestruct } from './selfdestruct';
 import { staticcall } from './staticcall';
+import { invalid } from './invalid';
 
 export const opcodes: Record<number, Partial<Opcode>> = {
   [call.number]: call,
@@ -15,6 +16,7 @@ export const opcodes: Record<number, Partial<Opcode>> = {
   [create.number]: create,
   [create2.number]: create2,
   [delegatecall.number]: delegatecall,
+  [invalid.number]: invalid,
   [_return.number]: _return,
   [revert.number]: revert,
   [selfdestruct.number]: selfdestruct,
