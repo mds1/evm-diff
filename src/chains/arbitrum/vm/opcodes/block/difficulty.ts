@@ -5,9 +5,17 @@ export const difficulty: Omit<Opcode, 'minGas' | 'errorCases' | 'supportedHardfo
   name: 'difficulty',
   description: 'Return the constant 2500000000000000',
   outputs: [
-    { name: 'zero', description: 'A constant value of zero', expression: '2500000000000000' },
+    {
+      name: 'zero',
+      description: 'A constant value of zero',
+      expression: '2500000000000000',
+    },
   ],
-  examples: [{ output: '2500000000000000' }],
+  examples: [
+    {
+      output: '2500000000000000',
+    },
+  ],
   references: [
     {
       name: 'Differences between Arbitrum and Ethereum opcodes',
