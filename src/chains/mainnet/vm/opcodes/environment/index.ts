@@ -1,6 +1,7 @@
 import { Opcode } from '@/types';
 import { address } from './address';
 import { balance } from './balance';
+import { basefee } from './basefee';
 import { calldatacopy } from './calldatacopy';
 import { calldataload } from './calldataload';
 import { calldatasize } from './calldatasize';
@@ -15,10 +16,12 @@ import { gasprice } from './gasprice';
 import { origin } from './origin';
 import { returndatacopy } from './returndatacopy';
 import { returndatasize } from './returndatasize';
+import { selfbalance } from './selfbalance';
 
 export const opcodes: Record<number, Opcode> = {
   [address.number]: address,
   [balance.number]: balance,
+  [basefee.number]: basefee,
   [calldatacopy.number]: calldatacopy,
   [calldataload.number]: calldataload,
   [calldatasize.number]: calldatasize,
@@ -33,4 +36,5 @@ export const opcodes: Record<number, Opcode> = {
   [origin.number]: origin,
   [returndatacopy.number]: returndatacopy,
   [returndatasize.number]: returndatasize,
+  [selfbalance.number]: selfbalance,
 };
