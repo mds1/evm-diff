@@ -11,16 +11,16 @@ import { push0 } from './stack/push0';
 export const opcodes: Record<number, Partial<Opcode>> = {
   ...mainnetOpcodes,
 
-  // block
+  // Block.
   ...{ [coinbase.number]: coinbase },
   ...{ [difficulty.number]: difficulty },
   ...{ [number.number]: number },
   ...{ [timestamp.number]: timestamp },
 
-  // environment
+  // Environment.
   ...{ [caller.number]: caller },
   ...{ [origin.number]: origin },
 
-  // stack
+  // Stack.
   ...{ [push0.number]: push0 },
 };

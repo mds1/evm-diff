@@ -1,4 +1,4 @@
-import { id } from '@/lib/opcodes';
+import { opcodeId } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 import { blockhash } from './blockhash';
 import { coinbase } from './coinbase';
@@ -12,8 +12,8 @@ export const opcodes: Record<number, Opcode> = {
   [blockhash.number]: blockhash,
   [coinbase.number]: coinbase,
   // `difficulty` and `prevrandao` have the same opcode numbers so we use `id()` to generate unique keys.
-  [id(difficulty)]: difficulty,
-  [id(prevrandao)]: prevrandao,
+  [opcodeId(difficulty)]: difficulty,
+  [opcodeId(prevrandao)]: prevrandao,
   [gaslimit.number]: gaslimit,
   [number.number]: number,
   [timestamp.number]: timestamp,

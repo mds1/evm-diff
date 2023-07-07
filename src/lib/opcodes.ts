@@ -1,4 +1,3 @@
-import { pad } from 'viem';
 import { MainnetHardforks } from '@/chains/mainnet/hardforks';
 import { Opcode } from '@/types';
 import {
@@ -23,14 +22,13 @@ export enum OpcodeGroups {
 }
 
 // Returns a hex string (without the '0x' prefix) padded to 2 characters.
-const formatOpcodeNumber = (n: number): string => {
-  return n.toString(16).padStart(2, '0');
-};
+const formatOpcodeNumber = (n: number): string => n.toString(16).padStart(2, '0');
 
-// Return a unique id for each opcode (the opcode number is not sufficient because opcodes can have
-// the same value such as `block.difficulty` and `block.prev_randao`).
-export const id = (opcode: Opcode): string => `${opcode.number}+${opcode.name}`;
+// Returns a unique ID for each opcode (the opcode number is not sufficient because opcodes can have
+// the same value such as `block.difficulty` and `block.prevrandao`).
+export const opcodeId = (opcode: Opcode): string => `${opcode.number}-${opcode.name}`;
 
+// Returns a link to the Ethereum execution specs for the given hardfork, opcode, and line number.
 export const ethSpecsOpcodeSrc = (
   hardfork: MainnetHardforks,
   group: OpcodeGroups,
@@ -40,9 +38,8 @@ export const ethSpecsOpcodeSrc = (
     hardfork
   ].toLowerCase()}/vm/instructions/${group}.py#L${line}`;
 
-export const evmCodesOpcodesLink = (opcodeNumber: number): string => {
-  return `${EVM_OPCODES_URL}/#${formatOpcodeNumber(opcodeNumber)}`;
-};
+export const evmCodesOpcodesLink = (opcodeNumber: number): string =>
+  `${EVM_OPCODES_URL}/#${formatOpcodeNumber(opcodeNumber)}`;
 
 export const evmCodesPlaygroundLink = (codeParam: string): string =>
   `${EVM_OPCODES_URL}/playground?unit=Wei&codeType=Mnemonic&code=${codeParam}`;

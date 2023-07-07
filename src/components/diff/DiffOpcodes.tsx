@@ -1,5 +1,5 @@
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
-import { id } from '@/lib/opcodes';
+import { opcodeId } from '@/lib/opcodes';
 import { classNames, formatPrefixByte } from '@/lib/utils';
 import { toUppercase } from '@/lib/utils';
 import { Example, Opcode, Reference, Variable } from '@/types';
@@ -15,6 +15,7 @@ type Props = {
 const formatHardfork = (array: string[]): JSX.Element => {
   if (array == undefined || array.length == 0)
     return <p>No information provided on supported hard forks.</p>;
+
   const length = array.length;
   if (length == CURRENT_MAINNET_HARDFORK + 1)
     return (
@@ -255,17 +256,17 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
   if (!Array.isArray(base) || !Array.isArray(target)) return <></>;
 
   // Generate a sorted list of all opcode numbers from both base and target.
-  const sortedNumbers = [
-    ...base.map((opcode) => id(opcode)),
-    ...target.map((opcode) => id(opcode)),
+  const sortedOpcodeIds = [
+    ...base.map((opcode) => opcodeId(opcode)),
+    ...target.map((opcode) => opcodeId(opcode)),
   ].sort((a, b) => a.localeCompare(b));
-  const opcodeNumbers = [...new Set(sortedNumbers)];
+  const opcodeIds = [...new Set(sortedOpcodeIds)];
 
   return (
     <>
-      {opcodeNumbers.map((opcodeId) => {
-        const baseOpcode = base.find((opcode) => id(opcode) === opcodeId);
-        const targetOpcode = target.find((opcode) => id(opcode) === opcodeId);
+      {opcodeIds.map((id) => {
+        const baseOpcode = base.find((opcode) => opcodeId(opcode) === id);
+        const targetOpcode = target.find((opcode) => opcodeId(opcode) === id);
 
         const isEqual = JSON.stringify(baseOpcode) === JSON.stringify(targetOpcode);
         const showOpcode = !isEqual || !onlyShowDiff;
@@ -273,7 +274,7 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
         return (
           showOpcode && (
             <div
-              key={opcodeId}
+              key={id}
               className='flex items-center justify-between border-b border-zinc-500/10 py-1 dark:border-zinc-500/20'
             >
               <div className='flex-1'>{formatOpcode(baseOpcode)}</div>
