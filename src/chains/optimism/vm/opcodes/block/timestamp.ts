@@ -4,7 +4,7 @@ export const timestamp: Omit<Opcode, 'minGas' | 'examples' | 'errorCases' | 'sup
   {
     number: 0x42,
     name: 'timestamp',
-    description: 'Return the timestamp of the L2 block',
+    description: 'Returns the timestamp of the L2 block.',
     references: [
       {
         name: 'Differences between Optimism and Ethereum',

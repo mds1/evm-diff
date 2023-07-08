@@ -5,7 +5,7 @@ export const difficulty: Omit<Opcode, 'minGas' | 'examples' | 'errorCases' | 'su
     number: 0x44,
     name: 'difficulty',
     description:
-      'Return a random value. As this value is set by the sequencer, it is not as reliably random as the L1 equivalent. You can use an oracle for randomness.',
+      'Returns a random value. As this value is set by the sequencer, it is not as reliably random as the L1 equivalent. You can use an oracle for randomness.',
     references: [
       {
         name: 'Differences between Optimism and Ethereum opcodes',
