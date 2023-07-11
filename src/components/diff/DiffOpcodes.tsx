@@ -252,6 +252,8 @@ const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {
   );
 };
 
+type OpcodeCmp = Omit<Opcode, 'examples' | 'playgroundLink' | 'notes' | 'references'>;
+
 export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element => {
   if (!Array.isArray(base) || !Array.isArray(target)) return <></>;
 
@@ -268,7 +270,8 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
         const baseOpcode = base.find((opcode) => opcodeId(opcode) === id);
         const targetOpcode = target.find((opcode) => opcodeId(opcode) === id);
 
-        const isEqual = JSON.stringify(baseOpcode) === JSON.stringify(targetOpcode);
+        const isEqual =
+          JSON.stringify(baseOpcode as OpcodeCmp) === JSON.stringify(targetOpcode as OpcodeCmp);
         const showOpcode = !isEqual || !onlyShowDiff;
 
         return (
