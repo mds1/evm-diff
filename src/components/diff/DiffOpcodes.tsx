@@ -252,8 +252,6 @@ const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {
   );
 };
 
-type OpcodeCmp = Omit<Opcode, 'examples' | 'playgroundLink' | 'notes' | 'references'>;
-
 export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element => {
   if (!Array.isArray(base) || !Array.isArray(target)) return <></>;
 
@@ -269,9 +267,13 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
       {opcodeIds.map((id) => {
         const baseOpcode = base.find((opcode) => opcodeId(opcode) === id);
         const targetOpcode = target.find((opcode) => opcodeId(opcode) === id);
+        if (!baseOpcode || !targetOpcode) {
+          return <></>;
+        }
 
         const isEqual =
-          JSON.stringify(baseOpcode as OpcodeCmp) === JSON.stringify(targetOpcode as OpcodeCmp);
+          JSON.stringify(convertToComparableOpcode(baseOpcode)) ===
+          JSON.stringify(convertToComparableOpcode(targetOpcode));
         const showOpcode = !isEqual || !onlyShowDiff;
 
         return (
@@ -294,4 +296,24 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
       })}
     </>
   );
+};
+
+// Convert an `Opcode` object to a simpler struct in order to compare it to other opcodes.
+// Note: casting an object from a type with properties X, Y and Z to a subset type with properties
+// X and Y using the `as` keyword will still retain the field Z unless you explicitely remove it.
+// That's why this function exists.
+const convertToComparableOpcode = (
+  opcode: Opcode
+): Omit<Opcode, 'examples' | 'playgroundLink' | 'notes' | 'references'> => {
+  return {
+    number: opcode.number,
+    name: opcode.name,
+    description: opcode.description,
+    minGas: opcode.minGas,
+    gasComputation: opcode.gasComputation,
+    inputs: opcode.inputs,
+    outputs: opcode.outputs,
+    errorCases: opcode.errorCases,
+    supportedHardforks: opcode.supportedHardforks,
+  };
 };
