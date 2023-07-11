@@ -4,7 +4,7 @@ import { Opcode } from '@/types';
 // TODO: It's not clear if this opcode is a no-op or if it will revert.
 export const coinbase: Omit<Opcode, 'minGas' | 'examples' | 'errorCases' | 'supportedHardforks'> = {
   ...coinbaseMainnet,
-  description: 'This opcode is not defined.',
+  description: 'The opcode is not defined.',
   references: [
     ...coinbaseMainnet.references,
     {
