@@ -1,3 +1,5 @@
+import { MainnetHardforks, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const blockhash: Opcode = {
@@ -29,11 +31,12 @@ export const blockhash: Opcode = {
   references: [
     {
       name: 'evm.codes',
-      url: 'https://www.evm.codes/#40?fork=shanghai',
+      url: evmCodesOpcodesLink(0x40),
     },
     {
       name: 'execution-specs',
-      url: 'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/block.py#L22',
+      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Block, 22),
     },
   ],
+  supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),
 };

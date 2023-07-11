@@ -2,24 +2,36 @@ export type Variable = {
   name: string;
   description: string;
   expression?: string;
+  variables?: Variable[];
 };
 
 type Memory = {
-  before?: string;
+  before: string;
   after: string;
 };
 
-export type Example = {
-  input?: string | string[];
-  output?: string;
-  memory?: Memory;
+export type Storage = {
+  before: Record<string, string>;
+  after: Record<string, string>;
 };
 
-type GasComputation = {
-  name: string;
-  description: string;
-  expression: string;
-  variables: Variable[];
+export type Example = {
+  description?: string;
+  input?: string | string[];
+  output?: string | string[];
+  memory?: Memory;
+  storage?: Storage;
+  calldata?: string;
+  code?: string;
+  returndata?: string;
+};
+
+type ComputationCost = Partial<Variable> & Required<Pick<Variable, 'expression'>>;
+
+export type GasComputation = {
+  staticGasCost: ComputationCost;
+  dynamicGasCost: ComputationCost;
+  refunds?: string;
 };
 
 export type Reference = {
@@ -40,4 +52,5 @@ export type Opcode = {
   errorCases: string[];
   notes?: string[];
   references: Reference[];
+  supportedHardforks: string[];
 };

@@ -22,7 +22,7 @@ const SECTION_MAP: Record<
   metadata: { title: 'Metadata', component: DiffMetadata },
   precompiles: { title: 'Precompiles and Predeploys', component: DiffPrecompiles },
   signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
-  opcodes: { title: 'Opcodes', component: DiffOpcodes, hide: true },
+  opcodes: { title: 'Opcodes', component: DiffOpcodes },
 };
 
 const Diff = () => {

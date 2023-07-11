@@ -1,4 +1,4 @@
-import { pad } from 'viem';
+import { formatPrefixByte } from '@/lib/utils';
 import { SignatureType } from '@/types';
 
 type Props = {
@@ -15,11 +15,6 @@ const formatSigType = (contents: SignatureType | undefined) => {
       <p className='text-secondary text-sm'>{contents.signedData}</p>
     </>
   );
-};
-
-// Returns a hex string with a leading `0x` and padded to 2 characters.
-const formatPrefixByte = (prefix: number) => {
-  return pad(`0x${prefix.toString(16).toUpperCase()}`, { size: 1 });
 };
 
 export const DiffSignatureTypes = ({ base, target, onlyShowDiff }: Props) => {

@@ -1,14 +1,28 @@
 import { Opcode } from '@/types';
-import { add } from './arithmetic/add';
-import { blockhash } from './block/blockhash';
-import { coinbase } from './block/coinbase';
-import { number } from './block/number';
-import { mstore } from './memory/mstore';
+import { opcodes as arithmeticOpcodes } from './arithmetic';
+import { opcodes as bitwiseOpcodes } from './bitwise';
+import { opcodes as blockOpcodes } from './block';
+import { opcodes as comparisonOpcodes } from './comparison';
+import { opcodes as controlFlowOpcodes } from './controlFlow';
+import { opcodes as environmentOpcodes } from './environment';
+import { opcodes as keccakOpcodes } from './keccak';
+import { opcodes as logOpcodes } from './log';
+import { opcodes as memoryOpcodes } from './memory';
+import { opcodes as stackOpcodes } from './stack';
+import { opcodes as storageOpcodes } from './storage';
+import { opcodes as systemOpcodes } from './system';
 
-export const opcodes: Record<number, Opcode> = {
-  ...{ [add.number]: add },
-  ...{ [blockhash.number]: blockhash },
-  ...{ [coinbase.number]: coinbase },
-  ...{ [number.number]: number },
-  ...{ [mstore.number]: mstore },
+export const opcodes: Record<number, Partial<Opcode>> = {
+  ...arithmeticOpcodes,
+  ...bitwiseOpcodes,
+  ...blockOpcodes,
+  ...comparisonOpcodes,
+  ...controlFlowOpcodes,
+  ...environmentOpcodes,
+  ...keccakOpcodes,
+  ...logOpcodes,
+  ...memoryOpcodes,
+  ...stackOpcodes,
+  ...storageOpcodes,
+  ...systemOpcodes,
 };
