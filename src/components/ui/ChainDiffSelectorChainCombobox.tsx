@@ -77,6 +77,8 @@ export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange 
                         src={chainLogoUrl(chain)}
                         alt=''
                         className='h-6 w-6 flex-shrink-0 rounded-full'
+                        width={24}
+                        height={24}
                       />
                       <span className={classNames('ml-3 truncate', selected && 'font-semibold')}>
                         {chain.metadata.name}

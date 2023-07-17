@@ -1,6 +1,6 @@
-import { MainnetHardforks, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
 import {
-  OpcodeGroups,
+  OpcodeGroup,
   ethSpecsOpcodeSrc,
   evmCodesOpcodesLink,
   evmCodesPlaygroundLink,
@@ -59,8 +59,8 @@ export const mulmod: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Arithmetic, 265),
+      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Arithmetic, 265),
     },
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),
+  supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

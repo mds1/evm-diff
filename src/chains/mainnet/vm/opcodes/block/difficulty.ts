@@ -1,5 +1,5 @@
-import { MainnetHardforks, getHardforksFrom, getHardforksFromTo } from '@/chains/mainnet/hardforks';
-import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
+import { MainnetHardfork, getHardforksFrom, getHardforksFromTo } from '@/chains/mainnet/hardforks';
+import { OpcodeGroup, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const difficulty: Opcode = {
@@ -26,8 +26,8 @@ export const difficulty: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardforks.GrayGlacier, OpcodeGroups.Block, 22),
+      url: ethSpecsOpcodeSrc(MainnetHardfork.GrayGlacier, OpcodeGroup.Block, 22),
     },
   ],
-  supportedHardforks: getHardforksFromTo(MainnetHardforks.Frontier, MainnetHardforks.GrayGlacier),
+  supportedHardforks: getHardforksFromTo(MainnetHardfork.Frontier, MainnetHardfork.GrayGlacier),
 };

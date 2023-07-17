@@ -1,5 +1,5 @@
-import { MainnetHardforks, getHardforksFrom } from '@/chains/mainnet/hardforks';
-import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
+import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { OpcodeGroup, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const coinbase: Opcode = {
@@ -26,8 +26,8 @@ export const coinbase: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Block, 60),
+      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 60),
     },
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),
+  supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

@@ -1,5 +1,5 @@
-import { MainnetHardforks, getHardforksFrom } from '@/chains/mainnet/hardforks';
-import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
+import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { OpcodeGroup, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const log = (n: number): Omit<Opcode, 'examples'> => {
@@ -87,10 +87,10 @@ export const log = (n: number): Omit<Opcode, 'examples'> => {
       },
       {
         name: 'execution-specs',
-        url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Log, 84 + n),
+        url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Log, 84 + n),
       },
     ],
-    supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),
+    supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
   };
 };
 

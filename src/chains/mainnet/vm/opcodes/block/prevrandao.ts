@@ -1,5 +1,5 @@
-import { MainnetHardforks, getHardforksFrom } from '@/chains/mainnet/hardforks';
-import { OpcodeGroups, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
+import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { OpcodeGroup, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const prevrandao: Opcode = {
@@ -28,8 +28,8 @@ export const prevrandao: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardforks.Shanghai, OpcodeGroups.Block, 158),
+      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 158),
     },
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardforks.Paris),
+  supportedHardforks: getHardforksFrom(MainnetHardfork.Paris),
 };

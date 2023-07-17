@@ -1,4 +1,4 @@
-import { MainnetHardforks } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork } from '@/chains/mainnet/hardforks';
 import { Opcode } from '@/types';
 import {
   ETHEREUM_EXECUTION_SPECS_COMMIT_ID,
@@ -6,7 +6,7 @@ import {
   EVM_OPCODES_URL,
 } from './constants';
 
-export enum OpcodeGroups {
+export enum OpcodeGroup {
   Arithmetic = 'arithmetic',
   Bitwise = 'bitwise',
   Block = 'block',
@@ -32,11 +32,11 @@ export const opcodeId = (opcode: Opcode): string =>
 
 // Returns a link to the Ethereum execution specs for the given hardfork, opcode, and line number.
 export const ethSpecsOpcodeSrc = (
-  hardfork: MainnetHardforks,
-  group: OpcodeGroups,
+  hardfork: MainnetHardfork,
+  group: OpcodeGroup,
   line: number
 ): string =>
-  `${ETHEREUM_EXECUTION_SPECS_URL}/blob/${ETHEREUM_EXECUTION_SPECS_COMMIT_ID}/src/ethereum/${MainnetHardforks[
+  `${ETHEREUM_EXECUTION_SPECS_URL}/blob/${ETHEREUM_EXECUTION_SPECS_COMMIT_ID}/src/ethereum/${MainnetHardfork[
     hardfork
   ].toLowerCase()}/vm/instructions/${group}.py#L${line}`;
 

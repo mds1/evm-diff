@@ -300,7 +300,7 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
 
 // Convert an `Opcode` object to a simpler struct in order to compare it to other opcodes.
 // Note: casting an object from a type with properties X, Y and Z to a subset type with properties
-// X and Y using the `as` keyword will still retain the field Z unless you explicitely remove it.
+// X and Y using the `as` keyword will still retain the field Z unless you explicitly remove it.
 // That's why this function exists.
 const convertToComparableOpcode = (
   opcode: Opcode

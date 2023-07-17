@@ -1,7 +1,7 @@
-import { MainnetHardforks, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import {
-  OpcodeGroups,
+  OpcodeGroup,
   ethSpecsOpcodeSrc,
   evmCodesOpcodesLink,
   evmCodesPlaygroundLink,
@@ -41,10 +41,10 @@ const push = (n: number): Opcode => {
       },
       {
         name: 'execution-specs',
-        url: ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroups.Stack, 146 + n),
+        url: ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 146 + n),
       },
     ],
-    supportedHardforks: getHardforksFrom(MainnetHardforks.Frontier),
+    supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
   };
 };
 
@@ -86,8 +86,8 @@ export const push0: Opcode = {
     },
     {
       name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroups.Stack, 146),
+      url: ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 146),
     },
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardforks.Shanghai),
+  supportedHardforks: getHardforksFrom(MainnetHardfork.Shanghai),
 };
