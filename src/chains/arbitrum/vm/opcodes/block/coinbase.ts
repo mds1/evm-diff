@@ -1,11 +1,12 @@
-import { coinbase as coinbaseMainnet } from '@/chains/mainnet/vm/opcodes/block/coinbase';
+import { coinbase as baseOpcode } from '@/chains/mainnet/vm/opcodes/block/coinbase';
 import { Opcode } from '@/types';
 
-export const coinbase: Omit<Opcode, 'minGas' | 'examples' | 'errorCases' | 'supportedHardforks'> = {
-  ...coinbaseMainnet,
-  description: 'Returns zero.',
+const { supportedHardforks: _supportedHardforks, ...opcode } = baseOpcode;
+export const coinbase: Omit<Opcode, 'supportedHardforks'> = {
+  ...opcode,
+  description:
+    'Returns `0xA4b000000000000000000073657175656e636572`, the address of the L1 Batch Poster.',
   references: [
-    ...coinbaseMainnet.references,
     {
       name: 'Differences between Arbitrum and Ethereum opcodes',
       url: 'https://developer.arbitrum.io/solidity-support',

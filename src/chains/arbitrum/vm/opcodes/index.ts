@@ -4,7 +4,6 @@ import { blockhash } from './block/blockhash';
 import { coinbase } from './block/coinbase';
 import { difficulty } from './block/difficulty';
 import { number } from './block/number';
-import { prevrandao } from './block/prevrandao';
 import { caller } from './environment/caller';
 import { push0 } from './stack/push0';
 
@@ -16,7 +15,6 @@ export const opcodes: Record<number, Partial<Opcode>> = {
   ...{ [coinbase.number]: coinbase },
   ...{ [difficulty.number]: difficulty },
   ...{ [number.number]: number },
-  ...{ [prevrandao.number]: prevrandao },
 
   // environment
   ...{ [caller.number]: caller },

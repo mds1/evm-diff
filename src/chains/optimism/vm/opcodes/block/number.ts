@@ -1,11 +1,10 @@
-import { number as numberMainnet } from '@/chains/mainnet/vm/opcodes/block/number';
+import { number as baseOpcode } from '@/chains/mainnet/vm/opcodes/block/number';
 import { Opcode } from '@/types';
 
-export const number: Omit<Opcode, 'minGas' | 'examples' | 'errorCases' | 'supportedHardforks'> = {
-  ...numberMainnet,
-  description: 'Returns the L2 block number.',
+const { supportedHardforks: _supportedHardforks, ...opcode } = baseOpcode;
+export const number: Omit<Opcode, 'supportedHardforks'> = {
+  ...opcode,
   references: [
-    ...numberMainnet.references,
     {
       name: 'Differences between Optimism and Ethereum',
       url: 'https://community.optimism.io/docs/developers/build/differences/#opcode-differences',
