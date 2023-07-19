@@ -66,7 +66,7 @@ const formatVariable = (v: Variable): JSX.Element => {
             {v.name} = {v.expression}
             {v.variables && (
               <>
-                <ul>{v.variables.map((subvariables, id) => formatVariable(subvariables))}</ul>
+                <ul>{v.variables.map((subvariables) => formatVariable(subvariables))}</ul>
               </>
             )}
           </p>

@@ -87,7 +87,7 @@ const swap = (n: number): Opcode => {
 };
 
 const createSwapOpcodes = (start: number, end: number): Record<number, Opcode> => {
-  let opcodes: Record<number, Opcode> = {};
+  const opcodes: Record<number, Opcode> = {};
   for (let i = start; i <= end; i++) {
     const swap_i = swap(i);
     opcodes[swap_i.number] = swap_i;

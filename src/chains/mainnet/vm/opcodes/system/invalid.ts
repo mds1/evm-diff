@@ -1,10 +1,5 @@
 import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
-import {
-  OpcodeGroup,
-  ethSpecsOpcodeSrc,
-  evmCodesOpcodesLink,
-  evmCodesPlaygroundLink,
-} from '@/lib/opcodes';
+import { evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const invalid: Omit<Opcode, 'minGas' | 'examples' | 'errorCases'> = {

@@ -49,7 +49,7 @@ const push = (n: number): Opcode => {
 };
 
 const createPushOpcodes = (start: number, end: number): Record<number, Opcode> => {
-  let opcodes: Record<number, Opcode> = {};
+  const opcodes: Record<number, Opcode> = {};
   for (let i = start; i <= end; i++) {
     const push_i = push(i);
     opcodes[push_i.number] = push_i;
