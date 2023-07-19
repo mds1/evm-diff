@@ -5,7 +5,7 @@ const { supportedHardforks: _supportedHardforks, ...opcode } = baseOpcode;
 export const number: Omit<Opcode, 'supportedHardforks'> = {
   ...opcode,
   description:
-    'Return an estimate of the L1 block number at which the Sequencer received the transaction.',
+    'Returns an estimate of the L1 block number at which the Sequencer received the transaction.',
   references: [
     {
       name: 'Differences between Arbitrum and Ethereum',

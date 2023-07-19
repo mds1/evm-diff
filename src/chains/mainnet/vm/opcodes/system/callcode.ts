@@ -95,7 +95,7 @@ export const callcode: Omit<Opcode, 'examples'> = {
   outputs: [
     {
       name: 'success',
-      description: 'Return 0 if the sub context reverted, 1 otherwise',
+      description: 'Returns 0 if the sub context reverted, 1 otherwise',
     },
   ],
   // TODO: Add an example when one will be provided on https://www.evm.codes/#f2?fork=shanghai

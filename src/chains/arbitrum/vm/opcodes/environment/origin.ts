@@ -2,7 +2,7 @@ import { origin as baseOpcode } from '@/chains/optimism/vm/opcodes/environment/o
 import { Opcode } from '@/types';
 
 const { references: _references, ...opcode } = baseOpcode;
-export const origin: Omit<Opcode, 'supportedHardforks'> = {
+const o: Omit<Opcode, 'supportedHardforks'> = {
   ...opcode,
   references: [
     {
@@ -15,3 +15,5 @@ export const origin: Omit<Opcode, 'supportedHardforks'> = {
     },
   ],
 };
+console.log('origin:', o);
+export const origin = o;

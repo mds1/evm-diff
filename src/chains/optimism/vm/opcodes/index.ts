@@ -3,7 +3,6 @@ import { Opcode } from '@/types';
 import { coinbase } from './block/coinbase';
 import { difficulty } from './block/difficulty';
 import { number } from './block/number';
-import { timestamp } from './block/timestamp';
 import { caller } from './environment/caller';
 import { origin } from './environment/origin';
 import { push0 } from './stack/push0';
@@ -15,7 +14,6 @@ export const opcodes: Record<number, Partial<Opcode>> = {
   ...{ [coinbase.number]: coinbase },
   ...{ [difficulty.number]: difficulty },
   ...{ [number.number]: number },
-  ...{ [timestamp.number]: timestamp },
 
   // Environment.
   ...{ [caller.number]: caller },

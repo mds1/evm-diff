@@ -216,6 +216,7 @@ const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {
   if (!opcode) return <p>Not present</p>;
   return (
     <>
+      <p className='mb-4'>{opcode.description}</p>
       {formatHardfork(opcode.supportedHardforks)}
       <p className='text-secondary text-sm'>⛽️ Minimum Gas: {opcode.minGas}</p>
       {formatVariables('Inputs', opcode.inputs)}
@@ -284,10 +285,9 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
             >
               <div className='flex-1'>{formatOpcode(baseOpcode)}</div>
               <p className='flex-1 text-center'>
-                <p>
+                <span>
                   {baseOpcode?.name} (#{baseOpcode?.number && formatPrefixByte(baseOpcode?.number)})
-                </p>
-                <p className='text-secondary text-sm'>{baseOpcode?.description}</p>
+                </span>
               </p>
               <div className='flex-1'>{formatOpcode(targetOpcode)}</div>
             </div>
