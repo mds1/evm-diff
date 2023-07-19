@@ -1,3 +1,5 @@
+import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { OpcodeGroup, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
 export const number: Opcode = {
@@ -5,17 +7,27 @@ export const number: Opcode = {
   name: 'number',
   description: "Get the block's number",
   minGas: 2,
-  outputs: [{ name: 'blockNumber', description: 'The current block number' }],
-  examples: [{ output: '1636704767' }],
+  outputs: [
+    {
+      name: 'blockNumber',
+      description: 'The current block number',
+    },
+  ],
+  examples: [
+    {
+      output: '1636704767',
+    },
+  ],
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
     {
       name: 'evm.codes',
-      url: 'https://www.evm.codes/#43?fork=shanghai',
+      url: evmCodesOpcodesLink(0x43),
     },
     {
       name: 'execution-specs',
-      url: 'https://github.com/ethereum/execution-specs/blob/master/src/ethereum/shanghai/vm/instructions/block.py#L126',
+      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 126),
     },
   ],
+  supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

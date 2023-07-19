@@ -1,17 +1,19 @@
+import { number as baseOpcode } from '@/chains/mainnet/vm/opcodes/block/number';
 import { Opcode } from '@/types';
 
-export const number: Opcode = {
-  number: 0x43,
-  name: 'number',
-  description: 'Get the L1 block number',
-  minGas: 2,
-  outputs: [{ name: 'blockNumber', description: 'The L1 block number' }],
-  examples: [{ output: '1636704767' }],
-  errorCases: ['Not enough gas', 'Stack overflow'],
+const { supportedHardforks: _supportedHardforks, ...opcode } = baseOpcode;
+export const number: Omit<Opcode, 'supportedHardforks'> = {
+  ...opcode,
+  description:
+    'Returns an estimate of the L1 block number at which the Sequencer received the transaction.',
   references: [
     {
-      name: 'differences between Arbitrum and Ethereum',
+      name: 'Differences between Arbitrum and Ethereum',
       url: 'https://developer.arbitrum.io/solidity-support',
+    },
+    {
+      name: 'Arbitrum Block Numbers and Time',
+      url: 'https://developer.arbitrum.io/time',
     },
   ],
 };

@@ -1,3 +1,5 @@
+import { pad } from 'viem';
+
 // Takes an arbitrary number of class names, filtering out any falsey values.
 export const classNames = (...classes: (string | boolean)[]) => classes.filter(Boolean).join(' ');
 
@@ -13,6 +15,11 @@ export const sortedArrayByField = <T extends number | string | symbol, U, K exte
     if (a[field] < b[field]) return -1;
     return 0;
   });
+};
+
+// Returns a hex string with a leading `0x` and padded to 2 characters.
+export const formatPrefixByte = (prefix: number) => {
+  return pad(`0x${prefix.toString(16).toUpperCase()}`, { size: 1 });
 };
 
 export const toUppercase = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);

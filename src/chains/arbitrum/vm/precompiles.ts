@@ -112,6 +112,28 @@ export const precompiles: (Precompile | Predeploy)[] = [
     references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
   },
   {
+    address: '0x0000000000000000000000000000000000000070',
+    name: 'ArbOwner',
+    description:
+      'Provides owners with tools for managing the rollup. All calls to this precompile are authorized by the OwnerPrecompile wrapper, which ensures only a chain owner can access these methods.',
+    deprecated: false,
+    references: [
+      'https://developer.arbitrum.io/for-devs/useful-addresses',
+      'https://github.com/OffchainLabs/nitro/blob/c041e98e089ca91f007a71cd56535c38f7cf4e85/precompiles/ArbOwner.go',
+    ],
+  },
+  {
+    address: '0x000000000000000000000000000000000000006b',
+    name: 'ArbOwnerPublic',
+    description:
+      'Provides non-owners with info about the current chain owners. The calls to this precompile do not require the sender be a chain owner. For those that are, see `ArbOwner`.',
+    deprecated: false,
+    references: [
+      'https://developer.arbitrum.io/for-devs/useful-addresses',
+      'https://github.com/OffchainLabs/nitro/blob/c041e98e089ca91f007a71cd56535c38f7cf4e85/precompiles/ArbOwnerPublic.go',
+    ],
+  },
+  {
     address: '0x000000000000000000000000000000000000006D',
     name: 'ArbAggregator',
     description:
