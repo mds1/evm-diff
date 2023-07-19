@@ -15,10 +15,14 @@ interface Props<T> {
   onlyShowDiff: boolean;
 }
 
-const SECTION_MAP: Record<
-  string,
-  { title: string; component: React.ComponentType<Props<any>>; hide?: boolean }
-> = {
+interface Section {
+  title: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  component: React.ComponentType<Props<any>>;
+  hide?: boolean;
+}
+
+const SECTION_MAP: Record<string, Section> = {
   metadata: { title: 'Metadata', component: DiffMetadata },
   precompiles: { title: 'Precompiles and Predeploys', component: DiffPrecompiles },
   signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },

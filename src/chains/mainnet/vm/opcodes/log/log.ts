@@ -95,7 +95,7 @@ export const log = (n: number): Omit<Opcode, 'examples'> => {
 };
 
 const createLogOpcodes = (start: number, end: number): Record<number, Partial<Opcode>> => {
-  let opcodes: Record<number, Partial<Opcode>> = {};
+  const opcodes: Record<number, Partial<Opcode>> = {};
   for (let i = start; i <= end; i++) {
     const log_i = log(i);
     opcodes[log_i.number] = log_i;

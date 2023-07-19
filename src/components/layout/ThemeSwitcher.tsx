@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { MoonIcon, SunIcon } from '@heroicons/react/20/solid';
 import { useTheme } from 'next-themes';
 
-export const ThemeSwitcher = ({ className = '' }) => {
+export const ThemeSwitcher = ({ className = '' }: { className?: string }) => {
   const { resolvedTheme, setTheme } = useTheme();
 
   const toggleTheme = useCallback(() => {

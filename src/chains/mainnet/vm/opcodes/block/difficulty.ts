@@ -1,4 +1,4 @@
-import { MainnetHardfork, getHardforksFrom, getHardforksFromTo } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getHardforksFromTo } from '@/chains/mainnet/hardforks';
 import { OpcodeGroup, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 

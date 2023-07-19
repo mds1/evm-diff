@@ -83,7 +83,7 @@ const dup = (n: number): Opcode => {
 };
 
 const createDupOpcodes = (start: number, end: number): Record<number, Opcode> => {
-  let opcodes: Record<number, Opcode> = {};
+  const opcodes: Record<number, Opcode> = {};
   for (let i = start; i <= end; i++) {
     const dup_i = dup(i);
     opcodes[dup_i.number] = dup_i;
