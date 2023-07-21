@@ -1,5 +1,6 @@
 import { Chain as Metadata } from '@wagmi/chains';
 import { getAddress } from 'viem';
+import { Copyable } from '@/components/ui/Copyable';
 import { classNames, toUppercase } from '@/lib/utils';
 import { ExternalLink } from '../layout/ExternalLink';
 
@@ -28,13 +29,13 @@ const formatRpcUrls = (data: Metadata['rpcUrls']) => {
     <ul>
       {rpcUrls.http.map((url) => (
         <li className='text-secondary text-sm' key={url}>
-          {url}
+          <Copyable content={url} />
         </li>
       ))}
       {rpcUrls.webSocket &&
         rpcUrls.webSocket.map((url) => (
           <li className='text-secondary text-sm' key={url}>
-            {url}
+            <Copyable content={url} />
           </li>
         ))}
     </ul>
@@ -69,8 +70,8 @@ const formatBlockExplorerUrls = (data: Metadata['blockExplorers']) => {
 };
 
 const formatFieldInfo = (field: MetadataKey, contents: Metadata[MetadataKey]) => {
-  if (field === 'id') return contents?.toString();
-  if (field === 'name') return contents?.toString();
+  if (field === 'id') return <Copyable content={contents?.toString() || ''} />;
+  if (field === 'name') return <Copyable content={contents?.toString() || ''} />;
   if (field === 'rpcUrls') return formatRpcUrls(contents as Metadata['rpcUrls']);
   if (field === 'blockExplorers') {
     return formatBlockExplorerUrls(contents as Metadata['blockExplorers']);

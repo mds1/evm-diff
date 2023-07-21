@@ -1,4 +1,5 @@
 import { Address, getAddress } from 'viem';
+import { Copyable } from '@/components/ui/Copyable';
 import { Precompile, Predeploy } from '@/types';
 
 type Props = {
@@ -45,7 +46,7 @@ export const DiffPrecompiles = ({ base, target, onlyShowDiff }: Props) => {
               key={addr}
               className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
-              <div className='col-span-2'>{formatAddress(addr)}</div>
+              <Copyable className='col-span-2' content={formatAddress(addr)} textToCopy={addr} />
               <div className='col-span-5 pr-4'>{formatPrecompile(basePrecompile)}</div>
               <div className='col-span-5'>{formatPrecompile(targetPrecompile)}</div>
             </div>

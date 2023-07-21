@@ -109,7 +109,7 @@ const Diff = () => {
           return (
             <div key={section} id={section}>
               <Copyable
-                text={SECTION_MAP[section].title || section}
+                content={SECTION_MAP[section].title || section}
                 textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
                 Icon={LinkIcon}
                 className={classNames(

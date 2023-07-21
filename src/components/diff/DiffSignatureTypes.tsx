@@ -1,3 +1,4 @@
+import { Copyable } from '@/components/ui/Copyable';
 import { formatPrefixByte } from '@/lib/utils';
 import { SignatureType } from '@/types';
 
@@ -37,7 +38,7 @@ export const DiffSignatureTypes = ({ base, target, onlyShowDiff }: Props) => {
               key={prefix}
               className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
-              <div className='col-span-2'>{formatPrefixByte(prefix)}</div>
+              <Copyable className='col-span-2' content={formatPrefixByte(prefix)} />
               <div className='col-span-5 pr-4'>{formatSigType(baseSigType)}</div>
               <div className='col-span-5'>{formatSigType(targetSigType)}</div>
             </div>
