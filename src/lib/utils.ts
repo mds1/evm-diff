@@ -3,6 +3,14 @@ import { pad } from 'viem';
 // Takes an arbitrary number of class names, filtering out any falsey values.
 export const classNames = (...classes: (string | boolean)[]) => classes.filter(Boolean).join(' ');
 
+// Copies the provided text to the clipboard
+export const copyToClipboard = (text: string) => {
+  navigator.clipboard.writeText(text).then(
+    () => console.log('Copying to clipboard was successful!'),
+    (err) => console.error('Could not copy text to clipboard: ', err)
+  );
+};
+
 // Given a `record` (i.e. an object), return an array of its values sorted by the given `field`.
 // Make sure the field is a number or string or the sort behavior based on `>` and `<` may be
 // undefined.

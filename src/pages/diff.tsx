@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { LinkIcon } from '@heroicons/react/20/solid';
 import { chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
+import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
 import { classNames } from '@/lib/utils';
 import { Chain } from '@/types';
@@ -67,12 +69,6 @@ const Diff = () => {
 
   const [onlyShowDiff, setOnlyShowDiff] = useState(true);
 
-  const SectionHeader = ({ section, className }: { section: string; className: string }) => (
-    <h2 className={classNames('text-2xl font-bold leading-10 tracking-wide', className)}>
-      {SECTION_MAP[section].title || section}
-    </h2>
-  );
-
   const SectionComponent = ({
     section,
     base,
@@ -111,8 +107,17 @@ const Diff = () => {
           const base = baseChain[section as keyof Chain];
           const target = targetChain[section as keyof Chain];
           return (
-            <div key={section}>
-              <SectionHeader className={index === 0 ? 'mt-10' : 'mt-20'} section={section} />
+            <div key={section} id={section}>
+              <Copyable
+                text={SECTION_MAP[section].title || section}
+                textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
+                Icon={LinkIcon}
+                className={classNames(
+                  'text-2xl font-bold leading-10 tracking-wide',
+                  index === 0 ? 'mt-10' : 'mt-20'
+                )}
+              />
+
               <SectionComponent {...{ section, base, target, onlyShowDiff }} />
             </div>
           );
