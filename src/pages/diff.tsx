@@ -7,6 +7,7 @@ import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
 import { Toggle } from '@/components/ui/Toggle';
+import { classNames } from '@/lib/utils';
 import { Chain } from '@/types';
 
 interface Props<T> {
@@ -66,8 +67,8 @@ const Diff = () => {
 
   const [onlyShowDiff, setOnlyShowDiff] = useState(true);
 
-  const SectionHeader = ({ section }: { section: string }) => (
-    <h2 className='border-b border-zinc-500/10 text-center font-bold dark:border-zinc-500/20'>
+  const SectionHeader = ({ section, className }: { section: string; className: string }) => (
+    <h2 className={classNames('text-2xl font-bold leading-10 tracking-wide', className)}>
       {SECTION_MAP[section].title || section}
     </h2>
   );
@@ -94,7 +95,16 @@ const Diff = () => {
     return (
       <main>
         <Toggle enabled={onlyShowDiff} setEnabled={setOnlyShowDiff} label='Only show differences' />
-        {sections.map((section) => {
+
+        {/* Show chain names at top */}
+        <div className='my-4 grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20'>
+          <div className='col-span-2 text-left'></div>
+          <div className='col-span-5'>{baseChain.metadata.name}</div>
+          <div className='col-span-5'>{targetChain.metadata.name}</div>
+        </div>
+
+        {/* Show content */}
+        {sections.map((section, index) => {
           const hideComponent = SECTION_MAP[section].hide;
           if (hideComponent) return <></>;
 
@@ -102,7 +112,7 @@ const Diff = () => {
           const target = targetChain[section as keyof Chain];
           return (
             <div key={section}>
-              <SectionHeader section={section} />
+              <SectionHeader className={index === 0 ? 'mt-10' : 'mt-20'} section={section} />
               <SectionComponent {...{ section, base, target, onlyShowDiff }} />
             </div>
           );

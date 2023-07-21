@@ -1,11 +1,16 @@
+import { useRouter } from 'next/router';
 import { Footer } from '@/components/layout/Footer';
 import { Header } from '@/components/layout/Header';
+import { classNames } from '@/lib/utils';
 
 interface Props {
   children: JSX.Element;
 }
 
 export const Layout = ({ children }: Props) => {
+  const { route } = useRouter();
+  const isHome = route === '/';
+
   return (
     <div className='relative isolate flex min-h-screen flex-col bg-zinc-50 dark:bg-zinc-1000'>
       <Header />
@@ -15,7 +20,10 @@ export const Layout = ({ children }: Props) => {
       <Footer />
       <svg
         viewBox='0 0 1024 1024'
-        className='fixed left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2'
+        className={classNames(
+          'fixed left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2',
+          !isHome && 'opacity-0'
+        )}
         aria-hidden='true'
       >
         <circle

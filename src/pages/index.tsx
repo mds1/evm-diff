@@ -14,7 +14,7 @@ const Home = () => {
           <p className='text-secondary mx-auto mt-2 max-w-xl text-center text-lg leading-8'>
             Compare execution layer differences between chains in a friendly format
           </p>
-          <div className='border-1 mx-auto mt-10 flex max-w-md gap-x-4 rounded-lg border border-zinc-200/70 dark:border-zinc-800/70'>
+          <div className='mx-auto mt-10 flex max-w-md gap-x-4 rounded-lg border border-zinc-200 dark:border-zinc-700'>
             <ChainDiffSelector />
           </div>
         </div>

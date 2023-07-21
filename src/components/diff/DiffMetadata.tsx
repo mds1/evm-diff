@@ -44,7 +44,7 @@ const formatRpcUrls = (data: Metadata['rpcUrls']) => {
     <div>
       {Object.entries(data).map(([key, rpcUrls], index) => (
         <div key={key}>
-          <h3 className={classNames('font-bold', index > 0 && 'mt-2')}>{toUppercase(key)}</h3>
+          <h3 className={classNames('font-bold', index > 0 && 'mt-6')}>{toUppercase(key)}</h3>
           {renderRpcUrls(rpcUrls)}
         </div>
       ))}
@@ -58,7 +58,7 @@ const formatBlockExplorerUrls = (data: Metadata['blockExplorers']) => {
     <div>
       {Object.entries(data).map(([key, blockExplorer], index) => (
         <div key={key}>
-          <h3 className={classNames('font-bold', index > 0 && 'mt-2')}>{toUppercase(key)}</h3>
+          <h3 className={classNames('font-bold', index > 0 && 'mt-6')}>{toUppercase(key)}</h3>
           <p className='text-secondary text-sm'>
             <ExternalLink href={blockExplorer.url} text={blockExplorer.url} />
           </p>
@@ -107,11 +107,11 @@ export const DiffMetadata = ({ base, target, onlyShowDiff }: Props) => {
           showField && (
             <div
               key={field}
-              className='flex items-center justify-between border-b border-zinc-500/10 py-1 dark:border-zinc-500/20'
+              className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
-              <div className='flex-1'>{formatFieldInfo(field, base[field])}</div>
-              <div className='flex-1 text-center'>{formatFieldDisplayName(field)}</div>
-              <div className='flex-1'>{formatFieldInfo(field, target[field])}</div>
+              <div className='col-span-2'>{formatFieldDisplayName(field)}</div>
+              <div className='col-span-5 pr-4'>{formatFieldInfo(field, base[field])}</div>
+              <div className='col-span-5'>{formatFieldInfo(field, target[field])}</div>
             </div>
           )
         );
