@@ -27,7 +27,7 @@ export const Toggle = ({ enabled, setEnabled, label }: Props) => {
         />
       </Switch>
       <Switch.Label as='span' className='ml-3 text-sm'>
-        <span className='text-gray-500'>{label}</span>
+        <span className='text-secondary'>{label}</span>
       </Switch.Label>
     </Switch.Group>
   );
