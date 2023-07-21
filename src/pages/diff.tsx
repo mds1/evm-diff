@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { LinkIcon } from '@heroicons/react/20/solid';
 import { chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
+import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
+import { classNames } from '@/lib/utils';
 import { Chain } from '@/types';
 
 interface Props<T> {
@@ -66,12 +69,6 @@ const Diff = () => {
 
   const [onlyShowDiff, setOnlyShowDiff] = useState(true);
 
-  const SectionHeader = ({ section }: { section: string }) => (
-    <h2 className='border-b border-zinc-500/10 text-center font-bold dark:border-zinc-500/20'>
-      {SECTION_MAP[section].title || section}
-    </h2>
-  );
-
   const SectionComponent = ({
     section,
     base,
@@ -94,15 +91,33 @@ const Diff = () => {
     return (
       <main>
         <Toggle enabled={onlyShowDiff} setEnabled={setOnlyShowDiff} label='Only show differences' />
-        {sections.map((section) => {
+
+        {/* Show chain names at top */}
+        <div className='my-4 grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20'>
+          <div className='col-span-2 text-left'></div>
+          <div className='col-span-5'>{baseChain.metadata.name}</div>
+          <div className='col-span-5'>{targetChain.metadata.name}</div>
+        </div>
+
+        {/* Show content */}
+        {sections.map((section, index) => {
           const hideComponent = SECTION_MAP[section].hide;
           if (hideComponent) return <></>;
 
           const base = baseChain[section as keyof Chain];
           const target = targetChain[section as keyof Chain];
           return (
-            <div key={section}>
-              <SectionHeader section={section} />
+            <div key={section} id={section}>
+              <Copyable
+                content={SECTION_MAP[section].title || section}
+                textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
+                Icon={LinkIcon}
+                className={classNames(
+                  'text-2xl font-bold leading-10 tracking-wide',
+                  index === 0 ? 'mt-10' : 'mt-20'
+                )}
+              />
+
               <SectionComponent {...{ section, base, target, onlyShowDiff }} />
             </div>
           );

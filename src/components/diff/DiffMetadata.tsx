@@ -1,5 +1,6 @@
 import { Chain as Metadata } from '@wagmi/chains';
 import { getAddress } from 'viem';
+import { Copyable } from '@/components/ui/Copyable';
 import { classNames, toUppercase } from '@/lib/utils';
 import { ExternalLink } from '../layout/ExternalLink';
 
@@ -28,13 +29,13 @@ const formatRpcUrls = (data: Metadata['rpcUrls']) => {
     <ul>
       {rpcUrls.http.map((url) => (
         <li className='text-secondary text-sm' key={url}>
-          {url}
+          <Copyable content={url} />
         </li>
       ))}
       {rpcUrls.webSocket &&
         rpcUrls.webSocket.map((url) => (
           <li className='text-secondary text-sm' key={url}>
-            {url}
+            <Copyable content={url} />
           </li>
         ))}
     </ul>
@@ -44,7 +45,7 @@ const formatRpcUrls = (data: Metadata['rpcUrls']) => {
     <div>
       {Object.entries(data).map(([key, rpcUrls], index) => (
         <div key={key}>
-          <h3 className={classNames('font-bold', index > 0 && 'mt-2')}>{toUppercase(key)}</h3>
+          <h3 className={classNames('font-bold', index > 0 && 'mt-6')}>{toUppercase(key)}</h3>
           {renderRpcUrls(rpcUrls)}
         </div>
       ))}
@@ -58,7 +59,7 @@ const formatBlockExplorerUrls = (data: Metadata['blockExplorers']) => {
     <div>
       {Object.entries(data).map(([key, blockExplorer], index) => (
         <div key={key}>
-          <h3 className={classNames('font-bold', index > 0 && 'mt-2')}>{toUppercase(key)}</h3>
+          <h3 className={classNames('font-bold', index > 0 && 'mt-6')}>{toUppercase(key)}</h3>
           <p className='text-secondary text-sm'>
             <ExternalLink href={blockExplorer.url} text={blockExplorer.url} />
           </p>
@@ -69,8 +70,8 @@ const formatBlockExplorerUrls = (data: Metadata['blockExplorers']) => {
 };
 
 const formatFieldInfo = (field: MetadataKey, contents: Metadata[MetadataKey]) => {
-  if (field === 'id') return contents?.toString();
-  if (field === 'name') return contents?.toString();
+  if (field === 'id') return <Copyable content={contents?.toString() || ''} />;
+  if (field === 'name') return <Copyable content={contents?.toString() || ''} />;
   if (field === 'rpcUrls') return formatRpcUrls(contents as Metadata['rpcUrls']);
   if (field === 'blockExplorers') {
     return formatBlockExplorerUrls(contents as Metadata['blockExplorers']);
@@ -107,11 +108,11 @@ export const DiffMetadata = ({ base, target, onlyShowDiff }: Props) => {
           showField && (
             <div
               key={field}
-              className='flex items-center justify-between border-b border-zinc-500/10 py-1 dark:border-zinc-500/20'
+              className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
-              <div className='flex-1'>{formatFieldInfo(field, base[field])}</div>
-              <div className='flex-1 text-center'>{formatFieldDisplayName(field)}</div>
-              <div className='flex-1'>{formatFieldInfo(field, target[field])}</div>
+              <div className='col-span-2'>{formatFieldDisplayName(field)}</div>
+              <div className='col-span-5 pr-4'>{formatFieldInfo(field, base[field])}</div>
+              <div className='col-span-5'>{formatFieldInfo(field, target[field])}</div>
             </div>
           )
         );

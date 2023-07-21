@@ -58,7 +58,7 @@ export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange 
         </Combobox.Button>
 
         {filteredChains.length > 0 && (
-          <Combobox.Options className='bg-primary absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+          <Combobox.Options className='bg-primary absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-zinc-1000 ring-opacity-5 focus:outline-none sm:text-sm'>
             {filteredChains.map((chain) => (
               <Combobox.Option
                 key={chain.metadata.id}

@@ -1,3 +1,4 @@
+import { Copyable } from '@/components/ui/Copyable';
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import { opcodeId } from '@/lib/opcodes';
 import { classNames, formatPrefixByte } from '@/lib/utils';
@@ -281,15 +282,14 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
           showOpcode && (
             <div
               key={id}
-              className='flex items-center justify-between border-b border-zinc-500/10 py-1 dark:border-zinc-500/20'
+              className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
-              <div className='flex-1'>{formatOpcode(baseOpcode)}</div>
-              <p className='flex-1 text-center'>
-                <span>
-                  {baseOpcode?.name} (#{baseOpcode?.number && formatPrefixByte(baseOpcode?.number)})
-                </span>
-              </p>
-              <div className='flex-1'>{formatOpcode(targetOpcode)}</div>
+              <div className='col-span-2'>
+                <Copyable content={baseOpcode?.name.toLocaleUpperCase()} />
+                <Copyable content={formatPrefixByte(baseOpcode?.number)} />
+              </div>
+              <div className='col-span-5 pr-4'>{formatOpcode(baseOpcode)}</div>
+              <div className='col-span-5'>{formatOpcode(targetOpcode)}</div>
             </div>
           )
         );
