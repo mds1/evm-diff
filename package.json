@@ -19,7 +19,7 @@
     "next-themes": "^0.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "viem": "^0.3.37"
+    "viem": "^0.3.50"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
@@ -29,7 +29,9 @@
     "@types/react-dom": "18.2.3",
     "@typescript-eslint/eslint-plugin": "^6.1.0",
     "@typescript-eslint/parser": "^6.1.0",
+    "abitype": "^0.9.6",
     "autoprefixer": "10.4.14",
+    "clipboardy": "^3.0.0",
     "eslint": "8.39.0",
     "eslint-config-next": "13.4.0",
     "eslint-plugin-react": "^7.32.2",

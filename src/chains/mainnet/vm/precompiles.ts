@@ -40,6 +40,7 @@ export const precompiles: Precompile[] = [
         description: 'The recovered 20-byte address right aligned to 32 bytes',
       },
     ],
+    deprecated: false,
     references: [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/ecrecover.py',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L50',
@@ -70,6 +71,7 @@ export const precompiles: Precompile[] = [
         description: 'The SHA-256 hash of the input data',
       },
     ],
+    deprecated: false,
     references: [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/sha256.py',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L51',
@@ -98,6 +100,7 @@ export const precompiles: Precompile[] = [
         description: 'The resulting 20-byte hash right aligned to 32 bytes',
       },
     ],
+    deprecated: false,
     references: [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/ripemd160.py',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L53',
@@ -126,6 +129,7 @@ export const precompiles: Precompile[] = [
         description: 'Data from input',
       },
     ],
+    deprecated: false,
     references: [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/identity.py',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L55',
@@ -187,6 +191,7 @@ export const precompiles: Precompile[] = [
         description: 'Result of the computation, with the same number of bytes as M',
       },
     ],
+    deprecated: false,
     references: [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py#L167',
@@ -239,6 +244,7 @@ export const precompiles: Precompile[] = [
         description: "y-coordinate of the result point on the elliptic curve 'alt_bn128'",
       },
     ],
+    deprecated: false,
     references: [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L33',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L45',
@@ -289,6 +295,7 @@ export const precompiles: Precompile[] = [
         description: "y-coordinate of the result point on the elliptic curve 'alt_bn128'",
       },
     ],
+    deprecated: false,
     references: [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L72',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L84',
@@ -353,6 +360,7 @@ export const precompiles: Precompile[] = [
         description: '1 if the pairing was a success, 0 otherwise',
       },
     ],
+    deprecated: false,
     references: [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L107',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/alt_bn128.py#L119',
@@ -413,6 +421,7 @@ export const precompiles: Precompile[] = [
       'If the input is not valid, or if not enough gas was given, then there is no return data.',
       'Of the input does not allow to compute a valid result, all the gas sent is consumed.',
     ],
+    deprecated: false,
     references: [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/blake2f.py',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L59',
