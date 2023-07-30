@@ -24,12 +24,6 @@ export enum OpcodeGroup {
 // Returns a hex string (without the '0x' prefix) padded to 2 characters.
 const formatOpcodeNumber = (n: number): string => n.toString(16).padStart(2, '0');
 
-// Returns a unique ID for each opcode (the opcode number is not sufficient because opcodes can have
-// the same value such as `block.difficulty` and `block.prevrandao`). We format the opcode number
-// to ensure the sorted order is correct.
-export const opcodeId = (opcode: Opcode): string =>
-  `${formatOpcodeNumber(opcode.number)}-${opcode.name}`;
-
 // Returns a link to the Ethereum execution specs for the given hardfork, opcode, and line number.
 export const ethSpecsOpcodeSrc = (
   hardfork: MainnetHardfork,

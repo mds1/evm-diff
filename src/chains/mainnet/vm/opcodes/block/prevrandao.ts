@@ -6,7 +6,7 @@ export const prevrandao: Opcode = {
   number: 0x44,
   name: 'prevrandao',
   description:
-    "Get the random output of the beacon chain's randomness oracle for the previous block",
+    "Get the random output of the beacon chain's randomness oracle for the previous block.",
   minGas: 2,
   outputs: [
     {
@@ -19,6 +19,9 @@ export const prevrandao: Opcode = {
       output: '10995000000000000',
     },
   ],
+  notes: [
+    "Prior to the Paris hardfork, this opcode was named `difficulty` and returned the block's current difficulty. From Paris onwards, the `difficulty` opcode became `prevrandao`.",
+  ],
   // TODO: add the evm.codes playground link once available
   errorCases: ['Not enough gas.', 'Stack overflow.'],
   references: [
@@ -30,6 +33,10 @@ export const prevrandao: Opcode = {
       name: 'execution-specs',
       url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 158),
     },
+    {
+      name: 'EIP-4399: Supplant DIFFICULTY opcode with PREVRANDAO',
+      url: 'https://eips.ethereum.org/EIPS/eip-4399',
+    },
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardfork.Paris),
+  supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

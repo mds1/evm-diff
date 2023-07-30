@@ -1,6 +1,5 @@
 import { Copyable } from '@/components/ui/Copyable';
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
-import { opcodeId } from '@/lib/opcodes';
 import { classNames, formatPrefixByte } from '@/lib/utils';
 import { toUppercase } from '@/lib/utils';
 import { Example, Opcode, Reference, Variable } from '@/types';
@@ -258,17 +257,17 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
   if (!Array.isArray(base) || !Array.isArray(target)) return <></>;
 
   // Generate a sorted list of all opcode numbers from both base and target.
-  const sortedOpcodeIds = [
-    ...base.map((opcode) => opcodeId(opcode)),
-    ...target.map((opcode) => opcodeId(opcode)),
-  ].sort((a, b) => a.localeCompare(b));
-  const opcodeIds = [...new Set(sortedOpcodeIds)];
+  const sortedOpcodeNumbers = [
+    ...base.map((opcode) => opcode.number),
+    ...target.map((opcode) => opcode.number),
+  ].sort((a, b) => a - b);
+  const opcodeNumbers = [...new Set(sortedOpcodeNumbers)];
 
   return (
     <>
-      {opcodeIds.map((id) => {
-        const baseOpcode = base.find((opcode) => opcodeId(opcode) === id);
-        const targetOpcode = target.find((opcode) => opcodeId(opcode) === id);
+      {opcodeNumbers.map((number) => {
+        const baseOpcode = base.find((opcode) => opcode.number === number);
+        const targetOpcode = target.find((opcode) => opcode.number === number);
         if (!baseOpcode || !targetOpcode) {
           return <></>;
         }
@@ -281,7 +280,7 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
         return (
           showOpcode && (
             <div
-              key={id}
+              key={number}
               className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
               <div className='col-span-2'>

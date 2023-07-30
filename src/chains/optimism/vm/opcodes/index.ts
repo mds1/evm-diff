@@ -1,8 +1,8 @@
 import { opcodes as mainnetOpcodes } from '@/chains/mainnet/vm/opcodes';
 import { Opcode } from '@/types';
 import { coinbase } from './block/coinbase';
-import { difficulty } from './block/difficulty';
 import { number } from './block/number';
+import { prevrandao } from './block/prevrandao';
 import { caller } from './environment/caller';
 import { origin } from './environment/origin';
 import { push0 } from './stack/push0';
@@ -12,7 +12,7 @@ export const opcodes: Record<number, Partial<Opcode>> = {
 
   // Block.
   ...{ [coinbase.number]: coinbase },
-  ...{ [difficulty.number]: difficulty },
+  ...{ [prevrandao.number]: prevrandao },
   ...{ [number.number]: number },
 
   // Environment.
