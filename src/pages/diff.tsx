@@ -110,6 +110,7 @@ const Diff = () => {
           const target = targetChain[section as keyof Chain];
           return (
             <div key={section} id={section}>
+              {/* Header */}
               <Copyable
                 content={SECTION_MAP[section].title || section}
                 textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
@@ -120,7 +121,15 @@ const Diff = () => {
                 )}
               />
 
-              <SectionComponent {...{ section, base, target, onlyShowDiff }} />
+              {/* Diff */}
+              <div id={`diff-${section}`}>
+                <SectionComponent {...{ section, base, target, onlyShowDiff }} />
+              </div>
+
+              {/* If diff is empty, convey that to user */}
+              {document.getElementById(`diff-${section}`)?.innerHTML === '' && (
+                <div className='text-secondary mt-6 text-base leading-7'>No differences found.</div>
+              )}
             </div>
           );
         })}
