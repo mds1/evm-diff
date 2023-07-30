@@ -56,13 +56,13 @@ const formatVariables = (title: string, array?: Variable[]): JSX.Element => {
 
 const formatVariable = (v: Variable): JSX.Element => {
   return (
-    <>
+    <div key={v.name}>
       <p>
         <span className='text-secondary text-sm'>{v.name}</span>: {v.description.toLowerCase()}
       </p>
       {v.expression && (
         <>
-          <p className='text-secondary text-sm'>
+          <div className='text-secondary text-sm'>
             <h5 className={classNames('font-bold', 'mt-4')}>Sub-variables ({v.name})</h5>
             {v.name} = {v.expression}
             {v.variables && (
@@ -70,11 +70,11 @@ const formatVariable = (v: Variable): JSX.Element => {
                 <ul>{v.variables.map((subvariables) => formatVariable(subvariables))}</ul>
               </>
             )}
-          </p>
+          </div>
           <br />
         </>
       )}
-    </>
+    </div>
   );
 };
 
