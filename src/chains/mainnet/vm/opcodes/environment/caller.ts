@@ -16,7 +16,7 @@ export const caller: Opcode = {
     {
       name: 'address',
       description:
-        'The 20-byte address of the caller account. This is the account that did the last call (except delegate call).',
+        "The 20-byte address of the caller's account. This is the account that did the last call (except delegate call).",
     },
   ],
   examples: [

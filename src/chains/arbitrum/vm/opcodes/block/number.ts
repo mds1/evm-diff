@@ -6,6 +6,13 @@ export const number: Omit<Opcode, 'supportedHardforks'> = {
   ...opcode,
   description:
     'Returns an estimate of the L1 block number at which the Sequencer received the transaction.',
+  outputs: [
+    {
+      name: 'blockNumber',
+      description:
+        'Estimate of the L1 block number at which the Sequencer received the transaction.',
+    },
+  ],
   references: [
     {
       name: 'Differences between Arbitrum and Ethereum',

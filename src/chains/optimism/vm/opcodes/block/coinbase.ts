@@ -6,6 +6,17 @@ export const coinbase: Omit<Opcode, 'supportedHardforks'> = {
   ...opcode,
   description:
     'Returns `0x4200000000000000000000000000000000000011`, the address of the Sequencer Fee Vault.',
+  outputs: [
+    {
+      name: 'address',
+      description: 'The address of the Sequencer Fee Vault.',
+    },
+  ],
+  examples: [
+    {
+      output: '0x4200000000000000000000000000000000000011',
+    },
+  ],
   references: [
     {
       name: 'Differences between Optimism and Ethereum opcodes',

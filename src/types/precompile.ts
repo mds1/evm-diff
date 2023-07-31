@@ -7,20 +7,23 @@ type PrecompileParam = {
   description: string;
 };
 
-export type Predeploy = {
+export type PrecompileBase = {
   address: Address;
   name: string;
   description: string;
+  minGas?: number;
   deprecated: boolean;
-};
-
-export type Precompile = {
-  address: Address;
-  name: string;
-  description: string;
-  minGas: number;
-  input: PrecompileParam[];
-  output: PrecompileParam[];
   references: string[];
   notes?: string[];
 };
+
+export type PrecompileInputOutput = PrecompileBase & {
+  input: PrecompileParam[];
+  output: PrecompileParam[];
+};
+
+export type PrecompileAbi = PrecompileBase & {
+  logicAbi: string[];
+};
+
+export type Precompile = PrecompileInputOutput | PrecompileAbi;

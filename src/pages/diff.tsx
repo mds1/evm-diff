@@ -6,6 +6,7 @@ import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
+import { DiffPredeploys } from '@/components/diff/DiffPredeploys';
 import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
 import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
@@ -27,7 +28,8 @@ interface Section {
 
 const SECTION_MAP: Record<string, Section> = {
   metadata: { title: 'Metadata', component: DiffMetadata },
-  precompiles: { title: 'Precompiles and Predeploys', component: DiffPrecompiles },
+  precompiles: { title: 'Precompiles', component: DiffPrecompiles },
+  predeploys: { title: 'Predeploys', component: DiffPredeploys },
   signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
 };
@@ -108,6 +110,7 @@ const Diff = () => {
           const target = targetChain[section as keyof Chain];
           return (
             <div key={section} id={section}>
+              {/* Header */}
               <Copyable
                 content={SECTION_MAP[section].title || section}
                 textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
@@ -118,7 +121,15 @@ const Diff = () => {
                 )}
               />
 
-              <SectionComponent {...{ section, base, target, onlyShowDiff }} />
+              {/* Diff */}
+              <div id={`diff-${section}`}>
+                <SectionComponent {...{ section, base, target, onlyShowDiff }} />
+              </div>
+
+              {/* If diff is empty, convey that to user */}
+              {document.getElementById(`diff-${section}`)?.innerHTML === '' && (
+                <div className='text-secondary mt-6 text-base leading-7'>No differences found.</div>
+              )}
             </div>
           );
         })}

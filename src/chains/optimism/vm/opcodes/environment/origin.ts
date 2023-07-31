@@ -6,6 +6,13 @@ export const origin: Omit<Opcode, 'supportedHardforks'> = {
   ...opcode,
   description:
     'If the transaction is an L1 ⇒ L2 transaction, then `tx.origin` is set to the aliased address of the address that triggered the L1 ⇒ L2 transaction. Otherwise, this opcode behaves normally.',
+  outputs: [
+    {
+      name: 'address',
+      description:
+        'The 20-byte address of the sender of the transaction, or the aliased address for L1 ⇒ L2 transactions. It can only be an account without code.',
+    },
+  ],
   references: [
     {
       name: 'Differences between Optimism and Ethereum',

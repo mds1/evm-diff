@@ -5,7 +5,7 @@ import { Opcode } from '@/types';
 export const blockhash: Opcode = {
   number: 0x40,
   name: 'blockhash',
-  description: 'Get the hash of one of the 256 most recent complete blocks',
+  description: 'Get the hash of one of the 256 most recent complete blocks.',
   minGas: 20,
   inputs: [
     {
@@ -23,8 +23,8 @@ export const blockhash: Opcode = {
   ],
   examples: [
     {
-      input: '599423545',
-      output: '0x29045A592007D0C246EF02C2223570DA9522D0CF0F73282C79A1BC8F0BB2C238',
+      input: '17813636',
+      output: '0x3204feac1c276343f84e44df04f8fcddbb80eee246ee0533026511e4c4bbf4b6',
     },
   ],
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
