@@ -1,5 +1,4 @@
 import { MainnetHardfork } from '@/chains/mainnet/hardforks';
-import { Opcode } from '@/types';
 import {
   ETHEREUM_EXECUTION_SPECS_COMMIT_ID,
   ETHEREUM_EXECUTION_SPECS_URL,
