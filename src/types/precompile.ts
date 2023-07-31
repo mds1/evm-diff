@@ -23,7 +23,7 @@ export type PrecompileInputOutput = PrecompileBase & {
 };
 
 export type PrecompileAbi = PrecompileBase & {
-  abi: string[];
+  logicAbi: string[];
 };
 
 export type Precompile = PrecompileInputOutput | PrecompileAbi;

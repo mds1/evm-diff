@@ -9,7 +9,7 @@ export const precompiles: Precompile[] = [
     name: 'ArbSys',
     description:
       'Exposes a variety of system-level functionality for interacting with Ethereum and understanding the call stack.',
-    abi: [
+    logicAbi: [
       'event L2ToL1Transaction(address caller, address indexed destination, uint256 indexed uniqueId, uint256 indexed batchNumber, uint256 indexInBatch, uint256 arbBlockNum, uint256 ethBlockNum, uint256 timestamp, uint256 callvalue, bytes data)',
       'event L2ToL1Tx(address caller, address indexed destination, uint256 indexed hash, uint256 indexed position, uint256 arbBlockNum, uint256 ethBlockNum, uint256 timestamp, uint256 callvalue, bytes data)',
       'event SendMerkleUpdate(uint256 indexed reserved, bytes32 indexed hash, uint256 indexed position)',
@@ -33,7 +33,7 @@ export const precompiles: Precompile[] = [
     address: '0x000000000000000000000000000000000000006E',
     name: 'ArbRetryableTx',
     description: 'Manages retryable transactions related to data retrieval and interactions.',
-    abi: [
+    logicAbi: [
       'error NoTicketWithID()',
       'error NotCallable()',
       'event Canceled(bytes32 indexed ticketId)',
@@ -57,7 +57,7 @@ export const precompiles: Precompile[] = [
     address: '0x000000000000000000000000000000000000006C',
     name: 'ArbGasInfo',
     description: 'Provides insight into the costs of using Arbitrum.',
-    abi: [
+    logicAbi: [
       'function getAmortizedCostCapBips() view returns (uint64)',
       'function getCurrentTxL1GasFees() view returns (uint256)',
       'function getGasAccountingParams() view returns (uint256, uint256, uint256)',
@@ -84,7 +84,7 @@ export const precompiles: Precompile[] = [
     name: 'ArbAddressTable',
     description:
       'Allows registering and retrieving commonly used addresses via indices, saving calldata.',
-    abi: [
+    logicAbi: [
       'function addressExists(address addr) view returns (bool)',
       'function compress(address addr) returns (bytes)',
       'function decompress(bytes buf, uint256 offset) view returns (address, uint256)',
@@ -101,7 +101,7 @@ export const precompiles: Precompile[] = [
     name: 'ArbStatistics',
     description:
       'Provides statistics about Arbitrum, such as the number of blocks, accounts, transactions, and contracts.',
-    abi: [
+    logicAbi: [
       'function getStats() view returns (uint256, uint256, uint256, uint256, uint256, uint256)',
     ],
     deprecated: false,
@@ -112,7 +112,7 @@ export const precompiles: Precompile[] = [
     name: 'NodeInterface',
     description:
       'Retrieves the revenant data of calls by Arbitrum contracts to execute them in Ethereum via the Outbox contract.',
-    abi: [
+    logicAbi: [
       'function constructOutboxProof(uint64 size, uint64 leaf) view returns (bytes32 send, bytes32 root, bytes32[] proof)',
       'function estimateRetryableTicket(address sender, uint256 deposit, address to, uint256 l2CallValue, address excessFeeRefundAddress, address callValueRefundAddress, bytes data)',
       'function findBatchContainingBlock(uint64 blockNum) view returns (uint64 batch)',
@@ -129,7 +129,7 @@ export const precompiles: Precompile[] = [
     address: '0x0000000000000000000000000000000000000067',
     name: 'ArbBLS',
     description: 'Provides a registry of BLS public keys for accounts.',
-    abi: [], // TODO have not found ABI yet.
+    logicAbi: [], // TODO have not found ABI yet.
     deprecated: false,
     references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
   },
@@ -138,7 +138,7 @@ export const precompiles: Precompile[] = [
     name: 'ArbOwner',
     description:
       'Provides owners with tools for managing the rollup. All calls to this precompile are authorized by the OwnerPrecompile wrapper, which ensures only a chain owner can access these methods.',
-    abi: [
+    logicAbi: [
       'event OwnerActs(bytes4 indexed method, address indexed owner, bytes data)',
       'function addChainOwner(address newOwner)',
       'function getAllChainOwners() view returns (address[])',
@@ -176,7 +176,7 @@ export const precompiles: Precompile[] = [
     name: 'ArbOwnerPublic',
     description:
       'Provides non-owners with info about the current chain owners. The calls to this precompile do not require the sender be a chain owner. For those that are, see `ArbOwner`.',
-    abi: [
+    logicAbi: [
       'function getAllChainOwners() view returns (address[])',
       'function getInfraFeeAccount() view returns (address)',
       'function getNetworkFeeAccount() view returns (address)',
@@ -193,7 +193,7 @@ export const precompiles: Precompile[] = [
     name: 'ArbAggregator',
     description:
       "Provides aggregators and their users methods for configuring how they participate in Ethereum aggregation. The default aggregator is Arbitrum's Sequencer.",
-    abi: [
+    logicAbi: [
       'function addBatchPoster(address newBatchPoster)',
       'function getBatchPosters() view returns (address[])',
       'function getDefaultAggregator() view returns (address)',
@@ -211,7 +211,7 @@ export const precompiles: Precompile[] = [
     name: 'ArbFunctionTable',
     description:
       'Allows aggregators to manage function tables for one form of transaction compression.',
-    abi: [
+    logicAbi: [
       'function get(address addr, uint256 index) view returns (uint256, bool, uint256)',
       'function size(address addr) view returns (uint256)',
       'function upload(bytes buf)',

@@ -1,10 +1,21 @@
 import { Address } from 'viem';
 
-export type Predeploy = {
+type PredeployBase = {
   address: Address;
   name: string;
   description: string;
-  abi: string[];
   deprecated: boolean;
   references: string[];
 };
+
+type StandardPredeploy = PredeployBase & {
+  logicAbi: string[];
+};
+
+type ProxiedPredeploy = PredeployBase & {
+  proxyAbi: string[];
+  logicAbi: string[];
+  logicAddress: Address;
+};
+
+export type Predeploy = StandardPredeploy | ProxiedPredeploy;
