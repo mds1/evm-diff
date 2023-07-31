@@ -47,7 +47,7 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L30',
     ],
     notes: [
-      "If an address cannot be recovered, or not enough gas was given, then there is no return data. Note that the return data is the address that issued the signature but it won't verify the signature.",
+      "If an address cannot be recovered or not enough gas was given, then there is no return data, indicating a precompile contract error. Note that the return data is the address that issued the signature but it won't verify the signature.",
     ],
   },
   {
@@ -77,7 +77,9 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L51',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L31',
     ],
-    notes: ['If not enough gas was given, then there is no return data.'],
+    notes: [
+      'If not enough gas was given, then there is no return data, indicating a precompile contract error.',
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000003',
@@ -106,7 +108,9 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/gas.py#L53',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L32',
     ],
-    notes: ['If not enough gas was given, then there is no return data.'],
+    notes: [
+      'If not enough gas was given, then there is no return data, indicating a precompile contract error.',
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000004',
@@ -136,7 +140,7 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L33',
     ],
     notes: [
-      'If not enough gas was given, then there is no return data.',
+      'If not enough gas was given, then there is no return data, indicating a precompile contract error.',
       'The identity function is typically used to copy a chunk of memory.',
     ],
   },
@@ -197,7 +201,9 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/modexp.py#L167',
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L34',
     ],
-    notes: ['If not enough gas was given, then there is no return data.'],
+    notes: [
+      'If not enough gas was given, then there is no return data, indicating a precompile contract error.',
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000006',
@@ -251,7 +257,8 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L35',
     ],
     notes: [
-      'If the input is not valid, or if not enough gas was given, then there is no return data.',
+      'If the input is not valid, all gas provided is consumed and there is no return data, indicating a precompile contract error.',
+      'If not enough gas was given, there is no return data.',
       'The gas cost is fixed at 150. However, if the input does not allow to compute a valid result, all the gas sent is consumed.',
       'The point at infinity is encoded with both field x and y at 0.',
     ],
@@ -302,7 +309,8 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L36',
     ],
     notes: [
-      'If the input is not valid, or if not enough gas was given, then there is no return data.',
+      'If the input is not valid, all gas provided is consumed and there is no return data, indicating a precompile contract error.',
+      'If not enough gas was given, there is no return data.',
       'The gas cost is fixed at 6000. However, if the input does not allow to compute a valid result, all the gas sent is consumed.',
       'The point at infinity is encoded with both field x and y at 0.',
     ],
@@ -367,8 +375,9 @@ export const precompiles: Precompile[] = [
       'https://github.com/ethereum/execution-specs/blob/6f8614566e7117afa327ad054c3f4bfe19694d73/src/ethereum/shanghai/vm/precompiled_contracts/__init__.py#L37',
     ],
     notes: [
+      'If the input is not valid, all gas provided is consumed and there is no return data, indicating a precompile contract error.',
+      'If not enough gas was given, there is no return data.',
       'The input must always be a multiple of 6 32-byte values. 0 inputs is valid and returns 1.',
-      'If the input is not valid, or if not enough gas was given, then there is no return data.',
       'The point at infinity is encoded with both field x and y at 0.',
     ],
   },
@@ -418,8 +427,8 @@ export const precompiles: Precompile[] = [
       },
     ],
     notes: [
-      'If the input is not valid, or if not enough gas was given, then there is no return data.',
-      'Of the input does not allow to compute a valid result, all the gas sent is consumed.',
+      'If the input is not valid or does not allow a valid result to be computed, all gas provided is consumed and there is no return data, indicating a precompile contract error.',
+      'If not enough gas was given, there is no return data.',
     ],
     deprecated: false,
     references: [
