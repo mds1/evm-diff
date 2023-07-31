@@ -16,7 +16,7 @@ export const prevrandao: Opcode = {
   ],
   examples: [
     {
-      output: '10995000000000000',
+      output: '0xce124dee50136f3f93f19667fb4198c6b94eecbacfa300469e5280012757be94',
     },
   ],
   notes: [

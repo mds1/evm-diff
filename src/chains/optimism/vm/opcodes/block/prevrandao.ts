@@ -7,11 +7,12 @@ export const prevrandao: Omit<Opcode, 'supportedHardforks'> = {
   outputs: [
     {
       name: 'random',
-      description: "The random output of the L1 beacon chain's oracle from ~5 L1 blocks ago.",
+      description:
+        "The random output of the L1 beacon chain's oracle from approximately 5 L1 blocks ago.",
     },
   ],
   description:
-    "Returns the random output of the L1 beacon chain's randomness oracle. This value lags behind the L1 block's prevrandao value by about 5 L1 blocks, and is updated when the `L1BlockInfo` predeploy is updated.",
+    "Returns the random output of the L1 beacon chain's randomness oracle. This value lags behind the L1 block's prevrandao value by approximately 5 L1 blocks, and is updated when the `L1BlockInfo` predeploy is updated.",
   references: [
     {
       name: 'Deriving the Transaction List',
