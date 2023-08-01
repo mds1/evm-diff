@@ -1,4 +1,7 @@
-// Given an Etherscan URL, fetch the ABI and convert it to viem's human readable format.
+// Docs sometimes conflate precompiles and predeploys, but we want to differentiate them. We define
+// a precompile as an address that has no code (or symbolic code like `0xfe`) and a predeploy has
+// executable bytecode. For each chain this script defines a list of addresses and checks whether
+// they are precompiles or predeploys, and prints the result.
 // Example usage:
 //   bun script/precompile-check.ts optimism
 import { Address, createPublicClient, getAddress, http } from 'viem';
