@@ -1,10 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from 'public/logo.svg';
+import { useTheme } from 'next-themes';
+import logoDark from 'public/logo-dark.png';
+import logoLight from 'public/logo-light.png';
 import { COMPANY_NAME } from '@/lib/constants';
 import { ExternalLink } from './ExternalLink';
 
 export const Header = () => {
+  const { resolvedTheme } = useTheme();
+  const logo = resolvedTheme === 'light' ? logoDark.src : logoLight.src;
   return (
     <header>
       <div className='bg-yellow-500 py-2 text-center text-sm font-semibold dark:bg-yellow-600'>
@@ -21,7 +25,7 @@ export const Header = () => {
           <div>
             <Link href='/' className='flex'>
               <span className='sr-only'>{COMPANY_NAME}</span>
-              <Image className='h-8 sm:h-14' src={logo} alt='logo' />
+              <Image height='60' width='60' src={logo} alt='logo' />
             </Link>
           </div>
         </div>
