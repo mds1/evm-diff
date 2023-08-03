@@ -5,6 +5,7 @@ import { toUppercase } from '@/lib/utils';
 import { Example, Opcode, Reference, Variable } from '@/types';
 import { GasComputation } from '@/types/opcode';
 import { ExternalLink } from '../layout/ExternalLink';
+import { RenderDiff } from './RenderDiff';
 
 type Props = {
   base: Opcode[];
@@ -263,7 +264,7 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
   ].sort((a, b) => a - b);
   const opcodeNumbers = [...new Set(sortedOpcodeNumbers)];
 
-  return (
+  const diffContent = (
     <>
       {opcodeNumbers.map((number) => {
         const baseOpcode = base.find((opcode) => opcode.number === number);
@@ -295,6 +296,8 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
       })}
     </>
   );
+
+  return <RenderDiff content={diffContent} />;
 };
 
 // Convert an `Opcode` object to a simpler struct in order to compare it to other opcodes.

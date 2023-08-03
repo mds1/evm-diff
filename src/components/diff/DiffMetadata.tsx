@@ -3,6 +3,7 @@ import { getAddress } from 'viem';
 import { Copyable } from '@/components/ui/Copyable';
 import { classNames, toUppercase } from '@/lib/utils';
 import { ExternalLink } from '../layout/ExternalLink';
+import { RenderDiff } from './RenderDiff';
 
 type MetadataKey = keyof Metadata;
 
@@ -90,7 +91,7 @@ const formatFieldInfo = (field: MetadataKey, contents: Metadata[MetadataKey]) =>
 
 export const DiffMetadata = ({ base, target, onlyShowDiff }: Props) => {
   const fields = Object.keys(base) as MetadataKey[];
-  return (
+  const diffContent = (
     <>
       {fields.map((field) => {
         if (hiddenField(field)) return null;
@@ -119,4 +120,6 @@ export const DiffMetadata = ({ base, target, onlyShowDiff }: Props) => {
       })}
     </>
   );
+
+  return <RenderDiff content={diffContent} />;
 };
