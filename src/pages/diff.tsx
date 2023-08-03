@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { LinkIcon } from '@heroicons/react/20/solid';
-import { chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
@@ -12,6 +11,7 @@ import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
 import { classNames } from '@/lib/utils';
 import { Chain } from '@/types';
+import { findChain } from './utils';
 
 interface Props<T> {
   base: T;
@@ -39,16 +39,6 @@ const Diff = () => {
 
   const router = useRouter();
   const { base, target } = router.query;
-
-  const findChain = (chainId: string) => {
-    try {
-      const id = BigInt(chainId);
-      if (id <= 0n) return undefined;
-      return Object.values(chains).find((chain) => BigInt(chain.metadata.id) === id);
-    } catch (e) {
-      return undefined; // `chainId` could not be parsed as a `BigInt`.
-    }
-  };
 
   const baseChain = findChain(base as string);
   const targetChain = findChain(target as string);

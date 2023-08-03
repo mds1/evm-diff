@@ -1,13 +1,14 @@
 import { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
-import { toUppercase } from '@/lib/utils';
+import { SITE_NAME } from '@/lib/constants';
+import { findChain } from '../utils';
 
 export const config = {
   runtime: 'edge',
 };
 
-const defaultBase = 'ethereum';
-const defaultTarget = 'optimism';
+const defaultBase = 1; // ethereum
+const defaultTarget = 10; // optimism
 
 export default function handler(request: NextRequest) {
   try {
@@ -25,6 +26,20 @@ export default function handler(request: NextRequest) {
     let target = hasTarget ? searchParams.get('target')?.slice(0, 100) : defaultTarget;
     if (!target) {
       target = defaultTarget;
+    }
+
+    const baseChain = findChain(base as string);
+    if (!baseChain) {
+      return new Response(`Chain ID ${base} doesn't exist`, {
+        status: 400,
+      });
+    }
+
+    const targetChain = findChain(target as string);
+    if (!targetChain) {
+      return new Response(`Chain ID ${target} doesn't exist`, {
+        status: 400,
+      });
     }
 
     return new ImageResponse(
@@ -45,14 +60,15 @@ export default function handler(request: NextRequest) {
               fontSize: 100,
             }}
           >
-            ✨ evm-diff ✨
+            {`✨ ${SITE_NAME} ✨`}
           </h2>
           <p
             style={{
               fontSize: 34,
             }}
           >
-            20 total differences between 💠 {toUppercase(base)} and 🔴 {toUppercase(target)}
+            20 total differences between 💠 {baseChain.metadata.name} and 🔴{' '}
+            {targetChain.metadata.name}
           </p>
           <p
             style={{
