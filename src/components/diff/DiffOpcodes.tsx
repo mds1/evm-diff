@@ -1,3 +1,4 @@
+import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import { classNames, formatPrefixByte } from '@/lib/utils';
@@ -5,7 +6,6 @@ import { toUppercase } from '@/lib/utils';
 import { Example, Opcode, Reference, Variable } from '@/types';
 import { GasComputation } from '@/types/opcode';
 import { ExternalLink } from '../layout/ExternalLink';
-import { RenderDiff } from './RenderDiff';
 
 type Props = {
   base: Opcode[];

@@ -1,9 +1,9 @@
 import { Chain as Metadata } from '@wagmi/chains';
 import { getAddress } from 'viem';
+import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { classNames, toUppercase } from '@/lib/utils';
 import { ExternalLink } from '../layout/ExternalLink';
-import { RenderDiff } from './RenderDiff';
 
 type MetadataKey = keyof Metadata;
 

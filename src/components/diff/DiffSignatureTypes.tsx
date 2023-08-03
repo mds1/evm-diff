@@ -1,7 +1,7 @@
+import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { formatPrefixByte } from '@/lib/utils';
 import { SignatureType } from '@/types';
-import { RenderDiff } from './RenderDiff';
 
 type Props = {
   base: SignatureType[];
