@@ -1,20 +1,32 @@
-import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
- 
+import { ImageResponse } from '@vercel/og';
+import { toUppercase } from '@/lib/utils';
+
 export const config = {
   runtime: 'edge',
 };
- 
+
+const defaultBase = 'ethereum';
+const defaultTarget = 'optimism';
+
 export default function handler(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
- 
-    // ?title=<title>
-    const hasTitle = searchParams.has('title');
-    const title = hasTitle
-      ? searchParams.get('title')?.slice(0, 100)
-      : 'My default title';
-      
+
+    // ?base=<base>
+    const hasBase = searchParams.has('base');
+    let base = hasBase ? searchParams.get('base')?.slice(0, 100) : defaultBase;
+    if (!base) {
+      base = defaultBase;
+    }
+
+    // ?target=<target>
+    const hasTarget = searchParams.has('target');
+    let target = hasTarget ? searchParams.get('target')?.slice(0, 100) : defaultTarget;
+    if (!target) {
+      target = defaultTarget;
+    }
+
     return new ImageResponse(
       (
         <div
@@ -32,12 +44,16 @@ export default function handler(request: NextRequest) {
             style={{
               fontSize: 100,
             }}
-          >✨ evm-diff ✨</h2>
+          >
+            ✨ evm-diff ✨
+          </h2>
           <p
             style={{
               fontSize: 34,
             }}
-          >20 total differences between 💠 Ethereum and 🔴 Optimism</p>
+          >
+            20 total differences between 💠 {toUppercase(base)} and 🔴 {toUppercase(target)}
+          </p>
           <p
             style={{
               fontSize: 24,
@@ -50,7 +66,7 @@ export default function handler(request: NextRequest) {
       {
         width: 1200,
         height: 630,
-      },
+      }
     );
   } catch (e: any) {
     console.log(`${e.message}`);
