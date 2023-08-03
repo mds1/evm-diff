@@ -36,7 +36,7 @@ const SECTION_MAP: Record<string, Section> = {
 };
 
 const SupportedChainsList = () => {
-  const supportedChains = [chains.arbitrum, chains.mainnet, chains.optimism];
+  const supportedChains = Object.values(chains);
   return (
     <p className='text-secondary mt-6 text-base leading-7'>
       {`Supported chains: `}
