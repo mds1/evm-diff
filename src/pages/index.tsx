@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import { chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { Head } from '@/components/layout/Head';
 import { SITE_DESCRIPTION } from '@/lib/constants';
 
 const Home = () => {
+  const [base, setBase] = useState(chains.mainnet);
+  const [target, setTarget] = useState(chains.optimism);
+
   return (
     <>
-      <Head />
+      <Head baseId={base.metadata.id} targetId={target.metadata.id} />
       <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
         <div className='relative isolate overflow-hidden px-6 py-0 sm:rounded-3xl sm:px-24 sm:py-20'>
           <h2 className='mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-zinc-1000 dark:text-zinc-0 sm:text-4xl'>
@@ -16,7 +20,7 @@ const Home = () => {
             Compare execution layer differences between chains in a friendly format
           </p>
           <div className='mx-auto mt-10 flex max-w-md gap-x-4 rounded-lg border border-zinc-200 dark:border-zinc-700'>
-            <ChainDiffSelector />
+            <ChainDiffSelector {...{ base, setBase, target, setTarget }} />
           </div>
         </div>
       </div>
