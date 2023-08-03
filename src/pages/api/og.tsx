@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
 import { getAddress } from 'viem';
 import { SITE_NAME } from '@/lib/constants';
-import { Precompile, Predeploy } from '@/types';
+import { Opcode, Precompile, Predeploy } from '@/types';
 import { findChain } from '../utils';
 
 const defaultBase = 1; // ethereum
@@ -21,7 +21,7 @@ const countPrecompilesDiff = (base: Precompile[], target: Precompile[]): number 
   const precompileAddrs = [...new Set(sortedAddrs)];
 
   // Return the number of differences.
-  return precompileAddrs.reduce((count, addr) => {
+  return precompileAddrs.reduce((count: number, addr: string) => {
     const basePrecompile = base.find((p) => getAddress(p.address) === addr);
     const targetPrecompile = target.find((p) => getAddress(p.address) === addr);
     if (!basePrecompile || !targetPrecompile) {
@@ -45,7 +45,7 @@ const countPredeployDiffs = (base: Predeploy[], target: Predeploy[]): number => 
   const predeployAddrs = [...new Set(sortedAddrs)];
 
   // Return the number of differences.
-  return predeployAddrs.reduce((count, addr) => {
+  return predeployAddrs.reduce((count: number, addr: string) => {
     const basePredeploy = base.find((p) => getAddress(p.address) === addr);
     const targetPredeploy = target.find((p) => getAddress(p.address) === addr);
     if (!basePredeploy || !targetPredeploy) {
@@ -53,6 +53,31 @@ const countPredeployDiffs = (base: Predeploy[], target: Predeploy[]): number => 
     }
 
     const isEqual = JSON.stringify(basePredeploy) === JSON.stringify(targetPredeploy);
+    if (!isEqual) {
+      count++;
+    }
+    return count;
+  }, 0);
+};
+
+const countOpcodeDiffs = (base: Opcode[], target: Opcode[]): number => {
+  // Generate a sorted list of the base and target elements.
+  const sortedNumbers = [...base.map((o) => o.number), ...target.map((o) => o.number)].sort(
+    (a, b) => a - b
+  );
+  const opcodeNumbers = [...new Set(sortedNumbers)];
+
+  // Return the number of differences.
+  return opcodeNumbers.reduce((count: number, id: number) => {
+    const baseOpcode = base.find((o) => o.number === id);
+    const targetOpcode = target.find((o) => o.number === id);
+    if (!baseOpcode || !targetOpcode) {
+      return 0;
+    }
+
+    const isEqual =
+      JSON.stringify(convertToComparableOpcode(baseOpcode as Opcode)) ===
+      JSON.stringify(convertToComparableOpcode(targetOpcode as Opcode));
     if (!isEqual) {
       count++;
     }
@@ -94,8 +119,10 @@ export default function handler(request: NextRequest) {
 
     const precompileDiffs = countPrecompilesDiff(baseChain.precompiles, targetChain.precompiles);
     const predeployDiffs = countPredeployDiffs(baseChain.predeploys, targetChain.predeploys);
-    //const predeployDiffs = 3;
-    const opcodeDiffs = 22;
+    const opcodeDiffs = countOpcodeDiffs(
+      baseChain.opcodes as Opcode[],
+      targetChain.opcodes as Opcode[]
+    );
     const signatureTypeDiff = 5;
     const totalDiff = precompileDiffs + predeployDiffs + opcodeDiffs + signatureTypeDiff;
 
@@ -148,8 +175,8 @@ export default function handler(request: NextRequest) {
             >
               <p>{precompileDiffs > 0 && `/Precompiles (x${precompileDiffs})`}</p>
               <p>{predeployDiffs > 0 && `/Predeploys (x${predeployDiffs})`}</p>
-              <p>{signatureTypeDiff > 0 && `/SignatureTypes (x${signatureTypeDiff})`}</p>
               <p>{opcodeDiffs > 0 && `/Opcodes (x${opcodeDiffs})`}</p>
+              <p>{signatureTypeDiff > 0 && `/SignatureTypes (x${signatureTypeDiff})`}</p>
             </div>
           </div>
         </div>
@@ -166,3 +193,23 @@ export default function handler(request: NextRequest) {
     });
   }
 }
+
+// Convert an `Opcode` object to a simpler struct in order to compare it to other opcodes.
+// Note: casting an object from a type with properties X, Y and Z to a subset type with properties
+// X and Y using the `as` keyword will still retain the field Z unless you explicitly remove it.
+// That's why this function exists.
+const convertToComparableOpcode = (
+  opcode: Opcode
+): Omit<Opcode, 'examples' | 'playgroundLink' | 'notes' | 'references'> => {
+  return {
+    number: opcode.number,
+    name: opcode.name,
+    description: opcode.description,
+    minGas: opcode.minGas,
+    gasComputation: opcode.gasComputation,
+    inputs: opcode.inputs,
+    outputs: opcode.outputs,
+    errorCases: opcode.errorCases,
+    supportedHardforks: opcode.supportedHardforks,
+  };
+};
