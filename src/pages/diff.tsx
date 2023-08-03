@@ -122,14 +122,7 @@ const Diff = () => {
               />
 
               {/* Diff */}
-              <div id={`diff-${section}`}>
-                <SectionComponent {...{ section, base, target, onlyShowDiff }} />
-              </div>
-
-              {/* If diff is empty, convey that to user */}
-              {document.getElementById(`diff-${section}`)?.innerHTML === '' && (
-                <div className='text-secondary mt-6 text-base leading-7'>No differences found.</div>
-              )}
+              <SectionComponent {...{ section, base, target, onlyShowDiff }} />
             </div>
           );
         })}

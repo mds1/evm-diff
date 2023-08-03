@@ -1,3 +1,4 @@
+import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { formatPrefixByte } from '@/lib/utils';
 import { SignatureType } from '@/types';
@@ -23,7 +24,7 @@ export const DiffSignatureTypes = ({ base, target, onlyShowDiff }: Props) => {
   const allPrefixBytes = [...base.map((t) => t.prefixByte), ...target.map((t) => t.prefixByte)];
   const prefixBytes = [...new Set(allPrefixBytes.sort((a, b) => a - b))];
 
-  return (
+  const diffContent = (
     <>
       {prefixBytes.map((prefix) => {
         const baseSigType = base.find((s) => s.prefixByte === prefix);
@@ -47,4 +48,6 @@ export const DiffSignatureTypes = ({ base, target, onlyShowDiff }: Props) => {
       })}
     </>
   );
+
+  return <RenderDiff content={diffContent} />;
 };

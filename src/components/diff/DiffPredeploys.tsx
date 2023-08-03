@@ -1,4 +1,5 @@
 import { Address, getAddress } from 'viem';
+import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { Predeploy } from '@/types';
 
@@ -31,7 +32,7 @@ export const DiffPredeploys = ({ base, target, onlyShowDiff }: Props) => {
   ].sort((a, b) => a.localeCompare(b));
   const predeployAddrs = [...new Set(sortedAddrs)];
 
-  return (
+  const diffContent = (
     <>
       {predeployAddrs.map((addr) => {
         const basePredeploy = base.find((p) => getAddress(p.address) === addr);
@@ -55,4 +56,6 @@ export const DiffPredeploys = ({ base, target, onlyShowDiff }: Props) => {
       })}
     </>
   );
+
+  return <RenderDiff content={diffContent} />;
 };

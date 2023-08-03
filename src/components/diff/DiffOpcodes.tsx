@@ -1,3 +1,4 @@
+import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import { classNames, formatPrefixByte } from '@/lib/utils';
@@ -57,7 +58,7 @@ const formatVariable = (v: Variable): JSX.Element => {
   return (
     <div key={v.name}>
       <p>
-        <span className='text-secondary text-sm'>{v.name}</span>: {v.description.toLowerCase()}
+        <span className='text-secondary text-sm'>{v.name}</span>: {v.description}
       </p>
       {v.expression && (
         <>
@@ -263,7 +264,7 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
   ].sort((a, b) => a - b);
   const opcodeNumbers = [...new Set(sortedOpcodeNumbers)];
 
-  return (
+  const diffContent = (
     <>
       {opcodeNumbers.map((number) => {
         const baseOpcode = base.find((opcode) => opcode.number === number);
@@ -295,6 +296,8 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
       })}
     </>
   );
+
+  return <RenderDiff content={diffContent} />;
 };
 
 // Convert an `Opcode` object to a simpler struct in order to compare it to other opcodes.

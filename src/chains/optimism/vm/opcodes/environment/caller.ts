@@ -10,7 +10,7 @@ export const caller: Omit<Opcode, 'supportedHardforks'> = {
     {
       name: 'address',
       description:
-        "The 20-byte address of the caller's account, or the aliased address for L1 ⇒ L2 transactions.. This is the account that did the last call (except delegate call).",
+        "The 20-byte address of the caller's account, or the aliased address for L1 ⇒ L2 transactions. This is the account that did the last call (except delegate call).",
     },
   ],
   references: [
