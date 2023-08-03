@@ -58,7 +58,7 @@ const formatVariable = (v: Variable): JSX.Element => {
   return (
     <div key={v.name}>
       <p>
-        <span className='text-secondary text-sm'>{v.name}</span>: {v.description.toLowerCase()}
+        <span className='text-secondary text-sm'>{v.name}</span>: {v.description}
       </p>
       {v.expression && (
         <>
