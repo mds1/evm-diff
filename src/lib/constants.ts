@@ -1,3 +1,4 @@
+import { chains } from '@/chains';
 import { MainnetHardfork } from '@/chains/mainnet/hardforks';
 
 // -------- Website data --------
@@ -11,6 +12,8 @@ export const GITHUB_URL = 'https://github.com/mds1/evm-diff';
 export const TWITTER_URL = 'https://twitter.com/msolomon44';
 
 // -------- Data and References --------
+export const DEFAULT_BASE_CHAIN = chains.mainnet;
+export const DEFAULT_TARGET_CHAIN = chains.optimism;
 export const CURRENT_MAINNET_HARDFORK = MainnetHardfork.Shanghai;
 
 // All opcodes are linked to their implementation in https://github.com/ethereum/execution-specs.
