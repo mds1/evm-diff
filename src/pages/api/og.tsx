@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
 import { getAddress } from 'viem';
 import { SITE_NAME } from '@/lib/constants';
-import { Opcode, Precompile, Predeploy } from '@/types';
+import { Opcode, Precompile, Predeploy, SignatureType } from '@/types';
 import { findChain } from '../utils';
 
 const defaultBase = 1; // ethereum
@@ -85,6 +85,27 @@ const countOpcodeDiffs = (base: Opcode[], target: Opcode[]): number => {
   }, 0);
 };
 
+const countSignatureTypeDiffs = (base: SignatureType[], target: SignatureType[]): number => {
+  // Generate a sorted list of the base and target elements.
+  const allPrefixBytes = [...base.map((t) => t.prefixByte), ...target.map((t) => t.prefixByte)];
+  const prefixBytes = [...new Set(allPrefixBytes.sort((a, b) => a - b))];
+
+  // Return the number of differences.
+  return prefixBytes.reduce((count: number, prefix: number) => {
+    const baseSigType = base.find((s) => s.prefixByte === prefix);
+    const targetSigType = target.find((s) => s.prefixByte === prefix);
+    if (!baseSigType || !targetSigType) {
+      return 0;
+    }
+
+    const isEqual = JSON.stringify(baseSigType) === JSON.stringify(targetSigType);
+    if (!isEqual) {
+      count++;
+    }
+    return count;
+  }, 0);
+};
+
 export default function handler(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -123,7 +144,10 @@ export default function handler(request: NextRequest) {
       baseChain.opcodes as Opcode[],
       targetChain.opcodes as Opcode[]
     );
-    const signatureTypeDiff = 5;
+    const signatureTypeDiff = countSignatureTypeDiffs(
+      baseChain.signatureTypes,
+      targetChain.signatureTypes
+    );
     const totalDiff = precompileDiffs + predeployDiffs + opcodeDiffs + signatureTypeDiff;
 
     return new ImageResponse(
