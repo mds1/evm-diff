@@ -3,12 +3,41 @@ import { ImageResponse } from '@vercel/og';
 import { SITE_NAME } from '@/lib/constants';
 import { findChain } from '../utils';
 
+const defaultBase = 1; // ethereum
+const defaultTarget = 10; // optimism
+
 export const config = {
   runtime: 'edge',
 };
 
-const defaultBase = 1; // ethereum
-const defaultTarget = 10; // optimism
+/*
+const countPrecompilesDiff = (
+  base: Precompile[],
+  target: Precompile[]
+): number => {
+  // Generate a sorted list of the base and target elements.
+  const sortedAddrs = [
+    ...base.map((p) => getAddress(p.address)),
+    ...target.map((p) => getAddress(p.address)),
+  ].sort((a, b) => a.localeCompare(b));
+  const precompileAddrs = [...new Set(sortedAddrs)];
+
+  // Return the number of differences.
+  return precompileAddrs.reduce((count, addr) => {
+    const basePrecompile = base.find((p) => getAddress(p.address) === addr);
+    const targetPrecompile = target.find((p) => getAddress(p.address) === addr);
+    if (!basePrecompile || !targetPrecompile) {
+      return 0;
+    }
+
+    const isEqual = JSON.stringify(basePrecompile) === JSON.stringify(targetPrecompile);
+    if (!isEqual) {
+      count++;
+    }
+    return count;
+  }, 0);
+};
+*/
 
 export default function handler(request: NextRequest) {
   try {
@@ -42,6 +71,13 @@ export default function handler(request: NextRequest) {
       });
     }
 
+    //const precompileDiffs = countPrecompilesDiff(baseChain.precompiles,  targetChain.precompiles);
+    const precompileDiffs = 2;
+    const predeployDiffs = 10;
+    const opcodeDiffs = 22;
+    const signatureTypeDiff = 5;
+    const totalDiff = precompileDiffs + predeployDiffs + opcodeDiffs + signatureTypeDiff;
+
     return new ImageResponse(
       (
         <div
@@ -70,12 +106,20 @@ export default function handler(request: NextRequest) {
             20 total differences between 💠 {baseChain.metadata.name} and 🔴{' '}
             {targetChain.metadata.name}
           </p>
+          <p></p>
           <p
             style={{
               fontSize: 24,
             }}
           >
-            ➡️ Precompiles (x5) / Predeploys (x5) / Signature Types (x10) / Opcodes (x33)
+            {`⚠️ ${totalDiff} total differences ⚠️`}
+          </p>
+          <p
+            style={{
+              fontSize: 24,
+            }}
+          >
+            {`Precompiles (x${precompileDiffs}) / Predeploys (x${predeployDiffs}) / Signature Types (x${signatureTypeDiff}) / Opcodes (x${opcodeDiffs})`}
           </p>
         </div>
       ),
