@@ -1,3 +1,4 @@
+import { chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { Head } from '@/components/layout/Head';
 import { SITE_DESCRIPTION } from '@/lib/constants';
@@ -24,3 +25,13 @@ const Home = () => {
 };
 
 export default Home;
+
+export const findChain = (chainId: string) => {
+  try {
+    const id = BigInt(chainId);
+    if (id <= 0n) return undefined;
+    return Object.values(chains).find((chain) => BigInt(chain.metadata.id) === id);
+  } catch (e) {
+    return undefined; // `chainId` could not be parsed as a `BigInt`.
+  }
+};

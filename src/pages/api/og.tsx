@@ -3,7 +3,7 @@ import { ImageResponse } from '@vercel/og';
 import { getAddress } from 'viem';
 import { SITE_NAME } from '@/lib/constants';
 import { Opcode, Precompile, Predeploy, SignatureType } from '@/types';
-import { findChain } from '../utils';
+import { findChain } from '..';
 
 const defaultBase = 1; // ethereum
 const defaultTarget = 10; // optimism

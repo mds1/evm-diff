@@ -11,7 +11,7 @@ import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
 import { classNames } from '@/lib/utils';
 import { Chain } from '@/types';
-import { findChain } from './utils';
+import { findChain } from './index';
 
 interface Props<T> {
   base: T;
