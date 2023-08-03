@@ -212,6 +212,7 @@ export default function handler(request: NextRequest) {
         height: 630,
       }
     );
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     console.log(`${e.message}`);
     return new Response(`Failed to generate the image`, {
