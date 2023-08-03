@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { LinkIcon } from '@heroicons/react/20/solid';
-import { ChainDiffSelector } from '@/components/ChainDiffSelector';
+import { chains } from '@/chains';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
@@ -34,9 +35,35 @@ const SECTION_MAP: Record<string, Section> = {
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
 };
 
+const SupportedChainsList = () => {
+  const supportedChains = [chains.arbitrum, chains.mainnet, chains.optimism];
+  return (
+    <p className='text-secondary mt-6 text-base leading-7'>
+      {`Supported chains: `}
+      {supportedChains
+        .map((chain) => {
+          const element = chain.metadata.blockExplorers?.default.url ? (
+            <Link href={chain.metadata.blockExplorers.default.url}>{chain.metadata.name}</Link>
+          ) : (
+            <span key={chain.metadata.id}>{chain.metadata.name}</span>
+          );
+          return (
+            <span key={chain.metadata.id}>
+              {element} {`(#${chain.metadata.id})`}
+            </span>
+          );
+        })
+        .reduce((accumulator, currentElement) => (
+          <>
+            {accumulator} {' / '} {currentElement}
+          </>
+        ))}
+    </p>
+  );
+};
+
 const Diff = () => {
   // -------- Parse query parameters --------
-
   const router = useRouter();
   const { base, target } = router.query;
 
@@ -47,13 +74,11 @@ const Diff = () => {
     <main className='text-center'>
       <h1 className='text-primary text-3xl font-bold tracking-tight sm:text-5xl'>Oops!</h1>
       <p className='text-secondary mt-6 text-base leading-7'>
-        Invalid chain(s) provided, please try again below.
+        Invalid chain(s) provided, please try again.
       </p>
-      <div className='mt-10'>
-        <div>
-          <ChainDiffSelector />
-        </div>
-      </div>
+      <SupportedChainsList />
+      <br />
+      <Link href='/'>Go back to Homepage</Link>
     </main>
   );
 
