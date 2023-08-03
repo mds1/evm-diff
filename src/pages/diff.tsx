@@ -43,7 +43,14 @@ const SupportedChainsList = () => {
       {supportedChains
         .map((chain) => {
           const element = chain.metadata.blockExplorers?.default.url ? (
-            <Link href={chain.metadata.blockExplorers.default.url}>{chain.metadata.name}</Link>
+            <a
+              key={chain.metadata.id}
+              href={chain.metadata.blockExplorers.default.url}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              {chain.metadata.name}
+            </a>
           ) : (
             <span key={chain.metadata.id}>{chain.metadata.name}</span>
           );
