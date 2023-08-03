@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
 import { getAddress } from 'viem';
-import { DEFAULT_BASE_CHAIN, DEFAULT_TARGET_CHAIN, SITE_NAME } from '@/lib/constants';
+import { DEFAULT_BASE_CHAIN_ID, DEFAULT_TARGET_CHAIN_ID, SITE_NAME } from '@/lib/constants';
 import { Opcode, Precompile, Predeploy, SignatureType } from '@/types';
 import { findChain } from '..';
 
@@ -74,7 +74,7 @@ export default function handler(request: NextRequest) {
     const { searchParams } = new URL(request.url);
 
     // ?base=<base>
-    const defaultBase = DEFAULT_BASE_CHAIN.metadata.id;
+    const defaultBase = DEFAULT_BASE_CHAIN_ID;
     const hasBase = searchParams.has('base');
     let base = hasBase ? searchParams.get('base')?.slice(0, 100) : defaultBase;
     if (!base) {
@@ -82,7 +82,7 @@ export default function handler(request: NextRequest) {
     }
 
     // ?target=<target>
-    const defaultTarget = DEFAULT_TARGET_CHAIN.metadata.id;
+    const defaultTarget = DEFAULT_TARGET_CHAIN_ID;
     const hasTarget = searchParams.has('target');
     let target = hasTarget ? searchParams.get('target')?.slice(0, 100) : defaultTarget;
     if (!target) {
