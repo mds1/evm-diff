@@ -15,7 +15,7 @@ export const config = {
 type Comparator<T> = (a: T, b: T) => boolean;
 type ObjectKeyExtractor<T> = (item: T) => string | number;
 
-function countDifferences<T, U>(
+function countDifferences<T>(
   base: T[],
   target: T[],
   getKey: ObjectKeyExtractor<T>,
@@ -32,7 +32,7 @@ function countDifferences<T, U>(
   });
   const keys = [...new Set(sortedKeys)];
 
-  return keys.reduce((count: number, key: any) => {
+  return keys.reduce((count: number, key: string | number) => {
     const baseItem = base.find((item) => getKey(item) === key);
     const targetItem = target.find((item) => getKey(item) === key);
     if (!baseItem || !targetItem) {
