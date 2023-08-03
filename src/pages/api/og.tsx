@@ -12,102 +12,64 @@ export const config = {
   runtime: 'edge',
 };
 
-const countPrecompilesDiff = (base: Precompile[], target: Precompile[]): number => {
-  // Generate a sorted list of the base and target elements.
-  const sortedAddrs = [
-    ...base.map((p) => getAddress(p.address)),
-    ...target.map((p) => getAddress(p.address)),
-  ].sort((a, b) => a.localeCompare(b));
-  const precompileAddrs = [...new Set(sortedAddrs)];
+type Comparator<T> = (a: T, b: T) => boolean;
+type ObjectKeyExtractor<T> = (item: T) => string | number;
 
-  // Return the number of differences.
-  return precompileAddrs.reduce((count: number, addr: string) => {
-    const basePrecompile = base.find((p) => getAddress(p.address) === addr);
-    const targetPrecompile = target.find((p) => getAddress(p.address) === addr);
-    if (!basePrecompile || !targetPrecompile) {
+function countDifferences<T, U>(
+  base: T[],
+  target: T[],
+  getKey: ObjectKeyExtractor<T>,
+  isEqual: Comparator<T>
+): number {
+  const sortedKeys = [...base.map(getKey), ...target.map(getKey)].sort((a, b) => {
+    if (typeof a === 'string' && typeof b === 'string') {
+      return a.localeCompare(b);
+    } else if (typeof a === 'number' && typeof b === 'number') {
+      return a - b;
+    } else {
+      throw new Error('Invalid key types for sorting.');
+    }
+  });
+  const keys = [...new Set(sortedKeys)];
+
+  return keys.reduce((count: number, key: any) => {
+    const baseItem = base.find((item) => getKey(item) === key);
+    const targetItem = target.find((item) => getKey(item) === key);
+    if (!baseItem || !targetItem) {
       count++;
       return count;
     }
 
-    const isEqual = JSON.stringify(basePrecompile) === JSON.stringify(targetPrecompile);
-    if (!isEqual) {
+    if (!isEqual(baseItem, targetItem)) {
       count++;
     }
     return count;
   }, 0);
+}
+
+const countPrecompilesDiff = (base: Precompile[], target: Precompile[]): number => {
+  const getKey = (p: Precompile) => getAddress(p.address);
+  const isEqual = (a: Precompile, b: Precompile) => JSON.stringify(a) === JSON.stringify(b);
+  return countDifferences(base, target, getKey, isEqual);
 };
 
 const countPredeployDiffs = (base: Predeploy[], target: Predeploy[]): number => {
-  // Generate a sorted list of the base and target elements.
-  const sortedAddrs = [
-    ...base.map((p) => getAddress(p.address)),
-    ...target.map((p) => getAddress(p.address)),
-  ].sort((a, b) => a.localeCompare(b));
-  const predeployAddrs = [...new Set(sortedAddrs)];
-
-  // Return the number of differences.
-  return predeployAddrs.reduce((count: number, addr: string) => {
-    const basePredeploy = base.find((p) => getAddress(p.address) === addr);
-    const targetPredeploy = target.find((p) => getAddress(p.address) === addr);
-    if (!basePredeploy || !targetPredeploy) {
-      count++;
-      return count;
-    }
-
-    const isEqual = JSON.stringify(basePredeploy) === JSON.stringify(targetPredeploy);
-    if (!isEqual) {
-      count++;
-    }
-    return count;
-  }, 0);
+  const getKey = (p: Predeploy) => getAddress(p.address);
+  const isEqual = (a: Predeploy, b: Predeploy) => JSON.stringify(a) === JSON.stringify(b);
+  return countDifferences(base, target, getKey, isEqual);
 };
 
 const countOpcodeDiffs = (base: Opcode[], target: Opcode[]): number => {
-  // Generate a sorted list of the base and target elements.
-  const sortedNumbers = [...base.map((o) => o.number), ...target.map((o) => o.number)].sort(
-    (a, b) => a - b
-  );
-  const opcodeNumbers = [...new Set(sortedNumbers)];
-
-  // Return the number of differences.
-  return opcodeNumbers.reduce((count: number, id: number) => {
-    const baseOpcode = base.find((o) => o.number === id);
-    const targetOpcode = target.find((o) => o.number === id);
-    if (!baseOpcode || !targetOpcode) {
-      count++;
-      return count;
-    }
-
-    const isEqual =
-      JSON.stringify(convertToComparableOpcode(baseOpcode as Opcode)) ===
-      JSON.stringify(convertToComparableOpcode(targetOpcode as Opcode));
-    if (!isEqual) {
-      count++;
-    }
-    return count;
-  }, 0);
+  const getKey = (o: Opcode) => o.number;
+  const isEqual = (a: Opcode, b: Opcode) =>
+    JSON.stringify(convertToComparableOpcode(a)) === JSON.stringify(convertToComparableOpcode(b));
+  return countDifferences(base, target, getKey, isEqual);
 };
 
 const countSignatureTypeDiffs = (base: SignatureType[], target: SignatureType[]): number => {
-  // Generate a sorted list of the base and target elements.
-  const allPrefixBytes = [...base.map((t) => t.prefixByte), ...target.map((t) => t.prefixByte)];
-  const prefixBytes = [...new Set(allPrefixBytes.sort((a, b) => a - b))];
-
-  // Return the number of differences.
-  return prefixBytes.reduce((count: number, prefix: number) => {
-    const baseSigType = base.find((s) => s.prefixByte === prefix);
-    const targetSigType = target.find((s) => s.prefixByte === prefix);
-    if (!baseSigType || !targetSigType) {
-      count++;
-      return count;
-    }
-
-    const isEqual = JSON.stringify(baseSigType) === JSON.stringify(targetSigType);
-    if (!isEqual) {
-      count++;
-    }
-    return count;
-  }, 0);
+  const getKey = (s: SignatureType) => s.prefixByte;
+  const isEqual = (a: SignatureType, b: SignatureType) => JSON.stringify(a) === JSON.stringify(b);
+  return countDifferences(base, target, getKey, isEqual);
 };
 
 export default function handler(request: NextRequest) {
