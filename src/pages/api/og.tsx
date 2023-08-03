@@ -25,7 +25,7 @@ const countPrecompilesDiff = (base: Precompile[], target: Precompile[]): number 
     const basePrecompile = base.find((p) => getAddress(p.address) === addr);
     const targetPrecompile = target.find((p) => getAddress(p.address) === addr);
     if (!basePrecompile || !targetPrecompile) {
-      return 0;
+      return 1;
     }
 
     const isEqual = JSON.stringify(basePrecompile) === JSON.stringify(targetPrecompile);
@@ -49,7 +49,7 @@ const countPredeployDiffs = (base: Predeploy[], target: Predeploy[]): number => 
     const basePredeploy = base.find((p) => getAddress(p.address) === addr);
     const targetPredeploy = target.find((p) => getAddress(p.address) === addr);
     if (!basePredeploy || !targetPredeploy) {
-      return 0;
+      return 1;
     }
 
     const isEqual = JSON.stringify(basePredeploy) === JSON.stringify(targetPredeploy);
@@ -72,7 +72,7 @@ const countOpcodeDiffs = (base: Opcode[], target: Opcode[]): number => {
     const baseOpcode = base.find((o) => o.number === id);
     const targetOpcode = target.find((o) => o.number === id);
     if (!baseOpcode || !targetOpcode) {
-      return 0;
+      return 1;
     }
 
     const isEqual =
@@ -95,7 +95,7 @@ const countSignatureTypeDiffs = (base: SignatureType[], target: SignatureType[])
     const baseSigType = base.find((s) => s.prefixByte === prefix);
     const targetSigType = target.find((s) => s.prefixByte === prefix);
     if (!baseSigType || !targetSigType) {
-      return 0;
+      return 1;
     }
 
     const isEqual = JSON.stringify(baseSigType) === JSON.stringify(targetSigType);
@@ -144,11 +144,11 @@ export default function handler(request: NextRequest) {
       baseChain.opcodes as Opcode[],
       targetChain.opcodes as Opcode[]
     );
-    const signatureTypeDiff = countSignatureTypeDiffs(
+    const signatureTypeDiffs = countSignatureTypeDiffs(
       baseChain.signatureTypes,
       targetChain.signatureTypes
     );
-    const totalDiff = precompileDiffs + predeployDiffs + opcodeDiffs + signatureTypeDiff;
+    const totalDiffs = precompileDiffs + predeployDiffs + opcodeDiffs + signatureTypeDiffs;
 
     return new ImageResponse(
       (
@@ -175,7 +175,7 @@ export default function handler(request: NextRequest) {
               fontSize: 34,
             }}
           >
-            20 total differences between 💠 {baseChain.metadata.name} and 🔴{' '}
+            20 total differences between {baseChain.metadata.name} and {' '}
             {targetChain.metadata.name}
           </p>
           <p></p>
@@ -184,15 +184,14 @@ export default function handler(request: NextRequest) {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'center',
+              //justifyContent: 'center',
               fontSize: 24,
             }}
           >
-            <p>{`⚠️ ${totalDiff} total differences ⚠️`}</p>
+            <p>{`⚠️ ${totalDiffs} total differences ⚠️`}</p>
             <div
               style={{
                 display: 'flex',
-                flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
@@ -200,7 +199,7 @@ export default function handler(request: NextRequest) {
               <p>{precompileDiffs > 0 && `/Precompiles (x${precompileDiffs})`}</p>
               <p>{predeployDiffs > 0 && `/Predeploys (x${predeployDiffs})`}</p>
               <p>{opcodeDiffs > 0 && `/Opcodes (x${opcodeDiffs})`}</p>
-              <p>{signatureTypeDiff > 0 && `/SignatureTypes (x${signatureTypeDiff})`}</p>
+              <p>{signatureTypeDiffs > 0 && `/SignatureTypes (x${signatureTypeDiffs})`}</p>
             </div>
           </div>
         </div>
