@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { Head } from '@/components/layout/Head';
-import { SITE_DESCRIPTION } from '@/lib/constants';
+import { DEFAULT_BASE_CHAIN, DEFAULT_TARGET_CHAIN, SITE_DESCRIPTION } from '@/lib/constants';
 
 const Home = () => {
-  const [base, setBase] = useState(chains.mainnet);
-  const [target, setTarget] = useState(chains.optimism);
+  const [base, setBase] = useState(DEFAULT_BASE_CHAIN);
+  const [target, setTarget] = useState(DEFAULT_TARGET_CHAIN);
 
   return (
     <>
