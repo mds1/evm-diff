@@ -1,6 +1,8 @@
 import { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
+import { getAddress } from 'viem';
 import { SITE_NAME } from '@/lib/constants';
+import { Precompile, Predeploy } from '@/types';
 import { findChain } from '../utils';
 
 const defaultBase = 1; // ethereum
@@ -10,11 +12,7 @@ export const config = {
   runtime: 'edge',
 };
 
-/*
-const countPrecompilesDiff = (
-  base: Precompile[],
-  target: Precompile[]
-): number => {
+const countPrecompilesDiff = (base: Precompile[], target: Precompile[]): number => {
   // Generate a sorted list of the base and target elements.
   const sortedAddrs = [
     ...base.map((p) => getAddress(p.address)),
@@ -37,7 +35,30 @@ const countPrecompilesDiff = (
     return count;
   }, 0);
 };
-*/
+
+const countPredeployDiffs = (base: Predeploy[], target: Predeploy[]): number => {
+  // Generate a sorted list of the base and target elements.
+  const sortedAddrs = [
+    ...base.map((p) => getAddress(p.address)),
+    ...target.map((p) => getAddress(p.address)),
+  ].sort((a, b) => a.localeCompare(b));
+  const predeployAddrs = [...new Set(sortedAddrs)];
+
+  // Return the number of differences.
+  return predeployAddrs.reduce((count, addr) => {
+    const basePredeploy = base.find((p) => getAddress(p.address) === addr);
+    const targetPredeploy = target.find((p) => getAddress(p.address) === addr);
+    if (!basePredeploy || !targetPredeploy) {
+      return 0;
+    }
+
+    const isEqual = JSON.stringify(basePredeploy) === JSON.stringify(targetPredeploy);
+    if (!isEqual) {
+      count++;
+    }
+    return count;
+  }, 0);
+};
 
 export default function handler(request: NextRequest) {
   try {
@@ -71,9 +92,9 @@ export default function handler(request: NextRequest) {
       });
     }
 
-    //const precompileDiffs = countPrecompilesDiff(baseChain.precompiles,  targetChain.precompiles);
-    const precompileDiffs = 2;
-    const predeployDiffs = 10;
+    const precompileDiffs = countPrecompilesDiff(baseChain.precompiles, targetChain.precompiles);
+    const predeployDiffs = countPredeployDiffs(baseChain.predeploys, targetChain.predeploys);
+    //const predeployDiffs = 3;
     const opcodeDiffs = 22;
     const signatureTypeDiff = 5;
     const totalDiff = precompileDiffs + predeployDiffs + opcodeDiffs + signatureTypeDiff;
@@ -107,20 +128,30 @@ export default function handler(request: NextRequest) {
             {targetChain.metadata.name}
           </p>
           <p></p>
-          <p
+          <div
             style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
               fontSize: 24,
             }}
           >
-            {`⚠️ ${totalDiff} total differences ⚠️`}
-          </p>
-          <p
-            style={{
-              fontSize: 24,
-            }}
-          >
-            {`Precompiles (x${precompileDiffs}) / Predeploys (x${predeployDiffs}) / Signature Types (x${signatureTypeDiff}) / Opcodes (x${opcodeDiffs})`}
-          </p>
+            <p>{`⚠️ ${totalDiff} total differences ⚠️`}</p>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <p>{precompileDiffs > 0 && `/Precompiles (x${precompileDiffs})`}</p>
+              <p>{predeployDiffs > 0 && `/Predeploys (x${predeployDiffs})`}</p>
+              <p>{signatureTypeDiff > 0 && `/SignatureTypes (x${signatureTypeDiff})`}</p>
+              <p>{opcodeDiffs > 0 && `/Opcodes (x${opcodeDiffs})`}</p>
+            </div>
+          </div>
         </div>
       ),
       {
