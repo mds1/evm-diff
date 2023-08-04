@@ -1,4 +1,5 @@
 import NextHead from 'next/head';
+import { useRouter } from 'next/router';
 import {
   COMPANY_URL,
   OG_ENDPOINT,
@@ -11,8 +12,6 @@ import {
 interface Props {
   title?: string;
   description?: string;
-  base?: string | string[] | undefined;
-  target?: string | string[] | undefined;
 }
 
 // Function to generate the query parameter string based on base and target values.
@@ -31,7 +30,9 @@ const getQueryParams = (
 };
 
 export const Head = (props: Props) => {
-  const { title, description, base, target } = props;
+  const { title, description } = props;
+  const router = useRouter();
+  const { base, target } = router.query;
   return (
     <NextHead>
       <title>{props.title ? `${title} | ${SITE_NAME}` : SITE_NAME}</title>
@@ -40,8 +41,8 @@ export const Head = (props: Props) => {
 
       <meta property='og:title' content={SITE_NAME} />
       <meta property='og:description' content={SITE_DESCRIPTION} />
-      <meta property="og:type" content="website" />  
-      <meta property="og:url" content={SITE_URL} />
+      <meta property='og:type' content='website' />
+      <meta property='og:url' content={SITE_URL} />
       <meta
         property='og:image'
         content={`${SITE_URL}${OG_ENDPOINT}${getQueryParams(base, target)}`}
