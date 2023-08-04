@@ -1,11 +1,10 @@
-import { mainnet } from '@wagmi/chains';
-import { optimism } from '@wagmi/chains';
 import { MainnetHardfork } from '@/chains/mainnet/hardforks';
 
 // -------- Website data --------
 export const SITE_NAME = 'EVM Diff';
 export const SITE_DESCRIPTION = 'Diff EVM-compatible chains';
-export const SITE_URL = 'https://www.evmdiff.com';
+export const SITE_URL =
+  process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.evmdiff.com';
 export const OG_ENDPOINT = 'api/og'; // For reference, see `src/pages/og.tsx`.
 export const COMPANY_NAME = 'Matt Solomon';
 export const COMPANY_URL = 'https://twitter.com/msolomon44';
@@ -13,8 +12,6 @@ export const GITHUB_URL = 'https://github.com/mds1/evm-diff';
 export const TWITTER_URL = 'https://twitter.com/msolomon44';
 
 // -------- Data and References --------
-export const DEFAULT_BASE_CHAIN_ID = mainnet.id;
-export const DEFAULT_TARGET_CHAIN_ID = optimism.id;
 export const CURRENT_MAINNET_HARDFORK = MainnetHardfork.Shanghai;
 
 // All opcodes are linked to their implementation in https://github.com/ethereum/execution-specs.

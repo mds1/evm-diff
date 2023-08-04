@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
 import { getAddress } from 'viem';
-import { DEFAULT_BASE_CHAIN_ID, DEFAULT_TARGET_CHAIN_ID, SITE_NAME } from '@/lib/constants';
+import { COMPANY_NAME, SITE_DESCRIPTION, SITE_NAME } from '@/lib/constants';
 import { Opcode, Precompile, Predeploy, SignatureType } from '@/types';
 import { findChain } from '..';
 
@@ -69,24 +69,60 @@ const countSignatureTypeDiffs = (base: SignatureType[], target: SignatureType[])
   return countDifferences(base, target, getKey, isEqual);
 };
 
+const defaultImageResponse = new ImageResponse(
+  (
+    <div
+      style={{
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+      }}
+    >
+      <h2
+        style={{
+          fontSize: 100,
+        }}
+      >
+        {`✨ ${SITE_NAME} ✨`}
+      </h2>
+      <p
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: 34,
+        }}
+      >
+        <p>{SITE_DESCRIPTION}</p>
+        <p>Made by {COMPANY_NAME}</p>
+      </p>
+    </div>
+  ),
+  {
+    width: 1200,
+    height: 630,
+  }
+);
+
 export default function handler(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
 
     // ?base=<base>
-    const defaultBase = DEFAULT_BASE_CHAIN_ID;
     const hasBase = searchParams.has('base');
-    let base = hasBase ? searchParams.get('base')?.slice(0, 100) : defaultBase;
-    if (!base) {
-      base = defaultBase;
-    }
+    const base = hasBase ? searchParams.get('base')?.slice(0, 100) : '';
 
     // ?target=<target>
-    const defaultTarget = DEFAULT_TARGET_CHAIN_ID;
     const hasTarget = searchParams.has('target');
-    let target = hasTarget ? searchParams.get('target')?.slice(0, 100) : defaultTarget;
-    if (!target) {
-      target = defaultTarget;
+    const target = hasTarget ? searchParams.get('target')?.slice(0, 100) : '';
+
+    if (!base || !target) {
+      return defaultImageResponse;
     }
 
     const baseChain = findChain(base as string);

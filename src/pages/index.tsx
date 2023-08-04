@@ -2,13 +2,11 @@ import { useState } from 'react';
 import { chains } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { Head } from '@/components/layout/Head';
-import { DEFAULT_BASE_CHAIN_ID, DEFAULT_TARGET_CHAIN_ID, SITE_DESCRIPTION } from '@/lib/constants';
+import { SITE_DESCRIPTION } from '@/lib/constants';
 
 const Home = () => {
-  const [base, setBase] = useState(findChain(DEFAULT_BASE_CHAIN_ID.toString()) || chains.mainnet);
-  const [target, setTarget] = useState(
-    findChain(DEFAULT_TARGET_CHAIN_ID.toString()) || chains.optimism
-  );
+  const [base, setBase] = useState(chains.mainnet);
+  const [target, setTarget] = useState(chains.optimism);
 
   return (
     <>
