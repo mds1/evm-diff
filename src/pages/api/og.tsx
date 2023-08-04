@@ -109,6 +109,45 @@ const defaultImageResponse = new ImageResponse(
   }
 );
 
+const errorImageResponse = new ImageResponse(
+  (
+    <div
+      style={{
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+      }}
+    >
+      <h2
+        style={{
+          fontSize: 100,
+        }}
+      >
+        {`✨ ${SITE_NAME} ✨`}
+      </h2>
+      <p
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: 34,
+        }}
+      >
+        Invalid chain(s) provided, please try again.
+      </p>
+    </div>
+  ),
+  {
+    width: 1200,
+    height: 630,
+  }
+);
+
 export default function handler(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -121,22 +160,18 @@ export default function handler(request: NextRequest) {
     const hasTarget = searchParams.has('target');
     const target = hasTarget ? searchParams.get('target')?.slice(0, 100) : '';
 
-    if (!base || !target) {
+    if (base === undefined || base === '' || target === undefined || target === '') {
       return defaultImageResponse;
     }
 
     const baseChain = findChain(base as string);
-    if (!baseChain) {
-      return new Response(`Chain ID ${base} doesn't exist`, {
-        status: 400,
-      });
+    if (baseChain === undefined) {
+      return errorImageResponse;
     }
 
     const targetChain = findChain(target as string);
-    if (!targetChain) {
-      return new Response(`Chain ID ${target} doesn't exist`, {
-        status: 400,
-      });
+    if (targetChain === undefined) {
+      return errorImageResponse;
     }
 
     const precompileDiffs = countPrecompilesDiff(baseChain.precompiles, targetChain.precompiles);
