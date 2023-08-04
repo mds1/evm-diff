@@ -115,7 +115,7 @@ const Diff = () => {
     const sections = Object.keys(baseChain);
     return (
       <>
-        <Head base={base} target={target} />
+        <Head />
         <main>
           <Toggle
             enabled={onlyShowDiff}
