@@ -1,19 +1,13 @@
-import { Dispatch, SetStateAction } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { chains } from '@/chains';
 import { ChainDiffSelectorChainCombobox } from '@/components/ui/ChainDiffSelectorChainCombobox';
 import { Chain } from '@/types';
 
-interface Props {
-  base: Chain;
-  setBase: Dispatch<SetStateAction<Chain>>;
-  target: Chain;
-  setTarget: Dispatch<SetStateAction<Chain>>;
-}
-
-export const ChainDiffSelector = (props: Props) => {
+export const ChainDiffSelector = () => {
   const router = useRouter();
-  const { base, setBase, target, setTarget } = props;
+  const [base, setBase] = useState(chains.mainnet);
+  const [target, setTarget] = useState(chains.optimism);
   const chainsArray: Chain[] = Object.values(chains);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {

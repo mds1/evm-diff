@@ -4,12 +4,27 @@ import { OG_ENDPOINT, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/consta
 interface Props {
   title?: string;
   description?: string;
-  baseId: number;
-  targetId: number;
+  base?: string | string[] | undefined;
+  target?: string | string[] | undefined;
 }
 
+// Function to generate the query parameter string based on base and target values.
+const getQueryParams = (
+  base: string | string[] | undefined,
+  target: string | string[] | undefined
+) => {
+  let queryParams = '';
+  if (typeof base === 'string') {
+    queryParams += `?base=${base}`;
+  }
+  if (typeof target === 'string') {
+    queryParams += `${queryParams ? '&' : '?'}target=${target}`;
+  }
+  return queryParams;
+};
+
 export const Head = (props: Props) => {
-  const { title, description, baseId, targetId } = props;
+  const { title, description, base, target } = props;
   return (
     <NextHead>
       <title>{props.title ? `${title} | ${SITE_NAME}` : SITE_NAME}</title>
@@ -17,7 +32,7 @@ export const Head = (props: Props) => {
       <meta name='viewport' content='width=device-width, initial-scale=1' />
       <meta
         property='og:image'
-        content={`${SITE_URL}/${OG_ENDPOINT}?base=${baseId}&target=${targetId}`}
+        content={`${SITE_URL}${OG_ENDPOINT}${getQueryParams(base, target)}`}
       />
     </NextHead>
   );
