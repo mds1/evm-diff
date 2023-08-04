@@ -109,45 +109,6 @@ const defaultImageResponse = new ImageResponse(
   }
 );
 
-const errorImageResponse = new ImageResponse(
-  (
-    <div
-      style={{
-        height: '100%',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'white',
-      }}
-    >
-      <h2
-        style={{
-          fontSize: 100,
-        }}
-      >
-        {`✨ ${SITE_NAME} ✨`}
-      </h2>
-      <p
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: 34,
-        }}
-      >
-        Invalid chain(s) provided, please try again.
-      </p>
-    </div>
-  ),
-  {
-    width: 1200,
-    height: 630,
-  }
-);
-
 export default function handler(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -166,12 +127,12 @@ export default function handler(request: NextRequest) {
 
     const baseChain = findChain(base as string);
     if (baseChain === undefined) {
-      return errorImageResponse;
+      return defaultImageResponse;
     }
 
     const targetChain = findChain(target as string);
     if (targetChain === undefined) {
-      return errorImageResponse;
+      return defaultImageResponse;
     }
 
     const precompileDiffs = countPrecompilesDiff(baseChain.precompiles, targetChain.precompiles);
