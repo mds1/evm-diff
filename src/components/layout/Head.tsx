@@ -40,6 +40,8 @@ export const Head = (props: Props) => {
 
       <meta property='og:title' content={SITE_NAME} />
       <meta property='og:description' content={SITE_DESCRIPTION} />
+      <meta property="og:type" content="website" />  
+      <meta property="og:url" content={SITE_URL} />
       <meta
         property='og:image'
         content={`${SITE_URL}${OG_ENDPOINT}${getQueryParams(base, target)}`}
