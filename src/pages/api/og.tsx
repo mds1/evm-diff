@@ -1,9 +1,9 @@
 import { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
 import { getAddress } from 'viem';
+import { getChainById } from '@/chains';
 import { COMPANY_NAME, SITE_DESCRIPTION, SITE_NAME } from '@/lib/constants';
 import { Opcode, Precompile, Predeploy, SignatureType } from '@/types';
-import { findChain } from '..';
 
 export const config = {
   runtime: 'edge',
@@ -125,12 +125,12 @@ export default function handler(request: NextRequest) {
       return defaultImageResponse;
     }
 
-    const baseChain = findChain(base as string);
+    const baseChain = getChainById(base as string);
     if (baseChain === undefined) {
       return defaultImageResponse;
     }
 
-    const targetChain = findChain(target as string);
+    const targetChain = getChainById(target as string);
     if (targetChain === undefined) {
       return defaultImageResponse;
     }

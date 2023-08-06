@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { LinkIcon } from '@heroicons/react/20/solid';
-import { chains } from '@/chains';
+import { chains, getChainById } from '@/chains';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
@@ -13,7 +13,6 @@ import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
 import { classNames } from '@/lib/utils';
 import { Chain } from '@/types';
-import { findChain } from './index';
 
 interface Props<T> {
   base: T;
@@ -75,8 +74,8 @@ const Diff = () => {
   const router = useRouter();
   const { base, target } = router.query;
 
-  const baseChain = findChain(base as string);
-  const targetChain = findChain(target as string);
+  const baseChain = getChainById(base as string);
+  const targetChain = getChainById(target as string);
 
   const ErrorDiv = () => (
     <main className='text-center'>
