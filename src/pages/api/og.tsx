@@ -96,7 +96,15 @@ export default async function handler(request: NextRequest) {
               fontSize: 100,
             }}
           >
+            {/*
+               Temporarily disable eslint: warnings around using `img` over the NextImage, and TS
+               errors with `Type 'ArrayBuffer' is not assignable to type 'string'`, but this does
+               works and is recommended in the NextJS docs: https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation/og-image-examples#using-a-local-image
+             */}
+            {/* eslint-disable */}
+            {/* @ts-ignore */}
             <img width='400' src={imageData} />
+            {/* eslint-enable */}
           </h2>
           <p
             style={{
@@ -147,7 +155,15 @@ export default async function handler(request: NextRequest) {
             paddingTop: '50px',
           }}
         >
+          {/*
+            Temporarily disable eslint: warnings around using `img` over the NextImage, and TS
+            errors with `Type 'ArrayBuffer' is not assignable to type 'string'`, but this does
+            works and is recommended in the NextJS docs: https://vercel.com/docs/concepts/functions/edge-functions/og-image-generation/og-image-examples#using-a-local-image
+          */}
+          {/* eslint-disable */}
+          {/* @ts-ignore */}
           <img width='400' src={imageData} />
+          {/* eslint-enable */}
           <p style={{ fontSize: 34, paddingTop: '40px' }}>
             {`${totalDiffs} difference${totalDiffs !== 1 ? 's' : ''} between ${
               baseChain.metadata.name
