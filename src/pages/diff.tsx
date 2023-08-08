@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { LinkIcon } from '@heroicons/react/20/solid';
-import { chains, getChainById } from '@/chains';
+import { getChainById } from '@/chains';
+import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
@@ -11,7 +11,6 @@ import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
 import { Head } from '@/components/layout/Head';
 import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
-import { SITE_NAME } from '@/lib/constants';
 import { classNames } from '@/lib/utils';
 import { Chain } from '@/types';
 
@@ -36,40 +35,6 @@ const SECTION_MAP: Record<string, Section> = {
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
 };
 
-const SupportedChainsList = () => {
-  const supportedChains = Object.values(chains);
-  return (
-    <p className='text-secondary mt-6 text-base leading-7'>
-      {`Supported chains: `}
-      {supportedChains
-        .map((chain) => {
-          const element = chain.metadata.blockExplorers?.default.url ? (
-            <a
-              key={chain.metadata.id}
-              href={chain.metadata.blockExplorers.default.url}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              {chain.metadata.name}
-            </a>
-          ) : (
-            <span key={chain.metadata.id}>{chain.metadata.name}</span>
-          );
-          return (
-            <span key={chain.metadata.id}>
-              {element} {`(#${chain.metadata.id})`}
-            </span>
-          );
-        })
-        .reduce((accumulator, currentElement) => (
-          <>
-            {accumulator} {' / '} {currentElement}
-          </>
-        ))}
-    </p>
-  );
-};
-
 const Diff = () => {
   // -------- Parse query parameters --------
   const router = useRouter();
@@ -82,11 +47,11 @@ const Diff = () => {
     <main className='text-center'>
       <h1 className='text-primary text-3xl font-bold tracking-tight sm:text-5xl'>Oops!</h1>
       <p className='text-secondary mt-6 text-base leading-7'>
-        Invalid chain(s) provided, please try again.
+        Invalid chain(s) provided, please try again below.
       </p>
-      <SupportedChainsList />
-      <br />
-      <Link href='/'>Go back to Homepage</Link>
+      <div className='mx-auto mt-10 flex max-w-md gap-x-4 rounded-lg border border-zinc-200 dark:border-zinc-700'>
+        <ChainDiffSelector />
+      </div>
     </main>
   );
 
