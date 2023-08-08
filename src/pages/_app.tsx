@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app';
 import { Open_Sans } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
-import { Head } from '@/components/layout/Head';
 import { Layout } from '@/components/layout/Layout';
 import '@/styles/globals.css';
 
@@ -17,7 +16,6 @@ function App({ Component, pageProps }: AppProps) {
       {mounted && (
         <Layout>
           <div className={font.className}>
-            <Head />
             <Component {...pageProps} />
             <Analytics />
           </div>
