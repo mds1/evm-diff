@@ -1,5 +1,3 @@
-import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
-
 export enum MainnetHardfork {
   Frontier,
   Homestead,
@@ -18,6 +16,8 @@ export enum MainnetHardfork {
   Paris,
   Shanghai,
 }
+
+export const CURRENT_MAINNET_HARDFORK = MainnetHardfork.Shanghai;
 
 // Retrieve all the hard forks from the starting hard fork to the current mainnet hard fork.
 export const getHardforksFrom = (startingHardfork: MainnetHardfork): string[] =>
