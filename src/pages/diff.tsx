@@ -11,6 +11,7 @@ import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
 import { Head } from '@/components/layout/Head';
 import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
+import { SITE_NAME } from '@/lib/constants';
 import { classNames } from '@/lib/utils';
 import { Chain } from '@/types';
 
@@ -114,7 +115,7 @@ const Diff = () => {
     const sections = Object.keys(baseChain);
     return (
       <>
-        <Head />
+        <Head title={`${baseChain.metadata.name} vs. ${targetChain.metadata.name}`} />
         <main>
           <Toggle
             enabled={onlyShowDiff}

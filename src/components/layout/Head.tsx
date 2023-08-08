@@ -1,5 +1,5 @@
 import NextHead from 'next/head';
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import {
   COMPANY_URL,
   OG_ENDPOINT,
@@ -9,44 +9,33 @@ import {
   TWITTER_URL,
 } from '@/lib/constants';
 
-interface Props {
-  title?: string;
-  description?: string;
-}
-
 // Function to generate the query parameter string based on base and target values.
-const getQueryParams = (
-  base: string | string[] | undefined,
-  target: string | string[] | undefined
-) => {
-  let queryParams = '';
-  if (typeof base === 'string') {
-    queryParams += `?base=${base}`;
+const getImageUrl = (router: NextRouter) => {
+  const path = router.pathname;
+  if (path === '/diff') {
+    const { base, target } = router.query;
+    if (!base && !target) return '';
+    return `?base=${base}&target=${target}`;
   }
-  if (typeof target === 'string') {
-    queryParams += `${queryParams ? '&' : '?'}target=${target}`;
-  }
-  return queryParams;
+  return '';
 };
 
-export const Head = (props: Props) => {
-  const { title, description } = props;
+export const Head = ({ title, description }: { title?: string; description?: string }) => {
   const router = useRouter();
-  const { base, target } = router.query;
+  const adjustedTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+  const imgUrl = `${SITE_URL}${OG_ENDPOINT}${getImageUrl(router)}`;
+
   return (
     <NextHead>
-      <title>{props.title ? `${title} | ${SITE_NAME}` : SITE_NAME}</title>
+      <title>{adjustedTitle}</title>
       <meta name='description' content={description ?? SITE_DESCRIPTION} />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
 
-      <meta property='og:title' content={SITE_NAME} />
+      <meta property='og:title' content={adjustedTitle} />
       <meta property='og:description' content={SITE_DESCRIPTION} />
       <meta property='og:type' content='website' />
       <meta property='og:url' content={SITE_URL} />
-      <meta
-        property='og:image'
-        content={`${SITE_URL}${OG_ENDPOINT}${getQueryParams(base, target)}`}
-      />
+      <meta property='og:image' content={imgUrl} />
 
       <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:site' content={COMPANY_URL} />

@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
 import { getAddress } from 'viem';
 import { getChainById } from '@/chains';
+import { convertToComparableOpcode } from '@/components/diff/DiffOpcodes';
 import { COMPANY_NAME, SITE_DESCRIPTION, SITE_NAME } from '@/lib/constants';
 import { Opcode, Precompile, Predeploy, SignatureType } from '@/types';
 
@@ -109,31 +110,29 @@ const defaultImageResponse = new ImageResponse(
   }
 );
 
-export default function handler(request: NextRequest) {
+export default async function handler(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
+    const imageData = await fetch(new URL('public/logo-dark-tight.png', import.meta.url)).then(
+      (res) => res.arrayBuffer()
+    );
 
-    // ?base=<base>
-    const hasBase = searchParams.has('base');
-    const base = hasBase ? searchParams.get('base')?.slice(0, 100) : '';
+    // We need to access via `nextUrl` instead of just `url` to fix the following error:
+    //   Error [TypeError]: This stream has already been locked for exclusive reading by another reader
+    // More info: https://github.com/vercel/next.js/issues/48403
+    const searchParams = request.nextUrl.searchParams;
+    // const req = await request.json();
+    // const { searchParams } = new URL(req.url);
 
-    // ?target=<target>
-    const hasTarget = searchParams.has('target');
-    const target = hasTarget ? searchParams.get('target')?.slice(0, 100) : '';
+    const base = searchParams.get('base'); // ?base=<base>
+    const target = searchParams.get('target')?.slice(0, 100); // ?target=<target>
 
-    if (base === undefined || base === '' || target === undefined || target === '') {
-      return defaultImageResponse;
-    }
+    if (!base || !target) return defaultImageResponse;
 
     const baseChain = getChainById(base as string);
-    if (baseChain === undefined) {
-      return defaultImageResponse;
-    }
+    if (baseChain === undefined) return defaultImageResponse;
 
     const targetChain = getChainById(target as string);
-    if (targetChain === undefined) {
-      return defaultImageResponse;
-    }
+    if (targetChain === undefined) return defaultImageResponse;
 
     const precompileDiffs = countPrecompilesDiff(baseChain.precompiles, targetChain.precompiles);
     const predeployDiffs = countPredeployDiffs(baseChain.predeploys, targetChain.predeploys);
@@ -158,33 +157,26 @@ export default function handler(request: NextRequest) {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: 'white',
+            paddingTop: '50px',
           }}
         >
-          <h2
-            style={{
-              fontSize: 100,
-            }}
-          >
-            {`✨ ${SITE_NAME} ✨`}
-          </h2>
-          <p
-            style={{
-              fontSize: 34,
-            }}
-          >
-            {`${totalDiffs} total differences between ${baseChain.metadata.name} and ${targetChain.metadata.name}`}
+          <img width='400' src={imageData} />
+          <p style={{ fontSize: 34, paddingTop: '40px' }}>
+            {`${totalDiffs} difference${totalDiffs !== 1 ? 's' : ''} between ${
+              baseChain.metadata.name
+            } and ${targetChain.metadata.name}`}
           </p>
-          <p></p>
+
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              //justifyContent: 'center',
               fontSize: 24,
+              lineHeight: 1.5,
             }}
           >
-            <div
+            <ul
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -192,11 +184,11 @@ export default function handler(request: NextRequest) {
                 justifyContent: 'center',
               }}
             >
-              <p>{precompileDiffs > 0 && `/Precompiles (x${precompileDiffs})`}</p>
-              <p>{predeployDiffs > 0 && `/Predeploys (x${predeployDiffs})`}</p>
-              <p>{opcodeDiffs > 0 && `/Opcodes (x${opcodeDiffs})`}</p>
-              <p>{signatureTypeDiffs > 0 && `/SignatureTypes (x${signatureTypeDiffs})`}</p>
-            </div>
+              <li>{`Precompiles: ${precompileDiffs} differences`}</li>
+              <li>{`Predeploys: ${predeployDiffs} differences`}</li>
+              <li>{`Opcodes: ${opcodeDiffs} differences`}</li>
+              <li>{`SignatureTypes: ${signatureTypeDiffs} differences`}</li>
+            </ul>
           </div>
         </div>
       ),
@@ -213,23 +205,3 @@ export default function handler(request: NextRequest) {
     });
   }
 }
-
-// Convert an `Opcode` object to a simpler struct in order to compare it to other opcodes.
-// Note: casting an object from a type with properties X, Y and Z to a subset type with properties
-// X and Y using the `as` keyword will still retain the field Z unless you explicitly remove it.
-// That's why this function exists.
-const convertToComparableOpcode = (
-  opcode: Opcode
-): Omit<Opcode, 'examples' | 'playgroundLink' | 'notes' | 'references'> => {
-  return {
-    number: opcode.number,
-    name: opcode.name,
-    description: opcode.description,
-    minGas: opcode.minGas,
-    gasComputation: opcode.gasComputation,
-    inputs: opcode.inputs,
-    outputs: opcode.outputs,
-    errorCases: opcode.errorCases,
-    supportedHardforks: opcode.supportedHardforks,
-  };
-};
