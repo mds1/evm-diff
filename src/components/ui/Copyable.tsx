@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Transition } from '@headlessui/react';
 import { ClipboardDocumentIcon } from '@heroicons/react/24/outline';
 import { classNames, copyToClipboard } from '@/lib/utils';
 import { Tooltip } from './Tooltip';
@@ -43,17 +42,11 @@ export const Copyable = ({
           className='ml-2 h-4 cursor-pointer opacity-0 transition-opacity group-hover:opacity-100'
         />
       </div>
-      <Transition
-        show={isShowing}
-        enter='transition-opacity duration-75'
-        enterFrom='opacity-0'
-        enterTo='opacity-100'
-        leave='transition-opacity duration-150'
-        leaveFrom='opacity-100'
-        leaveTo='opacity-0'
+      <div
+        className={classNames(isShowing ? 'opacity-100' : 'opacity-0', 'transition duration-150')}
       >
         <Tooltip text='Copied!' showIcon={false} />
-      </Transition>
+      </div>
     </div>
   );
 };
