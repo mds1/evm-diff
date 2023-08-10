@@ -8,7 +8,6 @@ import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { DiffPredeploys } from '@/components/diff/DiffPredeploys';
 import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
-import { Head } from '@/components/layout/Head';
 import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
 import { classNames } from '@/lib/utils';
@@ -80,7 +79,6 @@ const Diff = () => {
     const sections = Object.keys(baseChain);
     return (
       <>
-        <Head title={`${baseChain.metadata.name} vs. ${targetChain.metadata.name}`} />
         <main>
           <Toggle
             enabled={onlyShowDiff}
