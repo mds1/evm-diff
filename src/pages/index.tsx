@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <Head />
-      <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
+      <main className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
         <div className='relative isolate overflow-hidden px-6 py-0 sm:rounded-3xl sm:px-24 sm:py-20'>
           <h2 className='mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-zinc-1000 dark:text-zinc-0 sm:text-4xl'>
             {SITE_DESCRIPTION}
@@ -18,7 +18,7 @@ const Home = () => {
             <ChainDiffSelector />
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 };

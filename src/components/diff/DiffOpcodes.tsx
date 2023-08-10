@@ -304,7 +304,7 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
 // Note: casting an object from a type with properties X, Y and Z to a subset type with properties
 // X and Y using the `as` keyword will still retain the field Z unless you explicitly remove it.
 // That's why this function exists.
-const convertToComparableOpcode = (
+export const convertToComparableOpcode = (
   opcode: Opcode
 ): Omit<Opcode, 'examples' | 'playgroundLink' | 'notes' | 'references'> => {
   return {

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Combobox } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
-import { classNames } from '@/lib/utils';
+import { chainLogoUrl, classNames } from '@/lib/utils';
 import { Chain } from '@/types';
 
 interface Props {
@@ -29,11 +29,6 @@ export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange 
             chain.metadata.id.toString().includes(query.toLowerCase())
           );
         });
-
-  const chainLogoUrl = (chain: Chain) => {
-    if (chain.metadata.id === 42161) return 'https://icons.llamao.fi/icons/chains/rsz_arbitrum.jpg';
-    return `https://icons.llamao.fi/icons/chains/rsz_${chain.metadata.name.toLowerCase()}.jpg`;
-  };
 
   return (
     <Combobox

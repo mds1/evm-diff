@@ -11,14 +11,14 @@ export const Header = () => {
   const logo = resolvedTheme === 'light' ? logoDark.src : logoLight.src;
   return (
     <header>
-      <div className='bg-yellow-500 py-2 text-center text-sm font-semibold dark:bg-yellow-600'>
-        This site is a work in progress and should not yet be relied on! Check out{' '}
+      <div className='bg-primary py-2 text-center text-sm font-semibold'>
+        This site is under active development. Check out{' '}
         <ExternalLink
           className='text-zinc-1000 underline dark:text-zinc-0'
           href='https://github.com/mds1/evm-diff'
           text='the repo'
         />{' '}
-        if you want to contribute.
+        to help contribute.
       </div>
       <div>
         <div className='flex items-center justify-between px-4 py-2 sm:px-6 sm:py-6 md:space-x-10'>

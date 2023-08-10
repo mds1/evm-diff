@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { LinkIcon } from '@heroicons/react/20/solid';
-import { chains } from '@/chains';
+import { getChainById } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { DiffPredeploys } from '@/components/diff/DiffPredeploys';
 import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
+import { Head } from '@/components/layout/Head';
 import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
 import { classNames } from '@/lib/utils';
@@ -36,22 +37,11 @@ const SECTION_MAP: Record<string, Section> = {
 
 const Diff = () => {
   // -------- Parse query parameters --------
-
   const router = useRouter();
   const { base, target } = router.query;
 
-  const findChain = (chainId: string) => {
-    try {
-      const id = BigInt(chainId);
-      if (id <= 0n) return undefined;
-      return Object.values(chains).find((chain) => BigInt(chain.metadata.id) === id);
-    } catch (e) {
-      return undefined; // `chainId` could not be parsed as a `BigInt`.
-    }
-  };
-
-  const baseChain = findChain(base as string);
-  const targetChain = findChain(target as string);
+  const baseChain = getChainById(base as string);
+  const targetChain = getChainById(target as string);
 
   const ErrorDiv = () => (
     <main className='text-center'>
@@ -59,10 +49,8 @@ const Diff = () => {
       <p className='text-secondary mt-6 text-base leading-7'>
         Invalid chain(s) provided, please try again below.
       </p>
-      <div className='mt-10'>
-        <div>
-          <ChainDiffSelector />
-        </div>
+      <div className='mx-auto mt-10 flex max-w-md gap-x-4 rounded-lg border border-zinc-200 dark:border-zinc-700'>
+        <ChainDiffSelector />
       </div>
     </main>
   );
@@ -91,42 +79,49 @@ const Diff = () => {
   const DiffDiv = ({ baseChain, targetChain }: { baseChain: Chain; targetChain: Chain }) => {
     const sections = Object.keys(baseChain);
     return (
-      <main>
-        <Toggle enabled={onlyShowDiff} setEnabled={setOnlyShowDiff} label='Only show differences' />
+      <>
+        <Head title={`${baseChain.metadata.name} vs. ${targetChain.metadata.name}`} />
+        <main>
+          <Toggle
+            enabled={onlyShowDiff}
+            setEnabled={setOnlyShowDiff}
+            label='Only show differences'
+          />
 
-        {/* Show chain names at top */}
-        <div className='my-4 grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20'>
-          <div className='col-span-2 text-left'></div>
-          <div className='col-span-5'>{baseChain.metadata.name}</div>
-          <div className='col-span-5'>{targetChain.metadata.name}</div>
-        </div>
+          {/* Show chain names at top */}
+          <div className='my-4 grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20'>
+            <div className='col-span-2 text-left'></div>
+            <div className='col-span-5'>{baseChain.metadata.name}</div>
+            <div className='col-span-5'>{targetChain.metadata.name}</div>
+          </div>
 
-        {/* Show content */}
-        {sections.map((section, index) => {
-          const hideComponent = SECTION_MAP[section].hide;
-          if (hideComponent) return <></>;
+          {/* Show content */}
+          {sections.map((section, index) => {
+            const hideComponent = SECTION_MAP[section].hide;
+            if (hideComponent) return <></>;
 
-          const base = baseChain[section as keyof Chain];
-          const target = targetChain[section as keyof Chain];
-          return (
-            <div key={section} id={section}>
-              {/* Header */}
-              <Copyable
-                content={SECTION_MAP[section].title || section}
-                textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
-                Icon={LinkIcon}
-                className={classNames(
-                  'text-2xl font-bold leading-10 tracking-wide',
-                  index === 0 ? 'mt-10' : 'mt-20'
-                )}
-              />
+            const base = baseChain[section as keyof Chain];
+            const target = targetChain[section as keyof Chain];
+            return (
+              <div key={section} id={section}>
+                {/* Header */}
+                <Copyable
+                  content={SECTION_MAP[section].title || section}
+                  textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
+                  Icon={LinkIcon}
+                  className={classNames(
+                    'text-2xl font-bold leading-10 tracking-wide',
+                    index === 0 ? 'mt-10' : 'mt-20'
+                  )}
+                />
 
-              {/* Diff */}
-              <SectionComponent {...{ section, base, target, onlyShowDiff }} />
-            </div>
-          );
-        })}
-      </main>
+                {/* Diff */}
+                <SectionComponent {...{ section, base, target, onlyShowDiff }} />
+              </div>
+            );
+          })}
+        </main>
+      </>
     );
   };
 

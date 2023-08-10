@@ -1,4 +1,5 @@
 import { pad } from 'viem';
+import { Chain } from '@/types';
 
 // Takes an arbitrary number of class names, filtering out any falsey values.
 export const classNames = (...classes: (string | boolean)[]) => classes.filter(Boolean).join(' ');
@@ -31,3 +32,8 @@ export const formatPrefixByte = (prefix: number) => {
 };
 
 export const toUppercase = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
+export const chainLogoUrl = (chain: Chain) => {
+  if (chain.metadata.id === 42161) return 'https://icons.llamao.fi/icons/chains/rsz_arbitrum.jpg';
+  return `https://icons.llamao.fi/icons/chains/rsz_${chain.metadata.name.toLowerCase()}.jpg`;
+};
