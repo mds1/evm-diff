@@ -1,5 +1,6 @@
 import NextHead from 'next/head';
 import { NextRouter, useRouter } from 'next/router';
+import { getChainById } from '@/chains';
 import {
   COMPANY_URL,
   OG_ENDPOINT,
@@ -10,28 +11,36 @@ import {
 } from '@/lib/constants';
 
 // Function to generate the query parameter string based on base and target values.
-const getImageUrl = (router: NextRouter) => {
+const getRouteData = (router: NextRouter) => {
+  const defaultRouteData = { title: SITE_NAME, imageUrl: '' };
   const path = router.pathname;
   if (path === '/diff') {
     const { base, target } = router.query;
-    if (!base && !target) return '';
-    return `?base=${base}&target=${target}`;
+    if (!base || !target) defaultRouteData;
+
+    const baseTitle = getChainById(base as string)?.metadata.name;
+    const targetTitle = getChainById(target as string)?.metadata.name;
+    if (!baseTitle || !targetTitle) return defaultRouteData;
+
+    const title = `${baseTitle} vs ${targetTitle} | ${SITE_NAME}`;
+    const imageUrl = `?base=${base}&target=${target}`;
+    return { title, imageUrl };
   }
-  return '';
+  return defaultRouteData;
 };
 
-export const Head = ({ title, description }: { title?: string; description?: string }) => {
+export const Head = () => {
   const router = useRouter();
-  const adjustedTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
-  const imgUrl = `${SITE_URL}${OG_ENDPOINT}${getImageUrl(router)}`;
+  const { title, imageUrl } = getRouteData(router);
+  const imgUrl = `${SITE_URL}${OG_ENDPOINT}${imageUrl}`;
 
   return (
     <NextHead>
-      <title>{adjustedTitle}</title>
-      <meta name='description' content={description ?? SITE_DESCRIPTION} />
+      <title>{title}</title>
+      <meta name='description' content={SITE_DESCRIPTION} />
       <meta name='viewport' content='width=device-width, initial-scale=1' />
 
-      <meta property='og:title' content={adjustedTitle} />
+      <meta property='og:title' content={title} />
       <meta property='og:description' content={SITE_DESCRIPTION} />
       <meta property='og:type' content='website' />
       <meta property='og:url' content={SITE_URL} />
