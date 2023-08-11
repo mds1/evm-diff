@@ -26,14 +26,8 @@ export const callvalue: Opcode = {
   playgroundLink: evmCodesPlaygroundLink('%27CALLVALUE%27_&callValue=123456789'),
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x34),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 140),
-    },
+    evmCodesOpcodesLink(0x34),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 140),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

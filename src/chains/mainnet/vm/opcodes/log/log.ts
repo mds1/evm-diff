@@ -77,18 +77,9 @@ export const log = (n: number): Omit<Opcode, 'examples'> => {
     ],
     notes: ['This instruction has no effect on the EVM state'],
     references: [
-      {
-        name: 'evm.codes',
-        url: evmCodesOpcodesLink(number),
-      },
-      {
-        name: 'memory expansion',
-        url: 'https://www.evm.codes/about#memoryexpansion',
-      },
-      {
-        name: 'execution-specs',
-        url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Log, 84 + n),
-      },
+      evmCodesOpcodesLink(number),
+      'https://www.evm.codes/about#memoryexpansion',
+      ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Log, 84 + n),
     ],
     supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
   };

@@ -14,13 +14,7 @@ export const caller: Omit<Opcode, 'supportedHardforks'> = {
     },
   ],
   references: [
-    {
-      name: 'Differences between Optimism and Ethereum',
-      url: 'https://community.optimism.io/docs/developers/build/differences/#opcode-differences',
-    },
-    {
-      name: 'Aliased address',
-      url: 'https://community.optimism.io/docs/developers/build/differences/#address-aliasing',
-    },
+    'https://community.optimism.io/docs/developers/build/differences/#opcode-differences',
+    'https://community.optimism.io/docs/developers/build/differences/#address-aliasing',
   ],
 };

@@ -27,14 +27,8 @@ export const pop: Opcode = {
   playgroundLink: evmCodesPlaygroundLink('%27PUSH3%20125985%5CnPOP%27_'),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x50),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 26),
-    },
+    evmCodesOpcodesLink(0x50),
+    ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 26),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

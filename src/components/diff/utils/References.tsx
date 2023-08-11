@@ -4,7 +4,9 @@ import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import { ParseMarkdown } from '@/components/diff/utils/ParseMarkdown';
 import { classNames } from '@/lib/utils';
 
-export const References = ({ references }: { references: string[] }) => {
+export const References = ({ references }: { references: string[] | string }) => {
+  const refs = Array.isArray(references) ? references : [references];
+
   return (
     <>
       <Disclosure>
@@ -18,7 +20,7 @@ export const References = ({ references }: { references: string[] }) => {
             </Disclosure.Button>
             <Disclosure.Panel>
               <ul className='text-ellipses list-disc pl-4 text-sm'>
-                {references.map((reference) => {
+                {refs.map((reference) => {
                   return (
                     <li key={JSON.stringify(reference)} className='list-item'>
                       <ParseMarkdown content={reference} />

@@ -35,14 +35,8 @@ const push = (n: number): Opcode => {
       'The new value is put on top of the stack, incrementing all the other value indices. The values for a specific opcode thus have to be pushed in reverse order of the stack. For example, with MSTORE, the first value pushed would have to be value, and then offset.',
     ],
     references: [
-      {
-        name: 'evm.codes',
-        url: evmCodesOpcodesLink(number),
-      },
-      {
-        name: 'execution-specs',
-        url: ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 146 + n),
-      },
+      evmCodesOpcodesLink(number),
+      ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 146 + n),
     ],
     supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
   };
@@ -80,14 +74,8 @@ export const push0: Opcode = {
     'The new value is put on top of the stack, incrementing all the other value indices. The values for a specific opcode thus have to be pushed in reverse order of the stack. For example, with MSTORE, the first value pushed would have to be value, and then offset.',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x5f),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 146),
-    },
+    evmCodesOpcodesLink(0x5f),
+    ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 146),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Shanghai),
 };

@@ -86,18 +86,9 @@ export const keccak: Opcode = {
   ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x20),
-    },
-    {
-      name: 'memory expansion',
-      url: 'https://www.evm.codes/about#memoryexpansion',
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Keccak, 30),
-    },
+    evmCodesOpcodesLink(0x20),
+    'https://www.evm.codes/about#memoryexpansion',
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Keccak, 30),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

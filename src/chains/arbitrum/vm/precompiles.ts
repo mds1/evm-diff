@@ -1,7 +1,9 @@
 import { precompiles as mainnetPrecompiles } from '@/chains/mainnet/vm/precompiles';
 import { Precompile } from '@/types';
 
-// https://developer.arbitrum.io/for-devs/useful-addresses#precompiles
+const ARBITRUM_SMART_CONTRACT_ADDRESSES =
+  '[Arbitrum Smart Contract Addresses](https://developer.arbitrum.io/for-devs/useful-addresses)';
+
 export const precompiles: Precompile[] = [
   ...mainnetPrecompiles,
   {
@@ -27,7 +29,7 @@ export const precompiles: Precompile[] = [
       'function withdrawEth(address destination) payable returns (uint256)',
     ],
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x000000000000000000000000000000000000006E',
@@ -51,7 +53,7 @@ export const precompiles: Precompile[] = [
       'function submitRetryable(bytes32 requestId, uint256 l1BaseFee, uint256 deposit, uint256 callvalue, uint256 gasFeeCap, uint64 gasLimit, uint256 maxSubmissionFee, address feeRefundAddress, address beneficiary, address retryTo, bytes retryData)',
     ],
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x000000000000000000000000000000000000006C',
@@ -77,7 +79,7 @@ export const precompiles: Precompile[] = [
       'function getPricingInertia() view returns (uint64)',
     ],
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x0000000000000000000000000000000000000066',
@@ -94,7 +96,7 @@ export const precompiles: Precompile[] = [
       'function size() view returns (uint256)',
     ],
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x000000000000000000000000000000000000006F',
@@ -105,7 +107,7 @@ export const precompiles: Precompile[] = [
       'function getStats() view returns (uint256, uint256, uint256, uint256, uint256, uint256)',
     ],
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x00000000000000000000000000000000000000C8',
@@ -123,7 +125,7 @@ export const precompiles: Precompile[] = [
       'function nitroGenesisBlock() pure returns (uint256 number)',
     ],
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x0000000000000000000000000000000000000067',
@@ -131,7 +133,7 @@ export const precompiles: Precompile[] = [
     description: 'Provides a registry of BLS public keys for accounts.',
     logicAbi: [], // TODO have not found ABI yet.
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x0000000000000000000000000000000000000070',
@@ -167,7 +169,7 @@ export const precompiles: Precompile[] = [
     ],
     deprecated: false,
     references: [
-      'https://developer.arbitrum.io/for-devs/useful-addresses',
+      ARBITRUM_SMART_CONTRACT_ADDRESSES,
       'https://github.com/OffchainLabs/nitro/blob/c041e98e089ca91f007a71cd56535c38f7cf4e85/precompiles/ArbOwner.go',
     ],
   },
@@ -184,7 +186,7 @@ export const precompiles: Precompile[] = [
     ],
     deprecated: false,
     references: [
-      'https://developer.arbitrum.io/for-devs/useful-addresses',
+      ARBITRUM_SMART_CONTRACT_ADDRESSES,
       'https://github.com/OffchainLabs/nitro/blob/c041e98e089ca91f007a71cd56535c38f7cf4e85/precompiles/ArbOwnerPublic.go',
     ],
   },
@@ -204,7 +206,7 @@ export const precompiles: Precompile[] = [
       'function setTxBaseFee(address aggregator, uint256 feeInL1Gas)',
     ],
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x0000000000000000000000000000000000000068',
@@ -217,6 +219,6 @@ export const precompiles: Precompile[] = [
       'function upload(bytes buf)',
     ],
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
 ];

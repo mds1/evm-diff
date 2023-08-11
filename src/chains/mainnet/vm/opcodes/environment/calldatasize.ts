@@ -27,14 +27,8 @@ export const calldatasize: Opcode = {
   playgroundLink: evmCodesPlaygroundLink('%27CALLDATASIZE%27_&callData=0xFF'),
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x36),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 189),
-    },
+    evmCodesOpcodesLink(0x36),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 189),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

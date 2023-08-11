@@ -20,14 +20,8 @@ export const coinbase: Opcode = {
   ],
   errorCases: ['Not enough gas.', 'Stack overflow.'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x41),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 60),
-    },
+    evmCodesOpcodesLink(0x41),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 60),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

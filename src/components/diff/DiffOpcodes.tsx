@@ -3,9 +3,9 @@ import { Copyable } from '@/components/ui/Copyable';
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import { classNames, formatPrefixByte } from '@/lib/utils';
 import { toUppercase } from '@/lib/utils';
-import { Example, Opcode, Reference, Variable } from '@/types';
+import { Example, Opcode, Variable } from '@/types';
 import { GasComputation } from '@/types/opcode';
-import { ExternalLink } from '../layout/ExternalLink';
+import { References } from './utils/References';
 
 type Props = {
   base: Opcode[];
@@ -78,12 +78,8 @@ const formatVariable = (v: Variable): JSX.Element => {
   );
 };
 
-const formatReference = (r: Reference): JSX.Element => {
-  return (
-    <p className='text-secondary text-sm'>
-      <ExternalLink href={r.url} text={r.name ? r.name.toLowerCase() : 'link'} />
-    </p>
-  );
+const formatReference = (ref: string): JSX.Element => {
+  return <References references={ref} />;
 };
 
 const formatExample = (e: Example, id: number): JSX.Element => {
@@ -228,8 +224,7 @@ const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {
           <p className='text-secondary text-sm'>
             Stack inputs are shown on the left of the arrow symbol and stack outputs on the right.
           </p>
-          {opcode.playgroundLink &&
-            formatReference({ name: '>> evm.codes playground link', url: opcode.playgroundLink })}
+          {opcode.playgroundLink && formatReference(opcode.playgroundLink)}
           <ul>
             {opcode.examples.map((e, id) => (
               <li key={id}>{formatExample(e, id)}</li>

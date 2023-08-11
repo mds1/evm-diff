@@ -25,18 +25,9 @@ export const prevrandao: Opcode = {
   // TODO: add the evm.codes playground link once available
   errorCases: ['Not enough gas.', 'Stack overflow.'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x44),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 158),
-    },
-    {
-      name: 'EIP-4399: Supplant DIFFICULTY opcode with PREVRANDAO',
-      url: 'https://eips.ethereum.org/EIPS/eip-4399',
-    },
+    evmCodesOpcodesLink(0x44),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 158),
+    'https://eips.ethereum.org/EIPS/eip-4399',
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

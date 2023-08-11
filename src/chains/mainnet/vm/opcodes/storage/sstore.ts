@@ -117,14 +117,8 @@ if value != current_value
     'The current execution context is from a STATICCALL (since Byzantium fork)',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x55),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Storage, 62),
-    },
+    evmCodesOpcodesLink(0x55),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Storage, 62),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

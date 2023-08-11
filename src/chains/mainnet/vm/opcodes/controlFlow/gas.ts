@@ -24,14 +24,8 @@ export const gas: Omit<Opcode, 'examples'> = {
   ),
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x5a),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Arithmetic, 125),
-    },
+    evmCodesOpcodesLink(0x5a),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Arithmetic, 125),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

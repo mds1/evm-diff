@@ -44,14 +44,8 @@ export const extcodehash: Opcode = {
   ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x3f),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 444),
-    },
+    evmCodesOpcodesLink(0x3f),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 444),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Constantinople),
 };

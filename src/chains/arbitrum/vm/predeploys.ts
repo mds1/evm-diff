@@ -1,6 +1,8 @@
 import { Predeploy } from '@/types';
 
-// https://developer.arbitrum.io/useful-addresses#arbitrum-precompiles-l2-same-on-all-arb-chains
+const ARBITRUM_SMART_CONTRACT_ADDRESSES =
+  '[Arbitrum Smart Contract Addresses](https://developer.arbitrum.io/for-devs/useful-addresses)';
+
 export const predeploys: Predeploy[] = [
   {
     address: '0x5288c571Fd7aD117beA99bF60FE0846C4E84F933',
@@ -41,7 +43,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xe80eb0238029333e368e0bDDB7acDf1b9cb28278',
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x09e9222E96E7B4AE2a407B98d48e330053351EEe',
@@ -80,7 +82,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0x1DCf7D03574fbC7C205F41f2e116eE094a652e93',
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x096760F208390250649E3e8763348E783AEF5562',
@@ -119,7 +121,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0x190274fEa8f30e3f48CE43aDCBd9a74110118284',
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x6c411aD3E74De3E7Bd422b94A27770f5B86C623B',
@@ -158,7 +160,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0x806421D09cDb253aa9d128a658e60c0B95eFFA01',
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
@@ -209,7 +211,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0x8b194bEae1d3e0788A1a35173978001ACDFba668',
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0xd570aCE65C43af47101fC6250FD6fC63D1c22a86',
@@ -227,7 +229,7 @@ export const predeploys: Predeploy[] = [
       'function upgradeAndCall(address proxy, address implementation, bytes data) payable',
     ],
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
 
   {
@@ -239,6 +241,6 @@ export const predeploys: Predeploy[] = [
       'function getCode(address account) view returns (bytes)',
     ],
     deprecated: false,
-    references: ['https://developer.arbitrum.io/for-devs/useful-addresses'],
+    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
 ];

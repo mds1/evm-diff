@@ -104,14 +104,8 @@ export const create2: Omit<Opcode, 'examples'> = {
     'Note that these failures only affect the return value and do not cause the calling context to revert (unlike the error cases below).',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0xf5),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.System, 180),
-    },
+    evmCodesOpcodesLink(0xf5),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.System, 180),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Constantinople),
 };

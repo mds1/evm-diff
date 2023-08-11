@@ -31,14 +31,8 @@ export const codesize: Opcode = {
     'Each instruction occupies one byte. In the case of a PUSH instruction, the bytes that need to be pushed are encoded after that, it thus increases the codesize accordingly.',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x38),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 247),
-    },
+    evmCodesOpcodesLink(0x38),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 247),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

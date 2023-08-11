@@ -40,14 +40,8 @@ export const iszero: Opcode = {
   ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x15),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Comparison, 155),
-    },
+    evmCodesOpcodesLink(0x15),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Comparison, 155),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

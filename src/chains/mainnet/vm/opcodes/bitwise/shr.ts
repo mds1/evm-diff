@@ -46,14 +46,8 @@ export const shr: Opcode = {
     'Shift the bits towards the least significant one. The bits moved before the first one are discarded, the new bits are set to 0.',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x1c),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Bitwise, 185),
-    },
+    evmCodesOpcodesLink(0x1c),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Bitwise, 185),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Constantinople),
 };

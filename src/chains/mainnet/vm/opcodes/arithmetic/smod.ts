@@ -50,14 +50,8 @@ export const smod: Opcode = {
     'All values are treated as two’s complement signed 256-bit integers. Note the overflow semantic when −2**255 is negated.',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x07),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Arithmetic, 174),
-    },
+    evmCodesOpcodesLink(0x07),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Arithmetic, 174),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

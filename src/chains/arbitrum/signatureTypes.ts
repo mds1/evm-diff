@@ -1,7 +1,8 @@
 import { signatureTypes as mainnetSignatureTypes } from '@/chains/mainnet/signatureTypes';
 import { SignatureType } from '@/types';
 
-const txTypeDocs = 'https://developer.arbitrum.io/arbos/geth#transaction-types';
+const txTypeDocs =
+  '[Arbitrum Transaction Types](https://developer.arbitrum.io/arbos/geth#transaction-types)';
 
 const arbitrumDepositTx: SignatureType = {
   prefixByte: 0x64,

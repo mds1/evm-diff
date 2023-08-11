@@ -27,14 +27,8 @@ export const origin: Opcode = {
   playgroundLink: evmCodesPlaygroundLink('%27ORIGIN%27_'),
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x32),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 93),
-    },
+    evmCodesOpcodesLink(0x32),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 93),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

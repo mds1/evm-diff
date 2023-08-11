@@ -26,14 +26,8 @@ export const basefee: Opcode = {
   playgroundLink: evmCodesPlaygroundLink('%27BASEFEE%27_'),
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x48),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 517),
-    },
+    evmCodesOpcodesLink(0x48),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 517),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.London),
 };

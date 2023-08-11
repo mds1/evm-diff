@@ -1,6 +1,8 @@
 import { Predeploy } from '@/types';
 
-// https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md
+const PREDEPLOYS_SPEC =
+  'https://github.com/ethereum-optimism/optimism/blob/47aec81ae66f9833afc5a65cd43a17d49edfea09/specs/predeploys.md';
+
 export const predeploys: Predeploy[] = [
   {
     address: '0x4200000000000000000000000000000000000000',
@@ -26,7 +28,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0D3C0d3C0d3C0D3c0d3C0d3c0D3C0d3c0d30000',
     deprecated: true,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000002',
@@ -60,7 +62,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0d3c0d3C0d3c0D3c0d3C0D3c0d3C0d3c0D30002',
     deprecated: true,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000',
@@ -94,7 +96,7 @@ export const predeploys: Predeploy[] = [
       'function transferFrom(address, address, uint256) returns (bool)',
     ],
     deprecated: true,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000006',
@@ -120,8 +122,8 @@ export const predeploys: Predeploy[] = [
     ],
     deprecated: false,
     references: [
-      'https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md',
-      'https://help.optimism.io/hc/en-us/articles/4417948883611-What-is-ETH-WETH-How-do-they-interact-',
+      PREDEPLOYS_SPEC,
+      '[What is ETH? WETH? How do they interact?](https://help.optimism.io/hc/en-us/articles/4417948883611-What-is-ETH-WETH-How-do-they-interact-)',
     ],
   },
   {
@@ -170,7 +172,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0d3c0d3c0D3c0D3C0d3C0D3C0D3c0d3c0d30007',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000010',
@@ -216,7 +218,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0d3c0d3c0D3c0d3C0D3c0D3C0d3C0D3C0D30010',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000011',
@@ -231,7 +233,7 @@ export const predeploys: Predeploy[] = [
       'receive() external payable',
     ],
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000012',
@@ -261,7 +263,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0D3c0d3C0d3c0d3c0D3c0d3c0D3c0D3c0D30012',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000013',
@@ -288,7 +290,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0D3C0d3C0D3c0D3C0d3c0D3C0d3c0d3C0d30013',
     deprecated: true,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x420000000000000000000000000000000000000F',
@@ -321,7 +323,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0d3C0d3C0d3c0D3C0D3C0d3C0d3C0D3C0D3000f',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000042',
@@ -364,7 +366,7 @@ export const predeploys: Predeploy[] = [
       'function transferOwnership(address newOwner)',
     ],
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000015',
@@ -398,7 +400,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0d3C0D3C0D3c0D3C0D3C0d3C0D3c0D3c0d30015',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000016',
@@ -430,7 +432,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0D3C0d3C0d3c0d3C0d3C0D3c0D3c0d3c0D30016',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000014',
@@ -464,7 +466,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0D3c0d3c0d3c0d3c0D3C0d3C0D3C0D3c0d30014',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000017',
@@ -494,7 +496,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0d3C0d3C0d3C0d3C0d3c0d3C0D3C0d3C0D30017',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000018',
@@ -535,7 +537,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0d3C0D3c0d3C0d3c0d3c0D3C0D3C0d3C0D30018',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000019',
@@ -566,7 +568,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0d3c0D3c0d3C0D3C0D3C0d3c0D3C0D3c0d30019',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x420000000000000000000000000000000000001a',
@@ -597,6 +599,6 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0D3c0D3C0d3c0d3c0d3C0d3c0d3C0d3C0D3001A',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
 ];

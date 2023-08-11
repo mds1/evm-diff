@@ -88,18 +88,9 @@ export const calldatacopy: Opcode = {
   ),
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x37),
-    },
-    {
-      name: 'memory expansion',
-      url: 'https://www.evm.codes/about#memoryexpansion',
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 212),
-    },
+    evmCodesOpcodesLink(0x37),
+    'https://www.evm.codes/about#memoryexpansion',
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 212),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

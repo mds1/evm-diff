@@ -74,14 +74,8 @@ export const revert: Opcode = {
     'Stop the current context execution, revert the state changes (see STATICCALL for a list of state changing opcodes) and return the unused gas to the caller. It also reverts the gas refund to its value before the current context. If the execution is stopped with REVERT, the value 0 is put on the stack of the calling context, which continues to execute normally. The return data of the calling context is set as the given chunk of memory of this context.',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0xfd),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.System, 656),
-    },
+    evmCodesOpcodesLink(0xfd),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.System, 656),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
 };

@@ -14,13 +14,7 @@ export const number: Omit<Opcode, 'supportedHardforks'> = {
     },
   ],
   references: [
-    {
-      name: 'Differences between Arbitrum and Ethereum',
-      url: 'https://developer.arbitrum.io/solidity-support',
-    },
-    {
-      name: 'Arbitrum Block Numbers and Time',
-      url: 'https://developer.arbitrum.io/time',
-    },
+    '[Arbitrum Differences from Solidity on Ethereum](https://developer.arbitrum.io/solidity-support)',
+    '[Arbitrum Block Numbers and Time](https://developer.arbitrum.io/time)',
   ],
 };

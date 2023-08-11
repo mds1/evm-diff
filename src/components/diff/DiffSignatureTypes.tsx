@@ -1,3 +1,4 @@
+import { References } from '@/components/diff/utils/References';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { formatPrefixByte } from '@/lib/utils';
@@ -15,6 +16,7 @@ const formatSigType = (contents: SignatureType | undefined) => {
     <>
       <p>{contents.description}</p>
       <p className='text-secondary text-sm'>{contents.signedData}</p>
+      <References references={contents.references} />
     </>
   );
 };

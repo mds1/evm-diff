@@ -89,18 +89,9 @@ export const codecopy: Opcode = {
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   notes: ['For out of bound bytes, 0s will be copied'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x39),
-    },
-    {
-      name: 'memory expansion',
-      url: 'https://www.evm.codes/about#memoryexpansion',
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 270),
-    },
+    evmCodesOpcodesLink(0x39),
+    'https://www.evm.codes/about#memoryexpansion',
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 270),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };
