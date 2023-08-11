@@ -49,7 +49,9 @@ export const DiffPredeploys = ({ base, target, onlyShowDiff }: Props) => {
               key={addr}
               className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
-              <Copyable className='col-span-2' content={formatAddress(addr)} textToCopy={addr} />
+              <div className='col-span-2'>
+                <Copyable content={formatAddress(addr)} textToCopy={addr} />
+              </div>
               <div className='col-span-5 pr-4'>{formatPredeploy(basePredeploy)}</div>
               <div className='col-span-5'>{formatPredeploy(targetPredeploy)}</div>
             </div>
