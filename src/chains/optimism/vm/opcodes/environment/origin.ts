@@ -14,7 +14,7 @@ export const origin: Omit<Opcode, 'supportedHardforks'> = {
     },
   ],
   references: [
-    'https://community.optimism.io/docs/developers/build/differences/#opcode-differences',
-    'https://community.optimism.io/docs/developers/build/differences/#address-aliasing',
+    '[Differences between Ethereum and OP Mainnet: Opcode Differences](https://community.optimism.io/docs/developers/build/differences/#opcode-differences)',
+    '[Differences between Ethereum and OP Mainnet: Address Aliasing](https://community.optimism.io/docs/developers/build/differences/#address-aliasing)',
   ],
 };

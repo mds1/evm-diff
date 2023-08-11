@@ -7,6 +7,6 @@ export const push0: Omit<Opcode, 'supportedHardforks'> = {
   description:
     'The opcode is not supported yet, but will be added in a future hardfork. This means you cannot yet use Solidity 0.8.20 or later with an `evm_version` of Shanghai.',
   references: [
-    'https://community.optimism.io/docs/developers/build/differences/#opcode-differences',
+    '[Differences between Ethereum and OP Mainnet: Opcode Differences](https://community.optimism.io/docs/developers/build/differences/#opcode-differences)',
   ],
 };

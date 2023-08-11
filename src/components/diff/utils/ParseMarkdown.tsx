@@ -3,24 +3,32 @@ import ReactMarkdown from 'react-markdown';
 import { ExternalLink } from '@/components/layout/ExternalLink';
 
 export const ParseMarkdown: React.FC<{ content: string }> = ({ content }) => {
-  // First we look for any raw GitHub URLs and convert them to named links. For example, given:
-  //   https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/transaction.go#L48
-  // It replaces it with:
-  //   [OffchainLabs/go-ethereum, `core/types/transaction.go#L48@dcd0ff9`](https://github.com/OffchainLabs/go-ethereum/blob/dcd0ff9ad8b4c84a9456c6b37f9047233adf7181/core/types/transaction.go#L48)
-  const transformGitHubURLs = (markdown: string) => {
+  // --- Transform Content ---
+  const transformURLs = (content: string) => {
+    // Define regex patterns for the different types of URLs we want to convert to named links.
+    const eipURLPattern = /(https:\/\/eips\.ethereum\.org\/EIPS\/eip-(\d+))/g;
+    const evmCodesURLPattern = /(https:\/\/www\.evm\.codes\/#([0-9a-fA-F]{2}))/g;
+    const githubIssueURLPattern = /(https:\/\/github\.com\/([^/]+)\/([^/]+)\/issues\/(\d+))/g;
     const githubURLPattern =
-      /(https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/([^#]+)#([^ ]+))/g;
-    return markdown.replace(
-      githubURLPattern,
-      (_match, fullUrl, user, repo, commit, path, _line) => {
+      /(https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/([^#]+)(?:#([^ ]+))?)/g;
+
+    // Do the conversions.
+    return content
+      .replace(eipURLPattern, (_match, fullUrl, number) => `[EIP-${number}](${fullUrl})`)
+      .replace(evmCodesURLPattern, (_match, fullUrl, opcode) => {
+        return `[evm.codes, opcode \`0x${opcode}\`](${fullUrl})`;
+      })
+      .replace(githubIssueURLPattern, (_match, fullUrl, user, repo, issueNumber) => {
+        return `[${user}/${repo}, Issue #${issueNumber}](${fullUrl})`;
+      })
+      .replace(githubURLPattern, (_match, fullUrl, user, repo, commit, path, _line) => {
         return `[${user}/${repo}, \`${path}@${commit.substring(0, 7)}\`](${fullUrl})`;
-      }
-    );
+      });
   };
 
-  const transformedContent = transformGitHubURLs(content);
+  const transformedContent = transformURLs(content);
 
-  // Now we render the markdown.
+  // --- Render ---
   return (
     <ReactMarkdown
       components={{
@@ -37,7 +45,9 @@ export const ParseMarkdown: React.FC<{ content: string }> = ({ content }) => {
         },
         // Make sure all code blocks have a smaller font size because otherwise they look big
         // relative to the text.
-        code: ({ node: _node, ...props }) => <code {...props} style={{ fontSize: '0.8rem' }} />,
+        code: ({ node: _node, inline: _inline, ...props }) => (
+          <code {...props} style={{ fontSize: '0.8rem' }} />
+        ),
       }}
     >
       {transformedContent}

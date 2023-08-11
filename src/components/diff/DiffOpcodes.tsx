@@ -5,6 +5,7 @@ import { classNames, formatPrefixByte } from '@/lib/utils';
 import { toUppercase } from '@/lib/utils';
 import { Example, Opcode, Variable } from '@/types';
 import { GasComputation } from '@/types/opcode';
+import { ExternalLink } from '../layout/ExternalLink';
 import { References } from './utils/References';
 
 type Props = {
@@ -76,10 +77,6 @@ const formatVariable = (v: Variable): JSX.Element => {
       )}
     </div>
   );
-};
-
-const formatReference = (ref: string): JSX.Element => {
-  return <References references={ref} />;
 };
 
 const formatExample = (e: Example, id: number): JSX.Element => {
@@ -221,10 +218,18 @@ const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {
       {opcode.examples !== undefined && opcode.examples.length > 0 && (
         <>
           <h3 className={classNames('font-bold', 'mt-2')}>Examples</h3>
-          <p className='text-secondary text-sm'>
-            Stack inputs are shown on the left of the arrow symbol and stack outputs on the right.
-          </p>
-          {opcode.playgroundLink && formatReference(opcode.playgroundLink)}
+          <div className='text-secondary text-sm'>
+            Stack inputs are shown on the left of the arrow symbol and stack outputs on the right.{' '}
+            {opcode.playgroundLink && (
+              <span>
+                Or,{' '}
+                <ExternalLink className='text-sm' href={opcode.playgroundLink}>
+                  try it out
+                </ExternalLink>{' '}
+                on the playground.
+              </span>
+            )}
+          </div>
           <ul>
             {opcode.examples.map((e, id) => (
               <li key={id}>{formatExample(e, id)}</li>
@@ -235,16 +240,7 @@ const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {
       {formatGasComputation(opcode.gasComputation)}
       {formatStringList('Error Cases', opcode.errorCases)}
       {formatStringList('Notes', opcode.notes)}
-      {opcode.references.length > 0 && (
-        <>
-          <h3 className={classNames('font-bold', 'mt-2')}>References</h3>
-          <ul>
-            {opcode.references.map((r, id) => (
-              <li key={id}>{formatReference(r)}</li>
-            ))}
-          </ul>
-        </>
-      )}
+      <References references={opcode.references} />
     </>
   );
 };

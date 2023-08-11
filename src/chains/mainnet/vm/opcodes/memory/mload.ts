@@ -78,7 +78,7 @@ export const mload: Opcode = {
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   references: [
     evmCodesOpcodesLink(0x51),
-    'https://www.evm.codes/about#memoryexpansion',
+    '[evm.codes, Memory Expansion](https://www.evm.codes/about#memoryexpansion)',
     ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Memory, 90),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),

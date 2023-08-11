@@ -1,4 +1,5 @@
 import { Address, getAddress } from 'viem';
+import { References } from '@/components/diff/utils/References';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { Precompile } from '@/types';
@@ -15,6 +16,7 @@ const formatPrecompile = (contents: Precompile | undefined) => {
     <>
       <p>{contents.name}</p>
       <p className='text-secondary text-sm'>{contents.description}</p>
+      <References references={contents.references} />
     </>
   );
 };

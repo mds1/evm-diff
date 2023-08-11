@@ -8,18 +8,18 @@ export const References = ({ references }: { references: string[] | string }) =>
   const refs = Array.isArray(references) ? references : [references];
 
   return (
-    <>
+    <div className='mt-4'>
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button className='flex items-center'>
+            <Disclosure.Button className='flex items-center text-sm'>
               References
               <ChevronRightIcon
-                className={classNames('h-6 w-6', open ? 'rotate-90 transform' : '')}
+                className={classNames('h-5 w-5', open ? 'rotate-90 transform' : '')}
               />
             </Disclosure.Button>
             <Disclosure.Panel>
-              <ul className='text-ellipses list-disc pl-4 text-sm'>
+              <ol className='text-ellipses list-decimal pl-4 text-sm'>
                 {refs.map((reference) => {
                   return (
                     <li key={JSON.stringify(reference)} className='list-item'>
@@ -27,11 +27,11 @@ export const References = ({ references }: { references: string[] | string }) =>
                     </li>
                   );
                 })}
-              </ul>
+              </ol>
             </Disclosure.Panel>
           </>
         )}
       </Disclosure>
-    </>
+    </div>
   );
 };

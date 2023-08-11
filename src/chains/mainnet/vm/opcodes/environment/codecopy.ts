@@ -90,7 +90,7 @@ export const codecopy: Opcode = {
   notes: ['For out of bound bytes, 0s will be copied'],
   references: [
     evmCodesOpcodesLink(0x39),
-    'https://www.evm.codes/about#memoryexpansion',
+    '[evm.codes, Memory Expansion](https://www.evm.codes/about#memoryexpansion)',
     ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 270),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),

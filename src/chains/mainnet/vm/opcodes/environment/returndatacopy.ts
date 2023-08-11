@@ -95,7 +95,7 @@ export const returndatacopy: Opcode = {
   notes: ['A sub context can be created with CALL, CALLCODE, DELEGATECALL or STATICCALL'],
   references: [
     evmCodesOpcodesLink(0x3e),
-    'https://www.evm.codes/about#memoryexpansion',
+    '[evm.codes, Memory Expansion](https://www.evm.codes/about#memoryexpansion)',
     ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 406),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
