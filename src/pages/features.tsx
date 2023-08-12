@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { ExclamationTriangleIcon } from '@heroicons/react/20/solid';
 import { chains } from '@/chains';
+import { FeatureTable } from '@/components/features/FeatureTable';
 import { BaseCombobox } from '@/components/ui/BaseCombobox';
 import { Chain } from '@/types';
 
@@ -10,7 +13,8 @@ const Features = () => {
   const { name, kind } = router.query;
 
   // --- Prepare options ---
-  type Kind = 'opcode'; // TODO Support more kinds.
+  // TODO Support more kinds.
+  type Kind = 'opcode';
   type FeatureHeader = {
     name: string;
     isHeader: boolean;
@@ -24,7 +28,7 @@ const Features = () => {
   type Feature = FeatureHeader | FeatureItem;
 
   const chainsArray: Chain[] = Object.values(chains);
-  const opcodeOptions = chainsArray
+  const allOpcodes = chainsArray
     .map(({ opcodes }) => {
       return opcodes.map(({ name }) => ({
         name: name!.toLocaleUpperCase(),
@@ -32,6 +36,10 @@ const Features = () => {
       }));
     })
     .flat();
+
+  const opcodeOptions = allOpcodes.filter((opcode, index, self) => {
+    return index === self.findIndex((o) => o.name === opcode.name);
+  });
 
   const options: Feature[] = [{ name: 'Opcodes', isHeader: true }, ...opcodeOptions];
 
@@ -75,16 +83,29 @@ const Features = () => {
   );
 
   // --- Feature Table ---
-  const FeatureTable = () => (
-    <main>
-      <h2 className='mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-zinc-1000 dark:text-zinc-0 sm:text-4xl'>
-        Compare {name} Support
-      </h2>
-    </main>
-  );
+  const FeatureTableDiv = () => {
+    return (
+      <main>
+        <h2 className='mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-zinc-1000 dark:text-zinc-0 sm:text-4xl'>
+          Compare {name} Support
+        </h2>
+        <div className='flex flex-col items-center'>
+          <FeatureTable kind={kind as string} name={name as string} className='mt-8 max-w-prose' />
+          <p className='text-secondary mx-auto mt-4 max-w-sm text-sm'>
+            <ExclamationTriangleIcon width='1rem' className='mr-2 inline-block text-amber-500' />
+            There may still be diffs between chains with the same support level. Be sure to{' '}
+            <Link className='hyperlink' href='/'>
+              view a diff
+            </Link>{' '}
+            of specific chains to see details.
+          </p>
+        </div>
+      </main>
+    );
+  };
 
   // --- Render ---
-  return <>{name && kind ? <FeatureTable /> : <SelectorDiv />}</>;
+  return <>{name && kind ? <FeatureTableDiv /> : <SelectorDiv />}</>;
 };
 
 export default Features;
