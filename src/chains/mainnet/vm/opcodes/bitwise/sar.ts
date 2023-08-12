@@ -46,14 +46,8 @@ export const sar: Opcode = {
     'Shift the bits towards the least significant one. The bits moved before the first one are discarded, the new bits are set to 0 if the previous most significant bit was 0, otherwise the new bits are set to 1.',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x1d),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Bitwise, 213),
-    },
+    evmCodesOpcodesLink(0x1d),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Bitwise, 213),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Constantinople),
 };

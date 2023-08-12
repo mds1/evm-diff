@@ -58,14 +58,8 @@ export const exp: Opcode = {
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   notes: ['All intermediate calculations of this operation are not subject to the 2**256 modulo'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x0a),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Arithmetic, 296),
-    },
+    evmCodesOpcodesLink(0x0a),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Arithmetic, 296),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

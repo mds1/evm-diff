@@ -31,14 +31,8 @@ export const jump: Omit<Opcode, 'examples'> = {
     'The program counter (PC) is a byte offset in the deployed code. It indicates which instruction will be executed next. When an ADD is executed, for example, the PC is incremented by 1, since the instruction is 1 byte. The PUSH instructions are bigger than one byte, and so will increment the counter accordingly. The JUMP instruction alters the program counter, thus breaking the linear path of the execution to another point in the deployed code. It is used to implement functionalities like functions.',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x56),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Arithmetic, 45),
-    },
+    evmCodesOpcodesLink(0x56),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Arithmetic, 45),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

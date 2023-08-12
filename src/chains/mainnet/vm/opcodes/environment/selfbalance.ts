@@ -29,14 +29,8 @@ export const selfbalance: Opcode = {
     'Semantically equivalent of calling BALANCE with ADDRESS as parameter, but with a reduced gas cost.',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x47),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 491),
-    },
+    evmCodesOpcodesLink(0x47),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 491),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Istanbul),
 };

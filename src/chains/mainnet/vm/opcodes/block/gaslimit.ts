@@ -20,14 +20,8 @@ export const gaslimit: Opcode = {
   ],
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x45),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 190),
-    },
+    evmCodesOpcodesLink(0x45),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 190),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

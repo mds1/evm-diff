@@ -1,10 +1,12 @@
 import { Predeploy } from '@/types';
 
-// https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md
+const PREDEPLOYS_SPEC =
+  'https://github.com/ethereum-optimism/optimism/blob/47aec81ae66f9833afc5a65cd43a17d49edfea09/specs/predeploys.md';
+
 export const predeploys: Predeploy[] = [
   {
     address: '0x4200000000000000000000000000000000000000',
-    name: 'LegacyMessagePasser',
+    name: '`LegacyMessagePasser`',
     description: 'Stores commitments to withdrawal transactions before the Bedrock upgrade.',
     proxyAbi: [
       'constructor(address _admin)',
@@ -26,11 +28,11 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0D3C0d3C0d3C0D3c0d3C0d3c0D3C0d3c0d30000',
     deprecated: true,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000002',
-    name: 'DeployerWhitelist',
+    name: '`DeployerWhitelist`',
     description:
       'Defined a list of accounts that were allowed to deploy contracts during the initial phases of Optimism.',
     proxyAbi: [
@@ -60,11 +62,11 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0d3c0d3C0d3c0D3c0d3C0D3c0d3C0d3c0D30002',
     deprecated: true,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000',
-    name: 'LegacyERC20ETH',
+    name: '`LegacyERC20ETH`',
     description: 'Represents all Ether in the system before Bedrock.',
     logicAbi: [
       'constructor()',
@@ -94,11 +96,11 @@ export const predeploys: Predeploy[] = [
       'function transferFrom(address, address, uint256) returns (bool)',
     ],
     deprecated: true,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000006',
-    name: 'WETH9',
+    name: '`WETH9`',
     description: "Wrapped Ether contract, behaves identically to mainnet's canonical WETH.",
     logicAbi: [
       'event Approval(address indexed src, address indexed guy, uint256 wad)',
@@ -120,13 +122,13 @@ export const predeploys: Predeploy[] = [
     ],
     deprecated: false,
     references: [
-      'https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md',
-      'https://help.optimism.io/hc/en-us/articles/4417948883611-What-is-ETH-WETH-How-do-they-interact-',
+      PREDEPLOYS_SPEC,
+      '[What is ETH? WETH? How do they interact?](https://help.optimism.io/hc/en-us/articles/4417948883611-What-is-ETH-WETH-How-do-they-interact-)',
     ],
   },
   {
     address: '0x4200000000000000000000000000000000000007',
-    name: 'L2CrossDomainMessenger',
+    name: '`L2CrossDomainMessenger`',
     description:
       'Provides a higher level API for sending cross-domain messages, compared to directly calling L2ToL1MessagePasser.',
     proxyAbi: [
@@ -170,11 +172,11 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0d3c0d3c0D3c0D3C0d3C0D3C0D3c0d3c0d30007',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000010',
-    name: 'L2StandardBridge',
+    name: '`L2StandardBridge`',
     description:
       'Higher level API built on top of the L2CrossDomainMessenger that gives a standard interface for sending ETH or ERC20 tokens across domains.',
     proxyAbi: [
@@ -216,11 +218,11 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0d3c0d3c0D3c0d3C0D3c0D3C0d3C0D3C0D30010',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000011',
-    name: 'SequencerFeeVault',
+    name: '`SequencerFeeVault`',
     description:
       'Accumulates any transaction priority fees and is the value of block.coinbase. When enough fees accumulate in this account, they can be withdrawn to an immutable L1 address.',
     logicAbi: [
@@ -231,11 +233,11 @@ export const predeploys: Predeploy[] = [
       'receive() external payable',
     ],
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000012',
-    name: 'OptimismMintableERC20Factory',
+    name: '`OptimismMintableERC20Factory`',
     description:
       'Responsible for creating ERC20 contracts on L2 that can be used for depositing native L1 tokens into.',
     proxyAbi: [
@@ -261,11 +263,11 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0D3c0d3C0d3c0d3c0D3c0d3c0D3c0D3c0D30012',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000013',
-    name: 'L1BlockNumber',
+    name: '`L1BlockNumber`',
     description: 'Returns the last known L1 block number.',
     proxyAbi: [
       'constructor(address _admin)',
@@ -288,11 +290,11 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0D3C0d3C0D3c0D3C0d3c0D3C0d3c0d3C0d30013',
     deprecated: true,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x420000000000000000000000000000000000000F',
-    name: 'GasPriceOracle',
+    name: '`GasPriceOracle`',
     description: 'Provides an API to return the L1 portion of the fee for a transaction.',
     proxyAbi: [
       'constructor(address _admin)',
@@ -321,11 +323,11 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0d3C0d3C0d3c0D3C0D3C0d3C0d3C0D3C0D3000f',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000042',
-    name: 'GovernanceToken',
+    name: '`GovernanceToken`',
     description: 'The Optimism (OP) token contract.',
     logicAbi: [
       'constructor()',
@@ -364,11 +366,11 @@ export const predeploys: Predeploy[] = [
       'function transferOwnership(address newOwner)',
     ],
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000015',
-    name: 'L1Block',
+    name: '`L1Block`',
     description: 'Allows for L1 state to be accessed in L2.',
     proxyAbi: [
       'constructor(address _admin)',
@@ -398,11 +400,11 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0d3C0D3C0D3c0D3C0D3C0d3C0D3c0D3c0d30015',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000016',
-    name: 'L2ToL1MessagePasser',
+    name: '`L2ToL1MessagePasser`',
     description: 'Stores commitments to withdrawal transactions.',
     proxyAbi: [
       'constructor(address _admin)',
@@ -430,11 +432,11 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0D3C0d3C0d3c0d3C0d3C0D3c0D3c0d3c0D30016',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000014',
-    name: 'L2ERC721Bridge',
+    name: '`L2ERC721Bridge`',
     description:
       'Works together with the L1 ERC721 bridge to enable transfers of ERC721 tokens from Ethereum to Optimism.',
     proxyAbi: [
@@ -464,11 +466,11 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0D3c0d3c0d3c0d3c0D3C0d3C0D3C0D3c0d30014',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000017',
-    name: 'OptimismMintableERC721Factory',
+    name: '`OptimismMintableERC721Factory`',
     description:
       'Responsible for creating ERC721 contracts on L2 that can be used for depositing native L1 NFTs into.',
     proxyAbi: [
@@ -494,11 +496,11 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0d3C0d3C0d3C0d3C0d3c0d3C0D3C0d3C0D30017',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000018',
-    name: 'ProxyAdmin',
+    name: '`ProxyAdmin`',
     description: 'The owner of all of the proxy contracts set at the predeploys.',
     proxyAbi: [
       'constructor(address _admin)',
@@ -535,7 +537,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0d3C0D3c0d3C0d3c0d3c0D3C0D3C0d3C0D30018',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x4200000000000000000000000000000000000019',
@@ -566,7 +568,7 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xC0d3c0D3c0d3C0D3C0D3C0d3c0D3C0D3c0d30019',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
   {
     address: '0x420000000000000000000000000000000000001a',
@@ -597,6 +599,6 @@ export const predeploys: Predeploy[] = [
     ],
     logicAddress: '0xc0D3c0D3C0d3c0d3c0d3C0d3c0d3C0d3C0D3001A',
     deprecated: false,
-    references: ['https://github.com/ethereum-optimism/optimism/blob/develop/specs/predeploys.md'],
+    references: [PREDEPLOYS_SPEC],
   },
 ];

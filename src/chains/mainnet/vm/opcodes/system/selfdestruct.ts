@@ -50,14 +50,8 @@ export const selfdestruct: Omit<Opcode, 'examples'> = {
     'The current account is registered to be destroyed, and will be at the end of the current transaction. The transfer of the current balance to the given account cannot fail. In particular, the destination account code (if any) is not executed, or, if the account does not exist, the balance is still added to the given address.',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0xff),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.System, 481),
-    },
+    evmCodesOpcodesLink(0xff),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.System, 481),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Constantinople),
 };

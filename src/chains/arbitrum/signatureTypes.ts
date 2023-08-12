@@ -1,13 +1,14 @@
 import { signatureTypes as mainnetSignatureTypes } from '@/chains/mainnet/signatureTypes';
 import { SignatureType } from '@/types';
 
-const txTypeDocs = 'https://developer.arbitrum.io/arbos/geth#transaction-types';
+const txTypeDocs =
+  '[Arbitrum Transaction Types](https://developer.arbitrum.io/arbos/geth#transaction-types)';
 
 const arbitrumDepositTx: SignatureType = {
   prefixByte: 0x64,
   description:
     "Represents a user deposit from L1 to L2. This increases the user's balance by the amount deposited on L1.",
-  signedData: ['keccak256(0x64 || rlp([chainId, l1RequestId, from, to, value]))'],
+  signedData: ['`keccak256(0x64 || rlp([chainId, l1RequestId, from, to, value]))`'],
   signs: 'transaction',
   references: [
     txTypeDocs,
@@ -21,7 +22,7 @@ const arbitrumUnsignedTx: SignatureType = {
   description:
     "A message from a user on L1 to a contract on L2 that uses the bridge for authentication instead of requiring the user's signature.",
   signedData: [
-    'keccak256(0x65 || rlp([chainId, from, nonce, maxFeePerGas, gasLimit, to, value, data]))',
+    '`keccak256(0x65 || rlp([chainId, from, nonce, maxFeePerGas, gasLimit, to, value, data]))`',
   ],
   signs: 'transaction',
   references: [
@@ -36,7 +37,7 @@ const arbitrumContractTx: SignatureType = {
   description:
     "Similar to an `ArbitrumUnsignedTx` but intended for smart contracts. Uses the bridge's unique, sequential nonce rather than requiring the caller specify their own.",
   signedData: [
-    'keccak256(0x66 || rlp([chainId, requestId, from, maxFeePerGas, gasLimit, to, value, data]))',
+    '`keccak256(0x66 || rlp([chainId, requestId, from, maxFeePerGas, gasLimit, to, value, data]))`',
   ],
   signs: 'transaction',
   references: [
@@ -50,7 +51,7 @@ const arbitrumSubmitRetryableTx: SignatureType = {
   prefixByte: 0x69,
   description: 'A retryable submission and may schedule an ArbitrumRetryTx if provided enough gas.',
   signedData: [
-    'keccak256(0x69 || rlp([chainId, requestId, from, l1BaseFee, depositValue, maxFeePerGas, gasLimit, retryTo, retryValue, beneficiary, maxSubmissionFee, feeRefundAddress, retryData]))',
+    '`keccak256(0x69 || rlp([chainId, requestId, from, l1BaseFee, depositValue, maxFeePerGas, gasLimit, retryTo, retryValue, beneficiary, maxSubmissionFee, feeRefundAddress, retryData]))`',
   ],
   signs: 'transaction',
   references: [
@@ -65,7 +66,7 @@ const arbitrumRetryTx: SignatureType = {
   description:
     'Transactions scheduled by calls to the redeem precompile method and via retryable auto-redemption.',
   signedData: [
-    'keccak256(0x68 || rlp([chainId, nonce, from, maxFeePerGas, gasLimit, to, value, data, ticketId, refundTo, maxRefund, submissionFeeRefund]))',
+    '`keccak256(0x68 || rlp([chainId, nonce, from, maxFeePerGas, gasLimit, to, value, data, ticketId, refundTo, maxRefund, submissionFeeRefund]))`',
   ],
   signs: 'transaction',
   references: [
@@ -78,7 +79,7 @@ const arbitrumRetryTx: SignatureType = {
 const arbitrumInternalTx: SignatureType = {
   prefixByte: 0x6a,
   description: 'ArbOS-created transaction to update state between user-generated transactions.',
-  signedData: ['keccak256(0x6a || rlp([chainId, data]))'],
+  signedData: ['`keccak256(0x6a || rlp([chainId, data]))`'],
   signs: 'transaction',
   references: [
     txTypeDocs,

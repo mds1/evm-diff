@@ -26,14 +26,8 @@ export const chainid: Opcode = {
   playgroundLink: evmCodesPlaygroundLink('%27CHAINID%27_'),
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x46),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 222),
-    },
+    evmCodesOpcodesLink(0x46),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 222),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Istanbul),
 };

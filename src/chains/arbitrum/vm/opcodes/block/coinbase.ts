@@ -18,9 +18,6 @@ export const coinbase: Omit<Opcode, 'supportedHardforks'> = {
     },
   ],
   references: [
-    {
-      name: 'Differences between Arbitrum and Ethereum opcodes',
-      url: 'https://developer.arbitrum.io/solidity-support',
-    },
+    '[Arbitrum Differences from Solidity on Ethereum](https://developer.arbitrum.io/solidity-support)',
   ],
 };

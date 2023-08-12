@@ -92,14 +92,8 @@ export const staticcall: Omit<Opcode, 'examples' | 'playgroundLink'> = {
     'From the Tangerine Whistle fork, gas is capped at all but one 64th (remaining_gas / 64) of the remaining gas of the current context. If a call tries to send more, the gas is changed to match the maximum allowed.',
   ],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0xfa),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.System, 594),
-    },
+    evmCodesOpcodesLink(0xfa),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.System, 594),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
 };

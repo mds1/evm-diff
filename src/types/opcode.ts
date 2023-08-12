@@ -34,11 +34,6 @@ export type GasComputation = {
   refunds?: string;
 };
 
-export type Reference = {
-  name: string;
-  url: string;
-};
-
 export type Opcode = {
   number: number;
   name: string;
@@ -51,6 +46,6 @@ export type Opcode = {
   playgroundLink?: string;
   errorCases: string[];
   notes?: string[];
-  references: Reference[];
+  references: string[];
   supportedHardforks: string[];
 };

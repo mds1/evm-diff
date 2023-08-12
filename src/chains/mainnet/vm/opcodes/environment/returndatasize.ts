@@ -29,14 +29,8 @@ export const returndatasize: Opcode = {
   errorCases: ['Not enough gas', 'Stack overflow'],
   notes: ['A sub context can be created with CALL, CALLCODE, DELEGATECALL or STATICCALL'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x3d),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 384),
-    },
+    evmCodesOpcodesLink(0x3d),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 384),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
 };

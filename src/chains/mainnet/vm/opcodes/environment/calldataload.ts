@@ -42,14 +42,8 @@ export const calldataload: Opcode = {
   ),
   errorCases: ['Not enough gas', 'Not enough values on stack'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x35),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 163),
-    },
+    evmCodesOpcodesLink(0x35),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 163),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

@@ -45,14 +45,8 @@ export const slt: Opcode = {
   errorCases: ['Not enough gas', 'Not enough values on the stack'],
   notes: ['All values are treated as two’s complement signed 256-bit integers.'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x12),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Comparison, 49),
-    },
+    evmCodesOpcodesLink(0x12),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Comparison, 49),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

@@ -5,9 +5,6 @@ const { references: _references, ...opcode } = baseOpcode;
 export const push0: Omit<Opcode, 'supportedHardforks'> = {
   ...opcode,
   references: [
-    {
-      name: 'Differences between Arbitrum and Ethereum opcodes',
-      url: 'https://developer.arbitrum.io/solidity-support',
-    },
+    '[Arbitrum Differences from Solidity on Ethereum](https://developer.arbitrum.io/solidity-support)',
   ],
 };

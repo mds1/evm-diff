@@ -11,11 +11,6 @@ export const invalid: Omit<Opcode, 'minGas' | 'examples' | 'errorCases'> = {
     'Equivalent to REVERT (since Byzantium fork) with 0,0 as stack parameters, except that all the gas given to the current context is consumed.',
     'All the remaining gas in this context is consumed.',
   ],
-  references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0xfe),
-    },
-  ],
+  references: [evmCodesOpcodesLink(0xfe)],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

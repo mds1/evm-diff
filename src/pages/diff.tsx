@@ -101,7 +101,7 @@ const Diff = () => {
             const base = baseChain[section as keyof Chain];
             const target = targetChain[section as keyof Chain];
             return (
-              <div key={section} id={section}>
+              <div key={section} id={section} className='break-words'>
                 {/* Header */}
                 <Copyable
                   content={SECTION_MAP[section].title || section}

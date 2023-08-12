@@ -69,14 +69,8 @@ const dup = (n: number): Opcode => {
     ),
     errorCases: ['Not enough gas', 'Not enough values on the stack', 'Stack overflow'],
     references: [
-      {
-        name: 'evm.codes',
-        url: evmCodesOpcodesLink(number),
-      },
-      {
-        name: 'execution-specs',
-        url: ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 179 + n),
-      },
+      evmCodesOpcodesLink(number),
+      ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 179 + n),
     ],
     supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
   };

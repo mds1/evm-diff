@@ -26,14 +26,8 @@ export const gasprice: Opcode = {
   playgroundLink: evmCodesPlaygroundLink('%27GASPRICE%27_'),
   errorCases: ['Not enough gas', 'Stack overflow'],
   references: [
-    {
-      name: 'evm.codes',
-      url: evmCodesOpcodesLink(0x3a),
-    },
-    {
-      name: 'execution-specs',
-      url: ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 301),
-    },
+    evmCodesOpcodesLink(0x3a),
+    ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 301),
   ],
   supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
 };

@@ -5,7 +5,7 @@ const depositTx: SignatureType = {
   prefixByte: 0x7e,
   description: 'An L2 transaction that was derived from L1 and included in a L2 block',
   signedData: [
-    'keccak256(0x7E || rlp([sourceHash, from, to, mint, value, gas, isSystemTx, data]))',
+    '`keccak256(0x7E || rlp([sourceHash, from, to, mint, value, gas, isSystemTx, data]))`',
   ],
   signs: 'transaction',
   references: [
