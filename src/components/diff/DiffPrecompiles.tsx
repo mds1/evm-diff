@@ -1,8 +1,11 @@
+import { Disclosure } from '@headlessui/react';
+import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import { Address, getAddress } from 'viem';
 import { Markdown } from '@/components/diff/utils/Markdown';
 import { References } from '@/components/diff/utils/References';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
+import { classNames } from '@/lib/utils';
 import { Precompile } from '@/types';
 
 type Props = {
@@ -11,17 +14,63 @@ type Props = {
   onlyShowDiff: boolean;
 };
 
-const formatPrecompile = (contents: Precompile | undefined) => {
-  if (!contents) return <p>Not present</p>;
+const Abi = ({ precompile }: { precompile: Precompile }) => {
+  let abi = (
+    <p className='text-sm italic'>
+      This interface is not yet rendered, but the data exists in the EVM Diff repository.
+    </p>
+  );
+
+  if ('logicAbi' in precompile && !precompile.logicAbi.length) {
+    abi = <p className='text-sm'>ABI not found.</p>;
+  } else if ('logicAbi' in precompile && precompile.logicAbi.length > 0) {
+    abi = (
+      <ul>
+        {precompile.logicAbi.map((sig) => (
+          <li key={sig} className='my-2 text-xs'>
+            <code>{sig}</code>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+  return (
+    <Disclosure>
+      {({ open }) => (
+        <>
+          <Disclosure.Button
+            className={classNames(
+              'flex items-center text-sm',
+              open ? 'text-secondary my-2' : 'text-zinc-300 dark:text-zinc-600'
+            )}
+          >
+            ABI
+            <ChevronRightIcon
+              className={classNames('h-5 w-5', open ? 'rotate-90 transform' : '')}
+            />
+          </Disclosure.Button>
+          <Disclosure.Panel className={open ? 'mb-2' : ''}>{abi}</Disclosure.Panel>
+        </>
+      )}
+    </Disclosure>
+  );
+};
+
+const formatPrecompile = (precompile: Precompile | undefined) => {
+  if (!precompile) return <p>Not present</p>;
   return (
     <>
       <p>
-        <Markdown codeSize='0.9rem' content={contents.name} />
+        <Markdown codeSize='0.9rem' content={precompile.name} />
       </p>
       <p className='text-secondary text-sm'>
-        <Markdown content={contents.description} />
+        <Markdown content={precompile.description} />
       </p>
-      <References className='mt-4' references={contents.references} />
+      <div className='mt-4'>
+        <Abi precompile={precompile} />
+        <References references={precompile.references} />
+      </div>
     </>
   );
 };
