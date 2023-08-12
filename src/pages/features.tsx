@@ -44,7 +44,9 @@ const Features = () => {
   const options: Feature[] = [{ name: 'Opcodes', isHeader: true }, ...opcodeOptions];
 
   // --- Form handling ---
-  const [option, setOption] = useState(options[1]);
+  // Set PUSH0 as the default.
+  const push0Index = options.findIndex((opt) => opt.name === 'PUSH0');
+  const [option, setOption] = useState(options[push0Index]);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
