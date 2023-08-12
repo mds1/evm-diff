@@ -12,7 +12,12 @@ export const References = ({ references }: { references: string[] | string }) =>
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button className='flex items-center text-sm'>
+            <Disclosure.Button
+              className={classNames(
+                'flex items-center text-sm',
+                open ? 'text-secondary' : 'text-zinc-300 dark:text-zinc-600'
+              )}
+            >
               References
               <ChevronRightIcon
                 className={classNames('h-5 w-5', open ? 'rotate-90 transform' : '')}

@@ -6,7 +6,7 @@ const ARBITRUM_SMART_CONTRACT_ADDRESSES =
 export const predeploys: Predeploy[] = [
   {
     address: '0x5288c571Fd7aD117beA99bF60FE0846C4E84F933',
-    name: 'L2 Gateway Router',
+    name: '`L2GatewayRouter`',
     description:
       'Handles withdrawals from Ethereum into Arbitrum. Tokens are routed to their appropriate L2 gateway (Router itself also conforms to the Gateway interface).',
     proxyAbi: [
@@ -47,7 +47,7 @@ export const predeploys: Predeploy[] = [
   },
   {
     address: '0x09e9222E96E7B4AE2a407B98d48e330053351EEe',
-    name: 'L2 ERC20 Gateway',
+    name: '`L2ERC20Gateway`',
     description:
       "Initiates Arbitrum to Ethereum ERC20 transfers, which are forwarded to the token's L2 Gateway to communicate with its corresponding L1 Gateway.",
     proxyAbi: [
@@ -86,7 +86,7 @@ export const predeploys: Predeploy[] = [
   },
   {
     address: '0x096760F208390250649E3e8763348E783AEF5562',
-    name: 'L2 Arb-Custom Gateway',
+    name: '`L2CustomGateway`',
     description:
       'Allows to transfer of custom tokens from Arbitrum to Ethereum, which are forwarded to the L2 Gateway to communicate with its corresponding L1 Gateway.',
     proxyAbi: [
@@ -125,7 +125,7 @@ export const predeploys: Predeploy[] = [
   },
   {
     address: '0x6c411aD3E74De3E7Bd422b94A27770f5B86C623B',
-    name: 'L2 Weth Gateway',
+    name: '`L2WethGateway`',
     description:
       "Handles Arbitrum to Ethereum transfers of WETH by unwrapping the Ether and re-wrapping it on Ethereum, ensuring that all WETH tokens are always fully collateralized on the layer it's transferred to.",
     proxyAbi: [
@@ -164,7 +164,7 @@ export const predeploys: Predeploy[] = [
   },
   {
     address: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
-    name: 'L2 Weth',
+    name: 'L2Weth',
     description:
       'Wrapped Ether contract on Arbitrum, which is an ERC-20 token that represents 1 Ether.',
     proxyAbi: [
@@ -215,7 +215,7 @@ export const predeploys: Predeploy[] = [
   },
   {
     address: '0xd570aCE65C43af47101fC6250FD6fC63D1c22a86',
-    name: 'L2 Proxy Admin',
+    name: 'ProxyAdmin',
     description: 'The owner of all of the Arbitrum proxy contracts set at the predeploys.',
     logicAbi: [
       'event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)',
@@ -234,7 +234,7 @@ export const predeploys: Predeploy[] = [
 
   {
     address: '0x0000000000000000000000000000000000000065',
-    name: 'ArbInfo',
+    name: '`ArbInfo`',
     description: 'Provides the ability to lookup basic info about accounts and contracts.',
     logicAbi: [
       'function getBalance(address account) view returns (uint256)',

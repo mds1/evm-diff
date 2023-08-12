@@ -19,8 +19,8 @@ export const validSigTypes: SignatureType[] = [
     prefixByte: 0x0,
     description: 'Legacy (untyped) transaction',
     signedData: [
-      'keccak256(rlp([nonce, gasPrice, gasLimit, to, value, data]))',
-      'keccak256(rlp([nonce, gasPrice, gasLimit, to, value, data, chainId, 0, 0]))',
+      '`keccak256(rlp([nonce, gasPrice, gasLimit, to, value, data]))`',
+      '`keccak256(rlp([nonce, gasPrice, gasLimit, to, value, data, chainId, 0, 0]))`',
     ],
     signs: 'transaction',
     references: ['https://eips.ethereum.org/EIPS/eip-155', eip2718, sigTypes],
@@ -32,7 +32,7 @@ export const validSigTypes: SignatureType[] = [
     prefixByte: 0x1,
     description: 'EIP-2930 Access list transaction',
     signedData: [
-      'keccak256(0x01 || rlp([chainId, nonce, gasPrice, gasLimit, to, value, data, accessList]))',
+      '`keccak256(0x01 || rlp([chainId, nonce, gasPrice, gasLimit, to, value, data, accessList]))`',
     ],
     signs: 'transaction',
     references: ['https://eips.ethereum.org/EIPS/eip-2930', eip2718, sigTypes],
@@ -41,7 +41,7 @@ export const validSigTypes: SignatureType[] = [
     prefixByte: 0x2,
     description: 'EIP-1559 transaction',
     signedData: [
-      'keccak256(0x02 || rlp([chainId, nonce, maxPriorityFeePerGas, maxFeePerGas, gasLimit, to, value, data, accessList]))',
+      '`keccak256(0x02 || rlp([chainId, nonce, maxPriorityFeePerGas, maxFeePerGas, gasLimit, to, value, data, accessList]))`',
     ],
     signs: 'transaction',
     references: ['https://eips.ethereum.org/EIPS/eip-1559', eip2718, sigTypes],
@@ -49,7 +49,7 @@ export const validSigTypes: SignatureType[] = [
   {
     prefixByte: 0x3,
     description: 'Unused, but tentatively reserved for EIP-3074',
-    signedData: ['keccak256(0x03 || chainId || paddedInvokerAddress || commit)'],
+    signedData: ['`keccak256(0x03 || chainId || paddedInvokerAddress || commit)`'],
     signs: 'transaction',
     references: ['https://eips.ethereum.org/EIPS/eip-3074', eip2718, sigTypes],
   },
@@ -57,7 +57,7 @@ export const validSigTypes: SignatureType[] = [
     prefixByte: 0x19,
     description:
       'Used for signatures of data payloads to prevent collisions between data signatures and transaction signatures',
-    signedData: ['keccak256(0x19 || 1-byte-version || versionSpecificData || dataToSign)'],
+    signedData: ['`keccak256(0x19 || 1-byte-version || versionSpecificData || dataToSign)`'],
     signs: 'data',
     references: ['https://eips.ethereum.org/EIPS/eip-191', sigTypes],
   },

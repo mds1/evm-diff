@@ -1,3 +1,4 @@
+import { ParseMarkdown } from '@/components/diff/utils/ParseMarkdown';
 import { References } from '@/components/diff/utils/References';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
@@ -14,8 +15,15 @@ const formatSigType = (contents: SignatureType | undefined) => {
   if (!contents) return <p>Not present</p>;
   return (
     <>
-      <p>{contents.description}</p>
-      <p className='text-secondary text-sm'>{contents.signedData}</p>
+      <p>
+        <ParseMarkdown content={contents.description} />
+      </p>
+      {contents.signedData?.map((data) => (
+        <p key={data} className='text-secondary mb-1 text-sm'>
+          <ParseMarkdown content={data} />
+        </p>
+      ))}
+
       <References references={contents.references} />
     </>
   );
@@ -28,6 +36,9 @@ export const DiffSignatureTypes = ({ base, target, onlyShowDiff }: Props) => {
 
   const diffContent = (
     <>
+      <p className='text-secondary mb-4 text-sm'>
+        The <code className='text-xs'>||</code> symbol indicates concatenation
+      </p>
       {prefixBytes.map((prefix) => {
         const baseSigType = base.find((s) => s.prefixByte === prefix);
         const targetSigType = target.find((s) => s.prefixByte === prefix);

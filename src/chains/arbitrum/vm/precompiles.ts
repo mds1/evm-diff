@@ -8,7 +8,7 @@ export const precompiles: Precompile[] = [
   ...mainnetPrecompiles,
   {
     address: '0x0000000000000000000000000000000000000064',
-    name: 'ArbSys',
+    name: '`ArbSys`',
     description:
       'Exposes a variety of system-level functionality for interacting with Ethereum and understanding the call stack.',
     logicAbi: [
@@ -33,7 +33,7 @@ export const precompiles: Precompile[] = [
   },
   {
     address: '0x000000000000000000000000000000000000006E',
-    name: 'ArbRetryableTx',
+    name: '`ArbRetryableTx`',
     description: 'Manages retryable transactions related to data retrieval and interactions.',
     logicAbi: [
       'error NoTicketWithID()',
@@ -57,7 +57,7 @@ export const precompiles: Precompile[] = [
   },
   {
     address: '0x000000000000000000000000000000000000006C',
-    name: 'ArbGasInfo',
+    name: '`ArbGasInfo`',
     description: 'Provides insight into the costs of using Arbitrum.',
     logicAbi: [
       'function getAmortizedCostCapBips() view returns (uint64)',
@@ -83,7 +83,7 @@ export const precompiles: Precompile[] = [
   },
   {
     address: '0x0000000000000000000000000000000000000066',
-    name: 'ArbAddressTable',
+    name: '`ArbAddressTable`',
     description:
       'Allows registering and retrieving commonly used addresses via indices, saving calldata.',
     logicAbi: [
@@ -100,7 +100,7 @@ export const precompiles: Precompile[] = [
   },
   {
     address: '0x000000000000000000000000000000000000006F',
-    name: 'ArbStatistics',
+    name: '`ArbStatistics`',
     description:
       'Provides statistics about Arbitrum, such as the number of blocks, accounts, transactions, and contracts.',
     logicAbi: [
@@ -111,7 +111,7 @@ export const precompiles: Precompile[] = [
   },
   {
     address: '0x00000000000000000000000000000000000000C8',
-    name: 'NodeInterface',
+    name: '`NodeInterface`',
     description:
       'Retrieves the revenant data of calls by Arbitrum contracts to execute them in Ethereum via the Outbox contract.',
     logicAbi: [
@@ -129,7 +129,7 @@ export const precompiles: Precompile[] = [
   },
   {
     address: '0x0000000000000000000000000000000000000067',
-    name: 'ArbBLS',
+    name: '`ArbBLS`',
     description: 'Provides a registry of BLS public keys for accounts.',
     logicAbi: [], // TODO have not found ABI yet.
     deprecated: false,
@@ -137,7 +137,7 @@ export const precompiles: Precompile[] = [
   },
   {
     address: '0x0000000000000000000000000000000000000070',
-    name: 'ArbOwner',
+    name: '`ArbOwner`',
     description:
       'Provides owners with tools for managing the rollup. All calls to this precompile are authorized by the OwnerPrecompile wrapper, which ensures only a chain owner can access these methods.',
     logicAbi: [
@@ -175,7 +175,7 @@ export const precompiles: Precompile[] = [
   },
   {
     address: '0x000000000000000000000000000000000000006b',
-    name: 'ArbOwnerPublic',
+    name: '`ArbOwnerPublic`',
     description:
       'Provides non-owners with info about the current chain owners. The calls to this precompile do not require the sender be a chain owner. For those that are, see `ArbOwner`.',
     logicAbi: [
@@ -192,7 +192,7 @@ export const precompiles: Precompile[] = [
   },
   {
     address: '0x000000000000000000000000000000000000006D',
-    name: 'ArbAggregator',
+    name: '`ArbAggregator`',
     description:
       "Provides aggregators and their users methods for configuring how they participate in Ethereum aggregation. The default aggregator is Arbitrum's Sequencer.",
     logicAbi: [
@@ -210,7 +210,7 @@ export const precompiles: Precompile[] = [
   },
   {
     address: '0x0000000000000000000000000000000000000068',
-    name: 'ArbFunctionTable',
+    name: '`ArbFunctionTable`',
     description:
       'Allows aggregators to manage function tables for one form of transaction compression.',
     logicAbi: [

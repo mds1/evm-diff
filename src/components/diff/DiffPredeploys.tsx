@@ -1,4 +1,5 @@
 import { Address, getAddress } from 'viem';
+import { ParseMarkdown } from '@/components/diff/utils/ParseMarkdown';
 import { References } from '@/components/diff/utils/References';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
@@ -14,8 +15,12 @@ const formatPredeploy = (contents: Predeploy | undefined) => {
   if (!contents) return <p>Not present</p>;
   return (
     <>
-      <p>{contents.name}</p>
-      <p className='text-secondary text-sm'>{contents.description}</p>
+      <p>
+        <ParseMarkdown codeSize='0.9rem' content={contents.name} />
+      </p>
+      <p className='text-secondary text-sm'>
+        <ParseMarkdown content={contents.description} />
+      </p>
       <References references={contents.references} />
     </>
   );

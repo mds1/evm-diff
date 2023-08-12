@@ -2,7 +2,10 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ExternalLink } from '@/components/layout/ExternalLink';
 
-export const ParseMarkdown: React.FC<{ content: string }> = ({ content }) => {
+export const ParseMarkdown: React.FC<{ content: string; codeSize?: string }> = ({
+  content,
+  codeSize,
+}) => {
   // --- Transform Content ---
   const transformURLs = (content: string) => {
     // Define regex patterns for the different types of URLs we want to convert to named links.
@@ -46,7 +49,7 @@ export const ParseMarkdown: React.FC<{ content: string }> = ({ content }) => {
         // Make sure all code blocks have a smaller font size because otherwise they look big
         // relative to the text.
         code: ({ node: _node, inline: _inline, ...props }) => (
-          <code {...props} style={{ fontSize: '0.8rem' }} />
+          <code {...props} style={{ fontSize: codeSize || '0.8rem' }} />
         ),
       }}
     >
