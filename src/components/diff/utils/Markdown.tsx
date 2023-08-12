@@ -2,7 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ExternalLink } from '@/components/layout/ExternalLink';
 
-export const ParseMarkdown: React.FC<{ content: string; codeSize?: string }> = ({
+export const Markdown: React.FC<{ content: string; codeSize?: string }> = ({
   content,
   codeSize,
 }) => {

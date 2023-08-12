@@ -1,5 +1,5 @@
 import { Address, getAddress } from 'viem';
-import { ParseMarkdown } from '@/components/diff/utils/ParseMarkdown';
+import { Markdown } from '@/components/diff/utils/Markdown';
 import { References } from '@/components/diff/utils/References';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
@@ -16,10 +16,10 @@ const formatPrecompile = (contents: Precompile | undefined) => {
   return (
     <>
       <p>
-        <ParseMarkdown codeSize='0.9rem' content={contents.name} />
+        <Markdown codeSize='0.9rem' content={contents.name} />
       </p>
       <p className='text-secondary text-sm'>
-        <ParseMarkdown content={contents.description} />
+        <Markdown content={contents.description} />
       </p>
       <References references={contents.references} />
     </>

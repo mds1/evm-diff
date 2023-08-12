@@ -1,4 +1,4 @@
-import { ParseMarkdown } from '@/components/diff/utils/ParseMarkdown';
+import { Markdown } from '@/components/diff/utils/Markdown';
 import { References } from '@/components/diff/utils/References';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
@@ -16,11 +16,11 @@ const formatSigType = (contents: SignatureType | undefined) => {
   return (
     <>
       <p>
-        <ParseMarkdown content={contents.description} />
+        <Markdown content={contents.description} />
       </p>
       {contents.signedData?.map((data) => (
         <p key={data} className='text-secondary mb-1 text-sm'>
-          <ParseMarkdown content={data} />
+          <Markdown content={data} />
         </p>
       ))}
 

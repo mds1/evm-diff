@@ -1,7 +1,7 @@
 // This component is used to display the references for a section in a diff
 import { Disclosure } from '@headlessui/react';
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
-import { ParseMarkdown } from '@/components/diff/utils/ParseMarkdown';
+import { Markdown } from '@/components/diff/utils/Markdown';
 import { classNames } from '@/lib/utils';
 
 export const References = ({ references }: { references: string[] | string }) => {
@@ -28,7 +28,7 @@ export const References = ({ references }: { references: string[] | string }) =>
                 {refs.map((reference) => {
                   return (
                     <li key={JSON.stringify(reference)} className='list-item'>
-                      <ParseMarkdown content={reference} />
+                      <Markdown content={reference} />
                     </li>
                   );
                 })}
