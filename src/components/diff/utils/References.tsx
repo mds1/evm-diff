@@ -4,11 +4,11 @@ import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import { Markdown } from '@/components/diff/utils/Markdown';
 import { classNames } from '@/lib/utils';
 
-export const References = ({ references }: { references: string[] | string }) => {
+export const References = ({ references, className }: { references: string[] | string, className?: string }) => {
   const refs = Array.isArray(references) ? references : [references];
 
   return (
-    <div className='mt-4'>
+    <div className={className}>
       <Disclosure>
         {({ open }) => (
           <>

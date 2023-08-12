@@ -24,7 +24,7 @@ const formatSigType = (contents: SignatureType | undefined) => {
         </p>
       ))}
 
-      <References references={contents.references} />
+      <References className='mt-4' references={contents.references} />
     </>
   );
 };

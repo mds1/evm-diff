@@ -2,9 +2,10 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ExternalLink } from '@/components/layout/ExternalLink';
 
-export const Markdown: React.FC<{ content: string; codeSize?: string }> = ({
+export const Markdown: React.FC<{ content: string; codeSize?: string; className?: string }> = ({
   content,
   codeSize,
+  className,
 }) => {
   // --- Transform Content ---
   const transformURLs = (content: string) => {
@@ -34,6 +35,7 @@ export const Markdown: React.FC<{ content: string; codeSize?: string }> = ({
   // --- Render ---
   return (
     <ReactMarkdown
+      className={className}
       components={{
         // Make sure all links have the `hyperlink` class, and external links open in a new tab.
         a: ({ href, children }) => {

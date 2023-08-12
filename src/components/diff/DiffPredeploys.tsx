@@ -21,7 +21,7 @@ const formatPredeploy = (contents: Predeploy | undefined) => {
       <p className='text-secondary text-sm'>
         <Markdown content={contents.description} />
       </p>
-      <References references={contents.references} />
+      <References className='mt-4' references={contents.references} />
     </>
   );
 };
