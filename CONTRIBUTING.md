@@ -17,14 +17,15 @@ See the open [issues](https://github.com/mds1/evm-diff/issues) for current needs
 
 ## Bounties
 
-Issues with bounties will have something like "(bounty: 100 OP 🔴)" at the end of the issue title, where `100 OP` is the number of OP tokens paid out for this bounty.
+Most issues are eligible for bounties. Some issues will have something like "(bounty: 100 OP 🔴)" at the end of the issue title, where `100 OP` is the number of OP tokens paid out for this bounty. Others will say nothing, but are still eligible—I just haven't gotten around to assigning a payment amount.
 
 To apply for and claim a bounty:
 
-1. Leave a brief comment explaining your work plan (may be very brief is issue is well-scoped), and wait to begin work until you are assigned to the issue. If you have any questions about the issue scope, you can ask here. There is no guarantee that leaving a comment means you will be assigned.
-2. I'm not aware of any github issue bounty platforms that allow payments in OP on Optimism, so there is no intermediary managing the bounties. This means you have to trust that I'll pay it out, which I will if the work meets the issue's requirements and is sufficiently high quality to close that issue.
-3. Feel free to open a draft PR before completion if you have any questions.
-4. Include your **Optimism** payout address in the PR description, and once the PR is reviewed and merged I will transfer the OP tokens.
+1. If the issue has no bounty listed, message me on [Twitter](https://twitter.com/msolomon44), [Telegram](https://t.me/msolomon4), or [Discord](https://discordapp.com/users/417428774653657089) to work out an amount.
+2. Leave a brief comment explaining your work plan (may be very brief is issue is well-scoped), and wait to begin work until you are assigned to the issue. If you have any questions about the issue scope, you can ask in the issue or message me. (There is no guarantee that leaving a comment means you will be assigned, if multiple people are interested in the same issue).
+3. I'm not aware of any github issue bounty platforms that allow payments in OP on Optimism, so there is no intermediary managing the bounties. This means you have to trust that I'll pay it out, which I will if the work meets the issue's requirements and is sufficiently high quality to close that issue.
+4. Feel free to open a draft PR before completion if you have any questions.
+5. Include your **Optimism** payout address in the PR description, and once the PR is reviewed and merged I will transfer the OP tokens.
 
 ## Architecture
 
