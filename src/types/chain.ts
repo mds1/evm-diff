@@ -4,6 +4,7 @@ import { Opcode } from './opcode';
 import { Precompile } from './precompile';
 import { Predeploy } from './predeploy';
 import { SignatureType } from './signatureType';
+import { Mempool } from './mempool';
 
 export type Chain = {
   metadata: Metadata;
@@ -12,4 +13,5 @@ export type Chain = {
   signatureTypes: SignatureType[];
   accountTypes: AccountType[];
   opcodes: Partial<Opcode>[];
+  mempools: Mempool[];
 };
