@@ -12,13 +12,13 @@ export const Header = () => {
   return (
     <header>
       <div className='bg-primary py-2 text-center text-sm font-semibold'>
-        This site is under active development. Check out{' '}
+        Support EVM Diff by contributing to our{' '}
         <ExternalLink
           className='text-zinc-1000 underline dark:text-zinc-0'
-          href='https://github.com/mds1/evm-diff'
-          text='the repo'
+          href='https://explorer.gitcoin.co/#/round/10/0x8de918f0163b2021839a8d84954dd7e8e151326d/0x8de918f0163b2021839a8d84954dd7e8e151326d-145'
+          text='Gitcoin Grant'
         />{' '}
-        to help contribute.
+        during this round.
       </div>
       <div>
         <div className='flex items-center justify-between px-4 py-2 sm:px-6 sm:py-6 md:space-x-10'>

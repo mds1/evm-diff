@@ -2,7 +2,11 @@
 
 Diff EVM-compatible chains in a friendly format.
 
-⚠️ **This site is a work in progress and should not yet be relied on. Check out the [issues](https://github.com/mds1/evm-diff/issues) if you'd like to contribute.**
+> [!NOTE]
+> Support EVM Diff by contributing to our [Gitcoin grant](https://explorer.gitcoin.co/#/round/10/0x8de918f0163b2021839a8d84954dd7e8e151326d/0x8de918f0163b2021839a8d84954dd7e8e151326d-145) during this matching round!
+
+> [!IMPORTANT]
+> This site is under active development. Check out the [issues](https://github.com/mds1/evm-diff/issues) if you'd like to contribute.
 
 ## Overview
 
