@@ -81,7 +81,7 @@ const eden: Mempool = {
   name: 'Eden RPC',
   description:
     'Eden RPC makes it easy for everyday users and developers to use Eden for frontrunning protection.',
-  rpcUrl: 'ttps://api.edennetwork.io/v1/rpc',
+  rpcUrl: 'https://api.edennetwork.io/v1/rpc',
   references: ['[Eden documentation](https://docs.edennetwork.io/eden-rpc/overview)]'],
   notes: [
     'Eden RPC is currently in public beta.',

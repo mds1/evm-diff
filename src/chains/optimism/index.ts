@@ -14,4 +14,5 @@ export const optimism: Chain = {
   signatureTypes: sortedArrayByField(signatureTypes, 'prefixByte'),
   accountTypes: sortedArrayByField(accountTypes, 'name'),
   opcodes: sortedArrayByField(opcodes, 'number'),
+  mempools: [],
 };
