@@ -1,5 +1,5 @@
+import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Markdown } from '@/components/diff/utils/Markdown';
-import { References } from '@/components/diff/utils/References';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { AccountType } from '@/types';
@@ -35,7 +35,7 @@ const formatAccountType = (contents: AccountType | undefined) => {
         })}
       </div>
 
-      <References className='mt-4' references={contents.references} />
+      <Collapsible className='mt-4' kind='references' contents={contents.references} />
     </>
   );
 };
