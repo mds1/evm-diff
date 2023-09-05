@@ -1,11 +1,8 @@
-import { Disclosure } from '@headlessui/react';
-import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import { Address, getAddress } from 'viem';
+import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Markdown } from '@/components/diff/utils/Markdown';
-import { References } from '@/components/diff/utils/References';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { classNames } from '@/lib/utils';
 import { Precompile } from '@/types';
 
 type Props = {
@@ -35,26 +32,7 @@ const Abi = ({ precompile }: { precompile: Precompile }) => {
     );
   }
 
-  return (
-    <Disclosure>
-      {({ open }) => (
-        <>
-          <Disclosure.Button
-            className={classNames(
-              'flex items-center text-sm',
-              open ? 'text-secondary my-2' : 'text-zinc-300 dark:text-zinc-600'
-            )}
-          >
-            ABI
-            <ChevronRightIcon
-              className={classNames('h-5 w-5', open ? 'rotate-90 transform' : '')}
-            />
-          </Disclosure.Button>
-          <Disclosure.Panel className={open ? 'mb-2' : ''}>{abi}</Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
-  );
+  return <Collapsible kind='custom' contents={abi} title='ABI' />;
 };
 
 const formatPrecompile = (precompile: Precompile | undefined) => {
@@ -69,7 +47,7 @@ const formatPrecompile = (precompile: Precompile | undefined) => {
       </p>
       <div className='mt-4'>
         <Abi precompile={precompile} />
-        <References references={precompile.references} />
+        <Collapsible kind='references' contents={precompile.references} />
       </div>
     </>
   );

@@ -4,6 +4,7 @@ import { LinkIcon } from '@heroicons/react/20/solid';
 import { getChainById } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffAccountTypes } from '@/components/diff/DiffAccountTypes';
+import { DiffMempools } from '@/components/diff/DiffMempools';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
@@ -34,6 +35,7 @@ const SECTION_MAP: Record<string, Section> = {
   signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
   accountTypes: { title: 'Account Types', component: DiffAccountTypes },
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
+  mempools: { title: 'Mempools', component: DiffMempools },
 };
 
 const Diff = () => {

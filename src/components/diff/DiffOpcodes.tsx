@@ -1,7 +1,5 @@
-import { Disclosure } from '@headlessui/react';
-import { ChevronRightIcon } from '@heroicons/react/20/solid';
+import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Markdown } from '@/components/diff/utils/Markdown';
-import { References } from '@/components/diff/utils/References';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { ExternalLink } from '@/components/layout/ExternalLink';
 import { Copyable } from '@/components/ui/Copyable';
@@ -89,44 +87,29 @@ const formatVariable = (v: Variable): JSX.Element => {
 
 const formatExamples = (opcode: Opcode): JSX.Element => {
   if (!opcode.examples || opcode.examples.length === 0) return <></>;
-  return (
-    <Disclosure>
-      {({ open }) => (
-        <>
-          <Disclosure.Button
-            className={classNames(
-              'flex items-center text-sm',
-              open ? 'text-secondary' : 'text-zinc-300 dark:text-zinc-600'
-            )}
-          >
-            Examples
-            <ChevronRightIcon
-              className={classNames('h-5 w-5', open ? 'rotate-90 transform' : '')}
-            />
-          </Disclosure.Button>
-          <Disclosure.Panel className={open ? 'mb-4' : ''}>
-            <div className='text-secondary text-sm'>
-              Stack inputs are shown on the left of the arrow symbol and stack outputs on the right.{' '}
-              {opcode.playgroundLink && (
-                <span>
-                  Or,{' '}
-                  <ExternalLink className='text-sm' href={opcode.playgroundLink}>
-                    try it out
-                  </ExternalLink>{' '}
-                  on the playground.
-                </span>
-              )}
-            </div>
-            <ul>
-              {opcode.examples.map((e, id) => (
-                <li key={id}>{formatExample(e, id)}</li>
-              ))}
-            </ul>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+  const contents = (
+    <>
+      <div className='text-secondary text-sm'>
+        Stack inputs are shown on the left of the arrow symbol and stack outputs on the right.{' '}
+        {opcode.playgroundLink && (
+          <span>
+            Or,{' '}
+            <ExternalLink className='text-sm' href={opcode.playgroundLink}>
+              try it out
+            </ExternalLink>{' '}
+            on the playground.
+          </span>
+        )}
+      </div>
+      <ul>
+        {opcode.examples.map((e, id) => (
+          <li key={id}>{formatExample(e, id)}</li>
+        ))}
+      </ul>
+    </>
   );
+
+  return <Collapsible kind='custom' title='Examples' contents={contents} />;
 };
 
 const formatExample = (e: Example, id: number): JSX.Element => {
@@ -202,75 +185,57 @@ const formatStorage = (record: Record<string, string>): JSX.Element => {
 
 const formatGasComputation = (gc: GasComputation | undefined): JSX.Element => {
   if (!gc) return <></>;
-  return (
-    <Disclosure>
-      {({ open }) => (
-        <>
-          <Disclosure.Button
-            className={classNames(
-              'flex items-center text-sm',
-              open ? 'text-secondary mt-4' : 'text-zinc-300 dark:text-zinc-600'
-            )}
-          >
-            Gas Computation
-            <ChevronRightIcon
-              className={classNames('h-5 w-5', open ? 'rotate-90 transform' : '')}
-            />
-          </Disclosure.Button>
-          <Disclosure.Panel className={open ? 'mb-4' : ''}>
+  const contents = (
+    <>
+      <code className='text-secondary text-sm'>gas_cost = static_gas_cost + dynamic_gas_cost</code>
+
+      <div>
+        {gc.staticGasCost && (
+          <>
             <code className='text-secondary text-sm'>
-              gas_cost = static_gas_cost + dynamic_gas_cost
+              static_gas_cost = {gc.staticGasCost.expression}
             </code>
+            {gc.staticGasCost.variables && (
+              <>
+                <h5 className='mt-4 font-bold'>Sub-variables (static_gas_cost)</h5>
+                <ul>
+                  {gc.staticGasCost.variables.map((v) => (
+                    <li key={v.name}>{formatVariable(v)}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </>
+        )}
+      </div>
 
-            <div>
-              {gc.staticGasCost && (
-                <>
-                  <code className='text-secondary text-sm'>
-                    static_gas_cost = {gc.staticGasCost.expression}
-                  </code>
-                  {gc.staticGasCost.variables && (
-                    <>
-                      <h5 className='mt-4 font-bold'>Sub-variables (static_gas_cost)</h5>
-                      <ul>
-                        {gc.staticGasCost.variables.map((v) => (
-                          <li key={v.name}>{formatVariable(v)}</li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </>
-              )}
-            </div>
+      <div>
+        {gc.dynamicGasCost && (
+          <>
+            <code className='text-secondary text-sm'>
+              dynamic_gas_cost = {gc.dynamicGasCost.expression}
+            </code>
+            {gc.dynamicGasCost.variables && (
+              <>
+                <h5 className='mt-4 font-semibold'>
+                  Sub-variables (<code className='text-sm'>dynamic_gas_cost</code>)
+                </h5>
+                <ul>
+                  {gc.dynamicGasCost.variables.map((v) => (
+                    <li key={v.name}>{formatVariable(v)}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </>
+        )}
+      </div>
 
-            <div>
-              {gc.dynamicGasCost && (
-                <>
-                  <code className='text-secondary text-sm'>
-                    dynamic_gas_cost = {gc.dynamicGasCost.expression}
-                  </code>
-                  {gc.dynamicGasCost.variables && (
-                    <>
-                      <h5 className='mt-4 font-semibold'>
-                        Sub-variables (<code className='text-sm'>dynamic_gas_cost</code>)
-                      </h5>
-                      <ul>
-                        {gc.dynamicGasCost.variables.map((v) => (
-                          <li key={v.name}>{formatVariable(v)}</li>
-                        ))}
-                      </ul>
-                    </>
-                  )}
-                </>
-              )}
-            </div>
-
-            <h4 className='mt-3 font-semibold'>Refunds</h4>
-            <p className='text-secondary'>{gc.refunds || 'No refunds'}</p>
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+      <h4 className='mt-3 font-semibold'>Refunds</h4>
+      <p className='text-secondary'>{gc.refunds || 'No refunds'}</p>
+    </>
   );
+  return <Collapsible kind='custom' title='Gas Computation' contents={contents} />;
 };
 
 const formatStringList = (title: string, array: string[] | undefined): JSX.Element => {
@@ -301,7 +266,7 @@ const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {
       <div className='mt-4'>
         {formatExamples(opcode)}
         {formatGasComputation(opcode.gasComputation)}
-        <References references={opcode.references} />
+        <Collapsible kind='references' contents={opcode.references} />
       </div>
     </>
   );

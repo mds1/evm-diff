@@ -1,11 +1,8 @@
-import { Disclosure } from '@headlessui/react';
-import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import { Address, getAddress } from 'viem';
+import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Markdown } from '@/components/diff/utils/Markdown';
-import { References } from '@/components/diff/utils/References';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { classNames } from '@/lib/utils';
 import { Predeploy } from '@/types';
 
 type Props = {
@@ -74,26 +71,7 @@ const Abi = ({ predeploy }: { predeploy: Predeploy }) => {
   );
 
   return (
-    <Disclosure>
-      {({ open }) => (
-        <>
-          <Disclosure.Button
-            className={classNames(
-              'flex items-center text-sm',
-              open ? 'text-secondary my-2' : 'text-zinc-300 dark:text-zinc-600'
-            )}
-          >
-            ABI
-            <ChevronRightIcon
-              className={classNames('h-5 w-5', open ? 'rotate-90 transform' : '')}
-            />
-          </Disclosure.Button>
-          <Disclosure.Panel className={open ? 'mb-2' : ''}>
-            {hasProxyAbi ? proxyAbiContent : logicAbi}
-          </Disclosure.Panel>
-        </>
-      )}
-    </Disclosure>
+    <Collapsible kind='custom' contents={hasProxyAbi ? proxyAbiContent : logicAbi} title='ABI' />
   );
 };
 
@@ -101,15 +79,15 @@ const formatPredeploy = (predeploy: Predeploy | undefined) => {
   if (!predeploy) return <p>Not present</p>;
   return (
     <>
-      <p>
+      <div>
         <Markdown codeSize='0.9rem' content={predeploy.name} />
-      </p>
-      <p className='text-secondary text-sm'>
+      </div>
+      <div className='text-secondary text-sm'>
         <Markdown content={predeploy.description} />
-      </p>
+      </div>
       <div className='mt-4'>
         <Abi predeploy={predeploy} />
-        <References references={predeploy.references} />
+        <Collapsible kind='references' contents={predeploy.references} />
       </div>
     </>
   );
