@@ -26,12 +26,12 @@ const formatMempool = (contents: Mempool | undefined) => {
   if (!contents) return <p>Not present</p>;
   return (
     <>
-      <p>
+      <div>
         <Markdown content={contents.description} />
         <div className='mt-2'>
           <code className='text-xs'>{contents.rpcUrl}</code>
         </div>
-      </p>
+      </div>
       <div className='mt-4 text-sm'>
         {mempoolPropertiesKeys.map((key) => {
           const value = contents.properties[key as keyof Mempool['properties']];

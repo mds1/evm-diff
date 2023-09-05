@@ -15,13 +15,13 @@ const formatSigType = (contents: SignatureType | undefined) => {
   if (!contents) return <p>Not present</p>;
   return (
     <>
-      <p>
+      <div>
         <Markdown content={contents.description} />
-      </p>
+      </div>
       {contents.signedData?.map((data) => (
-        <p key={data} className='text-secondary mb-1 text-sm'>
+        <div key={data} className='text-secondary mb-1 text-sm'>
           <Markdown content={data} />
-        </p>
+        </div>
       ))}
 
       <Collapsible className='mt-4' kind='references' contents={contents.references} />

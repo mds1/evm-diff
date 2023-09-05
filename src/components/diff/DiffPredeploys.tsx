@@ -79,12 +79,12 @@ const formatPredeploy = (predeploy: Predeploy | undefined) => {
   if (!predeploy) return <p>Not present</p>;
   return (
     <>
-      <p>
+      <div>
         <Markdown codeSize='0.9rem' content={predeploy.name} />
-      </p>
-      <p className='text-secondary text-sm'>
+      </div>
+      <div className='text-secondary text-sm'>
         <Markdown content={predeploy.description} />
-      </p>
+      </div>
       <div className='mt-4'>
         <Abi predeploy={predeploy} />
         <Collapsible kind='references' contents={predeploy.references} />
