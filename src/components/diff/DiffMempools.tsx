@@ -58,7 +58,10 @@ const formatMempool = (contents: Mempool | undefined) => {
         })}
       </div>
 
-      <Collapsible className='mt-4' kind='references' contents={contents.references} />
+      <div className='mt-4'>
+        {!!contents.notes?.length && <Collapsible kind='notes' contents={contents.notes} />}
+        <Collapsible kind='references' contents={contents.references} />
+      </div>
     </>
   );
 };

@@ -10,13 +10,18 @@ export const Collapsible = ({
   className,
   title,
 }: {
-  kind: 'references' | 'custom';
-  contents: string[] | string | JSX.Element;
+  kind: 'references' | 'notes' | 'custom';
+  contents: string[] | string | JSX.Element | undefined;
   className?: string;
   title?: string;
 }) => {
+  if (contents === undefined) return <></>;
   const refs = Array.isArray(contents) ? contents : [contents];
-  const headerTitle = title ? title : kind === 'references' ? 'References' : 'Notes';
+
+  let headerTitle = 'unknown';
+  if (title) headerTitle = title;
+  else if (kind === 'references') headerTitle = 'References';
+  else if (kind === 'notes') headerTitle = 'Notes';
 
   const panelContent =
     kind === 'custom' ? (
@@ -40,7 +45,7 @@ export const Collapsible = ({
           <>
             <Disclosure.Button
               className={classNames(
-                'flex items-center text-sm',
+                'mt-1 flex items-center text-sm',
                 open ? 'text-secondary' : 'text-zinc-300 dark:text-zinc-600'
               )}
             >
