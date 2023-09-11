@@ -16,7 +16,7 @@ export const FeatureTable = ({
     if (kind === 'opcode') {
       const opcode = chain.opcodes.find((op) => op.name?.toLowerCase() === name.toLowerCase());
       if (!opcode) return undefined;
-      return opcode.description?.includes('not supported') ? 'False' : 'True';
+      return opcode.description?.includes('not supported') ? 'No' : 'Yes';
     }
   });
   const adjustedChains = chainsArray.map((chain, i) => {
