@@ -1,4 +1,5 @@
 import { Address, getAddress } from 'viem';
+import { Abi } from '@/components/diff/utils/Abi';
 import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Markdown } from '@/components/diff/utils/Markdown';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
@@ -14,71 +15,6 @@ type Props = {
   base: DeployedContract[];
   target: DeployedContract[];
   onlyShowDiff: boolean;
-};
-
-const Abi = ({ deployedContract }: { deployedContract: DeployedContract }) => {
-  const hasProxyAbi = 'proxyAbi' in deployedContract && deployedContract.proxyAbi.length > 0;
-  const hasLogicAbi = 'logicAbi' in deployedContract && deployedContract.logicAbi.length > 0;
-  const hasLogicAddress =
-    'logicAddress' in deployedContract && deployedContract.logicAddress.length > 0;
-
-  let proxyAbi = <></>;
-  let logicAbi = <></>;
-
-  if (!hasProxyAbi) {
-    proxyAbi = <p className='text-sm'>ABI not found.</p>;
-  } else if (hasProxyAbi) {
-    proxyAbi = (
-      <ul>
-        {deployedContract.proxyAbi.map((sig) => (
-          <li key={sig} className='my-2 text-xs'>
-            <code>{sig}</code>
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  if (!hasLogicAbi) {
-    logicAbi = <p className='text-sm'>ABI not found.</p>;
-  } else if (hasLogicAbi) {
-    logicAbi = (
-      <ul>
-        {deployedContract.logicAbi.map((sig) => (
-          <li key={sig} className='my-2 text-xs'>
-            <code>{sig}</code>
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  const proxyAbiContent = (
-    <>
-      <div className='font-semibold'>Proxy Contract ABI</div>
-      {proxyAbi}
-      <div className='mt-4 font-semibold'>Logic Contract ABI</div>
-      <div className='text-secondary text-sm'>
-        {hasLogicAddress && (
-          <div className='mt-2 flex flex-1 items-center'>
-            {/* For some reason the text is not horizontally aligned so we manually add some margin to fix it */}
-            <div className='mr-1' style={{ marginBottom: '0.2rem' }}>
-              Implementation at
-            </div>
-            <Copyable
-              content={formatAddress(deployedContract.logicAddress)}
-              textToCopy={deployedContract.logicAddress}
-            />
-          </div>
-        )}
-      </div>
-      {logicAbi}
-    </>
-  );
-
-  return (
-    <Collapsible kind='custom' contents={hasProxyAbi ? proxyAbiContent : logicAbi} title='ABI' />
-  );
 };
 
 const formatDeployedContract = (deployedContract: DeployedContract | undefined) => {
@@ -115,7 +51,7 @@ const formatDeployedContract = (deployedContract: DeployedContract | undefined) 
         </div>
       </div>
       <div className='mt-4'>
-        <Abi deployedContract={deployedContract} />
+        <Abi contract={deployedContract} />
         <Collapsible kind='references' contents={deployedContract.references} />
       </div>
     </>
