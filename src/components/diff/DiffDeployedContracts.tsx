@@ -111,21 +111,22 @@ export const DiffDeployedContracts = ({ base, target, onlyShowDiff }: Props) => 
         const baseDeployedContract = base.find((c) => c.name === name);
         const targetDeployedContract = target.find((c) => c.name === name);
 
-        console.log('==========');
-        console.log(name);
-        console.log(
-          'convertToComparableContract(baseDeployedContract):',
-          convertToComparableContract(baseDeployedContract)
-        );
-        console.log(
-          'convertToComparableContract(targetDeployedContract):',
-          convertToComparableContract(targetDeployedContract)
-        );
         const isEqual =
           JSON.stringify(convertToComparableContract(baseDeployedContract)) ===
           JSON.stringify(convertToComparableContract(targetDeployedContract));
-        console.log('isEqual:', isEqual);
+
         const showDeployedContract = !isEqual || !onlyShowDiff;
+
+        let formattedName: string | JSX.Element = name;
+        if (name.includes('Create2 Deployer')) {
+          const [first, _] = name.split('Create2 Deployer');
+          formattedName = (
+            <>
+              <div>{first}</div>
+              <div>Create2 Deployer</div>
+            </>
+          );
+        }
 
         return (
           showDeployedContract && (
@@ -133,9 +134,7 @@ export const DiffDeployedContracts = ({ base, target, onlyShowDiff }: Props) => 
               key={name}
               className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
-              <div className='col-span-2'>
-                <Copyable content={name} textToCopy={name} />
-              </div>
+              <div className='col-span-2'>{formattedName}</div>
               <div className='col-span-5 pr-4'>{formatDeployedContract(baseDeployedContract)}</div>
               <div className='col-span-5'>{formatDeployedContract(targetDeployedContract)}</div>
             </div>
