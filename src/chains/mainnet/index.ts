@@ -1,7 +1,8 @@
 import { mainnet as mainnetMetadata } from '@wagmi/chains';
-import { sortedArrayByField } from '@/lib/utils';
+import { sortedArrayByField, sortedArrayByFields } from '@/lib/utils';
 import { Chain } from '@/types';
 import { accountTypes } from './accountTypes';
+import { deployedContracts } from './deployedContracts';
 import { mempools } from './mempools';
 import { signatureTypes } from './signatureTypes';
 import { opcodes } from './vm/opcodes';
@@ -16,4 +17,5 @@ export const mainnet: Chain = {
   accountTypes: sortedArrayByField(accountTypes, 'name'),
   opcodes: sortedArrayByField(opcodes, 'number'),
   mempools: sortedArrayByField(mempools, 'name'),
+  deployedContracts: sortedArrayByFields(deployedContracts, ['kind', 'name']),
 };

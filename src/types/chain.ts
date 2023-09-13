@@ -1,5 +1,6 @@
 import { Chain as Metadata } from '@wagmi/chains';
 import { AccountType } from './accountType';
+import { DeployedContract } from './deployedContract';
 import { Mempool } from './mempool';
 import { Opcode } from './opcode';
 import { Precompile } from './precompile';
@@ -14,4 +15,5 @@ export type Chain = {
   accountTypes: AccountType[];
   opcodes: Partial<Opcode>[];
   mempools: Mempool[];
+  deployedContracts: DeployedContract[];
 };

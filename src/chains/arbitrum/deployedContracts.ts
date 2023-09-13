@@ -1,0 +1,56 @@
+import { deployedContracts as mainnetDeployedContracts } from '@/chains/mainnet/deployedContracts';
+
+const arbitrumDeployedContracts = { ...mainnetDeployedContracts };
+arbitrumDeployedContracts['Wrapped Native Token'] = {
+  ...arbitrumDeployedContracts['Wrapped Native Token'],
+  address: '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
+  references: [
+    ...arbitrumDeployedContracts['Wrapped Native Token'].references,
+    '[Arbitrum Docs: Smart contract addresses](https://docs.arbitrum.io/for-devs/useful-addresses#core-contracts-1)',
+  ],
+  proxyAbi: [
+    'constructor(address _logic, address admin_, bytes _data) payable',
+    'event AdminChanged(address previousAdmin, address newAdmin)',
+    'event Upgraded(address indexed implementation)',
+    'fallback()',
+    'function admin() returns (address admin_)',
+    'function changeAdmin(address newAdmin)',
+    'function implementation() returns (address implementation_)',
+    'function upgradeTo(address newImplementation)',
+    'function upgradeToAndCall(address newImplementation, bytes data) payable',
+    'receive() external payable',
+  ],
+  logicAbi: [
+    'event Approval(address indexed owner, address indexed spender, uint256 value)',
+    'event Transfer(address indexed from, address indexed to, uint256 value, bytes data)',
+    'event Transfer(address indexed from, address indexed to, uint256 value)',
+    'function DOMAIN_SEPARATOR() view returns (bytes32)',
+    'function allowance(address owner, address spender) view returns (uint256)',
+    'function approve(address spender, uint256 amount) returns (bool)',
+    'function balanceOf(address account) view returns (uint256)',
+    'function bridgeBurn(address account, uint256 amount)',
+    'function bridgeMint(address account, uint256 amount)',
+    'function decimals() view returns (uint8)',
+    'function decreaseAllowance(address spender, uint256 subtractedValue) returns (bool)',
+    'function deposit() payable',
+    'function depositTo(address account) payable',
+    'function increaseAllowance(address spender, uint256 addedValue) returns (bool)',
+    'function initialize(string _name, string _symbol, uint8 _decimals, address _l2Gateway, address _l1Address)',
+    'function l1Address() view returns (address)',
+    'function l2Gateway() view returns (address)',
+    'function name() view returns (string)',
+    'function nonces(address owner) view returns (uint256)',
+    'function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)',
+    'function symbol() view returns (string)',
+    'function totalSupply() view returns (uint256)',
+    'function transfer(address recipient, uint256 amount) returns (bool)',
+    'function transferAndCall(address _to, uint256 _value, bytes _data) returns (bool success)',
+    'function transferFrom(address sender, address recipient, uint256 amount) returns (bool)',
+    'function withdraw(uint256 amount)',
+    'function withdrawTo(address account, uint256 amount)',
+    'receive() external payable',
+  ],
+  logicAddress: '0x8b194bEae1d3e0788A1a35173978001ACDFba668',
+};
+
+export const deployedContracts = arbitrumDeployedContracts;
