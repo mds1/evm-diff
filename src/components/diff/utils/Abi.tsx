@@ -28,7 +28,7 @@ export const Abi = ({ contract }: { contract: ContractAbi }) => {
   let logicAbi = <></>;
 
   if (!hasProxyAbi) {
-    proxyAbi = <p className='text-sm'>ABI not found.</p>;
+    proxyAbi = <div className='text-sm'>ABI not found.</div>;
   } else if (hasProxyAbi) {
     proxyAbi = (
       <ul>
@@ -42,7 +42,7 @@ export const Abi = ({ contract }: { contract: ContractAbi }) => {
   }
 
   if (!hasLogicAbi) {
-    logicAbi = <p className='text-sm'>ABI not found.</p>;
+    logicAbi = <div className='text-sm'>ABI not found.</div>;
   } else if (hasLogicAbi) {
     logicAbi = (
       <ul>

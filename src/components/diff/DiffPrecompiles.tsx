@@ -13,13 +13,13 @@ type Props = {
 
 const Abi = ({ precompile }: { precompile: Precompile }) => {
   let abi = (
-    <p className='text-sm italic'>
+    <div className='text-sm italic'>
       This interface is not yet rendered, but the data exists in the EVM Diff repository.
-    </p>
+    </div>
   );
 
   if ('logicAbi' in precompile && !precompile.logicAbi.length) {
-    abi = <p className='text-sm'>ABI not found.</p>;
+    abi = <div className='text-sm'>ABI not found.</div>;
   } else if ('logicAbi' in precompile && precompile.logicAbi.length > 0) {
     abi = (
       <ul>
@@ -36,15 +36,15 @@ const Abi = ({ precompile }: { precompile: Precompile }) => {
 };
 
 const formatPrecompile = (precompile: Precompile | undefined) => {
-  if (!precompile) return <p>Not present</p>;
+  if (!precompile) return <div>Not present</div>;
   return (
     <>
-      <p>
+      <div>
         <Markdown codeSize='0.9rem' content={precompile.name} />
-      </p>
-      <p className='text-secondary text-sm'>
+      </div>
+      <div className='text-secondary text-sm'>
         <Markdown content={precompile.description} />
-      </p>
+      </div>
       <div className='mt-4'>
         <Abi precompile={precompile} />
         <Collapsible kind='references' contents={precompile.references} />
