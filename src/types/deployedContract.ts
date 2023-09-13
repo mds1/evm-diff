@@ -17,11 +17,11 @@ type DeployedContractBase = {
   notes?: string[];
 };
 
-type StandardDeployedContract = DeployedContractBase & {
+export type StandardDeployedContract = DeployedContractBase & {
   logicAbi: string[];
 };
 
-type ProxiedDeployedContract = DeployedContractBase & {
+export type ProxiedDeployedContract = DeployedContractBase & {
   proxyAbi: string[];
   logicAbi: string[];
   logicAddress: Address;

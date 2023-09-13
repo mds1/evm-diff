@@ -4,6 +4,7 @@ import { LinkIcon } from '@heroicons/react/20/solid';
 import { getChainById } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffAccountTypes } from '@/components/diff/DiffAccountTypes';
+import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
 import { DiffMempools } from '@/components/diff/DiffMempools';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
@@ -36,6 +37,7 @@ const SECTION_MAP: Record<string, Section> = {
   accountTypes: { title: 'Account Types', component: DiffAccountTypes },
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
   mempools: { title: 'Mempools', component: DiffMempools },
+  deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
 };
 
 const Diff = () => {
