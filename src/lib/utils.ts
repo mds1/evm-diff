@@ -26,6 +26,23 @@ export const sortedArrayByField = <T extends number | string | symbol, U, K exte
   });
 };
 
+// Given a `record` (i.e. an object), return an array of its values sorted by the given `fields`,
+// in the order specified.
+// Make sure the field is a number or string or the sort behavior based on `>` and `<` may be
+// undefined.
+export const sortedArrayByFields = <T extends number | string | symbol, U, K extends keyof U>(
+  record: Record<T, U>,
+  fields: K[]
+): U[] => {
+  return (Object.values(record) as U[]).sort((a, b) => {
+    for (const field of fields) {
+      if (a[field] > b[field]) return 1;
+      if (a[field] < b[field]) return -1;
+    }
+    return 0;
+  });
+};
+
 // Returns a hex string with a leading `0x` and padded to 2 characters.
 export const formatPrefixByte = (prefix: number) => {
   return pad(`0x${prefix.toString(16).toUpperCase()}`, { size: 1 });

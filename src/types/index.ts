@@ -5,3 +5,9 @@ export type { Predeploy } from './predeploy';
 export type { AccountType } from './accountType';
 export type { SignatureType } from './signatureType';
 export type { Mempool } from './mempool';
+export type {
+  DeployedContract,
+  StandardDeployedContract,
+  ProxiedDeployedContract,
+} from './deployedContract';
+export { DeployedContractKind } from './deployedContract';

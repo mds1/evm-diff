@@ -11,12 +11,12 @@ type Props = {
 };
 
 const formatAccountType = (contents: AccountType | undefined) => {
-  if (!contents) return <p>Not present</p>;
+  if (!contents) return <div>Not present</div>;
   return (
     <>
-      <p>
+      <div>
         <Markdown content={contents.description} />
-      </p>
+      </div>
       <div className='mt-4 text-sm'>
         {Object.entries(contents.properties).map(([key, value]) => {
           // Return a two column table of the property name and description.

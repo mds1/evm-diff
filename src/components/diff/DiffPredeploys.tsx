@@ -1,4 +1,5 @@
 import { Address, getAddress } from 'viem';
+import { Abi } from '@/components/diff/utils/Abi';
 import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Markdown } from '@/components/diff/utils/Markdown';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
@@ -9,70 +10,6 @@ type Props = {
   base: Predeploy[];
   target: Predeploy[];
   onlyShowDiff: boolean;
-};
-
-const Abi = ({ predeploy }: { predeploy: Predeploy }) => {
-  const hasProxyAbi = 'proxyAbi' in predeploy && predeploy.proxyAbi.length > 0;
-  const hasLogicAbi = 'logicAbi' in predeploy && predeploy.logicAbi.length > 0;
-  const hasLogicAddress = 'logicAddress' in predeploy && predeploy.logicAddress.length > 0;
-
-  let proxyAbi = <></>;
-  let logicAbi = <></>;
-
-  if (!hasProxyAbi) {
-    proxyAbi = <p className='text-sm'>ABI not found.</p>;
-  } else if (hasProxyAbi) {
-    proxyAbi = (
-      <ul>
-        {predeploy.proxyAbi.map((sig) => (
-          <li key={sig} className='my-2 text-xs'>
-            <code>{sig}</code>
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  if (!hasLogicAbi) {
-    logicAbi = <p className='text-sm'>ABI not found.</p>;
-  } else if (hasLogicAbi) {
-    logicAbi = (
-      <ul>
-        {predeploy.logicAbi.map((sig) => (
-          <li key={sig} className='my-2 text-xs'>
-            <code>{sig}</code>
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-  const proxyAbiContent = (
-    <>
-      <div className='font-semibold'>Proxy Contract ABI</div>
-      {proxyAbi}
-      <div className='mt-4 font-semibold'>Logic Contract ABI</div>
-      <div className='text-secondary text-sm'>
-        {hasLogicAddress && (
-          <div className='mt-2 flex flex-1 items-center'>
-            {/* For some reason the text is not horizontally aligned so we manually add some margin to fix it */}
-            <div className='mr-1' style={{ marginBottom: '0.2rem' }}>
-              Implementation at
-            </div>
-            <Copyable
-              content={formatAddress(predeploy.logicAddress)}
-              textToCopy={predeploy.logicAddress}
-            />
-          </div>
-        )}
-      </div>
-      {logicAbi}
-    </>
-  );
-
-  return (
-    <Collapsible kind='custom' contents={hasProxyAbi ? proxyAbiContent : logicAbi} title='ABI' />
-  );
 };
 
 const formatPredeploy = (predeploy: Predeploy | undefined) => {
@@ -86,7 +23,7 @@ const formatPredeploy = (predeploy: Predeploy | undefined) => {
         <Markdown content={predeploy.description} />
       </div>
       <div className='mt-4'>
-        <Abi predeploy={predeploy} />
+        <Abi contract={predeploy} />
         <Collapsible kind='references' contents={predeploy.references} />
       </div>
     </>
