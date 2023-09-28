@@ -6,6 +6,7 @@ import { Opcode } from './opcode';
 import { Precompile } from './precompile';
 import { Predeploy } from './predeploy';
 import { SignatureType } from './signatureType';
+import { Node } from './node';
 
 export type Chain = {
   metadata: Metadata;
@@ -16,4 +17,5 @@ export type Chain = {
   opcodes: Partial<Opcode>[];
   mempools: Mempool[];
   deployedContracts: DeployedContract[];
+  nodes: Node[];
 };
