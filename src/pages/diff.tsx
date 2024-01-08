@@ -7,6 +7,7 @@ import { DiffAccountTypes } from '@/components/diff/DiffAccountTypes';
 import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
 import { DiffMempools } from '@/components/diff/DiffMempools';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
+import { DiffNodes } from '@/components/diff/DiffNodes';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { DiffPredeploys } from '@/components/diff/DiffPredeploys';
@@ -38,6 +39,7 @@ const SECTION_MAP: Record<string, Section> = {
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
   mempools: { title: 'Mempools', component: DiffMempools },
   deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
+  nodes: { title: 'Nodes', component: DiffNodes },
 };
 
 const Diff = () => {
