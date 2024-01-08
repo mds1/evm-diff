@@ -8,11 +8,6 @@ export type Node = {
   documentation: string;
 };
 
-export type Nodes = {
-  execution: Node[];
-  consensus: Node[];
-};
-
 export enum NodeType {
   Execution,
   Consensus,

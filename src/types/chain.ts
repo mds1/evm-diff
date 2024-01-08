@@ -2,7 +2,7 @@ import { Chain as Metadata } from '@wagmi/chains';
 import { AccountType } from './accountType';
 import { DeployedContract } from './deployedContract';
 import { Mempool } from './mempool';
-import { Nodes } from './node';
+import { Node } from './node';
 import { Opcode } from './opcode';
 import { Precompile } from './precompile';
 import { Predeploy } from './predeploy';
@@ -17,5 +17,6 @@ export type Chain = {
   opcodes: Partial<Opcode>[];
   mempools: Mempool[];
   deployedContracts: DeployedContract[];
-  nodes: Nodes;
+  executionNodes: Node[];
+  consensusNodes: Node[];
 };

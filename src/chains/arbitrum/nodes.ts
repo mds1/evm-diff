@@ -1,4 +1,6 @@
-import { nodes as mainnetNodes } from '@/chains/mainnet/nodes';
-import { Nodes } from '@/types';
+import { consensusNodes as mainnetConsensusNodes } from '@/chains/mainnet/nodes/consensus';
+import { executionNodes as mainnetExecutionNodes } from '@/chains/mainnet/nodes/execution';
+import { Node } from '@/types';
 
-export const nodes: Nodes = mainnetNodes;
+export const executionNodes: Node[] = mainnetExecutionNodes;
+export const consensusNodes: Node[] = mainnetConsensusNodes;

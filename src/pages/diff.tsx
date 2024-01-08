@@ -39,7 +39,8 @@ const SECTION_MAP: Record<string, Section> = {
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
   mempools: { title: 'Mempools', component: DiffMempools },
   deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
-  nodes: { title: 'Nodes', component: DiffNodes },
+  executionNodes: { title: 'Execution Nodes', component: DiffNodes },
+  consensusNodes: { title: 'Consensus Nodes', component: DiffNodes },
 };
 
 const Diff = () => {

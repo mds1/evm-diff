@@ -4,7 +4,8 @@ import { Chain } from '@/types';
 import { accountTypes } from './accountTypes';
 import { deployedContracts } from './deployedContracts';
 import { mempools } from './mempools';
-import { nodes } from './nodes';
+import { consensusNodes } from './nodes/consensus';
+import { executionNodes } from './nodes/execution';
 import { signatureTypes } from './signatureTypes';
 import { opcodes } from './vm/opcodes';
 import { precompiles } from './vm/precompiles';
@@ -19,5 +20,6 @@ export const mainnet: Chain = {
   opcodes: sortedArrayByField(opcodes, 'number'),
   mempools: sortedArrayByField(mempools, 'name'),
   deployedContracts: sortedArrayByFields(deployedContracts, ['kind', 'name']),
-  nodes,
+  executionNodes,
+  consensusNodes,
 };

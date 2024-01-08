@@ -1,47 +1,26 @@
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { Node, NodeType, Nodes, SyncStrategy } from '@/types';
+import { Node, NodeType, SyncStrategy } from '@/types';
 import { Collapsible } from './utils/Collapsible';
 import { Markdown } from './utils/Markdown';
 
 type Props = {
-  base: Nodes;
-  target: Nodes;
+  base: Node[];
+  target: Node[];
   onlyShowDiff: boolean;
 };
 
 export const DiffNodes = ({ base, target, onlyShowDiff }: Props) => {
+  const sortedNodeNames = [...base.map((n) => n.name), ...target.map((n) => n.name)].sort((a, b) =>
+    a.localeCompare(b)
+  );
+  const nodeNames = [...new Set(sortedNodeNames)];
+
   const diffContent = (
     <>
-      {formatNodes(NodeType.Execution, base.execution, target.execution, onlyShowDiff)}
-      {formatNodes(NodeType.Consensus, base.consensus, target.consensus, onlyShowDiff)}
-    </>
-  );
-
-  console.log(diffContent); // TODO: remove
-
-  return <RenderDiff content={diffContent} />;
-};
-
-const formatNodes = (
-  type: NodeType,
-  baseNodes: Node[],
-  targetNodes: Node[],
-  onlyShowDiff: boolean
-) => {
-  if (!Array.isArray(baseNodes) || !Array.isArray(targetNodes)) return <></>;
-  const sortedExecutionNodeNames = [
-    ...baseNodes.map((n) => n.name),
-    ...targetNodes.map((n) => n.name),
-  ].sort((a, b) => a.localeCompare(b));
-  const nodeNames = [...new Set(sortedExecutionNodeNames)];
-
-  return (
-    <>
-      <h1>{formatNodeType(type)} Nodes</h1>
       {nodeNames.map((name) => {
-        const baseNode = baseNodes.find((n) => n.name === name);
-        const targetNode = targetNodes.find((n) => n.name === name);
+        const baseNode = base.find((n) => n.name === name);
+        const targetNode = target.find((n) => n.name === name);
         if (!baseNode || !targetNode) {
           return <></>;
         }
@@ -66,6 +45,8 @@ const formatNodes = (
       })}
     </>
   );
+
+  return <RenderDiff content={diffContent} />;
 };
 
 const formatNode = (node: Node) => {
@@ -92,7 +73,6 @@ const formatNode = (node: Node) => {
     </>
   );
 };
-
 
 const formatNodeType = (t: NodeType) => {
   if (t === NodeType.Execution) return 'Execution';
