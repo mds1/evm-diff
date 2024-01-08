@@ -10,65 +10,17 @@ type Props = {
   onlyShowDiff: boolean;
 };
 
-const formatNodeType = (t: NodeType) => {
-  if (t === NodeType.Execution) return 'Execution';
-  if (t === NodeType.Consensus) return 'Consensus';
-};
-
-const formatSyncStrategy = (s: SyncStrategy) => {
-  if (s === SyncStrategy.Snap) return 'Snap';
-  if (s === SyncStrategy.Full) return 'Full';
-  if (s === SyncStrategy.Fast) return 'Fast';
-};
-
-const formatSyncStrategies = (n: Node) => {
-  return (
+export const DiffNodes = ({ base, target, onlyShowDiff }: Props) => {
+  const diffContent = (
     <>
-      <div className='col-span-2'>Sync Strategies</div>
-      <div className='col-span-2'>
-        {n.syncStrategy &&
-          n.syncStrategy.map((s, index) => {
-            const formattedSyncStrategy = formatSyncStrategy(s);
-
-            if (n.syncStrategy && index === n.syncStrategy.length - 1) {
-              // Last element, use "and"
-              return formattedSyncStrategy;
-            } else if (n.syncStrategy && index === n.syncStrategy.length - 2) {
-              // Second last element, use "and" after comma
-              return formattedSyncStrategy + ' and ';
-            } else {
-              // Other elements, use comma
-              return formattedSyncStrategy + ', ';
-            }
-          })}
-      </div>
+      {formatNodes(NodeType.Execution, base.execution, target.execution, onlyShowDiff)}
+      {formatNodes(NodeType.Consensus, base.consensus, target.consensus, onlyShowDiff)}
     </>
   );
-};
 
-const formatNode = (node: Node) => {
-  console.log(node.type);
-  return (
-    <>
-      <Markdown codeSize='0.9rem' content={node.name} />
-      <div className='text-secondary text-sm'>
-        <Markdown content={node.description} />
-      </div>
-      <div className='text-secondary mt-3 grid grid-cols-4 space-y-1 text-sm'>
-        <div className='col-span-2'>Type</div>
-        <div className='col-span-2'>{formatNodeType(node.type)}</div>
-        <div className='col-span-2'>Language</div>
-        <div className='col-span-2'>{node.language}</div>
-        {node.type == NodeType.Execution && formatSyncStrategies(node)}
-      </div>
-      <div className='mt-4'>
-        <Collapsible
-          kind='references'
-          contents={[`[Repository](${node.repository})`, `[Documentation](${node.documentation})`]}
-        />
-      </div>
-    </>
-  );
+  console.log(diffContent); // TODO: remove
+
+  return <RenderDiff content={diffContent} />;
 };
 
 const formatNodes = (
@@ -116,15 +68,64 @@ const formatNodes = (
   );
 };
 
-export const DiffNodes = ({ base, target, onlyShowDiff }: Props) => {
-  const diffContent = (
+const formatNode = (node: Node) => {
+  if (!node) return <div>Not present</div>;
+  return (
     <>
-      {formatNodes(NodeType.Execution, base.execution, target.execution, onlyShowDiff)}
-      {formatNodes(NodeType.Consensus, base.consensus, target.consensus, onlyShowDiff)}
+      <Markdown codeSize='0.9rem' content={node.name} />
+      <div className='text-secondary text-sm'>
+        <Markdown content={node.description} />
+      </div>
+      <div className='text-secondary mt-3 grid grid-cols-4 space-y-1 text-sm'>
+        <div className='col-span-2'>Type</div>
+        <div className='col-span-2'>{formatNodeType(node.type)}</div>
+        <div className='col-span-2'>Language</div>
+        <div className='col-span-2'>{node.language}</div>
+        {node.type == NodeType.Execution && formatSyncStrategies(node)}
+      </div>
+      <div className='mt-4'>
+        <Collapsible
+          kind='references'
+          contents={[`[Repository](${node.repository})`, `[Documentation](${node.documentation})`]}
+        />
+      </div>
     </>
   );
+};
 
-  console.log(diffContent); // TODO: remove
 
-  return <RenderDiff content={diffContent} />;
+const formatNodeType = (t: NodeType) => {
+  if (t === NodeType.Execution) return 'Execution';
+  if (t === NodeType.Consensus) return 'Consensus';
+};
+
+const formatSyncStrategies = (n: Node) => {
+  return (
+    <>
+      <div className='col-span-2'>Sync Strategies</div>
+      <div className='col-span-2'>
+        {n.syncStrategy &&
+          n.syncStrategy.map((s, index) => {
+            const formattedSyncStrategy = formatSyncStrategy(s);
+
+            if (n.syncStrategy && index === n.syncStrategy.length - 1) {
+              // Last element, use "and"
+              return formattedSyncStrategy;
+            } else if (n.syncStrategy && index === n.syncStrategy.length - 2) {
+              // Second last element, use "and" after comma
+              return formattedSyncStrategy + ' and ';
+            } else {
+              // Other elements, use comma
+              return formattedSyncStrategy + ', ';
+            }
+          })}
+      </div>
+    </>
+  );
+};
+
+const formatSyncStrategy = (s: SyncStrategy) => {
+  if (s === SyncStrategy.Snap) return 'Snap';
+  if (s === SyncStrategy.Full) return 'Full';
+  if (s === SyncStrategy.Fast) return 'Fast';
 };
