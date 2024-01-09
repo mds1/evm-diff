@@ -3,11 +3,11 @@ import { sortedArrayByField, sortedArrayByFields } from '@/lib/utils';
 import { Chain } from '@/types';
 import { accountTypes } from './accountTypes';
 import { deployedContracts } from './deployedContracts';
+import { eips } from './eips';
 import { signatureTypes } from './signatureTypes';
 import { opcodes } from './vm/opcodes';
 import { precompiles } from './vm/precompiles';
 import { predeploys } from './vm/predeploys';
-import { eips } from './eips';
 
 export const optimism: Chain = {
   metadata: optimismMetadata,

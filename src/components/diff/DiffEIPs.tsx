@@ -75,16 +75,24 @@ const formatEIP = (eip: EIP): JSX.Element => {
   );
 };
 
-
 const formatEIPState = (s: EIPState): string =>
-  s === EIPState.Draft ? 'Draft' :
-  s === EIPState.Review ? 'Review' :
-  s === EIPState.LastCall ? 'LastCall' :
-  s === EIPState.Final ? 'Final' :
-  s === EIPState.Stagnant ? 'Stagnant' :
-  s === EIPState.Withdrawn ? 'Withdrawn' :
-  s === EIPState.Living ? 'Living' :
-  (() => { throw new Error(`Unsupported status: ${s}`); })();
+  s === EIPState.Draft
+    ? 'Draft'
+    : s === EIPState.Review
+    ? 'Review'
+    : s === EIPState.LastCall
+    ? 'LastCall'
+    : s === EIPState.Final
+    ? 'Final'
+    : s === EIPState.Stagnant
+    ? 'Stagnant'
+    : s === EIPState.Withdrawn
+    ? 'Withdrawn'
+    : s === EIPState.Living
+    ? 'Living'
+    : (() => {
+        throw new Error(`Unsupported status: ${s}`);
+      })();
 
 const formatHardfork = (array: string[]): JSX.Element => {
   if (array == undefined || array.length == 0) {
@@ -117,7 +125,9 @@ const formatParameters = (params: EIPParameter[]): JSX.Element => {
     <>
       <ul>
         {params.map((p) => (
-          <li key={p.name}>{p.name}: {p.value.toString()}</li>
+          <li key={p.name}>
+            {p.name}: {p.value.toString()}
+          </li>
         ))}
       </ul>
     </>

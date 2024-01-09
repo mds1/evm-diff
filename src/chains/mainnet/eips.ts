@@ -8,7 +8,7 @@ const homesteadEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-2',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Homestead),
-    deprecated: false
+    deprecated: false,
   },
   {
     number: 7,
@@ -16,7 +16,7 @@ const homesteadEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-7',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Homestead),
-    deprecated: false
+    deprecated: false,
   },
   {
     number: 8,
@@ -24,10 +24,8 @@ const homesteadEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-8',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Homestead),
-    deprecated: false
-  }
+    deprecated: false,
+  },
 ];
 
-export const eips: EIP[] = [
-  ...homesteadEIPs
-];
+export const eips: EIP[] = [...homesteadEIPs];

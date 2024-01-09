@@ -5,6 +5,7 @@ import { getChainById } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffAccountTypes } from '@/components/diff/DiffAccountTypes';
 import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
+import { DiffEIPs } from '@/components/diff/DiffEIPs';
 import { DiffMempools } from '@/components/diff/DiffMempools';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
@@ -15,7 +16,6 @@ import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
 import { classNames } from '@/lib/utils';
 import { Chain } from '@/types';
-import { DiffEIPs } from '@/components/diff/DiffEIPs';
 
 interface Props<T> {
   base: T;

@@ -17,10 +17,10 @@ export enum EIPState {
   Final,
   Stagnant,
   Withdrawn,
-  Living
+  Living,
 }
 
 export type EIPParameter = {
   name: string;
-  value: string | number | bigint | boolean
-}
+  value: string | number | bigint | boolean;
+};

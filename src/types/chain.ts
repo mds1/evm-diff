@@ -1,12 +1,12 @@
 import { Chain as Metadata } from '@wagmi/chains';
 import { AccountType } from './accountType';
 import { DeployedContract } from './deployedContract';
+import { EIP } from './eip';
 import { Mempool } from './mempool';
 import { Opcode } from './opcode';
 import { Precompile } from './precompile';
 import { Predeploy } from './predeploy';
 import { SignatureType } from './signatureType';
-import { EIP } from './eip';
 
 export type Chain = {
   metadata: Metadata;
