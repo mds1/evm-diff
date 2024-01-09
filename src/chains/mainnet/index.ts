@@ -8,6 +8,7 @@ import { signatureTypes } from './signatureTypes';
 import { opcodes } from './vm/opcodes';
 import { precompiles } from './vm/precompiles';
 import { predeploys } from './vm/predeploys';
+import { eips } from './eips';
 
 export const mainnet: Chain = {
   metadata: mainnetMetadata,
@@ -18,4 +19,5 @@ export const mainnet: Chain = {
   opcodes: sortedArrayByField(opcodes, 'number'),
   mempools: sortedArrayByField(mempools, 'name'),
   deployedContracts: sortedArrayByFields(deployedContracts, ['kind', 'name']),
+  eips,
 };

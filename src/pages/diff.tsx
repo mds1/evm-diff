@@ -15,6 +15,7 @@ import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
 import { classNames } from '@/lib/utils';
 import { Chain } from '@/types';
+import { DiffEIPs } from '@/components/diff/DiffEIPs';
 
 interface Props<T> {
   base: T;
@@ -38,6 +39,7 @@ const SECTION_MAP: Record<string, Section> = {
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
   mempools: { title: 'Mempools', component: DiffMempools },
   deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
+  eips: { title: 'EIPs', component: DiffEIPs },
 };
 
 const Diff = () => {

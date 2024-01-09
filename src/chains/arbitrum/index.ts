@@ -7,6 +7,7 @@ import { signatureTypes } from './signatureTypes';
 import { opcodes } from './vm/opcodes';
 import { precompiles } from './vm/precompiles';
 import { predeploys } from './vm/predeploys';
+import { eips } from './eips';
 
 export const arbitrum: Chain = {
   metadata: arbitrumMetadata,
@@ -17,4 +18,5 @@ export const arbitrum: Chain = {
   opcodes: sortedArrayByField(opcodes, 'number'),
   mempools: [],
   deployedContracts: sortedArrayByFields(deployedContracts, ['kind', 'name']),
+  eips,
 };
