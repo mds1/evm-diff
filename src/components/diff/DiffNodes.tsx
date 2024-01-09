@@ -58,8 +58,6 @@ const formatNode = (node: Node) => {
         <Markdown content={node.description} />
       </div>
       <div className='text-secondary mt-3 grid grid-cols-4 space-y-1 text-sm'>
-        <div className='col-span-2'>Type</div>
-        <div className='col-span-2'>{formatNodeType(node.type)}</div>
         <div className='col-span-2'>Language</div>
         <div className='col-span-2'>{node.language}</div>
         {node.type == NodeType.Execution && formatSyncStrategies(node)}
@@ -72,11 +70,6 @@ const formatNode = (node: Node) => {
       </div>
     </>
   );
-};
-
-const formatNodeType = (t: NodeType) => {
-  if (t === NodeType.Execution) return 'Execution';
-  if (t === NodeType.Consensus) return 'Consensus';
 };
 
 const formatSyncStrategies = (n: Node) => {
