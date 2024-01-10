@@ -1,10 +1,9 @@
-import { MainnetHardfork } from '@/chains/mainnet/hardforks';
 import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Markdown } from '@/components/diff/utils/Markdown';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import { EIP, EIPParameter, EIPState } from '@/types/eip';
+import { formatHardfork } from './utils/format';
 
 type Props = {
   base: EIP[];
@@ -65,7 +64,7 @@ const formatEIP = (eip: EIP): JSX.Element => {
         <div className='col-span-2'>Deprecated</div>
         <div className='col-span-2'>{eip.deprecated ? 'Yes' : 'No'}</div>
       </div>
-      {eip.parameters && formatParameters(eip.parameters)}
+      {eip.parameters && formatEIPParameters(eip.parameters)}
       <div className='mt-4'>
         <Collapsible kind='references' contents={eip.link} />
       </div>
@@ -92,43 +91,7 @@ const formatEIPState = (s: EIPState): string =>
         throw new Error(`Unsupported status: ${s}`);
       })();
 
-const formatHardfork = (array: string[]): JSX.Element => {
-  if (array == undefined || array.length == 0) {
-    return <p>No information provided on supported hard forks.</p>;
-  }
-
-  const length = array.length;
-  if (length == CURRENT_MAINNET_HARDFORK + 1) {
-    return (
-      <p>
-        Supported since <b>{array[0]}</b> hard fork.
-      </p>
-    );
-  } else if (length == 1) {
-    return (
-      <p>
-        Supported only in <b>{array[0]}</b> hard fork.
-      </p>
-    );
-  }
-
-  const currentMainnetHardforkName = MainnetHardfork[CURRENT_MAINNET_HARDFORK];
-  if (array[length - 1] === currentMainnetHardforkName) {
-    return (
-      <p>
-        Supported since <b>{array[0]}</b> hard fork.
-      </p>
-    );
-  }
-
-  return (
-    <p>
-      Supported between <b>{array[0]}</b> and <b>{array[length - 1]}</b> hard forks.
-    </p>
-  );
-};
-
-const formatParameters = (params: EIPParameter[]): JSX.Element => {
+const formatEIPParameters = (params: EIPParameter[]): JSX.Element => {
   if (!Array.isArray(params)) return <></>;
   const contents = (
     <>
