@@ -15,11 +15,11 @@ type Props = {
 export const DiffEIPs = ({ base, target, onlyShowDiff }: Props): JSX.Element => {
   if (!Array.isArray(base) || !Array.isArray(target)) return <></>;
 
-  // Generate a sorted list of all eips numbers from both base and target.
+  // Keep the order defined in `eips.ts`.
   const sortedEIPNumbers = [
     ...base.map((eip) => eip.number),
     ...target.map((eip) => eip.number),
-  ].sort((a, b) => a - b);
+  ];
   const eipNumbers = [...new Set(sortedEIPNumbers)];
 
   const diffContent = (
