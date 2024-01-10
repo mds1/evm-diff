@@ -1,3 +1,4 @@
+import { MainnetHardfork } from '@/chains/mainnet/hardforks';
 import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Markdown } from '@/components/diff/utils/Markdown';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
@@ -100,18 +101,29 @@ const formatHardfork = (array: string[]): JSX.Element => {
   }
 
   const length = array.length;
-  if (length == CURRENT_MAINNET_HARDFORK + 1)
+  if (length == CURRENT_MAINNET_HARDFORK + 1) {
     return (
       <p>
         Supported since <b>{array[0]}</b> hard fork.
       </p>
     );
-  if (length == 1)
+  } else if (length == 1) {
     return (
       <p>
         Supported only in <b>{array[0]}</b> hard fork.
       </p>
     );
+  }
+
+  const currentMainnetHardforkName = MainnetHardfork[CURRENT_MAINNET_HARDFORK];
+  if (array[length - 1] === currentMainnetHardforkName) {
+    return (
+      <p>
+        Supported since <b>{array[0]}</b> hard fork.
+      </p>
+    );
+  }
+
   return (
     <p>
       Supported between <b>{array[0]}</b> and <b>{array[length - 1]}</b> hard forks.
