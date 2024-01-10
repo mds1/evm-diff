@@ -162,16 +162,16 @@ const byzantiumEIPs: EIP[] = [
   },
 ];
 
-const constantinopleEIPs: EIP[] = [] // TODO
-const petersbugEIPs: EIP[] = [] // TODO
-const istanbulEIPs: EIP[] = [] // TODO
-const muirGlacierEIPs: EIP[] = [] // TODO
-const berlinEIPs: EIP[] = [] // TODO
-const londonEIPs: EIP[] = [] // TODO
-const arrowGlacierEIPs: EIP[] = [] // TODO
-const grayGlacierEIPs: EIP[] = [] // TODO
-const parisEIPs: EIP[] = [] // TODO
-const shanghaiEIps: EIP[] = [] // TODO
+const constantinopleEIPs: EIP[] = []; // TODO
+const petersbugEIPs: EIP[] = []; // TODO
+const istanbulEIPs: EIP[] = []; // TODO
+const muirGlacierEIPs: EIP[] = []; // TODO
+const berlinEIPs: EIP[] = []; // TODO
+const londonEIPs: EIP[] = []; // TODO
+const arrowGlacierEIPs: EIP[] = []; // TODO
+const grayGlacierEIPs: EIP[] = []; // TODO
+const parisEIPs: EIP[] = []; // TODO
+const shanghaiEIps: EIP[] = []; // TODO
 
 export const eips: EIP[] = [
   ...homesteadEIPs,
@@ -187,5 +187,5 @@ export const eips: EIP[] = [
   ...arrowGlacierEIPs,
   ...grayGlacierEIPs,
   ...parisEIPs,
-  ...shanghaiEIps
+  ...shanghaiEIps,
 ];

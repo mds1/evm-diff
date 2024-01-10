@@ -16,10 +16,7 @@ export const DiffEIPs = ({ base, target, onlyShowDiff }: Props): JSX.Element => 
   if (!Array.isArray(base) || !Array.isArray(target)) return <></>;
 
   // Keep the order defined in `eips.ts`.
-  const sortedEIPNumbers = [
-    ...base.map((eip) => eip.number),
-    ...target.map((eip) => eip.number),
-  ];
+  const sortedEIPNumbers = [...base.map((eip) => eip.number), ...target.map((eip) => eip.number)];
   const eipNumbers = [...new Set(sortedEIPNumbers)];
 
   const diffContent = (
