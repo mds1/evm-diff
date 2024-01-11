@@ -58,6 +58,14 @@ const formatNode = (node: Node | undefined) => {
         <Markdown content={node.description} />
       </div>
       <div className='text-secondary mt-3 grid grid-cols-4 space-y-1 text-sm'>
+        {
+          node.forkOf && (
+            <>
+              <div className='col-span-2'>Fork of</div>
+              <div className='col-span-2'>{node.forkOf}</div>
+            </>
+          )
+        }
         <div className='col-span-2'>Language</div>
         <div className='col-span-2'>{formatLanguage(node.language)}</div>
         {node.type == NodeType.Execution && node.syncStrategy && formatSyncStrategies(node)}
