@@ -21,7 +21,7 @@ export const DiffNodes = ({ base, target, onlyShowDiff }: Props) => {
       {nodeNames.map((name) => {
         const baseNode = base.find((n) => n.name === name);
         const targetNode = target.find((n) => n.name === name);
-        if (!baseNode || !targetNode) {
+        if (!baseNode && !targetNode) {
           return <></>;
         }
 
@@ -35,7 +35,7 @@ export const DiffNodes = ({ base, target, onlyShowDiff }: Props) => {
               className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
               <div className='col-span-2'>
-                <Copyable content={baseNode?.name.toLocaleLowerCase()} />
+                <Copyable content={name} />
               </div>
               <div className='col-span-5 pr-4'>{formatNode(baseNode)}</div>
               <div className='col-span-5'>{formatNode(targetNode)}</div>
@@ -49,7 +49,7 @@ export const DiffNodes = ({ base, target, onlyShowDiff }: Props) => {
   return <RenderDiff content={diffContent} />;
 };
 
-const formatNode = (node: Node) => {
+const formatNode = (node: Node | undefined) => {
   if (!node) return <div>Not present</div>;
   return (
     <>
