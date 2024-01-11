@@ -23,16 +23,5 @@ const opErigon: Node = {
   documentation: 'https://op-erigon.testinprod.io/',
 };
 
-// Consensus nodes.
-const opNode: Node = {
-  name: 'op-node',
-  description:
-    'Implements most rollup-specific functionality as Consensus-Layer, similar to a L1 beacon-node.',
-  type: NodeType.Consensus,
-  language: Language.Go,
-  repository: 'https://github.com/ethereum-optimism/optimism',
-  documentation: 'https://docs.optimism.io/',
-};
-
 export const executionNodes: Node[] = [opGeth, opErigon, reth, nethermind];
-export const consensusNodes: Node[] = [opNode];
+export const consensusNodes: Node[] = [];
