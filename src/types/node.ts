@@ -4,6 +4,7 @@ export type Node = {
   type: NodeType;
   language: Language;
   syncStrategy?: SyncStrategy[]; // only for execution nodes.
+  forkOf?: string;
   repository: string;
   documentation: string;
 };

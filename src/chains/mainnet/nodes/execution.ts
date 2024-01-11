@@ -16,6 +16,7 @@ const coregeth: Node = {
   type: NodeType.Execution,
   language: Language.Go,
   syncStrategy: [SyncStrategy.Snap, SyncStrategy.Full],
+  forkOf: 'geth',
   repository: 'https://github.com/etclabscore/core-geth',
   documentation: 'https://etclabscore.github.io/core-geth/',
 };
@@ -26,6 +27,7 @@ const erigon: Node = {
   type: NodeType.Execution,
   language: Language.Go,
   syncStrategy: [SyncStrategy.Full],
+  forkOf: 'geth',
   repository: 'https://github.com/ledgerwatch/erigon',
   documentation: 'https://erigon.gitbook.io/erigon/',
 };
