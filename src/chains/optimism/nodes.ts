@@ -1,8 +1,7 @@
-import { executionNodes as mainnetExecutionNodes } from '@/chains/mainnet/nodes/execution';
 import { Language, Node, NodeType } from '@/types';
+import { nethermind, reth } from '../mainnet/nodes/execution';
 
 // Execution nodes.
-// Note: Reth and Nethermind also support Optimism.
 const opGeth: Node = {
   name: 'op-geth',
   description:
@@ -35,5 +34,5 @@ const opNode: Node = {
   documentation: 'https://docs.optimism.io/',
 };
 
-export const executionNodes: Node[] = [...mainnetExecutionNodes, opGeth, opErigon];
+export const executionNodes: Node[] = [opGeth, opErigon, reth, nethermind];
 export const consensusNodes: Node[] = [opNode];

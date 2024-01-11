@@ -42,7 +42,7 @@ const geth: Node = {
   documentation: 'https://geth.ethereum.org/',
 };
 
-const nethermind: Node = {
+export const nethermind: Node = {
   name: 'nethermind',
   description: 'A robust execution client for Ethereum node operators.',
   type: NodeType.Execution,
@@ -52,7 +52,7 @@ const nethermind: Node = {
   documentation: 'https://docs.nethermind.io/',
 };
 
-const reth: Node = {
+export const reth: Node = {
   name: 'reth',
   description:
     'Modular, contributor-friendly and blazing-fast implementation of the Ethereum protocol, in Rust.',
