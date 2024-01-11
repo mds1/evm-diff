@@ -2,7 +2,7 @@ export type Node = {
   name: string;
   description: string;
   type: NodeType;
-  language: string;
+  language: Language;
   syncStrategy?: SyncStrategy[]; // only for execution nodes.
   repository: string;
   documentation: string;
@@ -11,6 +11,15 @@ export type Node = {
 export enum NodeType {
   Execution,
   Consensus,
+}
+
+export enum Language {
+  Java,
+  Go,
+  CSharp,
+  Rust,
+  TypeScript,
+  Nim,
 }
 
 export enum SyncStrategy {

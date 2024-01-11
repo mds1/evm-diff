@@ -12,4 +12,4 @@ export type {
 } from './deployedContract';
 export { DeployedContractKind } from './deployedContract';
 export type { Node } from './node';
-export { NodeType, SyncStrategy } from './node';
+export { NodeType, Language, SyncStrategy } from './node';

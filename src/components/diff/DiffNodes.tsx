@@ -1,6 +1,6 @@
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { Node, NodeType, SyncStrategy } from '@/types';
+import { Language, Node, NodeType, SyncStrategy } from '@/types';
 import { Collapsible } from './utils/Collapsible';
 import { Markdown } from './utils/Markdown';
 
@@ -59,7 +59,7 @@ const formatNode = (node: Node | undefined) => {
       </div>
       <div className='text-secondary mt-3 grid grid-cols-4 space-y-1 text-sm'>
         <div className='col-span-2'>Language</div>
-        <div className='col-span-2'>{node.language}</div>
+        <div className='col-span-2'>{formatLanguage(node.language)}</div>
         {node.type == NodeType.Execution && node.syncStrategy && formatSyncStrategies(node)}
       </div>
       <div className='mt-4'>
@@ -70,6 +70,15 @@ const formatNode = (node: Node | undefined) => {
       </div>
     </>
   );
+};
+
+const formatLanguage = (l: Language) => {
+  if (l === Language.Java) return 'Java';
+  if (l === Language.Go) return 'Go';
+  if (l === Language.CSharp) return 'CSharp';
+  if (l === Language.Rust) return 'Rust';
+  if (l === Language.TypeScript) return 'TypeScript';
+  if (l === Language.Nim) return 'Nim';
 };
 
 const formatSyncStrategies = (n: Node) => {
