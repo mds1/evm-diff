@@ -1,6 +1,13 @@
-import { consensusNodes as mainnetConsensusNodes } from '@/chains/mainnet/nodes/consensus';
-import { executionNodes as mainnetExecutionNodes } from '@/chains/mainnet/nodes/execution';
-import { Node } from '@/types';
+import { Node, NodeType } from '@/types';
 
-export const executionNodes: Node[] = mainnetExecutionNodes;
-export const consensusNodes: Node[] = mainnetConsensusNodes;
+const nitro: Node = {
+  name: 'nitro',
+  description: 'Nitro is the latest iteration of the Arbitrum technology. It is a fully integrated, complete layer 2 optimistic rollup system, including fraud proofs, the sequencer, the token bridges, advanced calldata compression, and more.',
+  type: NodeType.Execution,
+  language: 'Go',
+  repository: 'https://github.com/OffchainLabs/nitro',
+  documentation: 'https://docs.arbitrum.io/'
+}
+
+export const executionNodes: Node[] = [nitro];
+export const consensusNodes: Node[] = []; // Arbitrum does not have any consensus nodes.
