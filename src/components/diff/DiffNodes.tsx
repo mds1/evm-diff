@@ -92,21 +92,7 @@ const formatSyncStrategies = (n: Node) => {
     <>
       <div className='col-span-2'>Sync Strategies</div>
       <div className='col-span-2'>
-        {n.syncStrategy &&
-          n.syncStrategy.map((s, index) => {
-            const formattedSyncStrategy = formatSyncStrategy(s);
-
-            if (n.syncStrategy && index === n.syncStrategy.length - 1) {
-              // Last element, use "and"
-              return formattedSyncStrategy;
-            } else if (n.syncStrategy && index === n.syncStrategy.length - 2) {
-              // Second last element, use "and" after comma
-              return formattedSyncStrategy + ' and ';
-            } else {
-              // Other elements, use comma
-              return formattedSyncStrategy + ', ';
-            }
-          })}
+        {n.syncStrategy && n.syncStrategy.map((s) => formatSyncStrategy(s)!).join(', ')}
       </div>
     </>
   );
