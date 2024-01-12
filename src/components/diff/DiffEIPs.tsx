@@ -60,10 +60,10 @@ const formatEIP = (eip: EIP | undefined): JSX.Element => {
       <div className='text-secondary mt-3 grid grid-cols-4 space-y-1 text-sm'>
         <div className='col-span-2'>Status</div>
         <div className='col-span-2'>{formatEIPState(eip.status)}</div>
-        { eip.deprecated && (
+        {eip.deprecated && (
           <>
             <div className='col-span-2'>Deprecated</div>
-          <div className='col-span-2'>Yes</div>
+            <div className='col-span-2'>Yes</div>
           </>
         )}
       </div>
