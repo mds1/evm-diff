@@ -23,7 +23,7 @@ export const DiffEIPs = ({ base, target, onlyShowDiff }: Props): JSX.Element => 
       {eipNumbers.map((number) => {
         const baseEIP = base.find((eip) => eip.number === number);
         const targetEIP = target.find((eip) => eip.number === number);
-        if (!baseEIP || !targetEIP) {
+        if (!baseEIP && !targetEIP) {
           return <></>;
         }
 
@@ -51,7 +51,7 @@ export const DiffEIPs = ({ base, target, onlyShowDiff }: Props): JSX.Element => 
   return <RenderDiff content={diffContent} />;
 };
 
-const formatEIP = (eip: EIP): JSX.Element => {
+const formatEIP = (eip: EIP | undefined): JSX.Element => {
   if (!eip) return <p>Not present</p>;
   return (
     <>
@@ -60,8 +60,12 @@ const formatEIP = (eip: EIP): JSX.Element => {
       <div className='text-secondary mt-3 grid grid-cols-4 space-y-1 text-sm'>
         <div className='col-span-2'>Status</div>
         <div className='col-span-2'>{formatEIPState(eip.status)}</div>
-        <div className='col-span-2'>Deprecated</div>
-        <div className='col-span-2'>{eip.deprecated ? 'Yes' : 'No'}</div>
+        { eip.deprecated && (
+          <>
+            <div className='col-span-2'>Deprecated</div>
+          <div className='col-span-2'>Yes</div>
+          </>
+        )}
       </div>
       {eip.parameters && formatEIPParameters(eip.parameters)}
       <div className='mt-4'>
