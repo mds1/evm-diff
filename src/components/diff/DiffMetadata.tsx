@@ -20,6 +20,8 @@ const hiddenField = (field: MetadataKey) => {
 const formatFieldDisplayName = (field: MetadataKey) => {
   if (field === 'id') return 'Chain ID';
   if (field === 'name') return 'Name';
+  if (field === 'rpcUrls') return 'RPC URLs';
+  if (field === 'blockExplorers') return 'Block Explorers';
   if (field === 'nativeCurrency') return 'Native Currency';
   if (field === 'contracts') return 'Multicall3';
   return field;
