@@ -66,7 +66,7 @@ const spuriousDragonEIPS: EIP[] = [
     parameters: [
       {
         name: 'MAX_CODE_SIZE',
-        value: 0x6000,
+        value: 24576,
       },
     ],
   },
@@ -145,16 +145,302 @@ const byzantiumEIPs: EIP[] = [
   },
 ];
 
-const constantinopleEIPs: EIP[] = []; // TODO
-const petersbugEIPs: EIP[] = []; // TODO
-const istanbulEIPs: EIP[] = []; // TODO
-const muirGlacierEIPs: EIP[] = []; // TODO
-const berlinEIPs: EIP[] = []; // TODO
-const londonEIPs: EIP[] = []; // TODO
-const arrowGlacierEIPs: EIP[] = []; // TODO
-const grayGlacierEIPs: EIP[] = []; // TODO
-const parisEIPs: EIP[] = []; // TODO
-const shanghaiEIps: EIP[] = []; // TODO
+const constantinopleEIPs: EIP[] = [
+  {
+    number: 145,
+    title: 'Bitwise shifting instructions in EVM',
+    link: 'https://eips.ethereum.org/EIPS/eip-145',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Constantinople),
+  },
+  {
+    number: 1014,
+    title: 'Skinny CREATE2',
+    link: 'https://eips.ethereum.org/EIPS/eip-1014',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Constantinople),
+  },
+  {
+    number: 1052,
+    title: 'EXTCODEHASH opcode',
+    link: 'https://eips.ethereum.org/EIPS/eip-1052',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Constantinople),
+  },
+  {
+    number: 1234,
+    title: 'Constantinople Difficulty Bomb Delay and Block Reward Adjustment',
+    link: 'https://eips.ethereum.org/EIPS/eip-1234',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Constantinople),
+  },
+  {
+    number: 1283,
+    title: 'Net gas metering for SSTORE without dirty maps',
+    link: 'https://eips.ethereum.org/EIPS/eip-1283',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Constantinople),
+  },
+];
+
+const petersburgEIPs: EIP[] = [
+  {
+    number: 145,
+    title: 'Bitwise shifting instructions in EVM',
+    link: 'https://eips.ethereum.org/EIPS/eip-145',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Petersburg),
+  },
+  {
+    number: 1014,
+    title: 'Skinny CREATE2',
+    link: 'https://eips.ethereum.org/EIPS/eip-1014',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Petersburg),
+  },
+  {
+    number: 1052,
+    title: 'EXTCODEHASH opcode',
+    link: 'https://eips.ethereum.org/EIPS/eip-1052',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Petersburg),
+  },
+  {
+    number: 1234,
+    title: 'Constantinople Difficulty Bomb Delay and Block Reward Adjustment',
+    link: 'https://eips.ethereum.org/EIPS/eip-1234',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Petersburg),
+  },
+  // TODO: Understand why EIP-1283 is not listed as an EIP of the Petersburg hard fork.
+];
+
+const istanbulEIPs: EIP[] = [
+  {
+    number: 152,
+    title: 'BAdd BLAKE2 compression function `F` precompile',
+    link: 'https://eips.ethereum.org/EIPS/eip-152',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Istanbul),
+  },
+  {
+    number: 1108,
+    title: 'Reduce alt_bn128 precompile gas costs',
+    link: 'https://eips.ethereum.org/EIPS/eip-1108',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Istanbul),
+  },
+  {
+    number: 1344,
+    title: 'ChainID opcode',
+    link: 'https://eips.ethereum.org/EIPS/eip-1344',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Istanbul),
+  },
+  {
+    number: 1884,
+    title: 'Repricing for trie-size-dependent opcodes',
+    link: 'https://eips.ethereum.org/EIPS/eip-1884',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Istanbul),
+  },
+  {
+    number: 2028,
+    title: 'Transaction data gas cost reduction',
+    link: 'https://eips.ethereum.org/EIPS/eip-2028',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Istanbul),
+  },
+  {
+    number: 2200,
+    title: 'Structured Definitions for Net Gas Metering',
+    link: 'https://eips.ethereum.org/EIPS/eip-2200',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Istanbul),
+  },
+];
+
+const muirGlacierEIPs: EIP[] = [
+  {
+    number: 2384,
+    title: 'Muir Glacier Difficulty Bomb Delay',
+    link: 'https://eips.ethereum.org/EIPS/eip-2384',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.MuirGlacier),
+  },
+];
+
+const berlinEIPs: EIP[] = [
+  {
+    number: 2565,
+    title: 'ModExp Gas Cost',
+    link: 'https://eips.ethereum.org/EIPS/eip-2565',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Berlin),
+  },
+  {
+    number: 2929,
+    title: 'Gas cost increases for state access opcodes',
+    link: 'https://eips.ethereum.org/EIPS/eip-2929',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Berlin),
+  },
+  {
+    number: 2718,
+    title: 'Typed Transaction Envelope',
+    link: 'https://eips.ethereum.org/EIPS/eip-2718',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Berlin),
+  },
+  {
+    number: 2930,
+    title: 'Optional access lists',
+    link: 'https://eips.ethereum.org/EIPS/eip-2930',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Berlin),
+  },
+];
+
+const londonEIPs: EIP[] = [
+  {
+    number: 1559,
+    title: 'Fee market change for ETH 1.0 chain',
+    link: 'https://eips.ethereum.org/EIPS/eip-1559',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.London),
+    parameters: [
+      {
+        name: 'INITIAL_BASE_FEE',
+        value: 1000000000,
+      },
+      {
+        name: 'INITIAL_FORK_BLOCK_NUMBER',
+        value: 10,
+      },
+      {
+        name: 'BASE_FEE_MAX_CHANGE_DENOMINATOR',
+        value: 8,
+      },
+      {
+        name: 'ELASTICITY_MULTIPLIER',
+        value: 2,
+      },
+    ],
+  },
+  {
+    number: 3198,
+    title: 'BASEFEE opcode',
+    link: 'https://eips.ethereum.org/EIPS/eip-3198',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.London),
+  },
+  {
+    number: 3529,
+    title: 'Reduction in refunds',
+    link: 'https://eips.ethereum.org/EIPS/eip-3529',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.London),
+    parameters: [
+      {
+        name: 'MAX_REFUND_QUOTIENT',
+        value: 5,
+      },
+    ],
+  },
+  {
+    number: 3541,
+    title: 'Reject new contract code starting with the 0xEF byte',
+    link: 'https://eips.ethereum.org/EIPS/eip-3541',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.London),
+  },
+  {
+    number: 3554,
+    title: 'Difficulty Bomb Delay to December 2021',
+    link: 'https://eips.ethereum.org/EIPS/eip-3554',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.London),
+  },
+];
+
+const arrowGlacierEIPs: EIP[] = [
+  {
+    number: 4345,
+    title: 'Difficulty Bomb Delay to June 2022',
+    link: 'https://eips.ethereum.org/EIPS/eip-4345',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.ArrowGlacier),
+  },
+];
+
+const grayGlacierEIPs: EIP[] = [
+  {
+    number: 5133,
+    title: 'Delaying Difficulty Bomb to mid-September 2022',
+    link: 'https://eips.ethereum.org/EIPS/eip-5133',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.GrayGlacier),
+  },
+];
+
+const parisEIPs: EIP[] = [
+  {
+    number: 3675,
+    title: 'Upgrade consensus to Proof-of-Stake',
+    link: 'https://eips.ethereum.org/EIPS/eip-3675',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Paris),
+    // TODO: Add parameters.
+  },
+  {
+    number: 4399,
+    title: 'Supplant DIFFICULTY opcode with PREVRANDAO',
+    link: 'https://eips.ethereum.org/EIPS/eip-4399',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Paris),
+  },
+];
+
+const shanghaiEIps: EIP[] = [
+  {
+    number: 3651,
+    title: 'Warm COINBASE',
+    link: 'https://eips.ethereum.org/EIPS/eip-3651',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Shanghai),
+  },
+  {
+    number: 3855,
+    title: 'PUSH0 instruction',
+    link: 'https://eips.ethereum.org/EIPS/eip-3855',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Shanghai),
+  },
+  {
+    number: 3860,
+    title: 'Limit and meter initcode',
+    link: 'https://eips.ethereum.org/EIPS/eip-3860',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Shanghai),
+    parameters: [
+      {
+        name: 'INITCODE_WORD_COST',
+        value: 2,
+      },
+      {
+        name: 'MAX_INITCODE_SIZE',
+        value: '49152 = 2 * MAX_CODE_SIZE where MAX_CODE_SIZE=24576',
+      },
+    ],
+  },
+  {
+    number: 4895,
+    title: 'Beacon chain push withdrawals as operations',
+    link: 'https://eips.ethereum.org/EIPS/eip-4895',
+    status: EIPState.Final,
+    activeHardforks: getHardforksFrom(MainnetHardfork.Shanghai),
+  },
+];
 
 export const eips: EIP[] = [
   ...homesteadEIPs,
@@ -162,7 +448,7 @@ export const eips: EIP[] = [
   ...spuriousDragonEIPS,
   ...byzantiumEIPs,
   ...constantinopleEIPs,
-  ...petersbugEIPs,
+  ...petersburgEIPs,
   ...istanbulEIPs,
   ...muirGlacierEIPs,
   ...berlinEIPs,
