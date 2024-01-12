@@ -212,7 +212,6 @@ const petersburgEIPs: EIP[] = [
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Petersburg),
   },
-  // TODO: Understand why EIP-1283 is not listed as an EIP of the Petersburg hard fork.
 ];
 
 const istanbulEIPs: EIP[] = [

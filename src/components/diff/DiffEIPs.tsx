@@ -53,7 +53,6 @@ export const DiffEIPs = ({ base, target, onlyShowDiff }: Props): JSX.Element => 
 
 const formatEIP = (eip: EIP): JSX.Element => {
   if (!eip) return <p>Not present</p>;
-  // TODO: Add parameters
   return (
     <>
       <Markdown className='mb-4' content={eip.title} />
