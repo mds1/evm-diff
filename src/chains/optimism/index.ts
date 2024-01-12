@@ -4,6 +4,7 @@ import { Chain } from '@/types';
 import { accountTypes } from './accountTypes';
 import { deployedContracts } from './deployedContracts';
 import { eips } from './eips';
+import { consensusNodes, executionNodes } from './nodes';
 import { signatureTypes } from './signatureTypes';
 import { opcodes } from './vm/opcodes';
 import { precompiles } from './vm/precompiles';
@@ -19,4 +20,6 @@ export const optimism: Chain = {
   mempools: [],
   deployedContracts: sortedArrayByFields(deployedContracts, ['kind', 'name']),
   eips,
+  executionNodes,
+  consensusNodes,
 };

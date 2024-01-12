@@ -11,3 +11,5 @@ export type {
   ProxiedDeployedContract,
 } from './deployedContract';
 export { DeployedContractKind } from './deployedContract';
+export type { Node } from './node';
+export { NodeType, Language, SyncStrategy } from './node';

@@ -8,6 +8,7 @@ import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
 import { DiffEIPs } from '@/components/diff/DiffEIPs';
 import { DiffMempools } from '@/components/diff/DiffMempools';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
+import { DiffNodes } from '@/components/diff/DiffNodes';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { DiffPredeploys } from '@/components/diff/DiffPredeploys';
@@ -40,6 +41,8 @@ const SECTION_MAP: Record<string, Section> = {
   mempools: { title: 'Mempools', component: DiffMempools },
   deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
   eips: { title: 'EIPs', component: DiffEIPs },
+  executionNodes: { title: 'Execution Nodes', component: DiffNodes },
+  consensusNodes: { title: 'Consensus Nodes', component: DiffNodes },
 };
 
 const Diff = () => {

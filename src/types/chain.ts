@@ -3,6 +3,7 @@ import { AccountType } from './accountType';
 import { DeployedContract } from './deployedContract';
 import { EIP } from './eip';
 import { Mempool } from './mempool';
+import { Node } from './node';
 import { Opcode } from './opcode';
 import { Precompile } from './precompile';
 import { Predeploy } from './predeploy';
@@ -18,4 +19,6 @@ export type Chain = {
   mempools: Mempool[];
   deployedContracts: DeployedContract[];
   eips: EIP[];
+  executionNodes: Node[];
+  consensusNodes: Node[];
 };
