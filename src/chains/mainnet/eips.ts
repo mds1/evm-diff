@@ -8,7 +8,6 @@ const homesteadEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-2',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Homestead),
-    deprecated: false,
   },
   {
     number: 7,
@@ -16,7 +15,6 @@ const homesteadEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-7',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Homestead),
-    deprecated: false,
   },
   {
     number: 8,
@@ -24,7 +22,6 @@ const homesteadEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-8',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Homestead),
-    deprecated: false,
   },
 ];
 
@@ -35,7 +32,6 @@ const tangerineWhistleEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-150',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.TangerineWhistle),
-    deprecated: false,
   },
 ];
 
@@ -46,7 +42,6 @@ const spuriousDragonEIPS: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-155',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.SpuriousDragon),
-    deprecated: false,
   },
   {
     number: 160,
@@ -54,7 +49,6 @@ const spuriousDragonEIPS: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-160',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.SpuriousDragon),
-    deprecated: false,
   },
   {
     number: 161,
@@ -62,7 +56,6 @@ const spuriousDragonEIPS: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-161',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.SpuriousDragon),
-    deprecated: false,
   },
   {
     number: 170,
@@ -70,7 +63,6 @@ const spuriousDragonEIPS: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-170',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.SpuriousDragon),
-    deprecated: false,
     parameters: [
       {
         name: 'MAX_CODE_SIZE',
@@ -87,7 +79,6 @@ const byzantiumEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-100',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
-    deprecated: false,
   },
   {
     number: 140,
@@ -95,7 +86,6 @@ const byzantiumEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-140',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
-    deprecated: false,
   },
   {
     number: 196,
@@ -104,7 +94,6 @@ const byzantiumEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-196',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
-    deprecated: false,
   },
   {
     number: 197,
@@ -112,7 +101,6 @@ const byzantiumEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-197',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
-    deprecated: false,
   },
   {
     number: 198,
@@ -120,7 +108,6 @@ const byzantiumEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-198',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
-    deprecated: false,
     parameters: [
       {
         name: 'GQUADDIVISOR',
@@ -134,7 +121,6 @@ const byzantiumEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-211',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
-    deprecated: false,
   },
   {
     number: 214,
@@ -142,7 +128,6 @@ const byzantiumEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-214',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
-    deprecated: false,
   },
   {
     number: 649,
@@ -150,7 +135,6 @@ const byzantiumEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-649',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
-    deprecated: false,
   },
   {
     number: 658,
@@ -158,7 +142,6 @@ const byzantiumEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-658',
     status: EIPState.Final,
     activeHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
-    deprecated: false,
   },
 ];
 
