@@ -267,6 +267,20 @@ const berlinEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-2929',
     status: EIPState.Final,
     activeHardforks: hardforksFromBerlin,
+    parameters: [
+      {
+        name: 'COLD_SLOAD_COST',
+        value: 2100,
+      },
+      {
+        name: 'COLD_ACCOUNT_ACCESS_COST',
+        value: 2600,
+      },
+      {
+        name: 'WARM_STORAGE_READ_COST',
+        value: 100,
+      },
+    ],
   },
   {
     number: 2718,
@@ -281,6 +295,16 @@ const berlinEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-2930',
     status: EIPState.Final,
     activeHardforks: hardforksFromBerlin,
+    parameters: [
+      {
+        name: 'ACCESS_LIST_STORAGE_KEY_COST',
+        value: 1900,
+      },
+      {
+        name: 'ACCESS_LIST_ADDRESS_COST',
+        value: 2400,
+      },
+    ],
   },
 ];
 
@@ -296,10 +320,6 @@ const londonEIPs: EIP[] = [
       {
         name: 'INITIAL_BASE_FEE',
         value: 1000000000,
-      },
-      {
-        name: 'INITIAL_FORK_BLOCK_NUMBER',
-        value: 10,
       },
       {
         name: 'BASE_FEE_MAX_CHANGE_DENOMINATOR',
@@ -377,7 +397,12 @@ const parisEIPs: EIP[] = [
     link: 'https://eips.ethereum.org/EIPS/eip-3675',
     status: EIPState.Final,
     activeHardforks: hardforksFromParis,
-    // TODO: Add parameters.
+    parameters: [
+      {
+        name: 'MAX_EXTRA_DATA_BYTES',
+        value: 32,
+      },
+    ],
   },
   {
     number: 4399,
