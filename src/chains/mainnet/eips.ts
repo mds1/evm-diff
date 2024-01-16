@@ -189,9 +189,10 @@ const constantinopleEIPs: EIP[] = [
 ];
 
 // The Petersburg hard fork includes the same EIPs as the Constantinople, except the last EIP, EIP-1283.
+const hardforksFromPetersburg: string[] = getHardforksFrom(MainnetHardfork.Petersburg);
 const petersburgEIPs: EIP[] = constantinopleEIPs.slice(0, 3).map((eip) => ({
   ...eip,
-  activeHardforks: hardforksFromConstantinople,
+  activeHardforks: hardforksFromPetersburg,
 }));
 
 const hardforksFromIstanbul: string[] = getHardforksFrom(MainnetHardfork.Istanbul);
