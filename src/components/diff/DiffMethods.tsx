@@ -131,7 +131,7 @@ const formatExample = (name: string, example: MethodExample): JSX.Element => {
   }], "id": ${id}}' <url>`;
   const result = `{"jsonrpc":"${version}","id":${id},"result":"${example.result}"}`;
   const contents = (
-    <code className='text-xs text-secondary'>
+    <code className='text-secondary text-xs'>
       # request
       <br />
       {request}
