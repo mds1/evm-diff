@@ -2,6 +2,7 @@ import { Chain as Metadata } from '@wagmi/chains';
 import { AccountType } from './accountType';
 import { DeployedContract } from './deployedContract';
 import { Mempool } from './mempool';
+import { Method } from './method';
 import { Node } from './node';
 import { Opcode } from './opcode';
 import { Precompile } from './precompile';
@@ -19,4 +20,5 @@ export type Chain = {
   deployedContracts: DeployedContract[];
   executionNodes: Node[];
   consensusNodes: Node[];
+  jsonRPCMethods: Method[];
 };

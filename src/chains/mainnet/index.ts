@@ -3,6 +3,7 @@ import { sortedArrayByField, sortedArrayByFields } from '@/lib/utils';
 import { Chain } from '@/types';
 import { accountTypes } from './accountTypes';
 import { deployedContracts } from './deployedContracts';
+import { jsonRPCMethods } from './jsonRpcMethods';
 import { mempools } from './mempools';
 import { consensusNodes } from './nodes/consensus';
 import { executionNodes } from './nodes/execution';
@@ -22,4 +23,5 @@ export const mainnet: Chain = {
   deployedContracts: sortedArrayByFields(deployedContracts, ['kind', 'name']),
   executionNodes,
   consensusNodes,
+  jsonRPCMethods,
 };

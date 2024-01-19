@@ -6,7 +6,7 @@ import {
   evmCodesOpcodesLink,
   evmCodesPlaygroundLink,
 } from '@/lib/opcodes';
-import { Opcode, Variable } from '@/types';
+import { Opcode, OpcodeVariable as Variable } from '@/types';
 
 const generateIgnoredValues = (n: number): Variable[] => {
   const alphabet = 'abcdefghijklmno';

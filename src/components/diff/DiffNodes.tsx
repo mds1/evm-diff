@@ -1,6 +1,6 @@
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { Language, Node, NodeType, SyncStrategy } from '@/types';
+import { Language, Node, NodeSyncStrategy, NodeType } from '@/types';
 import { Collapsible } from './utils/Collapsible';
 import { Markdown } from './utils/Markdown';
 
@@ -98,8 +98,8 @@ const formatSyncStrategies = (n: Node) => {
   );
 };
 
-const formatSyncStrategy = (s: SyncStrategy) => {
-  if (s === SyncStrategy.Snap) return 'Snap';
-  if (s === SyncStrategy.Full) return 'Full';
-  if (s === SyncStrategy.Fast) return 'Fast';
+const formatSyncStrategy = (s: NodeSyncStrategy) => {
+  if (s === NodeSyncStrategy.Snap) return 'Snap';
+  if (s === NodeSyncStrategy.Full) return 'Full';
+  if (s === NodeSyncStrategy.Fast) return 'Fast';
 };

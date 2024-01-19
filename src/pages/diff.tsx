@@ -7,6 +7,7 @@ import { DiffAccountTypes } from '@/components/diff/DiffAccountTypes';
 import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
 import { DiffMempools } from '@/components/diff/DiffMempools';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
+import { DiffMethods } from '@/components/diff/DiffMethods';
 import { DiffNodes } from '@/components/diff/DiffNodes';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
@@ -41,6 +42,7 @@ const SECTION_MAP: Record<string, Section> = {
   deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
   executionNodes: { title: 'Execution Nodes', component: DiffNodes },
   consensusNodes: { title: 'Consensus Nodes', component: DiffNodes },
+  jsonRPCMethods: { title: 'JSON-RPC Methods', component: DiffMethods },
 };
 
 const Diff = () => {

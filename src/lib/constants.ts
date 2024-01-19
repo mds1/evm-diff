@@ -17,3 +17,5 @@ export { CURRENT_MAINNET_HARDFORK } from '@/chains/mainnet/hardforks';
 export const ETHEREUM_EXECUTION_SPECS_URL = 'https://github.com/ethereum/execution-specs';
 export const ETHEREUM_EXECUTION_SPECS_COMMIT_ID = '87f5e4f5ec03c6a23b2d2cd909482664f870fd1e';
 export const EVM_OPCODES_URL = 'https://www.evm.codes';
+
+export const ETHEREUM_ORG_JSON_RPC_URL = 'https://ethereum.org/en/developers/docs/apis/json-rpc';

@@ -3,7 +3,7 @@ export type Node = {
   description: string;
   type: NodeType;
   language: Language;
-  syncStrategy?: SyncStrategy[]; // only for execution nodes.
+  syncStrategy?: NodeSyncStrategy[]; // only for execution nodes.
   forkOf?: string;
   repository: string;
   documentation: string;
@@ -23,7 +23,7 @@ export enum Language {
   Nim,
 }
 
-export enum SyncStrategy {
+export enum NodeSyncStrategy {
   Snap,
   Fast,
   Full,

@@ -20,4 +20,5 @@ export const arbitrum: Chain = {
   deployedContracts: sortedArrayByFields(deployedContracts, ['kind', 'name']),
   executionNodes,
   consensusNodes,
+  jsonRPCMethods: [],
 };
