@@ -52,10 +52,10 @@ export const DiffEIPs = ({ base, target, onlyShowDiff }: Props): JSX.Element => 
 };
 
 const formatEIP = (eip: EIP | undefined): JSX.Element => {
-  if (!eip) return <p>Not present</p>;
+  if (!eip) return <p>Missing data for this EIP on this chain.</p>;
   return (
     <>
-      <Markdown className='mb-4' content={eip.title} />
+      <Markdown content={eip.title} />
       {formatHardfork(eip.activeHardforks)}
       <div className='text-secondary mt-3 grid grid-cols-4 space-y-1 text-sm'>
         <div className='col-span-2'>Status</div>

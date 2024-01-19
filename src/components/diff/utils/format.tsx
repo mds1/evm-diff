@@ -18,7 +18,7 @@ export const formatHardfork = (array: string[]): JSX.Element => {
     );
   } else if (length == CURRENT_MAINNET_HARDFORK + 1 || last === currentMainnetHardforkName) {
     return (
-      <p>
+      <p className='text-sm'>
         Supported since <b>{first}</b> hard fork.
       </p>
     );
