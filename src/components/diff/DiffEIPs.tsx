@@ -98,10 +98,10 @@ const formatEIPParameters = (params: EIPParameter[]): JSX.Element => {
   if (!Array.isArray(params)) return <></>;
   const contents = (
     <>
-      <ul>
+      <ul className='text-sm'>
         {params.map((p) => (
           <li key={p.name}>
-            {p.name}: {p.value.toString()}
+            - {p.name}: {p.value.toString()}
           </li>
         ))}
       </ul>
