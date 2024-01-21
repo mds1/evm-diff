@@ -6,7 +6,7 @@ export enum MainnetHardfork {
   SpuriousDragon,
   Byzantium,
   Constantinople,
-  Petersburg, // This hard fork doesn't exist in ethereum/execution-specs
+  // The Petersburg hard fork doesn't exist in ethereum/execution-specs so we do not reference it.
   Istanbul,
   MuirGlacier,
   Berlin,
