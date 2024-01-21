@@ -13,6 +13,9 @@ const web3ClientVersion: Method = {
     parameters: [],
     result: 'Geth/v1.12.1-stable/linux-amd64/go1.19.1',
   },
+  references: [
+    '[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#web3_clientversion)',
+  ],
 };
 
 const web3Sha3: Method = {
@@ -33,6 +36,7 @@ const web3Sha3: Method = {
     parameters: ['0x68656c6c6f20776f726c64'],
     result: '0x47173285a8d7341e5e972fc677286384f802f8ef42a5ec5f03bbfa254cb01fad',
   },
+  references: ['[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#web3_sha3)'],
 };
 
 const web3Methods: Method[] = [web3ClientVersion, web3Sha3];

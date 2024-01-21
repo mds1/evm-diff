@@ -1,6 +1,5 @@
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { jsonRPCMethodSrc } from '@/lib/methods';
 import {
   Method,
   MethodExample,
@@ -75,13 +74,11 @@ const formatMethod = (method: Method | undefined) => {
           title='Return'
           contents={`- ${formatType(method.return.type)}: ${method.return.description}`}
         />
+        <br/>
       </div>
       {method.example && formatExample(method.name, method.example)}
       <div className='mt-4'>
-        <Collapsible
-          kind='references'
-          contents={`[ethereum.org](${jsonRPCMethodSrc(method.name)})`}
-        />
+        <Collapsible kind='references' contents={method.references} />
       </div>
     </>
   );
