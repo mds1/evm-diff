@@ -69,7 +69,7 @@ const formatEIP = (eip: EIP | undefined): JSX.Element => {
       </div>
       {eip.parameters && formatEIPParameters(eip.parameters)}
       <div className='mt-4'>
-        <Collapsible kind='references' contents={eip.link} />
+        <Collapsible kind='references' contents={eip.references} />
       </div>
     </>
   );
