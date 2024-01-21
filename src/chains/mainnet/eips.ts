@@ -152,35 +152,35 @@ const byzantiumEIPs: EIP[] = [
 // Both the Constantinople and Petersburg hard forks went live at the same time. The Petersburg hard
 // fork incorporates identical EIPs as the Constantinople hard fork, excluding the final EIP, EIP-1283.
 // As EIP-1283 was never implemented in a production environment, we have opted not to display it.
-const hardforksFromPetersburg: string[] = getHardforksFrom(MainnetHardfork.Petersburg);
-const petersburgEIPs: EIP[] = [
+const hardforksFromConstantinople: string[] = getHardforksFrom(MainnetHardfork.Constantinople);
+const constantinopleEIPs: EIP[] = [
   {
     number: 145,
     title: 'Bitwise shifting instructions in EVM',
     link: 'https://eips.ethereum.org/EIPS/eip-145',
     status: EIPState.Final,
-    activeHardforks: hardforksFromPetersburg,
+    activeHardforks: hardforksFromConstantinople,
   },
   {
     number: 1014,
     title: 'Skinny CREATE2',
     link: 'https://eips.ethereum.org/EIPS/eip-1014',
     status: EIPState.Final,
-    activeHardforks: hardforksFromPetersburg,
+    activeHardforks: hardforksFromConstantinople,
   },
   {
     number: 1052,
     title: 'EXTCODEHASH opcode',
     link: 'https://eips.ethereum.org/EIPS/eip-1052',
     status: EIPState.Final,
-    activeHardforks: hardforksFromPetersburg,
+    activeHardforks: hardforksFromConstantinople,
   },
   {
     number: 1234,
     title: 'Constantinople Difficulty Bomb Delay and Block Reward Adjustment',
     link: 'https://eips.ethereum.org/EIPS/eip-1234',
     status: EIPState.Final,
-    activeHardforks: hardforksFromPetersburg,
+    activeHardforks: hardforksFromConstantinople,
   },
 ];
 
@@ -449,7 +449,7 @@ export const eips: EIP[] = [
   ...tangerineWhistleEIPs,
   ...spuriousDragonEIPS,
   ...byzantiumEIPs,
-  ...petersburgEIPs,
+  ...constantinopleEIPs,
   ...istanbulEIPs,
   ...muirGlacierEIPs,
   ...berlinEIPs,
