@@ -1,4 +1,4 @@
-import { Method, MethodNamespace, MethodVariableType as Type } from '@/types';
+import { Method, MethodNamespace } from '@/types';
 
 // web3 namespace.
 const web3ClientVersion: Method = {
@@ -6,7 +6,7 @@ const web3ClientVersion: Method = {
   namespace: MethodNamespace.Web3,
   description: 'Returns the current client version',
   return: {
-    type: Type.String,
+    type: 'string',
     description: 'The current client version',
   },
   example: {
@@ -24,12 +24,12 @@ const web3Sha3: Method = {
   description: 'Returns Keccak-256 (not the standardized SHA3-256) of the given data',
   parameters: [
     {
-      type: Type.Data,
+      type: 'data',
       description: 'The data to convert into a SHA3 hash',
     },
   ],
   return: {
-    type: Type.Data,
+    type: 'data',
     description: 'The SHA3 result of the given string',
   },
   example: {

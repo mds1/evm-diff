@@ -9,14 +9,9 @@ export type Method = {
 };
 
 export type MethodVariable = {
-  type: MethodVariableType;
+  type: string;
   description: string;
 };
-
-export enum MethodVariableType {
-  String,
-  Data,
-}
 
 export type MethodExample = {
   parameters: string[];

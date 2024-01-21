@@ -1,12 +1,6 @@
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import {
-  Method,
-  MethodExample,
-  MethodNamespace,
-  MethodVariableType as Type,
-  MethodVariable as Variable,
-} from '@/types';
+import { Method, MethodExample, MethodNamespace, MethodVariable as Variable } from '@/types';
 import { Collapsible } from './utils/Collapsible';
 import { Markdown } from './utils/Markdown';
 
@@ -72,9 +66,8 @@ const formatMethod = (method: Method | undefined) => {
         <Collapsible
           kind='custom'
           title='Return'
-          contents={`- ${formatType(method.return.type)}: ${method.return.description}`}
+          contents={`- ${method.return.type.toUpperCase()}: ${method.return.description}`}
         />
-        <br />
       </div>
       {method.example && formatExample(method.name, method.example)}
       <div className='mt-4'>
@@ -95,15 +88,6 @@ const formatNamespace = (n: MethodNamespace) =>
         throw new Error(`Unsupported namespace: ${n}`);
       })();
 
-const formatType = (t: Type): string =>
-  t === Type.String
-    ? 'String'
-    : t === Type.Data
-    ? 'Data'
-    : (() => {
-        throw new Error(`Unsupported type: ${t}`);
-      })();
-
 const formatParameters = (params: Variable[]): JSX.Element => {
   if (!Array.isArray(params)) return <></>;
   const contents = (
@@ -111,7 +95,7 @@ const formatParameters = (params: Variable[]): JSX.Element => {
       <ul className='text-sm'>
         {params.map((p) => (
           <li key={p.description}>
-            - {formatType(p.type)}: {p.description}
+            - {p.type.toUpperCase()}: {p.description}
           </li>
         ))}
       </ul>

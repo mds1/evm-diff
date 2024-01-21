@@ -14,4 +14,4 @@ export { DeployedContractKind } from './deployedContract';
 export type { Node } from './node';
 export { NodeType, Language, NodeSyncStrategy } from './node';
 export type { Method, MethodVariable, MethodExample } from './method';
-export { MethodNamespace, MethodVariableType } from './method';
+export { MethodNamespace } from './method';
