@@ -74,7 +74,7 @@ const formatMethod = (method: Method | undefined) => {
           title='Return'
           contents={`- ${formatType(method.return.type)}: ${method.return.description}`}
         />
-        <br/>
+        <br />
       </div>
       {method.example && formatExample(method.name, method.example)}
       <div className='mt-4'>
