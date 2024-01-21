@@ -149,51 +149,40 @@ const byzantiumEIPs: EIP[] = [
   },
 ];
 
-const hardforksFromConstantinople: string[] = getHardforksFrom(MainnetHardfork.Byzantium);
-const constantinopleEIPs: EIP[] = [
+// Both the Constantinople and Petersburg hard forks went live at the same time. The Petersburg hard
+// fork incorporates identical EIPs as the Constantinople hard fork, excluding the final EIP, EIP-1283.
+// As EIP-1283 was never implemented in a production environment, we have opted not to display it.
+const hardforksFromPetersburg: string[] = getHardforksFrom(MainnetHardfork.Petersburg);
+const petersburgEIPs: EIP[] = [
   {
     number: 145,
     title: 'Bitwise shifting instructions in EVM',
     link: 'https://eips.ethereum.org/EIPS/eip-145',
     status: EIPState.Final,
-    activeHardforks: hardforksFromConstantinople,
+    activeHardforks: hardforksFromPetersburg,
   },
   {
     number: 1014,
     title: 'Skinny CREATE2',
     link: 'https://eips.ethereum.org/EIPS/eip-1014',
     status: EIPState.Final,
-    activeHardforks: hardforksFromConstantinople,
+    activeHardforks: hardforksFromPetersburg,
   },
   {
     number: 1052,
     title: 'EXTCODEHASH opcode',
     link: 'https://eips.ethereum.org/EIPS/eip-1052',
     status: EIPState.Final,
-    activeHardforks: hardforksFromConstantinople,
+    activeHardforks: hardforksFromPetersburg,
   },
   {
     number: 1234,
     title: 'Constantinople Difficulty Bomb Delay and Block Reward Adjustment',
     link: 'https://eips.ethereum.org/EIPS/eip-1234',
     status: EIPState.Final,
-    activeHardforks: hardforksFromConstantinople,
-  },
-  {
-    number: 1283,
-    title: 'Net gas metering for SSTORE without dirty maps',
-    link: 'https://eips.ethereum.org/EIPS/eip-1283',
-    status: EIPState.Final,
-    activeHardforks: hardforksFromConstantinople,
+    activeHardforks: hardforksFromPetersburg,
   },
 ];
-
-// The Petersburg hard fork includes the same EIPs as the Constantinople, except the last EIP, EIP-1283.
-const hardforksFromPetersburg: string[] = getHardforksFrom(MainnetHardfork.Petersburg);
-const petersburgEIPs: EIP[] = constantinopleEIPs.slice(0, 3).map((eip) => ({
-  ...eip,
-  activeHardforks: hardforksFromPetersburg,
-}));
 
 const hardforksFromIstanbul: string[] = getHardforksFrom(MainnetHardfork.Istanbul);
 const istanbulEIPs: EIP[] = [
@@ -460,7 +449,6 @@ export const eips: EIP[] = [
   ...tangerineWhistleEIPs,
   ...spuriousDragonEIPS,
   ...byzantiumEIPs,
-  ...constantinopleEIPs,
   ...petersburgEIPs,
   ...istanbulEIPs,
   ...muirGlacierEIPs,
