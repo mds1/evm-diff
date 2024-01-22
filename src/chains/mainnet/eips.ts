@@ -298,28 +298,31 @@ const berlinEIPs: EIP[] = [
 ];
 
 const hardforksFromLondon: string[] = getHardforksFrom(MainnetHardfork.London);
+
+export const eip1559: EIP = {
+  number: 1559,
+  title: 'Fee market change for ETH 1.0 chain',
+  status: EIPState.Final,
+  activeHardforks: hardforksFromLondon,
+  parameters: [
+    {
+      name: 'INITIAL_BASE_FEE',
+      value: 1000000000,
+    },
+    {
+      name: 'BASE_FEE_MAX_CHANGE_DENOMINATOR',
+      value: 8,
+    },
+    {
+      name: 'ELASTICITY_MULTIPLIER',
+      value: 2,
+    },
+  ],
+  references: ['https://eips.ethereum.org/EIPS/eip-1559'],
+};
+
 const londonEIPs: EIP[] = [
-  {
-    number: 1559,
-    title: 'Fee market change for ETH 1.0 chain',
-    status: EIPState.Final,
-    activeHardforks: hardforksFromLondon,
-    parameters: [
-      {
-        name: 'INITIAL_BASE_FEE',
-        value: 1000000000,
-      },
-      {
-        name: 'BASE_FEE_MAX_CHANGE_DENOMINATOR',
-        value: 8,
-      },
-      {
-        name: 'ELASTICITY_MULTIPLIER',
-        value: 2,
-      },
-    ],
-    references: ['https://eips.ethereum.org/EIPS/eip-1559'],
-  },
+  eip1559,
   {
     number: 3198,
     title: 'BASEFEE opcode',
@@ -403,7 +406,7 @@ const parisEIPs: EIP[] = [
 ];
 
 const hardforksFromShanghai: string[] = getHardforksFrom(MainnetHardfork.Shanghai);
-const shanghaiEIps: EIP[] = [
+const shanghaiEIPs: EIP[] = [
   {
     number: 3651,
     title: 'Warm COINBASE',
@@ -457,5 +460,5 @@ export const eips: EIP[] = [
   ...arrowGlacierEIPs,
   ...grayGlacierEIPs,
   ...parisEIPs,
-  ...shanghaiEIps,
+  ...shanghaiEIPs,
 ];
