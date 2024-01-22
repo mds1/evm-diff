@@ -37,7 +37,15 @@ export const DiffEIPs = ({ base, target, onlyShowDiff }: Props): JSX.Element => 
               className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
               <div className='col-span-2'>
-                <Copyable content={'EIP-' + baseEIP?.number} />
+                <Copyable
+                  content={
+                    baseEIP
+                      ? 'EIP-' + baseEIP.number
+                      : targetEIP
+                      ? 'EIP-' + targetEIP.number
+                      : 'EIP-???'
+                  }
+                />
               </div>
               <div className='col-span-5 pr-4'>{formatEIP(baseEIP)}</div>
               <div className='col-span-5'>{formatEIP(targetEIP)}</div>
