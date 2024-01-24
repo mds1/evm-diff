@@ -12,7 +12,7 @@ export const formatHardfork = (array: string[]): JSX.Element => {
   const currentMainnetHardforkName = MainnetHardfork[CURRENT_MAINNET_HARDFORK];
   if (length == 1) {
     return (
-      <p>
+      <p className='text-sm'>
         Supported only in <b>{first}</b> hard fork.
       </p>
     );
@@ -24,7 +24,7 @@ export const formatHardfork = (array: string[]): JSX.Element => {
     );
   }
   return (
-    <p>
+    <p className='text-sm'>
       Supported between <b>{first}</b> and <b>{last}</b> hard forks.
     </p>
   );
