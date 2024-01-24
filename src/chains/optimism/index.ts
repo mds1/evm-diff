@@ -18,6 +18,7 @@ export const optimism: Chain = {
   opcodes: sortedArrayByField(opcodes, 'number'),
   mempools: [],
   deployedContracts: sortedArrayByFields(deployedContracts, ['kind', 'name']),
+  eips: [],
   executionNodes,
   consensusNodes,
 };

@@ -5,6 +5,7 @@ import { getChainById } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffAccountTypes } from '@/components/diff/DiffAccountTypes';
 import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
+import { DiffEIPs } from '@/components/diff/DiffEIPs';
 import { DiffMempools } from '@/components/diff/DiffMempools';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffNodes } from '@/components/diff/DiffNodes';
@@ -39,6 +40,7 @@ const SECTION_MAP: Record<string, Section> = {
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
   mempools: { title: 'Mempools', component: DiffMempools },
   deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
+  eips: { title: 'EIPs', component: DiffEIPs },
   executionNodes: { title: 'Execution Nodes', component: DiffNodes },
   consensusNodes: { title: 'Consensus Nodes', component: DiffNodes },
 };
