@@ -23,9 +23,7 @@ const eip1559OnOptimism: EIP = {
   ],
 };
 
-export const eips = ethereumEIPs
-  .map((eip) => {
-    // EIPs present on Ethereum but modified on Optimism.
-    if (eip.number === 1559) return eip1559OnOptimism;
-    return eip;
-  });
+export const eips: EIP[] = ethereumEIPs.map((eip) => {
+  if (eip.number === 1559) return eip1559OnOptimism;
+  return eip;
+});
