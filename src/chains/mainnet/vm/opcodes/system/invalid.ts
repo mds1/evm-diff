@@ -1,4 +1,4 @@
-import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getMainnetHardforksFrom } from '@/chains/mainnet/hardforks';
 import { evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
@@ -12,5 +12,5 @@ export const invalid: Omit<Opcode, 'minGas' | 'examples' | 'errorCases'> = {
     'All the remaining gas in this context is consumed.',
   ],
   references: [evmCodesOpcodesLink(0xfe)],
-  supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
+  supportedHardforks: getMainnetHardforksFrom(MainnetHardfork.Frontier),
 };

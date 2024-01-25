@@ -1,4 +1,4 @@
-import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getMainnetHardforksFrom } from '@/chains/mainnet/hardforks';
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import {
   OpcodeGroup,
@@ -76,7 +76,7 @@ const swap = (n: number): Opcode => {
       evmCodesOpcodesLink(number),
       ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 196 + n),
     ],
-    supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
+    supportedHardforks: getMainnetHardforksFrom(MainnetHardfork.Frontier),
   };
 };
 

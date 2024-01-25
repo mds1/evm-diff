@@ -1,4 +1,4 @@
-import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getMainnetHardforksFrom } from '@/chains/mainnet/hardforks';
 import {
   OpcodeGroup,
   ethSpecsOpcodeSrc,
@@ -107,5 +107,5 @@ export const delegatecall: Omit<Opcode, 'examples'> = {
     evmCodesOpcodesLink(0xf4),
     ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.System, 536),
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardfork.Homestead),
+  supportedHardforks: getMainnetHardforksFrom(MainnetHardfork.Homestead),
 };

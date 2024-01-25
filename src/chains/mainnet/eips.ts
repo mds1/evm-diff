@@ -1,7 +1,7 @@
 import { EIP, EIPState } from '@/types/eip';
-import { MainnetHardfork, getHardforksFrom } from './hardforks';
+import { MainnetHardfork, getMainnetHardforksFrom } from './hardforks';
 
-const hardforksFromHomestead: string[] = getHardforksFrom(MainnetHardfork.Homestead);
+const hardforksFromHomestead: string[] = getMainnetHardforksFrom(MainnetHardfork.Homestead);
 const homesteadEIPs: EIP[] = [
   {
     number: 2,
@@ -26,7 +26,9 @@ const homesteadEIPs: EIP[] = [
   },
 ];
 
-const hardforksFromTangerineWhistle: string[] = getHardforksFrom(MainnetHardfork.TangerineWhistle);
+const hardforksFromTangerineWhistle: string[] = getMainnetHardforksFrom(
+  MainnetHardfork.TangerineWhistle
+);
 const tangerineWhistleEIPs: EIP[] = [
   {
     number: 150,
@@ -37,7 +39,9 @@ const tangerineWhistleEIPs: EIP[] = [
   },
 ];
 
-const hardforksFromSpuriousDragon: string[] = getHardforksFrom(MainnetHardfork.SpuriousDragon);
+const hardforksFromSpuriousDragon: string[] = getMainnetHardforksFrom(
+  MainnetHardfork.SpuriousDragon
+);
 const spuriousDragonEIPS: EIP[] = [
   {
     number: 155,
@@ -75,7 +79,7 @@ const spuriousDragonEIPS: EIP[] = [
   },
 ];
 
-const hardforksFromByzantium: string[] = getHardforksFrom(MainnetHardfork.Byzantium);
+const hardforksFromByzantium: string[] = getMainnetHardforksFrom(MainnetHardfork.Byzantium);
 const byzantiumEIPs: EIP[] = [
   {
     number: 100,
@@ -152,7 +156,9 @@ const byzantiumEIPs: EIP[] = [
 // Both the Constantinople and Petersburg hard forks went live at the same time. The Petersburg hard
 // fork incorporates identical EIPs as the Constantinople hard fork, excluding the final EIP, EIP-1283.
 // As EIP-1283 was never implemented in a production environment, we have opted not to display it.
-const hardforksFromConstantinople: string[] = getHardforksFrom(MainnetHardfork.Constantinople);
+const hardforksFromConstantinople: string[] = getMainnetHardforksFrom(
+  MainnetHardfork.Constantinople
+);
 const constantinopleEIPs: EIP[] = [
   {
     number: 145,
@@ -184,7 +190,7 @@ const constantinopleEIPs: EIP[] = [
   },
 ];
 
-const hardforksFromIstanbul: string[] = getHardforksFrom(MainnetHardfork.Istanbul);
+const hardforksFromIstanbul: string[] = getMainnetHardforksFrom(MainnetHardfork.Istanbul);
 const istanbulEIPs: EIP[] = [
   {
     number: 152,
@@ -230,7 +236,7 @@ const istanbulEIPs: EIP[] = [
   },
 ];
 
-const hardforksFromMuirGlacier: string[] = getHardforksFrom(MainnetHardfork.MuirGlacier);
+const hardforksFromMuirGlacier: string[] = getMainnetHardforksFrom(MainnetHardfork.MuirGlacier);
 const muirGlacierEIPs: EIP[] = [
   {
     number: 2384,
@@ -241,7 +247,7 @@ const muirGlacierEIPs: EIP[] = [
   },
 ];
 
-const hardforksFromBerlin: string[] = getHardforksFrom(MainnetHardfork.Berlin);
+const hardforksFromBerlin: string[] = getMainnetHardforksFrom(MainnetHardfork.Berlin);
 const berlinEIPs: EIP[] = [
   {
     number: 2565,
@@ -297,7 +303,7 @@ const berlinEIPs: EIP[] = [
   },
 ];
 
-const hardforksFromLondon: string[] = getHardforksFrom(MainnetHardfork.London);
+const hardforksFromLondon: string[] = getMainnetHardforksFrom(MainnetHardfork.London);
 
 export const eip1559: EIP = {
   number: 1559,
@@ -359,7 +365,7 @@ const londonEIPs: EIP[] = [
   },
 ];
 
-const hardforksFromArrowGlacier: string[] = getHardforksFrom(MainnetHardfork.ArrowGlacier);
+const hardforksFromArrowGlacier: string[] = getMainnetHardforksFrom(MainnetHardfork.ArrowGlacier);
 const arrowGlacierEIPs: EIP[] = [
   {
     number: 4345,
@@ -370,7 +376,7 @@ const arrowGlacierEIPs: EIP[] = [
   },
 ];
 
-const hardforksFromGrayGlacier: string[] = getHardforksFrom(MainnetHardfork.GrayGlacier);
+const hardforksFromGrayGlacier: string[] = getMainnetHardforksFrom(MainnetHardfork.GrayGlacier);
 const grayGlacierEIPs: EIP[] = [
   {
     number: 5133,
@@ -381,7 +387,7 @@ const grayGlacierEIPs: EIP[] = [
   },
 ];
 
-const hardforksFromParis: string[] = getHardforksFrom(MainnetHardfork.Paris);
+const hardforksFromParis: string[] = getMainnetHardforksFrom(MainnetHardfork.Paris);
 const parisEIPs: EIP[] = [
   {
     number: 3675,
@@ -405,7 +411,7 @@ const parisEIPs: EIP[] = [
   },
 ];
 
-const hardforksFromShanghai: string[] = getHardforksFrom(MainnetHardfork.Shanghai);
+const hardforksFromShanghai: string[] = getMainnetHardforksFrom(MainnetHardfork.Shanghai);
 const shanghaiEIPs: EIP[] = [
   {
     number: 3651,
