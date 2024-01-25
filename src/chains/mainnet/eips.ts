@@ -500,6 +500,17 @@ export const parisEIPs: EIP[] = [
 ];
 
 const hardforksFromShanghai: string[] = getMainnetHardforksFrom(MainnetHardfork.Shanghai);
+
+export const eip4895: EIP = {
+  number: 4895,
+  title: 'Beacon chain push withdrawals as operations',
+  category: EIPCategory.Execution,
+  type: EIPType.Core,
+  status: EIPState.Final,
+  activeHardforks: hardforksFromShanghai,
+  references: ['https://eips.ethereum.org/EIPS/eip-4895'],
+};
+
 const shanghaiEIPs: EIP[] = [
   {
     number: 3651,
@@ -538,15 +549,7 @@ const shanghaiEIPs: EIP[] = [
     ],
     references: ['https://eips.ethereum.org/EIPS/eip-3860'],
   },
-  {
-    number: 4895,
-    title: 'Beacon chain push withdrawals as operations',
-    category: EIPCategory.Execution,
-    type: EIPType.Core,
-    status: EIPState.Final,
-    activeHardforks: hardforksFromShanghai,
-    references: ['https://eips.ethereum.org/EIPS/eip-4895'],
-  },
+  eip4895,
 ];
 
 export const eips: EIP[] = [

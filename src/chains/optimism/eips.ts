@@ -2,6 +2,7 @@ import { EIP, EIPCategory } from '@/types/eip';
 import {
   eip4399 as eip1399OnMainnet,
   eip1559 as eip1559OnMainnet,
+  eip4895 as eip4895OnMainnet,
   eips as ethereumEIPs,
 } from '../mainnet/eips';
 import { OptimismHardfork, getOptimismHardforksFrom } from './hardforks';
@@ -37,6 +38,17 @@ const eip4399OnOptimism: EIP = {
   ],
 };
 
+const eip4895OnOptimism: EIP = {
+  ...eip4895OnMainnet,
+  notes: [
+    'Optimism has an empty withdrawals list in L2 blocks to be compatible with L1, but since there are no validators the list is always empty.',
+  ],
+  references: [
+    ...eip4895OnMainnet.references,
+    'https://github.com/ethereum-optimism/specs/blob/main/specs/superchain-upgrades.md#canyon',
+  ],
+};
+
 export const eips: EIP[] = ethereumEIPs
   .filter((eip) => {
     // Exclude consensus-related EIPS.
@@ -45,6 +57,7 @@ export const eips: EIP[] = ethereumEIPs
   .map((eip) => {
     // EIPs modified by Optimism hard forks.
     if (eip.number === 1559) return eip1559OnOptimism;
-    if (eip.number == 4399) return eip4399OnOptimism;
+    if (eip.number === 4399) return eip4399OnOptimism;
+    if (eip.number === 4895) return eip4895OnOptimism;
     return eip;
   });
