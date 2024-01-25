@@ -25,9 +25,13 @@ const eip1559OnOptimism: EIP = {
       value: 6,
     },
   ],
+  notes: [
+    'The denominator value in the EIP-1599 formula is modified. The formula for EIP-1559 is not otherwise modified.',
+  ],
   references: [
     ...eip1559OnMainnet.references,
-    'https://docs.optimism.io/chain/differences#eip-1559-parameters',
+    'https://github.com/ethereum-optimism/specs/blob/main/specs/exec-engine.md#1559-parameters',
+    'https://github.com/ethereum-optimism/specs/blob/main/specs/superchain-upgrades.md#canyon',
   ],
 };
 
@@ -36,6 +40,11 @@ const eip4399OnOptimism: EIP = {
   notes: [
     "PREVRANDAO returns the random output of the L1 beacon chain's randomness oracle. This value lags behind the L1 block's prevrandao value by approximately 5 L1 blocks, and is updated when the `L1BlockInfo` predeploy is updated.",
   ],
+  references: [
+    ...eip1399OnMainnet.references,
+    'https://github.com/ethereum-optimism/specs/blob/main/specs/derivation.md#building-individual-payload-attributes',
+    'https://github.com/mds1/evm-diff/issues/21',
+  ]
 };
 
 const eip4895OnOptimism: EIP = {
@@ -45,6 +54,7 @@ const eip4895OnOptimism: EIP = {
   ],
   references: [
     ...eip4895OnMainnet.references,
+    'https://github.com/ethereum-optimism/specs/blob/main/specs/derivation.md#building-individual-payload-attributes',
     'https://github.com/ethereum-optimism/specs/blob/main/specs/superchain-upgrades.md#canyon',
   ],
 };
