@@ -3,7 +3,7 @@ import { Markdown } from '@/components/diff/utils/Markdown';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { EIP, EIPCategory, EIPParameter, EIPState, EIPType } from '@/types/eip';
-import { formatHardfork } from './utils/format';
+import { formatHardfork, formatStringList } from './utils/format';
 
 type Props = {
   base: EIP[];
@@ -80,6 +80,7 @@ const formatEIP = (eip: EIP | undefined): JSX.Element => {
         )}
       </div>
       {eip.parameters && formatEIPParameters(eip.parameters)}
+      {formatStringList('Notes', eip.notes)}
       <div className='mt-4'>
         <Collapsible kind='references' contents={eip.references} />
       </div>

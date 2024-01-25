@@ -7,7 +7,7 @@ import { classNames, formatPrefixByte } from '@/lib/utils';
 import { toUppercase } from '@/lib/utils';
 import { Example, Opcode, Variable } from '@/types';
 import { GasComputation } from '@/types/opcode';
-import { formatHardfork } from './utils/format';
+import { formatHardfork, formatStringList } from './utils/format';
 
 type Props = {
   base: Opcode[];
@@ -211,20 +211,6 @@ const formatGasComputation = (gc: GasComputation | undefined): JSX.Element => {
     </>
   );
   return <Collapsible kind='custom' title='Gas Computation' contents={contents} />;
-};
-
-const formatStringList = (title: string, array: string[] | undefined): JSX.Element => {
-  if (array === undefined || array.length === 0) return <></>;
-  return (
-    <>
-      <h3 className={classNames('font-bold', 'mt-2')}>{toUppercase(title)}</h3>
-      <ul>
-        {array.map((v, id) => (
-          <li key={id}>{toUppercase(v)}</li>
-        ))}
-      </ul>
-    </>
-  );
 };
 
 const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {

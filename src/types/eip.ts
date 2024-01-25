@@ -9,6 +9,7 @@ export type EIP = {
   // Some EIPs have parameters, such as EIP-1559, but these parameters may not be the same on all
   // chains. This field is intended to list the names and values of any parameters that exist.
   parameters?: EIPParameter[];
+  notes?: string[];
   references: string[];
 };
 

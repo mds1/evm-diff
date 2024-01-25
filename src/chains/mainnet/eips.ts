@@ -466,6 +466,20 @@ const grayGlacierEIPs: EIP[] = [
 ];
 
 const hardforksFromParis: string[] = getMainnetHardforksFrom(MainnetHardfork.Paris);
+
+export const eip4399: EIP = {
+  number: 4399,
+  title: 'Supplant DIFFICULTY opcode with PREVRANDAO',
+  category: EIPCategory.Execution,
+  type: EIPType.Core,
+  status: EIPState.Final,
+  activeHardforks: hardforksFromParis,
+  notes: [
+    "PREVRANDAO returns the random output of the L1 beacon chain's oracle from approximately 5 L1 blocks ago.",
+  ],
+  references: ['https://eips.ethereum.org/EIPS/eip-4399'],
+};
+
 export const parisEIPs: EIP[] = [
   {
     number: 3675,
@@ -482,15 +496,7 @@ export const parisEIPs: EIP[] = [
     ],
     references: ['https://eips.ethereum.org/EIPS/eip-3675'],
   },
-  {
-    number: 4399,
-    title: 'Supplant DIFFICULTY opcode with PREVRANDAO',
-    category: EIPCategory.Execution,
-    type: EIPType.Core,
-    status: EIPState.Final,
-    activeHardforks: hardforksFromParis,
-    references: ['https://eips.ethereum.org/EIPS/eip-4399'],
-  },
+  eip4399,
 ];
 
 const hardforksFromShanghai: string[] = getMainnetHardforksFrom(MainnetHardfork.Shanghai);

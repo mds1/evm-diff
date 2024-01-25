@@ -1,5 +1,6 @@
 import { MainnetHardfork } from '@/chains/mainnet/hardforks';
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
+import { classNames, toUppercase } from '@/lib/utils';
 
 export const formatHardfork = (array: string[]): JSX.Element => {
   if (!array || array.length == 0) {
@@ -27,5 +28,19 @@ export const formatHardfork = (array: string[]): JSX.Element => {
     <p className='text-sm'>
       Supported between <b>{first}</b> and <b>{last}</b> hard forks.
     </p>
+  );
+};
+
+export const formatStringList = (title: string, array: string[] | undefined): JSX.Element => {
+  if (array === undefined || array.length === 0) return <></>;
+  return (
+    <>
+      <h3 className={classNames('font-bold', 'mt-2')}>{toUppercase(title)}</h3>
+      <ul>
+        {array.map((v, id) => (
+          <li key={id}>{toUppercase(v)}</li>
+        ))}
+      </ul>
+    </>
   );
 };
