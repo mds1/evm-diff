@@ -44,7 +44,7 @@ const eip4399OnOptimism: EIP = {
     ...eip1399OnMainnet.references,
     'https://github.com/ethereum-optimism/specs/blob/main/specs/derivation.md#building-individual-payload-attributes',
     'https://github.com/mds1/evm-diff/issues/21',
-  ]
+  ],
 };
 
 const eip4895OnOptimism: EIP = {
