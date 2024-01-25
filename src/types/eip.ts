@@ -2,6 +2,7 @@ export type EIP = {
   number: number;
   title: string;
   category: EIPCategory;
+  type: EIPType;
   status: EIPState; // The status should always be `Final` for now.
   activeHardforks: string[];
   deprecated?: boolean;
@@ -15,6 +16,15 @@ export type EIP = {
 export enum EIPCategory {
   Execution,
   Consensus,
+}
+
+export enum EIPType {
+  Core,
+  Networking,
+  Interface,
+  ERC,
+  Meta,
+  Informational,
 }
 
 export enum EIPState {
