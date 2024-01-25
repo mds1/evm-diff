@@ -2,7 +2,7 @@ import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Markdown } from '@/components/diff/utils/Markdown';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { EIP, EIPParameter, EIPState } from '@/types/eip';
+import { EIP, EIPCategory, EIPParameter, EIPState } from '@/types/eip';
 import { formatHardfork } from './utils/format';
 
 type Props = {
@@ -66,6 +66,8 @@ const formatEIP = (eip: EIP | undefined): JSX.Element => {
       <Markdown content={eip.title} />
       {formatHardfork(eip.activeHardforks)}
       <div className='text-secondary mt-3 grid grid-cols-4 space-y-1 text-sm'>
+        <div className='col-span-2'>Category</div>
+        <div className='col-span-2'>{formatEIPCategory(eip.category)}</div>
         <div className='col-span-2'>Status</div>
         <div className='col-span-2'>{formatEIPState(eip.status)}</div>
         {eip.deprecated && (
@@ -82,6 +84,15 @@ const formatEIP = (eip: EIP | undefined): JSX.Element => {
     </>
   );
 };
+
+const formatEIPCategory = (s: EIPCategory): string =>
+  s === EIPCategory.Execution
+    ? 'Execution'
+    : s === EIPCategory.Consensus
+    ? 'Consensus'
+    : (() => {
+        throw new Error(`Unsupported categoy: ${s}`);
+      })();
 
 const formatEIPState = (s: EIPState): string =>
   s === EIPState.Draft

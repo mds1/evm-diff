@@ -1,4 +1,4 @@
-import { EIP, EIPState } from '@/types/eip';
+import { EIP, EIPCategory, EIPState } from '@/types/eip';
 import { MainnetHardfork, getMainnetHardforksFrom } from './hardforks';
 
 const hardforksFromHomestead: string[] = getMainnetHardforksFrom(MainnetHardfork.Homestead);
@@ -6,6 +6,7 @@ const homesteadEIPs: EIP[] = [
   {
     number: 2,
     title: 'Homestead hard-fork changes',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromHomestead,
     references: ['https://eips.ethereum.org/EIPS/eip-2'],
@@ -13,6 +14,7 @@ const homesteadEIPs: EIP[] = [
   {
     number: 7,
     title: 'Delegatecall',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromHomestead,
     references: ['https://eips.ethereum.org/EIPS/eip-7'],
@@ -20,6 +22,7 @@ const homesteadEIPs: EIP[] = [
   {
     number: 8,
     title: 'Devp2p forward compatibility requirements for Homestead',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromHomestead,
     references: ['https://eips.ethereum.org/EIPS/eip-8'],
@@ -33,6 +36,7 @@ const tangerineWhistleEIPs: EIP[] = [
   {
     number: 150,
     title: 'Gas cost changes for IO-heavy operations',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromTangerineWhistle,
     references: ['https://eips.ethereum.org/EIPS/eip-150'],
@@ -46,6 +50,7 @@ const spuriousDragonEIPS: EIP[] = [
   {
     number: 155,
     title: 'Simple replay attack protection',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromSpuriousDragon,
     references: ['https://eips.ethereum.org/EIPS/eip-155'],
@@ -53,6 +58,7 @@ const spuriousDragonEIPS: EIP[] = [
   {
     number: 160,
     title: 'EXP cost increase',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromSpuriousDragon,
     references: ['https://eips.ethereum.org/EIPS/eip-160'],
@@ -60,6 +66,7 @@ const spuriousDragonEIPS: EIP[] = [
   {
     number: 161,
     title: 'State trie clearing (invariant-preserving alternative)',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromSpuriousDragon,
     references: ['https://eips.ethereum.org/EIPS/eip-161'],
@@ -67,6 +74,7 @@ const spuriousDragonEIPS: EIP[] = [
   {
     number: 170,
     title: 'Contract code size limit',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromSpuriousDragon,
     parameters: [
@@ -84,6 +92,7 @@ const byzantiumEIPs: EIP[] = [
   {
     number: 100,
     title: 'Change difficulty adjustment to target mean block time including uncles',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromByzantium,
     references: ['https://eips.ethereum.org/EIPS/eip-100'],
@@ -91,6 +100,7 @@ const byzantiumEIPs: EIP[] = [
   {
     number: 140,
     title: 'REVERT instruction',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromByzantium,
     references: ['https://eips.ethereum.org/EIPS/eip-140'],
@@ -99,6 +109,7 @@ const byzantiumEIPs: EIP[] = [
     number: 196,
     title:
       'Precompiled contracts for addition and scalar multiplication on the elliptic curve alt_bn128',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromByzantium,
     references: ['https://eips.ethereum.org/EIPS/eip-196'],
@@ -106,6 +117,7 @@ const byzantiumEIPs: EIP[] = [
   {
     number: 197,
     title: 'Precompiled contracts for optimal ate pairing check on the elliptic curve alt_bn128',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromByzantium,
     references: ['https://eips.ethereum.org/EIPS/eip-197'],
@@ -113,6 +125,7 @@ const byzantiumEIPs: EIP[] = [
   {
     number: 198,
     title: 'Big integer modular exponentiation',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromByzantium,
     parameters: [
@@ -126,6 +139,7 @@ const byzantiumEIPs: EIP[] = [
   {
     number: 211,
     title: 'New opcodes: RETURNDATASIZE and RETURNDATACOPY',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromByzantium,
     references: ['https://eips.ethereum.org/EIPS/eip-211'],
@@ -133,6 +147,7 @@ const byzantiumEIPs: EIP[] = [
   {
     number: 214,
     title: 'New opcode STATICCALL',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromByzantium,
     references: ['https://eips.ethereum.org/EIPS/eip-214'],
@@ -140,6 +155,7 @@ const byzantiumEIPs: EIP[] = [
   {
     number: 649,
     title: 'Metropolis Difficulty Bomb Delay and Block Reward Reduction',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromByzantium,
     references: ['https://eips.ethereum.org/EIPS/eip-649'],
@@ -147,6 +163,7 @@ const byzantiumEIPs: EIP[] = [
   {
     number: 658,
     title: 'Embedding transaction status code in receipts',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromByzantium,
     references: ['https://eips.ethereum.org/EIPS/eip-658'],
@@ -163,6 +180,7 @@ const constantinopleEIPs: EIP[] = [
   {
     number: 145,
     title: 'Bitwise shifting instructions in EVM',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromConstantinople,
     references: ['https://eips.ethereum.org/EIPS/eip-145'],
@@ -170,6 +188,7 @@ const constantinopleEIPs: EIP[] = [
   {
     number: 1014,
     title: 'Skinny CREATE2',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromConstantinople,
     references: ['https://eips.ethereum.org/EIPS/eip-1014'],
@@ -177,6 +196,7 @@ const constantinopleEIPs: EIP[] = [
   {
     number: 1052,
     title: 'EXTCODEHASH opcode',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromConstantinople,
     references: ['https://eips.ethereum.org/EIPS/eip-1052'],
@@ -184,6 +204,7 @@ const constantinopleEIPs: EIP[] = [
   {
     number: 1234,
     title: 'Constantinople Difficulty Bomb Delay and Block Reward Adjustment',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromConstantinople,
     references: ['https://eips.ethereum.org/EIPS/eip-1234'],
@@ -195,6 +216,7 @@ const istanbulEIPs: EIP[] = [
   {
     number: 152,
     title: 'BAdd BLAKE2 compression function `F` precompile',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromIstanbul,
     references: ['https://eips.ethereum.org/EIPS/eip-152'],
@@ -202,6 +224,7 @@ const istanbulEIPs: EIP[] = [
   {
     number: 1108,
     title: 'Reduce alt_bn128 precompile gas costs',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromIstanbul,
     references: ['https://eips.ethereum.org/EIPS/eip-1108'],
@@ -209,6 +232,7 @@ const istanbulEIPs: EIP[] = [
   {
     number: 1344,
     title: 'ChainID opcode',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromIstanbul,
     references: ['https://eips.ethereum.org/EIPS/eip-1344'],
@@ -216,6 +240,7 @@ const istanbulEIPs: EIP[] = [
   {
     number: 1884,
     title: 'Repricing for trie-size-dependent opcodes',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromIstanbul,
     references: ['https://eips.ethereum.org/EIPS/eip-1884'],
@@ -223,6 +248,7 @@ const istanbulEIPs: EIP[] = [
   {
     number: 2028,
     title: 'Transaction data gas cost reduction',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromIstanbul,
     references: ['https://eips.ethereum.org/EIPS/eip-2028'],
@@ -230,6 +256,7 @@ const istanbulEIPs: EIP[] = [
   {
     number: 2200,
     title: 'Structured Definitions for Net Gas Metering',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromIstanbul,
     references: ['https://eips.ethereum.org/EIPS/eip-2200'],
@@ -241,6 +268,7 @@ const muirGlacierEIPs: EIP[] = [
   {
     number: 2384,
     title: 'Muir Glacier Difficulty Bomb Delay',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromMuirGlacier,
     references: ['https://eips.ethereum.org/EIPS/eip-2384'],
@@ -252,6 +280,7 @@ const berlinEIPs: EIP[] = [
   {
     number: 2565,
     title: 'ModExp Gas Cost',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromBerlin,
     references: ['https://eips.ethereum.org/EIPS/eip-2565'],
@@ -259,6 +288,7 @@ const berlinEIPs: EIP[] = [
   {
     number: 2929,
     title: 'Gas cost increases for state access opcodes',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromBerlin,
     parameters: [
@@ -280,6 +310,7 @@ const berlinEIPs: EIP[] = [
   {
     number: 2718,
     title: 'Typed Transaction Envelope',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromBerlin,
     references: ['https://eips.ethereum.org/EIPS/eip-2718'],
@@ -287,6 +318,7 @@ const berlinEIPs: EIP[] = [
   {
     number: 2930,
     title: 'Optional access lists',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromBerlin,
     parameters: [
@@ -308,6 +340,7 @@ const hardforksFromLondon: string[] = getMainnetHardforksFrom(MainnetHardfork.Lo
 export const eip1559: EIP = {
   number: 1559,
   title: 'Fee market change for ETH 1.0 chain',
+  category: EIPCategory.Execution,
   status: EIPState.Final,
   activeHardforks: hardforksFromLondon,
   parameters: [
@@ -332,6 +365,7 @@ const londonEIPs: EIP[] = [
   {
     number: 3198,
     title: 'BASEFEE opcode',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromLondon,
     references: ['https://eips.ethereum.org/EIPS/eip-3198'],
@@ -339,6 +373,7 @@ const londonEIPs: EIP[] = [
   {
     number: 3529,
     title: 'Reduction in refunds',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromLondon,
     parameters: [
@@ -352,6 +387,7 @@ const londonEIPs: EIP[] = [
   {
     number: 3541,
     title: 'Reject new contract code starting with the 0xEF byte',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromLondon,
     references: ['https://eips.ethereum.org/EIPS/eip-3541'],
@@ -359,6 +395,7 @@ const londonEIPs: EIP[] = [
   {
     number: 3554,
     title: 'Difficulty Bomb Delay to December 2021',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromLondon,
     references: ['https://eips.ethereum.org/EIPS/eip-3554'],
@@ -370,6 +407,7 @@ const arrowGlacierEIPs: EIP[] = [
   {
     number: 4345,
     title: 'Difficulty Bomb Delay to June 2022',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromArrowGlacier,
     references: ['https://eips.ethereum.org/EIPS/eip-4345'],
@@ -381,6 +419,7 @@ const grayGlacierEIPs: EIP[] = [
   {
     number: 5133,
     title: 'Delaying Difficulty Bomb to mid-September 2022',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromGrayGlacier,
     references: ['https://eips.ethereum.org/EIPS/eip-5133'],
@@ -388,10 +427,11 @@ const grayGlacierEIPs: EIP[] = [
 ];
 
 const hardforksFromParis: string[] = getMainnetHardforksFrom(MainnetHardfork.Paris);
-const parisEIPs: EIP[] = [
+export const parisEIPs: EIP[] = [
   {
     number: 3675,
     title: 'Upgrade consensus to Proof-of-Stake',
+    category: EIPCategory.Consensus,
     status: EIPState.Final,
     activeHardforks: hardforksFromParis,
     parameters: [
@@ -405,6 +445,7 @@ const parisEIPs: EIP[] = [
   {
     number: 4399,
     title: 'Supplant DIFFICULTY opcode with PREVRANDAO',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromParis,
     references: ['https://eips.ethereum.org/EIPS/eip-4399'],
@@ -416,6 +457,7 @@ const shanghaiEIPs: EIP[] = [
   {
     number: 3651,
     title: 'Warm COINBASE',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromShanghai,
     references: ['https://eips.ethereum.org/EIPS/eip-3651'],
@@ -423,6 +465,7 @@ const shanghaiEIPs: EIP[] = [
   {
     number: 3855,
     title: 'PUSH0 instruction',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromShanghai,
     references: ['https://eips.ethereum.org/EIPS/eip-3855'],
@@ -430,6 +473,7 @@ const shanghaiEIPs: EIP[] = [
   {
     number: 3860,
     title: 'Limit and meter initcode',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromShanghai,
     parameters: [
@@ -447,6 +491,7 @@ const shanghaiEIPs: EIP[] = [
   {
     number: 4895,
     title: 'Beacon chain push withdrawals as operations',
+    category: EIPCategory.Execution,
     status: EIPState.Final,
     activeHardforks: hardforksFromShanghai,
     references: ['https://eips.ethereum.org/EIPS/eip-4895'],
