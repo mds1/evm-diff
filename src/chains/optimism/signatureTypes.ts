@@ -9,8 +9,8 @@ const depositTx: SignatureType = {
   ],
   signs: 'transaction',
   references: [
-    'https://github.com/ethereum-optimism/optimism/blob/develop/specs/deposits.md#the-deposited-transaction-type',
-    'https://github.com/ethereum-optimism/optimism/blob/develop/specs/glossary.md#deposited-transaction',
+    'https://github.com/ethereum-optimism/specs/blob/main/specs/deposits.md#the-deposited-transaction-type',
+    'https://github.com/ethereum-optimism/specs/blob/main/specs/glossary.md#deposited-transaction',
   ],
   notes: [
     `There are two kinds of deposited transactions:
