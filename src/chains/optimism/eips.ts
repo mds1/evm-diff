@@ -1,4 +1,4 @@
-import { EIP } from '@/types/eip';
+import { EIP, EIPCategory } from '@/types/eip';
 import { eip1559 as eip1559OnEthereum, eips as ethereumEIPs } from '../mainnet/eips';
 import { OptimismHardfork, getOptimismHardforksFrom } from './hardforks';
 
@@ -26,7 +26,13 @@ const eip1559OnOptimism: EIP = {
   ],
 };
 
-export const eips: EIP[] = ethereumEIPs.map((eip) => {
-  if (eip.number === 1559) return eip1559OnOptimism;
-  return eip;
-});
+export const eips: EIP[] = ethereumEIPs
+  .filter((eip) => {
+    // Exclude consensus-related EIPS.
+    return eip.category !== EIPCategory.Consensus;
+  })
+  .map((eip) => {
+    // EIPs modified by Optimism hard forks.
+    if (eip.number === 1559) return eip1559OnOptimism;
+    return eip;
+  });
