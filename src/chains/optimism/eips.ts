@@ -1,8 +1,11 @@
 import { EIP } from '@/types/eip';
 import { eip1559 as eip1559OnEthereum, eips as ethereumEIPs } from '../mainnet/eips';
+import { OptimismHardfork, getOptimismHardforksFrom } from './hardforks';
 
+const hardforksFromCanyon: string[] = getOptimismHardforksFrom(OptimismHardfork.Canyon);
 const eip1559OnOptimism: EIP = {
   ...eip1559OnEthereum,
+  activeHardforks: hardforksFromCanyon,
   parameters: [
     {
       name: 'INITIAL_BASE_FEE',
