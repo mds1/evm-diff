@@ -2,7 +2,7 @@ import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Markdown } from '@/components/diff/utils/Markdown';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { EIP, EIPCategory, EIPParameter, EIPState, EIPType } from '@/types/eip';
+import { EIP, EIPCategory, EIPParameter, EIPState } from '@/types/eip';
 import { formatHardfork, formatStringList } from './utils/format';
 
 type Props = {
