@@ -68,8 +68,6 @@ const formatEIP = (eip: EIP | undefined): JSX.Element => {
       <div className='text-secondary mt-3 grid grid-cols-4 space-y-1 text-sm'>
         <div className='col-span-2'>Category</div>
         <div className='col-span-2'>{formatEIPCategory(eip.category)}</div>
-        <div className='col-span-2'>Type</div>
-        <div className='col-span-2'>{formatEIPType(eip.type)}</div>
         <div className='col-span-2'>Status</div>
         <div className='col-span-2'>{formatEIPState(eip.status)}</div>
         {eip.deprecated && (
@@ -95,23 +93,6 @@ const formatEIPCategory = (s: EIPCategory): string =>
     ? 'Consensus'
     : (() => {
         throw new Error(`Unsupported categoy: ${s}`);
-      })();
-
-const formatEIPType = (s: EIPType): string =>
-  s === EIPType.Core
-    ? 'Core'
-    : s === EIPType.Networking
-    ? 'Networking'
-    : s === EIPType.Interface
-    ? 'Interface'
-    : s === EIPType.ERC
-    ? 'ERC'
-    : s === EIPType.Meta
-    ? 'Meta'
-    : s === EIPType.Informational
-    ? 'Informational'
-    : (() => {
-        throw new Error(`Unsupported type: ${s}`);
       })();
 
 const formatEIPState = (s: EIPState): string =>
