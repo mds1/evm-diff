@@ -40,9 +40,9 @@ const SECTION_MAP: Record<string, Section> = {
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
   mempools: { title: 'Mempools', component: DiffMempools },
   deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
-  eips: { title: 'EIPs', component: DiffEIPs },
+  eips: { title: 'Execution EIPs', component: DiffEIPs },
   executionNodes: { title: 'Execution Nodes', component: DiffNodes },
-  consensusNodes: { title: 'Consensus Nodes', component: DiffNodes },
+  consensusNodes: { title: 'Consensus Nodes', component: DiffNodes, hide: true }, // Hidden to scope UI to execution data
 };
 
 const Diff = () => {
