@@ -2,8 +2,8 @@ import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Markdown } from '@/components/diff/utils/Markdown';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { EIP, EIPParameter, EIPState } from '@/types/eip';
-import { formatHardfork } from './utils/format';
+import { EIP, EIPCategory, EIPParameter, EIPState } from '@/types/eip';
+import { formatHardfork, formatStringList } from './utils/format';
 
 type Props = {
   base: EIP[];
@@ -37,7 +37,15 @@ export const DiffEIPs = ({ base, target, onlyShowDiff }: Props): JSX.Element => 
               className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
               <div className='col-span-2'>
-                <Copyable content={'EIP-' + baseEIP?.number} />
+                <Copyable
+                  content={
+                    baseEIP
+                      ? 'EIP-' + baseEIP.number
+                      : targetEIP
+                      ? 'EIP-' + targetEIP.number
+                      : 'EIP-???'
+                  }
+                />
               </div>
               <div className='col-span-5 pr-4'>{formatEIP(baseEIP)}</div>
               <div className='col-span-5'>{formatEIP(targetEIP)}</div>
@@ -58,6 +66,8 @@ const formatEIP = (eip: EIP | undefined): JSX.Element => {
       <Markdown content={eip.title} />
       {formatHardfork(eip.activeHardforks)}
       <div className='text-secondary mt-3 grid grid-cols-4 space-y-1 text-sm'>
+        <div className='col-span-2'>Category</div>
+        <div className='col-span-2'>{formatEIPCategory(eip.category)}</div>
         <div className='col-span-2'>Status</div>
         <div className='col-span-2'>{formatEIPState(eip.status)}</div>
         {eip.deprecated && (
@@ -68,12 +78,22 @@ const formatEIP = (eip: EIP | undefined): JSX.Element => {
         )}
       </div>
       {eip.parameters && formatEIPParameters(eip.parameters)}
+      {formatStringList('Notes', eip.notes)}
       <div className='mt-4'>
         <Collapsible kind='references' contents={eip.references} />
       </div>
     </>
   );
 };
+
+const formatEIPCategory = (s: EIPCategory): string =>
+  s === EIPCategory.Execution
+    ? 'Execution'
+    : s === EIPCategory.Consensus
+    ? 'Consensus'
+    : (() => {
+        throw new Error(`Unsupported category: ${s}`);
+      })();
 
 const formatEIPState = (s: EIPState): string =>
   s === EIPState.Draft

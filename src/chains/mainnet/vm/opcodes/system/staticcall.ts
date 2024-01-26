@@ -1,4 +1,4 @@
-import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getMainnetHardforksFrom } from '@/chains/mainnet/hardforks';
 import { OpcodeGroup, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
@@ -95,5 +95,5 @@ export const staticcall: Omit<Opcode, 'examples' | 'playgroundLink'> = {
     evmCodesOpcodesLink(0xfa),
     ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.System, 594),
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
+  supportedHardforks: getMainnetHardforksFrom(MainnetHardfork.Byzantium),
 };

@@ -1,4 +1,4 @@
-import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getMainnetHardforksFrom } from '@/chains/mainnet/hardforks';
 import {
   OpcodeGroup,
   ethSpecsOpcodeSrc,
@@ -32,5 +32,5 @@ export const returndatasize: Opcode = {
     evmCodesOpcodesLink(0x3d),
     ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 384),
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
+  supportedHardforks: getMainnetHardforksFrom(MainnetHardfork.Byzantium),
 };

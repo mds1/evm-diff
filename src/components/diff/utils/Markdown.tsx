@@ -8,7 +8,7 @@ export const Markdown: React.FC<{ content: string; codeSize?: string; className?
   className,
 }) => {
   // --- Transform Content ---
-  const transformURLs = (content: string) => {
+  const transformURLs = (content: string): string => {
     // Define regex patterns for the different types of URLs we want to convert to named links.
     const eipURLPattern = /(https:\/\/eips\.ethereum\.org\/EIPS\/eip-(\d+))/g;
     const evmCodesURLPattern = /(https:\/\/www\.evm\.codes\/#([0-9a-fA-F]{2}))/g;
@@ -17,17 +17,36 @@ export const Markdown: React.FC<{ content: string; codeSize?: string; className?
       /(https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/([^#]+)(?:#([^ ]+))?)/g;
 
     // Do the conversions.
-    return content
-      .replace(eipURLPattern, (_match, fullUrl, number) => `[EIP-${number}](${fullUrl})`)
+    let matched = false;
+    const transformedContent: string = content
+      .replace(eipURLPattern, (_match, fullUrl, number) => {
+        matched = true;
+        return `[EIP-${number}](${fullUrl})`;
+      })
       .replace(evmCodesURLPattern, (_match, fullUrl, opcode) => {
+        matched = true;
         return `[evm.codes, opcode \`0x${opcode}\`](${fullUrl})`;
       })
       .replace(githubIssueURLPattern, (_match, fullUrl, user, repo, issueNumber) => {
+        matched = true;
         return `[${user}/${repo}, Issue #${issueNumber}](${fullUrl})`;
       })
       .replace(githubURLPattern, (_match, fullUrl, user, repo, commit, path, _line) => {
+        matched = true;
         return `[${user}/${repo}, \`${path}@${commit.substring(0, 7)}\`](${fullUrl})`;
       });
+
+    if (matched) {
+      return transformedContent;
+    }
+
+    // Add a fallback for any URLs that don't match the predefined patterns.
+    // We take care to avoid matching URLs that are already included in markdown style.
+    const fallbackPattern = /(?<!\]\()https?:\/\/[^\s]+/g;
+    return transformedContent.replace(
+      fallbackPattern,
+      (_match, fullUrl) => `[${fullUrl}](${fullUrl})`
+    );
   };
 
   const transformedContent = transformURLs(content);

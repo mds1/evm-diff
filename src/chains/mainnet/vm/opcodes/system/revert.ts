@@ -1,4 +1,4 @@
-import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getMainnetHardforksFrom } from '@/chains/mainnet/hardforks';
 import {
   OpcodeGroup,
   ethSpecsOpcodeSrc,
@@ -77,5 +77,5 @@ export const revert: Opcode = {
     evmCodesOpcodesLink(0xfd),
     ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.System, 656),
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
+  supportedHardforks: getMainnetHardforksFrom(MainnetHardfork.Byzantium),
 };
