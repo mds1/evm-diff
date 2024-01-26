@@ -465,9 +465,6 @@ export const eip4399: EIP = {
 
   status: EIPState.Final,
   activeHardforks: hardforksFromParis,
-  notes: [
-    "PREVRANDAO returns the random output of the L1 beacon chain's oracle from approximately 5 L1 blocks ago.",
-  ],
   references: ['https://eips.ethereum.org/EIPS/eip-4399'],
 };
 
