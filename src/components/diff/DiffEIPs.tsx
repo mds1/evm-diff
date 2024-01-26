@@ -23,11 +23,13 @@ export const DiffEIPs = ({ base, target, onlyShowDiff }: Props): JSX.Element => 
       {eipNumbers.map((number) => {
         const baseEIP = base.find((eip) => eip.number === number);
         const targetEIP = target.find((eip) => eip.number === number);
-        if (!baseEIP && !targetEIP) {
+        if (!baseEIP || !targetEIP) {
           return <></>;
         }
 
-        const isEqual = JSON.stringify(baseEIP) === JSON.stringify(targetEIP);
+        const isEqual =
+          JSON.stringify(convertToComparableEIP(baseEIP)) ===
+          JSON.stringify(convertToComparableEIP(targetEIP));
         const showOpcode = !isEqual || !onlyShowDiff;
 
         return (
@@ -128,4 +130,21 @@ const formatEIPParameters = (params: EIPParameter[]): JSX.Element => {
     </>
   );
   return <Collapsible kind='custom' title='Parameters' contents={contents} />;
+};
+
+// Convert an `EIP` object to a simpler struct in order to compare it to other EIPs.
+// Note: casting an object from a type with properties X, Y and Z to a subset type with properties
+// X and Y using the `as` keyword will still retain the field Z unless you explicitly remove it.
+// That's why this function exists.
+export const convertToComparableEIP = (eip: EIP): Omit<EIP, 'activeHardforks'> => {
+  return {
+    number: eip.number,
+    title: eip.title,
+    category: eip.category,
+    status: eip.status,
+    deprecated: eip.deprecated,
+    parameters: eip.parameters,
+    notes: eip.notes,
+    references: eip.references,
+  };
 };

@@ -285,7 +285,7 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
 // That's why this function exists.
 export const convertToComparableOpcode = (
   opcode: Opcode
-): Omit<Opcode, 'examples' | 'playgroundLink' | 'notes' | 'references'> => {
+): Omit<Opcode, 'examples' | 'playgroundLink' | 'notes' | 'references' | 'supportedHardforks'> => {
   return {
     number: opcode.number,
     name: opcode.name,
@@ -295,6 +295,5 @@ export const convertToComparableOpcode = (
     inputs: opcode.inputs,
     outputs: opcode.outputs,
     errorCases: opcode.errorCases,
-    supportedHardforks: opcode.supportedHardforks,
   };
 };
