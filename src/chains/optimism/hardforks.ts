@@ -19,7 +19,7 @@ export const getOptimismHardforksFromTo = (
 ): string[] => {
   if (start > end) {
     throw new Error(
-      `Error: the starting hard fork ${OptimismHardfork[start]} (index: ${start}) occured after the ending hard fork ${OptimismHardfork[end]} (index: ${end}). Arguments are wrong or must have been reversed.`
+      `Error: the starting hard fork ${OptimismHardfork[start]} (index: ${start}) occurred after the ending hard fork ${OptimismHardfork[end]} (index: ${end}). Arguments are wrong or must have been reversed.`
     );
   }
 

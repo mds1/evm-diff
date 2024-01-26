@@ -92,7 +92,7 @@ const formatEIPCategory = (s: EIPCategory): string =>
     : s === EIPCategory.Consensus
     ? 'Consensus'
     : (() => {
-        throw new Error(`Unsupported categoy: ${s}`);
+        throw new Error(`Unsupported category: ${s}`);
       })();
 
 const formatEIPState = (s: EIPState): string =>

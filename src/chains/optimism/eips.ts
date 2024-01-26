@@ -26,7 +26,7 @@ const eip1559OnOptimism: EIP = {
     },
   ],
   notes: [
-    'The denominator value in the EIP-1599 formula is modified. The formula for EIP-1559 is not otherwise modified.',
+    'The denominator and elasticity multiplier values of the EIP-1599 formula are modified from their mainnet values.',
   ],
   references: [
     ...eip1559OnMainnet.references,
@@ -61,7 +61,7 @@ const eip4895OnOptimism: EIP = {
 
 export const eips: EIP[] = ethereumEIPs
   .filter((eip) => {
-    // Exclude consensus-related EIPS.
+    // Exclude consensus-related EIPs.
     return eip.category !== EIPCategory.Consensus;
   })
   .map((eip) => {
