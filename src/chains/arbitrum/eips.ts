@@ -22,7 +22,7 @@ const eip1559OnArbitrum: EIP = {
 
 const eip4399OnArbitrum: EIP = {
   ...eip1399OnMainnet,
-  notes: ['PREVRANDAO returns the constant `1` on Arbitrum.'],
+  notes: ['PREVRANDAO returns the constant 1 on Arbitrum.'],
   references: [...eip1399OnMainnet.references, 'https://developer.arbitrum.io/solidity-support'],
 };
 
