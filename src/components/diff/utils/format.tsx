@@ -1,4 +1,5 @@
 import { MainnetHardfork } from '@/chains/mainnet/hardforks';
+import { CURRENT_OPTIMISM_HARDFORK, OptimismHardfork } from '@/chains/optimism/hardforks';
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import { classNames, toUppercase } from '@/lib/utils';
 
@@ -7,26 +8,29 @@ export const formatHardfork = (array: string[]): JSX.Element => {
     return <p>No information provided on supported hard forks.</p>;
   }
 
-  const [first, ...rest] = array;
-  const last = rest.pop();
-  const length = array.length;
+  const first = array[0];
+  const last = array[array.length - 1];
   const currentMainnetHardforkName = MainnetHardfork[CURRENT_MAINNET_HARDFORK];
-  if (length == 1) {
+  const currentOptimismHardforkName = OptimismHardfork[CURRENT_OPTIMISM_HARDFORK];
+  if (array.length == 1) {
+    const supportedText =
+      first === currentMainnetHardforkName || first === currentOptimismHardforkName
+        ? `Supported since ${first} hard fork.`
+        : `Supported only in ${first} hard fork.`;
     return (
       <p className='text-sm'>
-        Supported only in <b>{first}</b> hard fork.
-      </p>
-    );
-  } else if (length == CURRENT_MAINNET_HARDFORK + 1 || last === currentMainnetHardforkName) {
-    return (
-      <p className='text-sm'>
-        Supported since <b>{first}</b> hard fork.
+        <b>{supportedText}</b>
       </p>
     );
   }
+
+  const supportedText =
+    last === currentMainnetHardforkName || last === currentOptimismHardforkName
+      ? `Supported since ${first} hard fork.`
+      : `Supported between ${first} and ${last} hard forks.`;
   return (
     <p className='text-sm'>
-      Supported between <b>{first}</b> and <b>{last}</b> hard forks.
+      <b>{supportedText}</b>
     </p>
   );
 };
