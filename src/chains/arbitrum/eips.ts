@@ -1,5 +1,9 @@
 import { EIP, EIPCategory } from '@/types/eip';
-import { eip1559 as eip1559OnMainnet, eips as ethereumEIPs } from '../mainnet/eips';
+import {
+  eip4399 as eip1399OnMainnet,
+  eip1559 as eip1559OnMainnet,
+  eips as ethereumEIPs,
+} from '../mainnet/eips';
 import { ArbitrumHardfork, getArbitrumHardforksFrom } from './hardforks';
 
 const hardforksFromArbOS11: string[] = getArbitrumHardforksFrom(ArbitrumHardfork.ArbOS11);
@@ -16,6 +20,12 @@ const eip1559OnArbitrum: EIP = {
   ],
 };
 
+const eip4399OnArbitrum: EIP = {
+  ...eip1399OnMainnet,
+  notes: ['PREVRANDAO returns the constant `1` on Arbitrum.'],
+  references: [...eip1399OnMainnet.references, 'https://developer.arbitrum.io/solidity-support'],
+};
+
 export const eips: EIP[] = ethereumEIPs
   .filter((eip) => {
     // Exclude consensus-related EIPs.
@@ -24,5 +34,6 @@ export const eips: EIP[] = ethereumEIPs
   .map((eip) => {
     // EIPs modified by Optimism hard forks.
     if (eip.number === 1559) return eip1559OnArbitrum;
+    if (eip.number === 4399) return eip4399OnArbitrum;
     return eip;
   });
