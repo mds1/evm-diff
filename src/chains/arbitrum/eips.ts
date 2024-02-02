@@ -32,7 +32,7 @@ export const eips: EIP[] = ethereumEIPs
     return eip.category !== EIPCategory.Consensus;
   })
   .map((eip) => {
-    // EIPs modified by Optimism hard forks.
+    // EIPs modified by Arbitrum hard forks.
     if (eip.number === 1559) return eip1559OnArbitrum;
     if (eip.number === 4399) return eip4399OnArbitrum;
     return eip;
