@@ -11,6 +11,21 @@ export enum ArbitrumHardfork {
 
 export const CURRENT_ARBITRUM_HARDFORK = ArbitrumHardfork.ArbOS11;
 
+// Format Arbitrum hardforks according to the pattern 'ArbOS Version {number}'.
+const formattedArbitrumHardforks = (): string[] => {
+  return Object.values(ArbitrumHardfork)
+    .filter((v) => typeof v === 'string')
+    .map((v, _) => {
+      const regex = /ArbOS(.*)/;
+      const match = v.toString().match(regex);
+      if (match) {
+        const version = match[1];
+        return `ArbOS Version ${version}`;
+      }
+      return v.toString();
+    });
+};
+
 // Retrieve all the hard forks from the starting hard fork to the current mainnet hard fork.
 export const getArbitrumHardforksFrom = (startingHardfork: ArbitrumHardfork): string[] =>
   getArbitrumHardforksFromTo(startingHardfork, CURRENT_ARBITRUM_HARDFORK);
@@ -20,17 +35,11 @@ export const getArbitrumHardforksFromTo = (
   start: ArbitrumHardfork,
   end: ArbitrumHardfork
 ): string[] => {
+  const arbitrumHardforks = formattedArbitrumHardforks();
   if (start > end) {
     throw new Error(
-      `Error: the starting hard fork ${ArbitrumHardfork[start]} (index: ${start}) occurred after the ending hard fork ${ArbitrumHardfork[end]} (index: ${end}). Arguments are wrong or must have been reversed.`
+      `Error: the starting hard fork ${arbitrumHardforks[start]} (index: ${start}) occurred after the ending hard fork ${arbitrumHardforks[end]} (index: ${end}). Arguments are wrong or must have been reversed.`
     );
   }
-
-  // Create an array made of all the enum key indexes following by all the stringified keys.
-  // For example, if you had an enum with two keys A and B, you would get ['0', '1', 'A', 'B'].
-  // Then, we only keep the slice with the values (e.g. ['A', 'B']).
-  const array = Object.keys(ArbitrumHardfork);
-  const length = array.length / 2;
-  const keys = array.slice(length);
-  return keys.slice(start, end + 1);
+  return arbitrumHardforks.slice(start, end + 1);
 };
