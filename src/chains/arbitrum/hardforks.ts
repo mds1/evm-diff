@@ -1,6 +1,11 @@
 // List of Arbitrum upgrades or hard forks.
 // https://forum.arbitrum.foundation/t/arbitrum-arbos-upgrades/19695
+// https://github.com/OffchainLabs/nitro/blob/17468a832e7430762911a9a202903aea79f9a047/cmd/chaininfo/arbitrum_chain_info.json
 export enum ArbitrumHardfork {
+  ArbOS1,
+  ArbOS2,
+  ArbOS6,
+  ArbOS10,
   ArbOS11,
 }
 
