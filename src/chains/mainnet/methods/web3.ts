@@ -1,6 +1,5 @@
 import { Method, MethodNamespace } from '@/types';
 
-// web3 namespace.
 const web3ClientVersion: Method = {
   name: 'web3_clientVersion',
   namespace: MethodNamespace.Web3,
@@ -39,12 +38,4 @@ const web3Sha3: Method = {
   references: ['[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#web3_sha3)'],
 };
 
-const web3Methods: Method[] = [web3ClientVersion, web3Sha3];
-
-// TODO: net namespace.
-const netMethods: Method[] = [];
-
-// TODO: eth namespace.
-const ethMethods: Method[] = [];
-
-export const jsonRPCMethods: Method[] = [...web3Methods, ...netMethods, ...ethMethods];
+export const web3Methods: Method[] = [web3ClientVersion, web3Sha3];
