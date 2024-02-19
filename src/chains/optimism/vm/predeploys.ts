@@ -1,7 +1,6 @@
 import { Predeploy } from '@/types';
 
-const PREDEPLOYS_SPEC =
-  'https://github.com/ethereum-optimism/optimism/blob/47aec81ae66f9833afc5a65cd43a17d49edfea09/specs/predeploys.md';
+const PREDEPLOYS_SPEC = 'https://github.com/ethereum-optimism/specs/blob/main/specs/predeploys.md';
 
 export const predeploys: Predeploy[] = [
   {

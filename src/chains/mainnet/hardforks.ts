@@ -6,7 +6,7 @@ export enum MainnetHardfork {
   SpuriousDragon,
   Byzantium,
   Constantinople,
-  Petersburg, // This hard fork doesn't exist in ethereum/execution-specs
+  // The Petersburg hard fork doesn't exist in ethereum/execution-specs so we do not reference it.
   Istanbul,
   MuirGlacier,
   Berlin,
@@ -20,11 +20,14 @@ export enum MainnetHardfork {
 export const CURRENT_MAINNET_HARDFORK = MainnetHardfork.Shanghai;
 
 // Retrieve all the hard forks from the starting hard fork to the current mainnet hard fork.
-export const getHardforksFrom = (startingHardfork: MainnetHardfork): string[] =>
-  getHardforksFromTo(startingHardfork, CURRENT_MAINNET_HARDFORK);
+export const getMainnetHardforksFrom = (startingHardfork: MainnetHardfork): string[] =>
+  getMainnetHardforksFromTo(startingHardfork, CURRENT_MAINNET_HARDFORK);
 
 // Retrieve an array of hardforks from a starting hardfork to an ending hardfork (inclusive).
-export const getHardforksFromTo = (start: MainnetHardfork, end: MainnetHardfork): string[] => {
+export const getMainnetHardforksFromTo = (
+  start: MainnetHardfork,
+  end: MainnetHardfork
+): string[] => {
   if (start > end) {
     throw new Error(
       `Error: the starting hard fork ${MainnetHardfork[start]} (index: ${start}) occured after the ending hard fork ${MainnetHardfork[end]} (index: ${end}). Arguments are wrong or must have been reversed.`

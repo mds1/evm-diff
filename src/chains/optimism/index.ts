@@ -3,6 +3,7 @@ import { sortedArrayByField, sortedArrayByFields } from '@/lib/utils';
 import { Chain } from '@/types';
 import { accountTypes } from './accountTypes';
 import { deployedContracts } from './deployedContracts';
+import { eips } from './eips';
 import { consensusNodes, executionNodes } from './nodes';
 import { signatureTypes } from './signatureTypes';
 import { opcodes } from './vm/opcodes';
@@ -18,6 +19,7 @@ export const optimism: Chain = {
   opcodes: sortedArrayByField(opcodes, 'number'),
   mempools: [],
   deployedContracts: sortedArrayByFields(deployedContracts, ['kind', 'name']),
+  eips,
   executionNodes,
   consensusNodes,
   jsonRPCMethods: [],

@@ -5,6 +5,7 @@ import { getChainById } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffAccountTypes } from '@/components/diff/DiffAccountTypes';
 import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
+import { DiffEIPs } from '@/components/diff/DiffEIPs';
 import { DiffMempools } from '@/components/diff/DiffMempools';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffMethods } from '@/components/diff/DiffMethods';
@@ -40,8 +41,9 @@ const SECTION_MAP: Record<string, Section> = {
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
   mempools: { title: 'Mempools', component: DiffMempools },
   deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
+  eips: { title: 'Execution EIPs', component: DiffEIPs },
   executionNodes: { title: 'Execution Nodes', component: DiffNodes },
-  consensusNodes: { title: 'Consensus Nodes', component: DiffNodes },
+  consensusNodes: { title: 'Consensus Nodes', component: DiffNodes, hide: true }, // Hidden to scope UI to execution data
   jsonRPCMethods: { title: 'JSON-RPC Methods', component: DiffMethods },
 };
 

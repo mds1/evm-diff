@@ -3,11 +3,11 @@ import { Markdown } from '@/components/diff/utils/Markdown';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { ExternalLink } from '@/components/layout/ExternalLink';
 import { Copyable } from '@/components/ui/Copyable';
-import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import { classNames, formatPrefixByte } from '@/lib/utils';
 import { toUppercase } from '@/lib/utils';
 import { Opcode, OpcodeExample, OpcodeVariable } from '@/types';
 import { GasComputation } from '@/types/opcode';
+import { formatHardfork, formatStringList } from './utils/format';
 
 type Props = {
   base: Opcode[];
@@ -238,20 +238,6 @@ const formatGasComputation = (gc: GasComputation | undefined): JSX.Element => {
   return <Collapsible kind='custom' title='Gas Computation' contents={contents} />;
 };
 
-const formatStringList = (title: string, array: string[] | undefined): JSX.Element => {
-  if (array === undefined || array.length === 0) return <></>;
-  return (
-    <>
-      <h3 className={classNames('font-bold', 'mt-2')}>{toUppercase(title)}</h3>
-      <ul>
-        {array.map((v, id) => (
-          <li key={id}>{toUppercase(v)}</li>
-        ))}
-      </ul>
-    </>
-  );
-};
-
 const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {
   if (!opcode) return <p>Not present</p>;
   return (
@@ -324,7 +310,7 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
 // That's why this function exists.
 export const convertToComparableOpcode = (
   opcode: Opcode
-): Omit<Opcode, 'examples' | 'playgroundLink' | 'notes' | 'references'> => {
+): Omit<Opcode, 'examples' | 'playgroundLink' | 'notes' | 'references' | 'supportedHardforks'> => {
   return {
     number: opcode.number,
     name: opcode.name,
@@ -334,6 +320,5 @@ export const convertToComparableOpcode = (
     inputs: opcode.inputs,
     outputs: opcode.outputs,
     errorCases: opcode.errorCases,
-    supportedHardforks: opcode.supportedHardforks,
   };
 };

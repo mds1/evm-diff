@@ -1,4 +1,4 @@
-import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getMainnetHardforksFrom } from '@/chains/mainnet/hardforks';
 import { OpcodeGroup, ethSpecsOpcodeSrc, evmCodesOpcodesLink } from '@/lib/opcodes';
 import { Opcode } from '@/types';
 
@@ -29,5 +29,5 @@ export const prevrandao: Opcode = {
     ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Block, 158),
     'https://eips.ethereum.org/EIPS/eip-4399',
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
+  supportedHardforks: getMainnetHardforksFrom(MainnetHardfork.Frontier),
 };

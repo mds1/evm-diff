@@ -1,4 +1,4 @@
-import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getMainnetHardforksFrom } from '@/chains/mainnet/hardforks';
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
 import {
   OpcodeGroup,
@@ -38,7 +38,7 @@ const push = (n: number): Opcode => {
       evmCodesOpcodesLink(number),
       ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 146 + n),
     ],
-    supportedHardforks: getHardforksFrom(MainnetHardfork.Frontier),
+    supportedHardforks: getMainnetHardforksFrom(MainnetHardfork.Frontier),
   };
 };
 
@@ -77,5 +77,5 @@ export const push0: Opcode = {
     evmCodesOpcodesLink(0x5f),
     ethSpecsOpcodeSrc(CURRENT_MAINNET_HARDFORK, OpcodeGroup.Stack, 146),
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardfork.Shanghai),
+  supportedHardforks: getMainnetHardforksFrom(MainnetHardfork.Shanghai),
 };

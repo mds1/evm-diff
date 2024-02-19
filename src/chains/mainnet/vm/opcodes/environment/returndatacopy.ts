@@ -1,4 +1,4 @@
-import { MainnetHardfork, getHardforksFrom } from '@/chains/mainnet/hardforks';
+import { MainnetHardfork, getMainnetHardforksFrom } from '@/chains/mainnet/hardforks';
 import {
   OpcodeGroup,
   ethSpecsOpcodeSrc,
@@ -98,5 +98,5 @@ export const returndatacopy: Opcode = {
     '[evm.codes, Memory Expansion](https://www.evm.codes/about#memoryexpansion)',
     ethSpecsOpcodeSrc(MainnetHardfork.Shanghai, OpcodeGroup.Environment, 406),
   ],
-  supportedHardforks: getHardforksFrom(MainnetHardfork.Byzantium),
+  supportedHardforks: getMainnetHardforksFrom(MainnetHardfork.Byzantium),
 };
