@@ -69,7 +69,7 @@ const formatMethod = (method: Method | undefined) => {
           contents={`- ${method.return.type.toUpperCase()}: ${method.return.description}`}
         />
       </div>
-      {method.example && formatExample(method.name, method.example)}
+      {method.examples && formatExamples(method.name, method.examples)}
       <div className='mt-4'>
         <Collapsible kind='references' contents={method.references} />
       </div>
@@ -104,6 +104,29 @@ const formatParameters = (params: Variable[]): JSX.Element => {
   return <Collapsible kind='custom' title='Parameters' contents={contents} />;
 };
 
+const formatExamples = (name: string, examples: MethodExample[]): JSX.Element => {
+  if (!Array.isArray(examples)) return <></>;
+  let contents;
+  if (examples.length == 1) {
+    contents = formatExample(name, examples[0]);
+  } else {
+    contents = (
+      <>
+        <ul className='text-sm'>
+          {examples.map((e) => (
+            <li key={e.parameters.toString()}>
+              <br />
+              {e.description}
+              <br /> {formatExample(name, e)}
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+  }
+  return <Collapsible kind='custom' title='Examples' contents={contents} />;
+};
+
 const formatExample = (name: string, example: MethodExample): JSX.Element => {
   const id = 1;
   const version = '2.0';
@@ -122,5 +145,5 @@ const formatExample = (name: string, example: MethodExample): JSX.Element => {
       {result}
     </code>
   );
-  return <Collapsible kind='custom' title='Example' contents={contents} />;
+  return contents;
 };

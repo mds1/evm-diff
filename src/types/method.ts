@@ -14,6 +14,7 @@ export type MethodVariable = {
 };
 
 export type MethodExample = {
+  description?: string;
   parameters: string[];
   result: string;
 };
