@@ -15,31 +15,6 @@ type Props = {
   onlyShowDiff: boolean;
 };
 
-const formatHardfork = (array: string[]): JSX.Element => {
-  if (array == undefined || array.length == 0) {
-    return <p>No information provided on supported hard forks.</p>;
-  }
-
-  const length = array.length;
-  if (length == CURRENT_MAINNET_HARDFORK + 1)
-    return (
-      <p>
-        Supported since <b>{array[0]}</b> hard fork.
-      </p>
-    );
-  if (length == 1)
-    return (
-      <p>
-        Supported only in <b>{array[0]}</b> hard fork.
-      </p>
-    );
-  return (
-    <p>
-      Supported between <b>{array[0]}</b> and <b>{array[length - 1]}</b> hard forks.
-    </p>
-  );
-};
-
 const formatVariables = (title: string, array?: OpcodeVariable[]): JSX.Element => {
   return (
     <>
