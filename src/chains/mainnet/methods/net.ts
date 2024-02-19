@@ -1,6 +1,6 @@
 import { Method, MethodNamespace } from '@/types';
 
-const netVersion: Method = {
+const version: Method = {
   name: 'net_version',
   namespace: MethodNamespace.Net,
   description: 'Returns the current network id',
@@ -18,7 +18,7 @@ const netVersion: Method = {
   ],
 };
 
-const netListening: Method = {
+const listening: Method = {
   name: 'net_listening',
   namespace: MethodNamespace.Net,
   description: 'Returns true if client is actively listening for network connections',
@@ -35,7 +35,7 @@ const netListening: Method = {
   ],
 };
 
-const netPeerCount: Method = {
+const peerCount: Method = {
   name: 'net_peercount',
   namespace: MethodNamespace.Net,
   description: 'Returns number of peers currently connected to the client',
@@ -52,4 +52,4 @@ const netPeerCount: Method = {
   ],
 };
 
-export const netMethods: Method[] = [netVersion, netListening, netPeerCount];
+export const netMethods: Method[] = [version, listening, peerCount];

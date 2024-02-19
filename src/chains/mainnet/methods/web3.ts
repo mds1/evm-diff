@@ -1,6 +1,6 @@
 import { Method, MethodNamespace } from '@/types';
 
-const web3ClientVersion: Method = {
+const clientVersion: Method = {
   name: 'web3_clientVersion',
   namespace: MethodNamespace.Web3,
   description: 'Returns the current client version',
@@ -17,7 +17,7 @@ const web3ClientVersion: Method = {
   ],
 };
 
-const web3Sha3: Method = {
+const sha3: Method = {
   name: 'web3_sha3',
   namespace: MethodNamespace.Web3,
   description: 'Returns Keccak-256 (not the standardized SHA3-256) of the given data',
@@ -38,4 +38,4 @@ const web3Sha3: Method = {
   references: ['[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#web3_sha3)'],
 };
 
-export const web3Methods: Method[] = [web3ClientVersion, web3Sha3];
+export const web3Methods: Method[] = [clientVersion, sha3];
