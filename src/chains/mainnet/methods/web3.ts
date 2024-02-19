@@ -8,10 +8,12 @@ const clientVersion: Method = {
     type: 'string',
     description: 'The current client version',
   },
-  example: {
-    parameters: [],
-    result: 'Geth/v1.12.1-stable/linux-amd64/go1.19.1',
-  },
+  examples: [
+    {
+      parameters: [],
+      result: 'Geth/v1.12.1-stable/linux-amd64/go1.19.1',
+    },
+  ],
   references: [
     '[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#web3_clientversion)',
   ],
@@ -31,10 +33,12 @@ const sha3: Method = {
     type: 'data',
     description: 'The SHA3 result of the given string',
   },
-  example: {
-    parameters: ['0x68656c6c6f20776f726c64'],
-    result: '0x47173285a8d7341e5e972fc677286384f802f8ef42a5ec5f03bbfa254cb01fad',
-  },
+  examples: [
+    {
+      parameters: ['0x68656c6c6f20776f726c64'],
+      result: '0x47173285a8d7341e5e972fc677286384f802f8ef42a5ec5f03bbfa254cb01fad',
+    },
+  ],
   references: ['[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#web3_sha3)'],
 };
 

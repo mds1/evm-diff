@@ -8,10 +8,12 @@ const version: Method = {
     type: 'string',
     description: 'The current network id',
   },
-  example: {
-    parameters: [],
-    result: '3',
-  },
+  examples: [
+    {
+      parameters: [],
+      result: '3',
+    },
+  ],
   references: [
     '[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#net_version)',
     '[Full list of curent network IDs](https://chainlist.org/)',
@@ -26,10 +28,12 @@ const listening: Method = {
     type: 'boolean',
     description: 'Return true when listening, otherwise false',
   },
-  example: {
-    parameters: [],
-    result: 'true',
-  },
+  examples: [
+    {
+      parameters: [],
+      result: 'true',
+    },
+  ],
   references: [
     '[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#net_listening)',
   ],
@@ -43,10 +47,12 @@ const peerCount: Method = {
     type: 'quantity',
     description: 'Integer of the number of connected peers',
   },
-  example: {
-    parameters: [],
-    result: '0x2',
-  },
+  examples: [
+    {
+      parameters: [],
+      result: '0x2',
+    },
+  ],
   references: [
     '[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#net_peercount)',
   ],

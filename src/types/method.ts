@@ -4,7 +4,7 @@ export type Method = {
   description: string;
   parameters?: MethodVariable[];
   return: MethodVariable;
-  example?: MethodExample;
+  examples?: MethodExample[];
   references: string[];
 };
 
