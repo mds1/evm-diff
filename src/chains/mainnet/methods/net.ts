@@ -1,4 +1,4 @@
-import { Method, MethodNamespace } from "@/types";
+import { Method, MethodNamespace } from '@/types';
 
 const netVersion: Method = {
   name: 'net_version',
@@ -15,8 +15,8 @@ const netVersion: Method = {
   references: [
     '[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#net_version)',
     '[Full list of curent network IDs](https://chainlist.org/)',
-  ]
-}
+  ],
+};
 
 const netListening: Method = {
   name: 'net_listening',
@@ -32,8 +32,8 @@ const netListening: Method = {
   },
   references: [
     '[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#net_listening)',
-  ]
-}
+  ],
+};
 
 const netPeerCount: Method = {
   name: 'net_peercount',
@@ -49,7 +49,7 @@ const netPeerCount: Method = {
   },
   references: [
     '[ethereum.org](https://ethereum.org/en/developers/docs/apis/json-rpc#net_peercount)',
-  ]
-}
+  ],
+};
 
 export const netMethods: Method[] = [netVersion, netListening, netPeerCount];

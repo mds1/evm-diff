@@ -1,4 +1,4 @@
-import { Method } from "@/types";
+import { Method } from '@/types';
 
 // TODO: eth namespace.
 export const ethMethods: Method[] = [];
