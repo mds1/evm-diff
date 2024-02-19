@@ -105,7 +105,7 @@ const formatParameters = (params: Variable[]): JSX.Element => {
 };
 
 const formatExample = (name: string, example: MethodExample): JSX.Element => {
-  const id = 74;
+  const id = 1;
   const version = '2.0';
   const request = `curl -H 'Content-Type: application/json' -d '{"jsonrpc": "${version}", "method": "${name}", "params": [${
     example.parameters === undefined ? '' : example.parameters.map((p) => `"${p}"`).join(', ')
