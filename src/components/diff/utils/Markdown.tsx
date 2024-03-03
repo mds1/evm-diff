@@ -43,10 +43,7 @@ export const Markdown: React.FC<{ content: string; codeSize?: string; className?
     // Add a fallback for any URLs that don't match the predefined patterns.
     // We take care to avoid matching URLs that are already included in markdown style.
     const fallbackPattern = /(?<!\]\()https?:\/\/[^\s]+/g;
-    return transformedContent.replace(
-      fallbackPattern,
-      (_match, fullUrl) => `[${fullUrl}](${fullUrl})`
-    );
+    return transformedContent.replace(fallbackPattern, (match, _) => `[${match}](${match})`);
   };
 
   const transformedContent = transformURLs(content);

@@ -1,3 +1,4 @@
+import { ArbitrumHardfork, CURRENT_ARBITRUM_HARDFORK } from '@/chains/arbitrum/hardforks';
 import { MainnetHardfork } from '@/chains/mainnet/hardforks';
 import { CURRENT_OPTIMISM_HARDFORK, OptimismHardfork } from '@/chains/optimism/hardforks';
 import { CURRENT_MAINNET_HARDFORK } from '@/lib/constants';
@@ -12,9 +13,12 @@ export const formatHardfork = (array: string[]): JSX.Element => {
   const last = array[array.length - 1];
   const currentMainnetHardforkName = MainnetHardfork[CURRENT_MAINNET_HARDFORK];
   const currentOptimismHardforkName = OptimismHardfork[CURRENT_OPTIMISM_HARDFORK];
+  const currentArbitrumHardforkName = ArbitrumHardfork[CURRENT_ARBITRUM_HARDFORK];
   if (array.length == 1) {
     const supportedText =
-      first === currentMainnetHardforkName || first === currentOptimismHardforkName
+      first === currentMainnetHardforkName ||
+      first === currentOptimismHardforkName ||
+      first === currentArbitrumHardforkName
         ? `Supported since ${first} hard fork.`
         : `Supported only in ${first} hard fork.`;
     return (
@@ -25,7 +29,9 @@ export const formatHardfork = (array: string[]): JSX.Element => {
   }
 
   const supportedText =
-    last === currentMainnetHardforkName || last === currentOptimismHardforkName
+    last === currentMainnetHardforkName ||
+    last === currentOptimismHardforkName ||
+    last === currentArbitrumHardforkName
       ? `Supported since ${first} hard fork.`
       : `Supported between ${first} and ${last} hard forks.`;
   return (
