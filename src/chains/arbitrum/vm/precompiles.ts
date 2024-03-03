@@ -2,7 +2,7 @@ import { precompiles as mainnetPrecompiles } from '@/chains/mainnet/vm/precompil
 import { Precompile } from '@/types';
 
 const ARBITRUM_SMART_CONTRACT_ADDRESSES =
-  '[Arbitrum Smart Contract Addresses](https://developer.arbitrum.io/for-devs/useful-addresses)';
+  '[Arbitrum Smart Contract Addresses](https://docs.arbitrum.io/for-devs/useful-addresses#precompiles)';
 
 export const precompiles: Precompile[] = [
   ...mainnetPrecompiles,
@@ -29,7 +29,10 @@ export const precompiles: Precompile[] = [
       'function withdrawEth(address destination) payable returns (uint256)',
     ],
     deprecated: false,
-    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
+    references: [
+      ARBITRUM_SMART_CONTRACT_ADDRESSES,
+      '[ArbSys reference](https://docs.arbitrum.io/for-devs/dev-tools-and-resources/precompiles#arbsys)',
+    ],
   },
   {
     address: '0x000000000000000000000000000000000000006E',
@@ -53,7 +56,10 @@ export const precompiles: Precompile[] = [
       'function submitRetryable(bytes32 requestId, uint256 l1BaseFee, uint256 deposit, uint256 callvalue, uint256 gasFeeCap, uint64 gasLimit, uint256 maxSubmissionFee, address feeRefundAddress, address beneficiary, address retryTo, bytes retryData)',
     ],
     deprecated: false,
-    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
+    references: [
+      ARBITRUM_SMART_CONTRACT_ADDRESSES,
+      '[ArbRetryableTx reference](https://docs.arbitrum.io/for-devs/dev-tools-and-resources/precompiles#arbretryabletx)',
+    ],
   },
   {
     address: '0x000000000000000000000000000000000000006C',
@@ -65,11 +71,18 @@ export const precompiles: Precompile[] = [
       'function getGasAccountingParams() view returns (uint256, uint256, uint256)',
       'function getGasBacklog() view returns (uint64)',
       'function getGasBacklogTolerance() view returns (uint64)',
+      'function getLastL1PricingSurplus() view returns (int256)',
+      'function getLastL1PricingUpdateTime() view returns (uint64)',
       'function getL1BaseFeeEstimate() view returns (uint256)',
       'function getL1BaseFeeEstimateInertia() view returns (uint64)',
       'function getL1FeesAvailable() view returns (uint256)',
       'function getL1GasPriceEstimate() view returns (uint256)',
+      'function getL1PricingEquilibrationUnits() view returns (uint256)',
+      'function getL1PricingFundsDueForRewards() view returns (uint256)',
       'function getL1PricingSurplus() view returns (int256)',
+      'function getL1PricingUnitsSinceUpdate() view returns (uint64)',
+      'function getL1RewardRate() view returns (uint64)',
+      'function getL1RewardRecipient() view returns (address)',
       'function getMinimumGasPrice() view returns (uint256)',
       'function getPerBatchGasCharge() view returns (int64)',
       'function getPricesInArbGas() view returns (uint256, uint256, uint256)',
@@ -79,7 +92,10 @@ export const precompiles: Precompile[] = [
       'function getPricingInertia() view returns (uint64)',
     ],
     deprecated: false,
-    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
+    references: [
+      ARBITRUM_SMART_CONTRACT_ADDRESSES,
+      '[ArbGasInfo reference](https://docs.arbitrum.io/for-devs/dev-tools-and-resources/precompiles#arbgasinfo)',
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000066',
@@ -96,7 +112,10 @@ export const precompiles: Precompile[] = [
       'function size() view returns (uint256)',
     ],
     deprecated: false,
-    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
+    references: [
+      ARBITRUM_SMART_CONTRACT_ADDRESSES,
+      '[ArbAddressTable reference](https://docs.arbitrum.io/for-devs/dev-tools-and-resources/precompiles#arbaddresstable)',
+    ],
   },
   {
     address: '0x000000000000000000000000000000000000006F',
@@ -107,33 +126,10 @@ export const precompiles: Precompile[] = [
       'function getStats() view returns (uint256, uint256, uint256, uint256, uint256, uint256)',
     ],
     deprecated: false,
-    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
-  },
-  {
-    address: '0x00000000000000000000000000000000000000C8',
-    name: '`NodeInterface`',
-    description:
-      'Retrieves the revenant data of calls by Arbitrum contracts to execute them in Ethereum via the Outbox contract.',
-    logicAbi: [
-      'function constructOutboxProof(uint64 size, uint64 leaf) view returns (bytes32 send, bytes32 root, bytes32[] proof)',
-      'function estimateRetryableTicket(address sender, uint256 deposit, address to, uint256 l2CallValue, address excessFeeRefundAddress, address callValueRefundAddress, bytes data)',
-      'function findBatchContainingBlock(uint64 blockNum) view returns (uint64 batch)',
-      'function gasEstimateComponents(address to, bool contractCreation, bytes data) payable returns (uint64 gasEstimate, uint64 gasEstimateForL1, uint256 baseFee, uint256 l1BaseFeeEstimate)',
-      'function gasEstimateL1Component(address to, bool contractCreation, bytes data) payable returns (uint64 gasEstimateForL1, uint256 baseFee, uint256 l1BaseFeeEstimate)',
-      'function getL1Confirmations(bytes32 blockHash) view returns (uint64 confirmations)',
-      'function legacyLookupMessageBatchProof(uint256 batchNum, uint64 index) view returns (bytes32[] proof, uint256 path, address l2Sender, address l1Dest, uint256 l2Block, uint256 l1Block, uint256 timestamp, uint256 amount, bytes calldataForL1)',
-      'function nitroGenesisBlock() pure returns (uint256 number)',
+    references: [
+      ARBITRUM_SMART_CONTRACT_ADDRESSES,
+      '[ArbStatistics reference](https://docs.arbitrum.io/for-devs/dev-tools-and-resources/precompiles#arbstatistics)',
     ],
-    deprecated: false,
-    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
-  },
-  {
-    address: '0x0000000000000000000000000000000000000067',
-    name: '`ArbBLS`',
-    description: 'Provides a registry of BLS public keys for accounts.',
-    logicAbi: [], // TODO have not found ABI yet.
-    deprecated: false,
-    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
   },
   {
     address: '0x0000000000000000000000000000000000000070',
@@ -151,6 +147,8 @@ export const precompiles: Precompile[] = [
       'function removeChainOwner(address ownerToRemove)',
       'function scheduleArbOSUpgrade(uint64 newVersion, uint64 timestamp)',
       'function setAmortizedCostCapBips(uint64 cap)',
+      'function setBrotliCompressionLevel(uint64 level)',
+      'function setChainConfig(string calldata chainConfig)',
       'function setInfraFeeAccount(address newInfraFeeAccount)',
       'function setL1BaseFeeEstimateInertia(uint64 inertia)',
       'function setL1PricePerUnit(uint256 pricePerUnit)',
@@ -170,7 +168,7 @@ export const precompiles: Precompile[] = [
     deprecated: false,
     references: [
       ARBITRUM_SMART_CONTRACT_ADDRESSES,
-      'https://github.com/OffchainLabs/nitro/blob/c041e98e089ca91f007a71cd56535c38f7cf4e85/precompiles/ArbOwner.go',
+      '[ArbOwner reference](https://docs.arbitrum.io/for-devs/dev-tools-and-resources/precompiles#arbowner)',
     ],
   },
   {
@@ -179,15 +177,19 @@ export const precompiles: Precompile[] = [
     description:
       'Provides non-owners with info about the current chain owners. The calls to this precompile do not require the sender be a chain owner. For those that are, see `ArbOwner`.',
     logicAbi: [
+      'event ChainOwnerRectified(address rectifiedOwner)',
       'function getAllChainOwners() view returns (address[])',
+      'function getBrotliCompressionLevel() view returns (uint64)',
       'function getInfraFeeAccount() view returns (address)',
       'function getNetworkFeeAccount() view returns (address)',
+      'function getScheduledUpgrade() view returns (uint64 arbosVersion, uint64 scheduledForTimestamp)',
       'function isChainOwner(address addr) view returns (bool)',
+      'function rectifyChainOwner(address ownerToRectify)',
     ],
     deprecated: false,
     references: [
       ARBITRUM_SMART_CONTRACT_ADDRESSES,
-      'https://github.com/OffchainLabs/nitro/blob/c041e98e089ca91f007a71cd56535c38f7cf4e85/precompiles/ArbOwnerPublic.go',
+      '[ArbOwnerPublic reference](https://docs.arbitrum.io/for-devs/dev-tools-and-resources/precompiles#arbownerpublic)',
     ],
   },
   {
@@ -206,7 +208,10 @@ export const precompiles: Precompile[] = [
       'function setTxBaseFee(address aggregator, uint256 feeInL1Gas)',
     ],
     deprecated: false,
-    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
+    references: [
+      ARBITRUM_SMART_CONTRACT_ADDRESSES,
+      '[ArbAggregator reference](https://docs.arbitrum.io/for-devs/dev-tools-and-resources/precompiles#arbaggregator)',
+    ],
   },
   {
     address: '0x0000000000000000000000000000000000000068',
@@ -219,6 +224,46 @@ export const precompiles: Precompile[] = [
       'function upload(bytes buf)',
     ],
     deprecated: false,
-    references: [ARBITRUM_SMART_CONTRACT_ADDRESSES],
+    references: [
+      ARBITRUM_SMART_CONTRACT_ADDRESSES,
+      '[ArbFunctionTable reference](https://docs.arbitrum.io/for-devs/dev-tools-and-resources/precompiles#arbfunctiontable)',
+    ],
+  },
+  {
+    address: '0x0000000000000000000000000000000000000065',
+    name: '`ArbInfo`',
+    description: 'Provides the ability to lookup basic info about accounts and contracts.',
+    logicAbi: [
+      'function getBalance(address account) view returns (uint256)',
+      'function getCode(address account) view returns (bytes memory)',
+    ],
+    deprecated: false,
+    references: [
+      ARBITRUM_SMART_CONTRACT_ADDRESSES,
+      '[ArbInfo reference](https://docs.arbitrum.io/for-devs/dev-tools-and-resources/precompiles#arbinfo)',
+    ],
+  },
+  {
+    address: '0x00000000000000000000000000000000000000C8',
+    name: '`NodeInterface`',
+    description:
+      'Only accessible via RPCs (not deployed on-chain), includes helper functions to construct proofs for executing L2->L1 messages, estimate gas consumption and more.',
+    logicAbi: [
+      'function blockL1Num(uint64 l2BlockNum) view returns (uint64 l1BlockNum)',
+      'function constructOutboxProof(uint64 size, uint64 leaf) view returns (bytes32 send, bytes32 root, bytes32[] proof)',
+      'function estimateRetryableTicket(address sender, uint256 deposit, address to, uint256 l2CallValue, address excessFeeRefundAddress, address callValueRefundAddress, bytes data)',
+      'function findBatchContainingBlock(uint64 blockNum) view returns (uint64 batch)',
+      'function gasEstimateComponents(address to, bool contractCreation, bytes data) payable returns (uint64 gasEstimate, uint64 gasEstimateForL1, uint256 baseFee, uint256 l1BaseFeeEstimate)',
+      'function gasEstimateL1Component(address to, bool contractCreation, bytes data) payable returns (uint64 gasEstimateForL1, uint256 baseFee, uint256 l1BaseFeeEstimate)',
+      'function getL1Confirmations(bytes32 blockHash) view returns (uint64 confirmations)',
+      'function legacyLookupMessageBatchProof(uint256 batchNum, uint64 index) view returns (bytes32[] proof, uint256 path, address l2Sender, address l1Dest, uint256 l2Block, uint256 l1Block, uint256 timestamp, uint256 amount, bytes calldataForL1)',
+      'function l2BlockRangeForL1(uint64 blockNum) view returns (uint64 firstBlock, uint64 lastBlock)',
+      'function nitroGenesisBlock() pure returns (uint256 number)',
+    ],
+    deprecated: false,
+    references: [
+      ARBITRUM_SMART_CONTRACT_ADDRESSES,
+      '[NodeInterface reference](https://docs.arbitrum.io/for-devs/dev-tools-and-resources/nodeinterface)',
+    ],
   },
 ];
