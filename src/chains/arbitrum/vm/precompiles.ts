@@ -247,7 +247,7 @@ export const precompiles: Precompile[] = [
     address: '0x00000000000000000000000000000000000000C8',
     name: '`NodeInterface`',
     description:
-      'Only accesible via RPCs (not deployed on-chain), includes helper functions to construct proofs for executing L2->L1 messages, estimate gas consumption and more.',
+      'Only accessible via RPCs (not deployed on-chain), includes helper functions to construct proofs for executing L2->L1 messages, estimate gas consumption and more.',
     logicAbi: [
       'function blockL1Num(uint64 l2BlockNum) view returns (uint64 l1BlockNum)',
       'function constructOutboxProof(uint64 size, uint64 leaf) view returns (bytes32 send, bytes32 root, bytes32[] proof)',

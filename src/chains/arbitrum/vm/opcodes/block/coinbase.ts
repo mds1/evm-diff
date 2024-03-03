@@ -5,7 +5,7 @@ const { supportedHardforks: _supportedHardforks, ...opcode } = baseOpcode;
 export const coinbase: Omit<Opcode, 'supportedHardforks'> = {
   ...opcode,
   description:
-    "Returns the designated internal address `0xA4b000000000000000000073657175656e636572` if the message was posted by a sequencer. If it's a delayed message, it returns the address of the delayed message's poster",
+    "Returns the designated internal address `0xA4b000000000000000000073657175656e636572` if the message was posted by a sequencer. If it's a delayed message, it returns the address of the delayed message's poster.",
   outputs: [
     {
       name: 'address',
