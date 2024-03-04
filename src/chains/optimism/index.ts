@@ -22,4 +22,5 @@ export const optimism: Chain = {
   eips,
   executionNodes,
   consensusNodes,
+  jsonRPCMethods: [],
 };

@@ -1,8 +1,24 @@
-export type Variable = {
+export type Opcode = {
+  number: number;
+  name: string;
+  description: string;
+  minGas: number;
+  gasComputation?: GasComputation;
+  inputs?: OpcodeVariable[];
+  outputs?: OpcodeVariable[];
+  examples: OpcodeExample[];
+  playgroundLink?: string;
+  errorCases: string[];
+  notes?: string[];
+  references: string[];
+  supportedHardforks: string[];
+};
+
+export type OpcodeVariable = {
   name: string;
   description: string;
   expression?: string;
-  variables?: Variable[];
+  variables?: OpcodeVariable[];
 };
 
 type Memory = {
@@ -15,7 +31,7 @@ export type Storage = {
   after: Record<string, string>;
 };
 
-export type Example = {
+export type OpcodeExample = {
   description?: string;
   input?: string | string[];
   output?: string | string[];
@@ -26,26 +42,10 @@ export type Example = {
   returndata?: string;
 };
 
-type ComputationCost = Partial<Variable> & Required<Pick<Variable, 'expression'>>;
+type ComputationCost = Partial<OpcodeVariable> & Required<Pick<OpcodeVariable, 'expression'>>;
 
 export type GasComputation = {
   staticGasCost: ComputationCost;
   dynamicGasCost: ComputationCost;
   refunds?: string;
-};
-
-export type Opcode = {
-  number: number;
-  name: string;
-  description: string;
-  minGas: number;
-  gasComputation?: GasComputation;
-  inputs?: Variable[];
-  outputs?: Variable[];
-  examples: Example[];
-  playgroundLink?: string;
-  errorCases: string[];
-  notes?: string[];
-  references: string[];
-  supportedHardforks: string[];
 };

@@ -8,6 +8,7 @@ import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
 import { DiffEIPs } from '@/components/diff/DiffEIPs';
 import { DiffMempools } from '@/components/diff/DiffMempools';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
+import { DiffMethods } from '@/components/diff/DiffMethods';
 import { DiffNodes } from '@/components/diff/DiffNodes';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
@@ -43,6 +44,7 @@ const SECTION_MAP: Record<string, Section> = {
   eips: { title: 'Execution EIPs', component: DiffEIPs },
   executionNodes: { title: 'Execution Nodes', component: DiffNodes },
   consensusNodes: { title: 'Consensus Nodes', component: DiffNodes, hide: true }, // Hidden to scope UI to execution data
+  jsonRPCMethods: { title: 'JSON-RPC Methods', component: DiffMethods },
 };
 
 const Diff = () => {

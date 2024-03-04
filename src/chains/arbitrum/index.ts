@@ -21,4 +21,5 @@ export const arbitrum: Chain = {
   eips: [],
   executionNodes,
   consensusNodes,
+  jsonRPCMethods: [],
 };

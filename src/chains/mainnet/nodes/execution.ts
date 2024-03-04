@@ -1,11 +1,11 @@
-import { Language, Node, NodeType, SyncStrategy } from '@/types';
+import { Language, Node, NodeSyncStrategy, NodeType } from '@/types';
 
 const besu: Node = {
   name: 'besu',
   description: 'An enterprise-grade Java-based, Apache 2.0 licensed Ethereum client.',
   type: NodeType.Execution,
   language: Language.Java,
-  syncStrategy: [SyncStrategy.Snap, SyncStrategy.Fast, SyncStrategy.Full],
+  syncStrategy: [NodeSyncStrategy.Snap, NodeSyncStrategy.Fast, NodeSyncStrategy.Full],
   repository: 'https://github.com/hyperledger/besu',
   documentation: 'https://besu.hyperledger.org/',
 };
@@ -15,7 +15,7 @@ const coregeth: Node = {
   description: 'A highly configurable Go implementation of the Ethereum protocol.',
   type: NodeType.Execution,
   language: Language.Go,
-  syncStrategy: [SyncStrategy.Snap, SyncStrategy.Full],
+  syncStrategy: [NodeSyncStrategy.Snap, NodeSyncStrategy.Full],
   forkOf: 'geth',
   repository: 'https://github.com/etclabscore/core-geth',
   documentation: 'https://etclabscore.github.io/core-geth/',
@@ -26,7 +26,7 @@ const erigon: Node = {
   description: 'Ethereum implementation on the efficiency frontier.',
   type: NodeType.Execution,
   language: Language.Go,
-  syncStrategy: [SyncStrategy.Full],
+  syncStrategy: [NodeSyncStrategy.Full],
   forkOf: 'geth',
   repository: 'https://github.com/ledgerwatch/erigon',
   documentation: 'https://erigon.gitbook.io/erigon/',
@@ -37,7 +37,7 @@ const geth: Node = {
   description: 'Official Go implementation of the Ethereum protocol.',
   type: NodeType.Execution,
   language: Language.Go,
-  syncStrategy: [SyncStrategy.Snap, SyncStrategy.Full],
+  syncStrategy: [NodeSyncStrategy.Snap, NodeSyncStrategy.Full],
   repository: 'https://github.com/ethereum/go-ethereum',
   documentation: 'https://geth.ethereum.org/',
 };
@@ -47,7 +47,7 @@ export const nethermind: Node = {
   description: 'A robust execution client for Ethereum node operators.',
   type: NodeType.Execution,
   language: Language.CSharp,
-  syncStrategy: [SyncStrategy.Snap, SyncStrategy.Fast, SyncStrategy.Full],
+  syncStrategy: [NodeSyncStrategy.Snap, NodeSyncStrategy.Fast, NodeSyncStrategy.Full],
   repository: 'https://github.com/NethermindEth/nethermind',
   documentation: 'https://docs.nethermind.io/',
 };
@@ -58,7 +58,7 @@ export const reth: Node = {
     'Modular, contributor-friendly and blazing-fast implementation of the Ethereum protocol, in Rust.',
   type: NodeType.Execution,
   language: Language.Rust,
-  syncStrategy: [SyncStrategy.Full],
+  syncStrategy: [NodeSyncStrategy.Full],
   repository: 'https://github.com/paradigmxyz/reth',
   documentation: 'https://paradigmxyz.github.io/reth/',
 };

@@ -5,7 +5,7 @@ import { ExternalLink } from '@/components/layout/ExternalLink';
 import { Copyable } from '@/components/ui/Copyable';
 import { classNames, formatPrefixByte } from '@/lib/utils';
 import { toUppercase } from '@/lib/utils';
-import { Example, Opcode, Variable } from '@/types';
+import { Opcode, OpcodeExample, OpcodeVariable } from '@/types';
 import { GasComputation } from '@/types/opcode';
 import { formatHardfork, formatStringList } from './utils/format';
 
@@ -15,7 +15,7 @@ type Props = {
   onlyShowDiff: boolean;
 };
 
-const formatVariables = (title: string, array?: Variable[]): JSX.Element => {
+const formatVariables = (title: string, array?: OpcodeVariable[]): JSX.Element => {
   return (
     <>
       <h3 className={classNames('font-bold', 'mt-2')}>{toUppercase(title)}</h3>
@@ -32,7 +32,7 @@ const formatVariables = (title: string, array?: Variable[]): JSX.Element => {
   );
 };
 
-const formatVariable = (v: Variable): JSX.Element => {
+const formatVariable = (v: OpcodeVariable): JSX.Element => {
   return (
     <div key={v.name} className='text-secondary'>
       <p>
@@ -87,7 +87,7 @@ const formatExamples = (opcode: Opcode): JSX.Element => {
   return <Collapsible kind='custom' title='Examples' contents={contents} />;
 };
 
-const formatExample = (e: Example, id: number): JSX.Element => {
+const formatExample = (e: OpcodeExample, id: number): JSX.Element => {
   const input = e.input ? '[' + e.input.toString() + ']' : '[]';
   const output = '[' + (e.output ? e.output : '') + ']';
   return (

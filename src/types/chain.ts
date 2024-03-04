@@ -3,6 +3,7 @@ import { AccountType } from './accountType';
 import { DeployedContract } from './deployedContract';
 import { EIP } from './eip';
 import { Mempool } from './mempool';
+import { Method } from './method';
 import { Node } from './node';
 import { Opcode } from './opcode';
 import { Precompile } from './precompile';
@@ -21,4 +22,5 @@ export type Chain = {
   eips: EIP[];
   executionNodes: Node[];
   consensusNodes: Node[];
+  jsonRPCMethods: Method[];
 };

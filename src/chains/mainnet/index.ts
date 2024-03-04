@@ -5,6 +5,7 @@ import { accountTypes } from './accountTypes';
 import { deployedContracts } from './deployedContracts';
 import { eips } from './eips';
 import { mempools } from './mempools';
+import { jsonRPCMethods } from './methods';
 import { consensusNodes } from './nodes/consensus';
 import { executionNodes } from './nodes/execution';
 import { signatureTypes } from './signatureTypes';
@@ -24,4 +25,5 @@ export const mainnet: Chain = {
   eips,
   executionNodes,
   consensusNodes,
+  jsonRPCMethods,
 };
