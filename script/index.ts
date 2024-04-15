@@ -8,7 +8,17 @@ async function main() {
 	const rpcUrl = selectRpcUrl(metadata.rpc);
 	const client = initClient(rpcUrl);
 	const opcodes = await checkOpcodes(client);
-	const chain = { metadata, opcodes };
+	const chain = {
+		metadata: sortObjectKeys(metadata, [
+			'name',
+			'shortName',
+			'chainId',
+			'networkId',
+			'infoURL',
+			'nativeCurrency',
+		]),
+		opcodes,
+	};
 	await save(chainId, chain);
 }
 
@@ -37,6 +47,17 @@ async function getMetadata(chainId: number): Promise<Metadata> {
 async function save(chainId: number, chainObj: object) {
 	await Bun.write(`data/${chainId}.json`, JSON.stringify(chainObj));
 	console.log(`✅ Chain data for chainId ${chainId} written to data/${chainId}.json`);
+}
+
+function sortObjectKeys<T extends object>(obj: T, orderedKeys: (keyof T)[]): T {
+	const objKeys = Object.keys(obj) as (keyof T)[];
+	const remainingKeys = objKeys.filter((key) => !orderedKeys.includes(key));
+	const sortedRemainingKeys = remainingKeys.sort((keyA, keyB) =>
+		String(keyA).localeCompare(String(keyB)),
+	);
+	const sortedKeys = [...orderedKeys, ...sortedRemainingKeys];
+	const sortedEntries = sortedKeys.map((key) => [key, obj[key]]);
+	return Object.fromEntries(sortedEntries) as T;
 }
 
 function selectRpcUrl(rpcUrls: string[]): string {
