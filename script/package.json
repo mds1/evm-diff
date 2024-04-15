@@ -3,7 +3,8 @@
 	"module": "index.ts",
 	"type": "module",
 	"scripts": {
-		"check": "bunx @biomejs/biome check --apply ."
+		"check": "bunx @biomejs/biome check --apply .",
+		"main": "bash ./main.sh"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.6.4",
