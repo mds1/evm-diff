@@ -10,10 +10,15 @@ export async function checkOpcodes(
 	const supported = await Promise.all(opcodes.map(async (opcode) => checkOpcode(opcode, client)));
 	const result: Record<string, { name: string; supported: boolean | string }> = {};
 	opcodes.forEach((opcode, index) => {
-		result[toHex(opcode, { size: 1 })] = {
-			name: knownOpcodes[opcode] || 'unknown',
-			supported: supported[index],
-		};
+		// For brevity, omit opcodes that are not known and not supported. All known opcodes are
+		// included. Supported but unknown opcodes are included with the name 'unknown'.
+		const shouldOmit = !knownOpcodes[opcode] && !supported[index];
+		if (!shouldOmit) {
+			result[toHex(opcode, { size: 1 })] = {
+				name: knownOpcodes[opcode] || 'unknown',
+				supported: supported[index],
+			};
+		}
 	});
 	return result;
 }
@@ -29,6 +34,7 @@ async function checkOpcode(opcode: Opcode, client: PublicClient): Promise<boolea
 		if (err.details.includes('stack underflow')) return true; // Implies opcode is supported.
 		if (err.details.includes('not defined')) return false;
 		if (err.details.includes('not supported')) return false;
+		if (err.details.includes('invalid opcode')) return false;
 
 		throw new Error(`Unexpected error: ${err}`);
 	}
