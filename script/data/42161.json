@@ -1,51 +1,35 @@
 {
 	"metadata": {
-		"name": "Ethereum Mainnet",
+		"name": "Arbitrum One",
+		"chainId": 42161,
+		"shortName": "arb1",
 		"chain": "ETH",
-		"icon": "ethereum",
-		"rpc": [
-			"https://mainnet.infura.io/v3/${INFURA_API_KEY}",
-			"wss://mainnet.infura.io/ws/v3/${INFURA_API_KEY}",
-			"https://api.mycryptoapi.com/eth",
-			"https://cloudflare-eth.com",
-			"https://ethereum-rpc.publicnode.com",
-			"wss://ethereum-rpc.publicnode.com",
-			"https://mainnet.gateway.tenderly.co",
-			"wss://mainnet.gateway.tenderly.co",
-			"https://rpc.blocknative.com/boost",
-			"https://rpc.flashbots.net",
-			"https://rpc.flashbots.net/fast",
-			"https://rpc.mevblocker.io",
-			"https://rpc.mevblocker.io/fast",
-			"https://rpc.mevblocker.io/noreverts",
-			"https://rpc.mevblocker.io/fullprivacy",
-			"https://eth.drpc.org",
-			"wss://eth.drpc.org"
-		],
-		"features": [{ "name": "EIP155" }, { "name": "EIP1559" }],
-		"faucets": [],
+		"networkId": 42161,
 		"nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
-		"infoURL": "https://ethereum.org",
-		"shortName": "eth",
-		"chainId": 1,
-		"networkId": 1,
-		"slip44": 60,
-		"ens": { "registry": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e" },
+		"rpc": [
+			"https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}",
+			"https://arb1.arbitrum.io/rpc",
+			"https://arbitrum-one.publicnode.com",
+			"wss://arbitrum-one.publicnode.com"
+		],
+		"faucets": [],
 		"explorers": [
-			{ "name": "etherscan", "url": "https://etherscan.io", "standard": "EIP3091" },
-			{
-				"name": "blockscout",
-				"url": "https://eth.blockscout.com",
-				"icon": "blockscout",
-				"standard": "EIP3091"
-			},
+			{ "name": "Arbiscan", "url": "https://arbiscan.io", "standard": "EIP3091" },
+			{ "name": "Arbitrum Explorer", "url": "https://explorer.arbitrum.io", "standard": "EIP3091" },
 			{
 				"name": "dexguru",
-				"url": "https://ethereum.dex.guru",
+				"url": "https://arbitrum.dex.guru",
 				"icon": "dexguru",
 				"standard": "EIP3091"
 			}
-		]
+		],
+		"infoURL": "https://arbitrum.io",
+		"parent": {
+			"type": "L2",
+			"chain": "eip155-1",
+			"bridges": [{ "url": "https://bridge.arbitrum.io" }]
+		}
 	},
 	"opcodes": {
 		"0x00": { "name": "STOP", "supported": true },
@@ -122,7 +106,7 @@
 		"0x47": { "name": "SELFBALANCE", "supported": true },
 		"0x48": { "name": "BASEFEE", "supported": true },
 		"0x49": { "name": "BLOBHASH", "supported": true },
-		"0x4a": { "name": "BLOBBASEFEE", "supported": true },
+		"0x4a": { "name": "BLOBBASEFEE", "supported": false },
 		"0x4b": { "name": "unknown", "supported": false },
 		"0x4c": { "name": "unknown", "supported": false },
 		"0x4d": { "name": "unknown", "supported": false },
