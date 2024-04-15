@@ -45,7 +45,7 @@ async function getMetadata(chainId: number): Promise<Metadata> {
 }
 
 async function save(chainId: number, chainObj: object) {
-	await Bun.write(`data/${chainId}.json`, JSON.stringify(chainObj));
+	await Bun.write(`data/chain/${chainId}.json`, JSON.stringify(chainObj));
 	console.log(`✅ Chain data for chainId ${chainId} written to data/${chainId}.json`);
 }
 
