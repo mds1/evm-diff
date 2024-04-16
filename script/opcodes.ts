@@ -1,23 +1,25 @@
-import { type PublicClient, toHex } from 'viem';
+import { type Hex, type PublicClient, toHex } from 'viem';
 
 type Opcode = number;
 type CallError = { details: string };
 
 export async function checkOpcodes(
 	client: PublicClient,
-): Promise<Record<string, { name: string; supported: boolean | string }>> {
+): Promise<{ number: Hex; name: string; supported: boolean | string }[]> {
 	const opcodes = Array.from(Array(0xff + 1).keys());
 	const supported = await Promise.all(opcodes.map(async (opcode) => checkOpcode(opcode, client)));
-	const result: Record<string, { name: string; supported: boolean | string }> = {};
+
+	const result: { number: Hex; name: string; supported: boolean | string }[] = [];
 	opcodes.forEach((opcode, index) => {
 		// For brevity, omit opcodes that are not known and not supported. All known opcodes are
 		// included. Supported but unknown opcodes are included with the name 'unknown'.
 		const shouldOmit = !knownOpcodes[opcode] && !supported[index];
 		if (!shouldOmit) {
-			result[toHex(opcode, { size: 1 })] = {
+			result.push({
+				number: toHex(opcode, { size: 1 }),
 				name: knownOpcodes[opcode] || 'unknown',
 				supported: supported[index],
-			};
+			});
 		}
 	});
 	return result;
