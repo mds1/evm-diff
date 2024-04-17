@@ -1,4 +1,5 @@
 import { http, createPublicClient } from 'viem';
+import { checkDeployedContracts } from './deployed-contracts';
 import { checkOpcodes } from './opcodes';
 import type { Metadata } from './types';
 
@@ -8,6 +9,7 @@ async function main() {
 	const rpcUrl = selectRpcUrl(metadata.rpc);
 	const client = initClient(rpcUrl);
 	const opcodes = await checkOpcodes(client);
+	const deployedContracts = await checkDeployedContracts(client);
 	const chain = {
 		metadata: sortObjectKeys(metadata, [
 			'name',
@@ -18,6 +20,7 @@ async function main() {
 			'nativeCurrency',
 		]),
 		opcodes,
+		deployedContracts,
 	};
 	await save(chainId, chain);
 }
