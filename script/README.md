@@ -1,15 +1,19 @@
 # script
 
-To install dependencies:
+Install dependencies:
 
 ```bash
 bun install
 ```
 
-To run:
+Fetch all data for a single chain:
 
 ```bash
-bun run index.ts
+bun main [chainId]
 ```
 
-This project was created using `bun init` in bun v1.1.0. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+Fetch all data for all chains:
+
+```bash
+bun main
+```
