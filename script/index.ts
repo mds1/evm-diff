@@ -1,7 +1,7 @@
 import { http, createPublicClient } from 'viem';
-import { checkDeployedContracts } from './deployed-contracts';
-import { checkOpcodes } from './opcodes';
-import { checkPrecompiles } from './precompiles';
+import { checkDeployedContracts } from './checks/deployed-contracts';
+import { checkOpcodes } from './checks/opcodes';
+import { checkPrecompiles } from './checks/precompiles';
 import type { Metadata } from './types';
 
 async function main() {
