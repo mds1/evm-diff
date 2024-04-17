@@ -1,15 +1,23 @@
 import { http, createPublicClient } from 'viem';
 import { checkDeployedContracts } from './deployed-contracts';
 import { checkOpcodes } from './opcodes';
+import { checkPrecompiles } from './precompiles';
 import type { Metadata } from './types';
 
 async function main() {
+	// Initialize chain data.
 	const { chainId } = init();
 	const metadata = await getMetadata(chainId);
 	const rpcUrl = selectRpcUrl(metadata.rpc);
 	const client = initClient(rpcUrl);
+
+	// Fetch data.
+	// We intentionally await each check sequentially to avoid being rate-limited by the node.
 	const opcodes = await checkOpcodes(client);
 	const deployedContracts = await checkDeployedContracts(client);
+	const precompiles = await checkPrecompiles(client);
+
+	// Format and save the output.
 	const chain = {
 		metadata: sortObjectKeys(metadata, [
 			'name',
@@ -21,6 +29,7 @@ async function main() {
 		]),
 		opcodes,
 		deployedContracts,
+		precompiles,
 	};
 	await save(chainId, chain);
 }
