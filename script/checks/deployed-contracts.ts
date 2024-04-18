@@ -7,7 +7,6 @@ export async function checkDeployedContracts(
 ): Promise<{ name: string; address: Address; codeHash: Hex; hasCode: boolean }[]> {
 	const result = deployedContracts.map(async ({ name, address }) => {
 		const code = await client.getBytecode({ address });
-		if (!code || code.length < 6) console.log('code', code);
 		const codeHash = (code && keccak256(code)) || NO_CODE_HASH;
 		return { name, address, codeHash, hasCode: codeHash !== NO_CODE_HASH };
 	});
