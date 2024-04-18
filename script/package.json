@@ -3,7 +3,9 @@
 	"module": "index.ts",
 	"type": "module",
 	"scripts": {
-		"check": "bunx @biomejs/biome check --apply .",
+		"lint": "tsc --noEmit && bunx @biomejs/biome lint --apply .",
+		"fmt": "bunx @biomejs/biome format --write .",
+		"check": "bun lint && bun fmt",
 		"main": "bash ./main.sh"
 	},
 	"devDependencies": {

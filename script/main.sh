@@ -3,9 +3,10 @@
 set -euo pipefail
 
 fetchDataForChainId() {
-  bun index.ts "$1"
-  bun postprocess.ts
-  bun check
+  bun lint # Lint for potential issues.
+  bun index.ts "$1" # Fetch data for the given chain ID.
+  bun postprocess.ts # Slice data by feature.
+  bun fmt # Format the generated files.
 }
 
 if [ $# -eq 0 ]; then

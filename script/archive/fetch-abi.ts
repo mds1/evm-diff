@@ -2,7 +2,7 @@
 // Example usage:
 //   bun script/fetch-abi.ts https://arbiscan.io/address/0x0000000000000000000000000000000000000064
 import { formatAbi } from 'abitype';
-import clipboardy from 'clipboardy';
+// import clipboardy from 'clipboardy';
 import type { Address } from 'viem';
 
 type ChainConfig = {
@@ -89,7 +89,7 @@ async function main() {
 	const fullAbi = formattedAbi2 ? formattedAbi1.concat('--------', formattedAbi2) : formattedAbi1;
 
 	// Copy the formatted ABI to the clipboard.
-	clipboardy.writeSync(JSON.stringify(fullAbi));
+	// clipboardy.writeSync(JSON.stringify(fullAbi));
 	const kind = formattedAbi2 ? ' proxy and implementation ' : ' ';
 	console.log(`✅ Copied${kind}ABI to clipboard for ${chain.name} contract ${address}`);
 }
