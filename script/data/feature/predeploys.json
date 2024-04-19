@@ -1,0 +1,408 @@
+{
+	"1": {
+		"OP": [
+			{
+				"name": "LegacyMessagePasser",
+				"address": "0x4200000000000000000000000000000000000000",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "DeployerWhitelist",
+				"address": "0x4200000000000000000000000000000000000002",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "LegacyERC20ETH",
+				"address": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "WETH9",
+				"address": "0x4200000000000000000000000000000000000006",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L2CrossDomainMessenger",
+				"address": "0x4200000000000000000000000000000000000007",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L2StandardBridge",
+				"address": "0x4200000000000000000000000000000000000010",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "SequencerFeeVault",
+				"address": "0x4200000000000000000000000000000000000011",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "OptimismMintableERC20Factory",
+				"address": "0x4200000000000000000000000000000000000012",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L1BlockNumber",
+				"address": "0x4200000000000000000000000000000000000013",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "GasPriceOracle",
+				"address": "0x420000000000000000000000000000000000000F",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "GovernanceToken",
+				"address": "0x4200000000000000000000000000000000000042",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L1Block",
+				"address": "0x4200000000000000000000000000000000000015",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L2ToL1MessagePasser",
+				"address": "0x4200000000000000000000000000000000000016",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L2ERC721Bridge",
+				"address": "0x4200000000000000000000000000000000000014",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "OptimismMintableERC721Factory",
+				"address": "0x4200000000000000000000000000000000000017",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ProxyAdmin",
+				"address": "0x4200000000000000000000000000000000000018",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "BaseFeeVault",
+				"address": "0x4200000000000000000000000000000000000019",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L1FeeVault",
+				"address": "0x420000000000000000000000000000000000001a",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			}
+		],
+		"Orbit": [
+			{
+				"name": "ArbAddressTable",
+				"address": "0x0000000000000000000000000000000000000066",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbAggregator",
+				"address": "0x000000000000000000000000000000000000006D",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbFunctionTable",
+				"address": "0x0000000000000000000000000000000000000068",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbGasInfo",
+				"address": "0x000000000000000000000000000000000000006C",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbInfo",
+				"address": "0x0000000000000000000000000000000000000065",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbOwner",
+				"address": "0x0000000000000000000000000000000000000070",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbOwnerPublic",
+				"address": "0x000000000000000000000000000000000000006b",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbRetryableTx",
+				"address": "0x000000000000000000000000000000000000006E",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbStatistics",
+				"address": "0x000000000000000000000000000000000000006F",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbSys",
+				"address": "0x0000000000000000000000000000000000000064",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "NodeInterface",
+				"address": "0x00000000000000000000000000000000000000C8",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			}
+		]
+	},
+	"10": {
+		"OP": [
+			{
+				"name": "LegacyMessagePasser",
+				"address": "0x4200000000000000000000000000000000000000",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "DeployerWhitelist",
+				"address": "0x4200000000000000000000000000000000000002",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "LegacyERC20ETH",
+				"address": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
+				"codeHash": "0x0947f7bbeb5659a3b6e9a2045605fee6c606c66cb27eacfcf9ec3c2a4d426c51",
+				"hasCode": true
+			},
+			{
+				"name": "WETH9",
+				"address": "0x4200000000000000000000000000000000000006",
+				"codeHash": "0x779bbf2a738ef09d961c945116197e2ac764c1b39304b2b4418cd4e42668b173",
+				"hasCode": true
+			},
+			{
+				"name": "L2CrossDomainMessenger",
+				"address": "0x4200000000000000000000000000000000000007",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "L2StandardBridge",
+				"address": "0x4200000000000000000000000000000000000010",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "SequencerFeeVault",
+				"address": "0x4200000000000000000000000000000000000011",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "OptimismMintableERC20Factory",
+				"address": "0x4200000000000000000000000000000000000012",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "L1BlockNumber",
+				"address": "0x4200000000000000000000000000000000000013",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "GasPriceOracle`",
+				"address": "0x420000000000000000000000000000000000000F",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "GovernanceToken`",
+				"address": "0x4200000000000000000000000000000000000042",
+				"codeHash": "0x8551d935f4e67ad3c98609f0d9f0f234740c4c4599f82674633b55204393e07f",
+				"hasCode": true
+			},
+			{
+				"name": "L1Block`",
+				"address": "0x4200000000000000000000000000000000000015",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "L2ToL1MessagePasser`",
+				"address": "0x4200000000000000000000000000000000000016",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "L2ERC721Bridge`",
+				"address": "0x4200000000000000000000000000000000000014",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "OptimismMintableERC721Factory`",
+				"address": "0x4200000000000000000000000000000000000017",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "ProxyAdmin`",
+				"address": "0x4200000000000000000000000000000000000018",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "aseFeeVault",
+				"address": "0x4200000000000000000000000000000000000019",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			},
+			{
+				"name": "1FeeVault",
+				"address": "0x420000000000000000000000000000000000001a",
+				"codeHash": "0x1f958654ab06a152993e7a0ae7b6dbb0d4b19265cc9337b8789fe1353bd9dc35",
+				"hasCode": true
+			}
+		],
+		"Orbit": []
+	},
+	"42161": {
+		"OP": [
+			{
+				"name": "LegacyMessagePasser",
+				"address": "0x4200000000000000000000000000000000000000",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "DeployerWhitelist",
+				"address": "0x4200000000000000000000000000000000000002",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "LegacyERC20ETH",
+				"address": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "WETH9",
+				"address": "0x4200000000000000000000000000000000000006",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "L2CrossDomainMessenger",
+				"address": "0x4200000000000000000000000000000000000007",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "L2StandardBridge",
+				"address": "0x4200000000000000000000000000000000000010",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "SequencerFeeVault",
+				"address": "0x4200000000000000000000000000000000000011",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "OptimismMintableERC20Factory",
+				"address": "0x4200000000000000000000000000000000000012",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "L1BlockNumber",
+				"address": "0x4200000000000000000000000000000000000013",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "GasPriceOracle`",
+				"address": "0x420000000000000000000000000000000000000F",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "GovernanceToken`",
+				"address": "0x4200000000000000000000000000000000000042",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "L1Block`",
+				"address": "0x4200000000000000000000000000000000000015",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "L2ToL1MessagePasser`",
+				"address": "0x4200000000000000000000000000000000000016",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "L2ERC721Bridge`",
+				"address": "0x4200000000000000000000000000000000000014",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "OptimismMintableERC721Factory`",
+				"address": "0x4200000000000000000000000000000000000017",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "ProxyAdmin`",
+				"address": "0x4200000000000000000000000000000000000018",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "aseFeeVault",
+				"address": "0x4200000000000000000000000000000000000019",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			},
+			{
+				"name": "1FeeVault",
+				"address": "0x420000000000000000000000000000000000001a",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"hasCode": false
+			}
+		],
+		"Orbit": []
+	}
+}

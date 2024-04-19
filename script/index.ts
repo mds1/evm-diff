@@ -1,5 +1,6 @@
-import { http, createPublicClient } from 'viem';
+import { http, fallback, createPublicClient } from 'viem';
 import { checkDeployedContracts } from './checks/deployed-contracts';
+import { checkEvmStackAddresses } from './checks/evm-stack-addresses';
 import { checkOpcodes } from './checks/opcodes';
 import { checkPrecompiles } from './checks/precompiles';
 import type { Metadata } from './types';
@@ -8,14 +9,16 @@ async function main() {
 	// Initialize chain data.
 	const { chainId } = init();
 	const metadata = await getMetadata(chainId);
-	const rpcUrl = selectRpcUrl(metadata.rpc);
-	const client = initClient(rpcUrl);
+	const rpcUrls = selectRpcUrls(metadata.rpc);
+	const client = initClient(rpcUrls);
 
 	// Fetch data.
-	// We intentionally await each check sequentially to avoid being rate-limited by the node.
-	const opcodes = await checkOpcodes(client);
-	const deployedContracts = await checkDeployedContracts(client);
-	const precompiles = await checkPrecompiles(client);
+	const [opcodes, deployedContracts, precompiles, evmStackAddresses] = await Promise.all([
+		checkOpcodes(client),
+		checkDeployedContracts(client),
+		checkPrecompiles(client),
+		checkEvmStackAddresses(client),
+	]);
 
 	// Format and save the output.
 	const chain = {
@@ -30,6 +33,7 @@ async function main() {
 		opcodes,
 		deployedContracts,
 		precompiles,
+		evmStackAddresses,
 	};
 	await save(chainId, chain);
 }
@@ -43,8 +47,10 @@ function init() {
 	return { chainId };
 }
 
-function initClient(rpcUrl: string) {
-	const transport = http(rpcUrl);
+function initClient(rpcUrls: string[]) {
+	// Websocket seems to hang and script doesn't exit, so we only use HTTP.
+	const https = rpcUrls.filter((url) => url.startsWith('https')).map((url) => http(url));
+	const transport = fallback([...https]);
 	return createPublicClient({ transport });
 }
 
@@ -72,7 +78,7 @@ function sortObjectKeys<T extends object>(obj: T, orderedKeys: (keyof T)[]): T {
 	return Object.fromEntries(sortedEntries) as T;
 }
 
-function selectRpcUrl(rpcUrls: string[]): string {
+function selectRpcUrls(rpcUrls: string[]): string[] {
 	const hasPlaceholder = (str: string): boolean => str.includes('${');
 
 	const replacePlaceholder = (str: string): string => {
@@ -85,19 +91,32 @@ function selectRpcUrl(rpcUrls: string[]): string {
 		return str;
 	};
 
+	// These domains have various issues that make them unsuitable for our purposes.
+	const domainsToSkip = [
+		'drpc.org', // Required "to" is empty.
+		'blocknative.com', // Transaction creation failed.
+		'flashbots.net', // 403 (also on eth_call with no to).
+		'mevblocker.io', // 429's easily.
+	];
+	const filteredRpcUrls = rpcUrls.filter(
+		(url) => !domainsToSkip.some((domain) => url.includes(domain)),
+	);
+
 	// Check for URLs with placeholders and replace with API key if available. In this case, we
 	// return this URL as the selected RPC URL. Preferring URLs with API keys this way helps
 	// avoid rate limits and other issues.
-	const httpUrls = rpcUrls.filter((url) => !url.startsWith('wss://'));
-	for (const url of httpUrls) {
+	const replacedUrls: string[] = [];
+	const normalUrls: string[] = [];
+	for (const url of filteredRpcUrls) {
 		if (hasPlaceholder(url)) {
 			const replacedUrl = replacePlaceholder(url);
-			if (replacedUrl !== url) return replacedUrl;
+			if (replacedUrl !== url) replacedUrls.push(replacedUrl);
+		} else {
+			normalUrls.push(url);
 		}
 	}
 
-	// Otherwise, return the first URL that does not have a placeholder.
-	return httpUrls.find((url) => !hasPlaceholder(url)) || '';
+	return [...replacedUrls, ...normalUrls]; // Prefer URLs with API keys.
 }
 
 main().catch((error) => {
