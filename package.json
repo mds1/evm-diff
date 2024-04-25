@@ -26,6 +26,7 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/bun": "^1.1.0",
     "@types/node": "18.16.3",
     "@types/react": "18.2.5",
     "@types/react-dom": "18.2.3",
