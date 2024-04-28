@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { LinkIcon } from '@heroicons/react/20/solid';
+import { Chain } from '@/../script/index';
 import { getChainById } from '@/chains';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffAccountTypes } from '@/components/diff/DiffAccountTypes';
@@ -16,7 +17,6 @@ import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
 import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
 import { classNames } from '@/lib/utils';
-import { Chain } from '@/types';
 
 interface Props<T> {
   base: T;
@@ -28,21 +28,20 @@ interface Section {
   title: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   component: React.ComponentType<Props<any>>;
-  hide?: boolean;
 }
 
 const SECTION_MAP: Record<string, Section> = {
   metadata: { title: 'Metadata', component: DiffMetadata },
-  precompiles: { title: 'Precompiles', component: DiffPrecompiles },
-  predeploys: { title: 'Predeploys', component: DiffPredeploys },
-  signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
-  accountTypes: { title: 'Account Types', component: DiffAccountTypes },
-  opcodes: { title: 'Opcodes', component: DiffOpcodes },
-  mempools: { title: 'Mempools', component: DiffMempools },
-  deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
-  eips: { title: 'Execution EIPs', component: DiffEIPs },
-  executionNodes: { title: 'Execution Nodes', component: DiffNodes },
-  consensusNodes: { title: 'Consensus Nodes', component: DiffNodes, hide: true }, // Hidden to scope UI to execution data
+  // precompiles: { title: 'Precompiles', component: DiffPrecompiles },
+  // predeploys: { title: 'Predeploys', component: DiffPredeploys },
+  // signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
+  // accountTypes: { title: 'Account Types', component: DiffAccountTypes },
+  // opcodes: { title: 'Opcodes', component: DiffOpcodes },
+  // mempools: { title: 'Mempools', component: DiffMempools },
+  // deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
+  // eips: { title: 'Execution EIPs', component: DiffEIPs },
+  // executionNodes: { title: 'Execution Nodes', component: DiffNodes },
+  // consensusNodes: { title: 'Consensus Nodes', component: DiffNodes, hide: true }, // Hidden to scope UI to execution data
 };
 
 const Diff = () => {
@@ -50,8 +49,35 @@ const Diff = () => {
   const router = useRouter();
   const { base, target } = router.query;
 
-  const baseChain = getChainById(base as string);
-  const targetChain = getChainById(target as string);
+  // ================================ START NEW STUFF ================================
+  const [baseChain, setBaseChain] = useState(null);
+  const [targetChain, setTargetChain] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const urls = [
+          `https://raw.githubusercontent.com/mds1/evm-diff/refactor/automated/script/data/chain/${base}.json`,
+          `https://raw.githubusercontent.com/mds1/evm-diff/refactor/automated/script/data/chain/${target}.json`,
+        ];
+
+        const chainData = await Promise.all(
+          urls.map(async (url) => {
+            const response = await fetch(url);
+            return response.json();
+          })
+        );
+
+        setBaseChain(chainData[0]);
+        setTargetChain(chainData[1]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [base, target]);
+  // ================================ END NEW STUFF ================================
 
   const ErrorDiv = () => (
     <main className='text-center'>
@@ -80,6 +106,7 @@ const Diff = () => {
     target: Chain[keyof Chain];
     onlyShowDiff: boolean;
   }) => {
+    // if (!SECTION_MAP[section]) return <></>;
     const Component = SECTION_MAP[section].component;
     return <Component {...{ base, target, onlyShowDiff }} />;
   };
@@ -87,7 +114,7 @@ const Diff = () => {
   // We take `baseChain` and `targetChain` as arguments to ensure that they are not `undefined`
   // and remove the need for `?` and `!` operators.
   const DiffDiv = ({ baseChain, targetChain }: { baseChain: Chain; targetChain: Chain }) => {
-    const sections = Object.keys(baseChain);
+    const sections = Object.keys(SECTION_MAP);
     return (
       <>
         <main>
@@ -106,9 +133,6 @@ const Diff = () => {
 
           {/* Show content */}
           {sections.map((section, index) => {
-            const hideComponent = SECTION_MAP[section].hide;
-            if (hideComponent) return <></>;
-
             const base = baseChain[section as keyof Chain];
             const target = targetChain[section as keyof Chain];
             return (

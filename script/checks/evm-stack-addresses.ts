@@ -1,6 +1,6 @@
 import { type Address, type Hex, type PublicClient, keccak256 } from 'viem';
 
-type EVMStack = 'OP' | 'Orbit';
+export type EVMStack = 'OP' | 'Orbit';
 
 type Predeploy = {
 	name: string;
@@ -8,7 +8,7 @@ type Predeploy = {
 	kind: 'Predeploy' | 'Precompile';
 };
 
-type Result = Predeploy & {
+export type EVMStackResult = Predeploy & {
 	codeHash: Hex;
 	exists: boolean;
 };
@@ -18,8 +18,8 @@ const INVALID_CODE_HASH = keccak256('0xfe');
 
 export async function checkEvmStackAddresses(
 	client: PublicClient,
-): Promise<Record<EVMStack, Result[]>> {
-	const result: Record<EVMStack, Result[]> = {
+): Promise<Record<EVMStack, EVMStackResult[]>> {
+	const result: Record<EVMStack, EVMStackResult[]> = {
 		OP: [],
 		Orbit: [],
 	};

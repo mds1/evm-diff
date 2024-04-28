@@ -1,10 +1,11 @@
-import { Chain as Metadata } from '@wagmi/chains';
 import { getAddress } from 'viem';
+import { Chain } from '@/../script/index';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { classNames, toUppercase } from '@/lib/utils';
 import { ExternalLink } from '../layout/ExternalLink';
 
+type Metadata = Chain['metadata'];
 type MetadataKey = keyof Metadata;
 
 type Props = {
@@ -14,58 +15,58 @@ type Props = {
 };
 
 const hiddenField = (field: MetadataKey) => {
-  return ['network'].includes(field);
+  return ['networkId', 'ens', 'features', 'icon', 'slip44', 'faucets', 'chain', 'parent'].includes(
+    field
+  );
 };
 
 const formatFieldDisplayName = (field: MetadataKey) => {
-  if (field === 'id') return 'Chain ID';
+  if (field === 'chainId') return 'Chain ID';
+  if (field === 'explorers') return 'Block Explorers';
   if (field === 'name') return 'Name';
-  if (field === 'rpcUrls') return 'RPC URLs';
-  if (field === 'blockExplorers') return 'Block Explorers';
   if (field === 'nativeCurrency') return 'Native Currency';
-  if (field === 'contracts') return 'Multicall3';
+  if (field === 'rpc') return 'RPC URLs';
+  if (field === 'shortName') return 'Short Name';
+  if (field === 'infoURL') return 'Info URL';
   return field;
 };
 
-const formatRpcUrls = (data: Metadata['rpcUrls']) => {
-  const renderRpcUrls = (rpcUrls: Metadata['rpcUrls']['default']) => (
-    <ul>
-      {rpcUrls.http.map((url) => (
-        <li className='text-secondary text-sm' key={url}>
-          <Copyable content={url} />
-        </li>
-      ))}
-      {rpcUrls.webSocket &&
-        rpcUrls.webSocket.map((url) => (
-          <li className='text-secondary text-sm' key={url}>
-            <Copyable content={url} />
-          </li>
-        ))}
-    </ul>
-  );
+const formatShortName = (shortName: string) => {
+  return <Copyable content={shortName.replace(/^['"]|['"]$/g, '')} />; // Remove leading and trailing quotes.
+};
 
+const formatInfoURL = (infoURL: string) => {
+  return <ExternalLink href={infoURL} text={infoURL} />;
+};
+
+const formatNativeCurrency = (nativeCurrency: Metadata['nativeCurrency']) => {
   return (
-    <div>
-      {Object.entries(data).map(([key, rpcUrls], index) => (
-        <div key={key}>
-          <h3 className={classNames('font-bold', index > 0 && 'mt-6')}>{toUppercase(key)}</h3>
-          {renderRpcUrls(rpcUrls)}
-        </div>
-      ))}
-    </div>
+    <>
+      <div>
+        {nativeCurrency.name} ({nativeCurrency.symbol})
+      </div>
+      <div className='text-secondary text-sm'>{nativeCurrency.decimals} decimals</div>
+    </>
   );
 };
 
-const formatBlockExplorerUrls = (data: Metadata['blockExplorers']) => {
+const formatRpcUrls = (rpcUrls: Metadata['rpc']) => {
+  return rpcUrls.map((url) => (
+    <Copyable className='text-secondary text-sm' key={url} content={url} />
+  ));
+};
+
+const formatBlockExplorerUrls = (data: Metadata['explorers']) => {
   if (!data) return null;
   return (
     <div>
-      {Object.entries(data).map(([key, blockExplorer], index) => (
+      {Object.entries(data).map(([key, blockExplorer]) => (
         <div key={key}>
-          <h3 className={classNames('font-bold', index > 0 && 'mt-6')}>{toUppercase(key)}</h3>
-          <p className='text-secondary text-sm'>
-            <ExternalLink href={blockExplorer.url} text={blockExplorer.url} />
-          </p>
+          <Copyable
+            className='text-secondary text-sm'
+            content={<ExternalLink href={blockExplorer.url} text={blockExplorer.url} />}
+            textToCopy={blockExplorer.url}
+          />
         </div>
       ))}
     </div>
@@ -73,20 +74,15 @@ const formatBlockExplorerUrls = (data: Metadata['blockExplorers']) => {
 };
 
 const formatFieldInfo = (field: MetadataKey, contents: Metadata[MetadataKey]) => {
-  if (field === 'id') return <Copyable content={contents?.toString() || ''} />;
+  if (field === 'chainId') return <Copyable content={contents?.toString() || ''} />;
   if (field === 'name') return <Copyable content={contents?.toString() || ''} />;
-  if (field === 'rpcUrls') return formatRpcUrls(contents as Metadata['rpcUrls']);
-  if (field === 'blockExplorers') {
-    return formatBlockExplorerUrls(contents as Metadata['blockExplorers']);
-  }
-  if (field === 'nativeCurrency') {
-    const c = contents as Metadata['nativeCurrency'];
-    return `${c.name} (${c.symbol})`;
-  }
-  if (field === 'contracts') {
-    const c = contents as Metadata['contracts'];
-    const multicall3 = c?.multicall3?.address;
-    return multicall3 ? getAddress(multicall3) : 'None';
+  if (field === 'rpc') return formatRpcUrls(contents as Metadata['rpc']);
+  if (field === 'shortName') return formatShortName(contents as Metadata['shortName']);
+  if (field === 'infoURL') return formatInfoURL(contents as Metadata['infoURL']);
+  if (field === 'nativeCurrency')
+    return formatNativeCurrency(contents as Metadata['nativeCurrency']);
+  if (field === 'explorers') {
+    return formatBlockExplorerUrls(contents as Metadata['explorers']);
   }
   return JSON.stringify(contents);
 };
@@ -97,21 +93,14 @@ export const DiffMetadata = ({ base, target, onlyShowDiff }: Props) => {
     <>
       {fields.map((field) => {
         if (hiddenField(field)) return null;
-
-        // When comparing the contracts field, we only consider the Multicall3 field. The other
-        // fields are around ENS which is just mainnet (and a testnet).
-        const isEqual =
-          field === 'contracts'
-            ? JSON.stringify(base[field]?.multicall3?.address) ===
-              JSON.stringify(target[field]?.multicall3?.address)
-            : JSON.stringify(base[field]) === JSON.stringify(target[field]);
+        const isEqual = JSON.stringify(base[field]) === JSON.stringify(target[field]);
         const showField = !isEqual || !onlyShowDiff;
 
         return (
           showField && (
             <div
               key={field}
-              className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
+              className='grid grid-cols-12 border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
             >
               <div className='col-span-2'>{formatFieldDisplayName(field)}</div>
               <div className='col-span-5 pr-4'>{formatFieldInfo(field, base[field])}</div>
