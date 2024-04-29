@@ -32,11 +32,11 @@ interface Section {
 
 const SECTION_MAP: Record<string, Section> = {
   metadata: { title: 'Metadata', component: DiffMetadata },
+  opcodes: { title: 'Opcodes', component: DiffOpcodes },
   // precompiles: { title: 'Precompiles', component: DiffPrecompiles },
   // predeploys: { title: 'Predeploys', component: DiffPredeploys },
   // signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
   // accountTypes: { title: 'Account Types', component: DiffAccountTypes },
-  // opcodes: { title: 'Opcodes', component: DiffOpcodes },
   // mempools: { title: 'Mempools', component: DiffMempools },
   // deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
   // eips: { title: 'Execution EIPs', component: DiffEIPs },
@@ -54,6 +54,7 @@ const Diff = () => {
   const [targetChain, setTargetChain] = useState(null);
 
   useEffect(() => {
+    if (!base || !target) return;
     const fetchData = async () => {
       try {
         const urls = [
