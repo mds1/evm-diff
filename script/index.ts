@@ -1,6 +1,10 @@
 import { http, fallback, createPublicClient } from 'viem';
 import { checkDeployedContracts } from './checks/deployed-contracts';
-import { checkEvmStackAddresses, EVMStack, EVMStackResult } from './checks/evm-stack-addresses';
+import {
+	checkEvmStackAddresses,
+	type EVMStack,
+	type EVMStackResult,
+} from './checks/evm-stack-addresses';
 import { checkOpcodes } from './checks/opcodes';
 import { checkPrecompiles } from './checks/precompiles';
 import type { Metadata } from './types';
@@ -8,23 +12,23 @@ import type { Metadata } from './types';
 export type Chain = {
 	metadata: Metadata;
 	opcodes: {
-    number: `0x${string}`;
-    name: string;
-    supported: string | boolean;
+		number: `0x${string}`;
+		name: string;
+		supported: string | boolean;
 	}[];
 	deployedContracts: {
 		name: string;
-    address: `0x${string}`;
-    codeHash: `0x${string}`;
-    hasCode: boolean;
+		address: `0x${string}`;
+		codeHash: `0x${string}`;
+		hasCode: boolean;
 	}[];
 	precompiles: {
 		name: string;
-    address: `0x${string}`;
-    implemented: boolean;
+		address: `0x${string}`;
+		implemented: boolean;
 	}[];
 	evmStackAddresses: Record<EVMStack, EVMStackResult[]>;
-}
+};
 
 async function main() {
 	// Initialize chain data.

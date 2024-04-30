@@ -218,13 +218,13 @@
 			"hasCode": true
 		},
 		{
-			"name": "ERC-4337 EntryPoint v0.6",
+			"name": "ERC-4337 Entry Point v0.6",
 			"address": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
 			"codeHash": "0xc93c806e738300b5357ecdc2e971d6438d34d8e4e17b99b758b1f9cac91c8e70",
 			"hasCode": true
 		},
 		{
-			"name": "ERC-4337 SimpleAccountFactory v0.6",
+			"name": "ERC-4337 Simple Account Factory v0.6",
 			"address": "0x9406Cc6185a346906296840746125a0E44976454",
 			"codeHash": "0xe7ca0f7aa741031b27df24056c8000e7df56cf8a4ff434e28b1bbe1aa6eaa515",
 			"hasCode": true

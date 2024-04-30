@@ -35,7 +35,7 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
         const baseOpcode = base.find((opcode) => Number(opcode.number) === number);
         const targetOpcode = target.find((opcode) => Number(opcode.number) === number);
         if (!baseOpcode || !targetOpcode) {
-          return false
+          return false;
         }
 
         const isEqual = JSON.stringify(baseOpcode) === JSON.stringify(targetOpcode);

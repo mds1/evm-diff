@@ -33,12 +33,12 @@ interface Section {
 const SECTION_MAP: Record<string, Section> = {
   metadata: { title: 'Metadata', component: DiffMetadata },
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
+  deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
   // precompiles: { title: 'Precompiles', component: DiffPrecompiles },
   // predeploys: { title: 'Predeploys', component: DiffPredeploys },
   // signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
   // accountTypes: { title: 'Account Types', component: DiffAccountTypes },
   // mempools: { title: 'Mempools', component: DiffMempools },
-  // deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
   // eips: { title: 'Execution EIPs', component: DiffEIPs },
   // executionNodes: { title: 'Execution Nodes', component: DiffNodes },
   // consensusNodes: { title: 'Consensus Nodes', component: DiffNodes, hide: true }, // Hidden to scope UI to execution data

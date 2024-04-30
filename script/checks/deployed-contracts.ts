@@ -22,9 +22,9 @@ const deployedContracts: { name: string; address: Address }[] = [
 	},
 	{ name: 'Create2Deployer', address: '0x13b0D85CcB8bf860b6b79AF3029fCA081AE9beF2' },
 	// ERC-4337.
-	{ name: 'ERC-4337 EntryPoint v0.6', address: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789' },
+	{ name: 'ERC-4337 Entry Point v0.6', address: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789' },
 	{
-		name: 'ERC-4337 SimpleAccountFactory v0.6',
+		name: 'ERC-4337 Simple Account Factory v0.6',
 		address: '0x9406Cc6185a346906296840746125a0E44976454',
 	},
 	// Other
