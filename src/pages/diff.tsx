@@ -7,12 +7,12 @@ import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffAccountTypes } from '@/components/diff/DiffAccountTypes';
 import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
 import { DiffEIPs } from '@/components/diff/DiffEIPs';
+import { DiffEVMStackAddresses } from '@/components/diff/DiffEVMStackAddresses';
 import { DiffMempools } from '@/components/diff/DiffMempools';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffNodes } from '@/components/diff/DiffNodes';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
-import { DiffPredeploys } from '@/components/diff/DiffPredeploys';
 import { DiffSignatureTypes } from '@/components/diff/DiffSignatureTypes';
 import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
@@ -35,7 +35,7 @@ const SECTION_MAP: Record<string, Section> = {
   opcodes: { title: 'Opcodes', component: DiffOpcodes },
   deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
   precompiles: { title: 'Precompiles', component: DiffPrecompiles },
-  // predeploys: { title: 'Predeploys', component: DiffPredeploys },
+  evmStackAddresses: { title: 'EVM Stack', component: DiffEVMStackAddresses },
   // signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
   // accountTypes: { title: 'Account Types', component: DiffAccountTypes },
   // mempools: { title: 'Mempools', component: DiffMempools },

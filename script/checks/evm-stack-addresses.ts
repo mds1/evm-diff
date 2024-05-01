@@ -52,7 +52,7 @@ function evmStackAddressExists(stack: EVMStack, codeHash: Hex): boolean {
 
 // Maps an EVM Stack to the expected predeploys for that stack.
 // biome-ignore format: Easier to skim and update with one line per address.
-const evmStackAddresses: Record<EVMStack, Predeploy[]> = {
+export const evmStackAddresses: Record<EVMStack, Predeploy[]> = {
 	OP: [
 		{ address: '0x4200000000000000000000000000000000000000', name: 'LegacyMessagePasser', kind: 'Predeploy' },
 		{ address: '0x4200000000000000000000000000000000000002', name: 'DeployerWhitelist', kind: 'Predeploy' },
