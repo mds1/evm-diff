@@ -4,13 +4,16 @@ This repo uses [Next.js](https://github.com/vercel/next.js/), [Tailwind CSS](htt
 
 ```sh
 # Install dependencies.
-pnpm install
+bun install
 
 # Start the development server.
-pnpm dev
+bun dev
 
 # Format files.
-pnpm fmt
+bun fmt
+
+# Lint.
+bun lint
 ```
 
 See the open [issues](https://github.com/mds1/evm-diff/issues) for current needs, and feel free to create new issues for bugs, feature requests, or other ideas.
