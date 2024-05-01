@@ -2,7 +2,6 @@ import { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
 import { getAddress } from 'viem';
 import { getChainById } from '@/chains';
-import { convertToComparableOpcode } from '@/components/diff/DiffOpcodes';
 import { SITE_DESCRIPTION } from '@/lib/constants';
 import { Chain, Opcode, Precompile, Predeploy, SignatureType } from '@/types';
 
@@ -59,8 +58,7 @@ const countPredeployDiffs = (base: Predeploy[], target: Predeploy[]): number => 
 
 const countOpcodeDiffs = (base: Opcode[], target: Opcode[]): number => {
   const getKey = (o: Opcode) => o.number;
-  const isEqual = (a: Opcode, b: Opcode) =>
-    JSON.stringify(convertToComparableOpcode(a)) === JSON.stringify(convertToComparableOpcode(b));
+  const isEqual = (a: Opcode, b: Opcode) => JSON.stringify(a) === JSON.stringify(b);
   return countDifferences(base, target, getKey, isEqual);
 };
 

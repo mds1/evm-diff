@@ -30,7 +30,7 @@ const formatDeployedContract = (deployedContract: DeployedContract | undefined) 
 
 export const convertToComparableContract = (contract: DeployedContract | undefined) => {
   if (typeof contract === 'undefined') return undefined;
-  const slimmedContract = contract as any;
+  const slimmedContract = contract as any; // eslint-disable-line @typescript-eslint/no-explicit-any
   delete slimmedContract.codeHash;
   return slimmedContract;
 };

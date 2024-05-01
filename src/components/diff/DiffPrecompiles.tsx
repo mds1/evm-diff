@@ -1,7 +1,5 @@
 import { Address, getAddress } from 'viem';
 import { Chain } from '@/../script/index';
-import { Collapsible } from '@/components/diff/utils/Collapsible';
-import { Markdown } from '@/components/diff/utils/Markdown';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 

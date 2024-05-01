@@ -1,8 +1,6 @@
-import { getAddress } from 'viem';
 import { Chain } from '@/../script/index';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { classNames, toUppercase } from '@/lib/utils';
 import { ExternalLink } from '../layout/ExternalLink';
 
 type Metadata = Chain['metadata'];
