@@ -100,7 +100,7 @@ export const DiffMetadata = ({ base, target, onlyShowDiff }: Props) => {
           showField && (
             <div
               key={field}
-              className='grid grid-cols-12 border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
+              className='grid grid-cols-12 border-b border-zinc-500/10 py-2 dark:border-zinc-500/20'
             >
               <div className='col-span-2'>{formatFieldDisplayName(field)}</div>
               <div className='col-span-5 pr-4'>{formatFieldInfo(field, base[field])}</div>

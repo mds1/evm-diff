@@ -44,7 +44,7 @@ export const DiffPrecompiles = ({ base, target, onlyShowDiff }: Props) => {
           showPrecompile && (
             <div
               key={addr}
-              className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
+              className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-2 dark:border-zinc-500/20'
             >
               <div className='col-span-2'>
                 <div>{basePrecompile?.name || targetPrecompile?.name}</div>

@@ -15,7 +15,7 @@ const formatDeployedContract = (deployedContract: DeployedContract | undefined) 
   const addr = getAddress(deployedContract.address);
   return (
     <>
-      <div className='mt-3 grid grid-cols-8 space-y-1'>
+      <div className='grid grid-cols-8 space-y-1'>
         <div className='col-span-2'>Address</div>
         <div className='col-span-6'>
           <Copyable content={formatAddress(addr)} textToCopy={getAddress(addr)} />
@@ -62,7 +62,7 @@ export const DiffDeployedContracts = ({ base, target, onlyShowDiff }: Props) => 
           showDeployedContract && (
             <div
               key={name}
-              className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-6 dark:border-zinc-500/20'
+              className='grid grid-cols-12 items-center border-b border-zinc-500/10 py-2 dark:border-zinc-500/20'
             >
               <div className='col-span-2'>{name}</div>
               <div className='col-span-5 pr-4'>{formatDeployedContract(baseDeployedContract)}</div>
