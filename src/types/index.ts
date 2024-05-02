@@ -6,9 +6,9 @@ export type { AccountType } from './accountType';
 export type { SignatureType } from './signatureType';
 export type { Mempool } from './mempool';
 export type {
-  DeployedContract,
-  StandardDeployedContract,
-  ProxiedDeployedContract,
+	DeployedContract,
+	StandardDeployedContract,
+	ProxiedDeployedContract,
 } from './deployedContract';
 export { DeployedContractKind } from './deployedContract';
 export type { Node } from './node';

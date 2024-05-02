@@ -1,4 +1,4 @@
-import { Opcode } from '@/types';
+import type { Opcode } from '@/types';
 import { opcodes as arithmeticOpcodes } from './arithmetic';
 import { opcodes as bitwiseOpcodes } from './bitwise';
 import { opcodes as blockOpcodes } from './block';
@@ -13,16 +13,16 @@ import { opcodes as storageOpcodes } from './storage';
 import { opcodes as systemOpcodes } from './system';
 
 export const opcodes: Record<number, Partial<Opcode>> = {
-  ...arithmeticOpcodes,
-  ...bitwiseOpcodes,
-  ...blockOpcodes,
-  ...comparisonOpcodes,
-  ...controlFlowOpcodes,
-  ...environmentOpcodes,
-  ...keccakOpcodes,
-  ...logOpcodes,
-  ...memoryOpcodes,
-  ...stackOpcodes,
-  ...storageOpcodes,
-  ...systemOpcodes,
+	...arithmeticOpcodes,
+	...bitwiseOpcodes,
+	...blockOpcodes,
+	...comparisonOpcodes,
+	...controlFlowOpcodes,
+	...environmentOpcodes,
+	...keccakOpcodes,
+	...logOpcodes,
+	...memoryOpcodes,
+	...stackOpcodes,
+	...storageOpcodes,
+	...systemOpcodes,
 };

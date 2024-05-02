@@ -1,10 +1,10 @@
 module.exports = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'icons.llamao.fi',
-      },
-    ],
-  },
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'icons.llamao.fi',
+			},
+		],
+	},
 };

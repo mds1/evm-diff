@@ -1,3 +1,3 @@
-import { Predeploy } from '@/types';
+import type { Predeploy } from '@/types';
 
 export const predeploys: Predeploy[] = [];

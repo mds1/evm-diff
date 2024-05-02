@@ -1,51 +1,51 @@
 export type Variable = {
-  name: string;
-  description: string;
-  expression?: string;
-  variables?: Variable[];
+	name: string;
+	description: string;
+	expression?: string;
+	variables?: Variable[];
 };
 
 type Memory = {
-  before: string;
-  after: string;
+	before: string;
+	after: string;
 };
 
 export type Storage = {
-  before: Record<string, string>;
-  after: Record<string, string>;
+	before: Record<string, string>;
+	after: Record<string, string>;
 };
 
 export type Example = {
-  description?: string;
-  input?: string | string[];
-  output?: string | string[];
-  memory?: Memory;
-  storage?: Storage;
-  calldata?: string;
-  code?: string;
-  returndata?: string;
+	description?: string;
+	input?: string | string[];
+	output?: string | string[];
+	memory?: Memory;
+	storage?: Storage;
+	calldata?: string;
+	code?: string;
+	returndata?: string;
 };
 
 type ComputationCost = Partial<Variable> & Required<Pick<Variable, 'expression'>>;
 
 export type GasComputation = {
-  staticGasCost: ComputationCost;
-  dynamicGasCost: ComputationCost;
-  refunds?: string;
+	staticGasCost: ComputationCost;
+	dynamicGasCost: ComputationCost;
+	refunds?: string;
 };
 
 export type Opcode = {
-  number: number;
-  name: string;
-  description: string;
-  minGas: number;
-  gasComputation?: GasComputation;
-  inputs?: Variable[];
-  outputs?: Variable[];
-  examples: Example[];
-  playgroundLink?: string;
-  errorCases: string[];
-  notes?: string[];
-  references: string[];
-  supportedHardforks: string[];
+	number: number;
+	name: string;
+	description: string;
+	minGas: number;
+	gasComputation?: GasComputation;
+	inputs?: Variable[];
+	outputs?: Variable[];
+	examples: Example[];
+	playgroundLink?: string;
+	errorCases: string[];
+	notes?: string[];
+	references: string[];
+	supportedHardforks: string[];
 };

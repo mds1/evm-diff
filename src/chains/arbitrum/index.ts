@@ -1,6 +1,6 @@
 import { arbitrum as arbitrumMetadata } from '@wagmi/chains';
 import { sortedArrayByField, sortedArrayByFields } from '@/lib/utils';
-import { Chain } from '@/types';
+import type { Chain } from '@/types';
 import { accountTypes } from './accountTypes';
 import { deployedContracts } from './deployedContracts';
 import { consensusNodes, executionNodes } from './nodes';
@@ -10,15 +10,15 @@ import { precompiles } from './vm/precompiles';
 import { predeploys } from './vm/predeploys';
 
 export const arbitrum: Chain = {
-  metadata: arbitrumMetadata,
-  precompiles,
-  predeploys,
-  signatureTypes: sortedArrayByField(signatureTypes, 'prefixByte'),
-  accountTypes: sortedArrayByField(accountTypes, 'name'),
-  opcodes: sortedArrayByField(opcodes, 'number'),
-  mempools: [],
-  deployedContracts: sortedArrayByFields(deployedContracts, ['kind', 'name']),
-  eips: [],
-  executionNodes,
-  consensusNodes,
+	metadata: arbitrumMetadata,
+	precompiles,
+	predeploys,
+	signatureTypes: sortedArrayByField(signatureTypes, 'prefixByte'),
+	accountTypes: sortedArrayByField(accountTypes, 'name'),
+	opcodes: sortedArrayByField(opcodes, 'number'),
+	mempools: [],
+	deployedContracts: sortedArrayByFields(deployedContracts, ['kind', 'name']),
+	eips: [],
+	executionNodes,
+	consensusNodes,
 };

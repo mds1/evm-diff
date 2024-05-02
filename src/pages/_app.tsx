@@ -10,21 +10,21 @@ import '@/styles/globals.css';
 const font = Open_Sans({ subsets: ['latin'] });
 
 function App({ Component, pageProps }: AppProps) {
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => setMounted(true), []);
-  return (
-    <ThemeProvider attribute='class'>
-      <Head />
-      {mounted && (
-        <Layout>
-          <div className={font.className}>
-            <Component {...pageProps} />
-            <Analytics />
-          </div>
-        </Layout>
-      )}
-    </ThemeProvider>
-  );
+	const [mounted, setMounted] = React.useState(false);
+	React.useEffect(() => setMounted(true), []);
+	return (
+		<ThemeProvider attribute="class">
+			<Head />
+			{mounted && (
+				<Layout>
+					<div className={font.className}>
+						<Component {...pageProps} />
+						<Analytics />
+					</div>
+				</Layout>
+			)}
+		</ThemeProvider>
+	);
 }
 
 export default App;

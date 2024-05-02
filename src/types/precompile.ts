@@ -1,29 +1,29 @@
-import { Address } from 'viem';
+import type { Address } from 'viem';
 
 type PrecompileParam = {
-  byteStart: number | string;
-  byteLength: number | string;
-  name: string;
-  description: string;
+	byteStart: number | string;
+	byteLength: number | string;
+	name: string;
+	description: string;
 };
 
 export type PrecompileBase = {
-  address: Address;
-  name: string;
-  description: string;
-  minGas?: number;
-  deprecated: boolean;
-  references: string[];
-  notes?: string[];
+	address: Address;
+	name: string;
+	description: string;
+	minGas?: number;
+	deprecated: boolean;
+	references: string[];
+	notes?: string[];
 };
 
 export type PrecompileInputOutput = PrecompileBase & {
-  input: PrecompileParam[];
-  output: PrecompileParam[];
+	input: PrecompileParam[];
+	output: PrecompileParam[];
 };
 
 export type PrecompileAbi = PrecompileBase & {
-  logicAbi: string[];
+	logicAbi: string[];
 };
 
 export type Precompile = PrecompileInputOutput | PrecompileAbi;
