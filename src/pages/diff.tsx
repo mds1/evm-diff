@@ -42,7 +42,6 @@ const Diff = () => {
 	const router = useRouter();
 	const { base, target } = router.query;
 
-	// ================================ START NEW STUFF ================================
 	const [baseChain, setBaseChain] = useState(null);
 	const [targetChain, setTargetChain] = useState(null);
 
@@ -71,7 +70,6 @@ const Diff = () => {
 
 		fetchData();
 	}, [base, target]);
-	// ================================ END NEW STUFF ================================
 
 	const ErrorDiv = () => (
 		<main className="text-center">
