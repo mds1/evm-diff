@@ -5,6 +5,7 @@ import type { Chain } from '@/../script/index';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
 import { DiffEVMStackAddresses } from '@/components/diff/DiffEVMStackAddresses';
+import { DiffJSON } from '@/components/diff/DiffJSON';
 import { DiffMetadata } from '@/components/diff/DiffMetadata';
 import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
@@ -86,6 +87,7 @@ const Diff = () => {
 	// -------- Show diff --------
 
 	const [onlyShowDiff, setOnlyShowDiff] = useState(true);
+	const [showPrettyDiff, setsSowPrettyDiff] = useState(false);
 
 	const SectionComponent = ({
 		section,
@@ -110,11 +112,18 @@ const Diff = () => {
 		return (
 			<>
 				<main>
-					<Toggle
-						enabled={onlyShowDiff}
-						setEnabled={setOnlyShowDiff}
-						label="Only show differences"
-					/>
+					<div className="flex space-x-8">
+						<Toggle
+							enabled={onlyShowDiff}
+							setEnabled={setOnlyShowDiff}
+							label="Only show differences"
+						/>
+						<Toggle
+							enabled={showPrettyDiff}
+							setEnabled={setsSowPrettyDiff}
+							label="Show pretty diff"
+						/>
+					</div>
 
 					{/* Show chain names at top */}
 					<div className="my-4 grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20">
@@ -123,28 +132,36 @@ const Diff = () => {
 						<div className="col-span-5">{targetChain.metadata.name}</div>
 					</div>
 
-					{/* Show content */}
-					{sections.map((section, index) => {
-						const base = baseChain[section as keyof Chain];
-						const target = targetChain[section as keyof Chain];
-						return (
-							<div key={section} id={section} className="break-words">
-								{/* Header */}
-								<Copyable
-									content={SECTION_MAP[section].title || section}
-									textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
-									Icon={LinkIcon}
-									className={classNames(
-										'text-2xl font-bold leading-10 tracking-wide',
-										index === 0 ? 'mt-10' : 'mt-20',
-									)}
-								/>
+					{!showPrettyDiff && (
+						<DiffJSON
+							base={JSON.stringify(baseChain, null, 2)}
+							target={JSON.stringify(targetChain, null, 2)}
+						/>
+					)}
 
-								{/* Diff */}
-								<SectionComponent {...{ section, base, target, onlyShowDiff }} />
-							</div>
-						);
-					})}
+					{/* Show content */}
+					{showPrettyDiff &&
+						sections.map((section, index) => {
+							const base = baseChain[section as keyof Chain];
+							const target = targetChain[section as keyof Chain];
+							return (
+								<div key={section} id={section} className="break-words">
+									{/* Header */}
+									<Copyable
+										content={SECTION_MAP[section].title || section}
+										textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
+										Icon={LinkIcon}
+										className={classNames(
+											'text-2xl font-bold leading-10 tracking-wide',
+											index === 0 ? 'mt-10' : 'mt-20',
+										)}
+									/>
+
+									{/* Diff */}
+									<SectionComponent {...{ section, base, target, onlyShowDiff }} />
+								</div>
+							);
+						})}
 				</main>
 			</>
 		);
