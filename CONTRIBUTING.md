@@ -1,6 +1,8 @@
 # Contributing
 
-This repo uses [Next.js](https://github.com/vercel/next.js/), [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss), [TypeScript](https://github.com/microsoft/TypeScript), [pnpm](https://github.com/pnpm/pnpm), and [viem](https://github.com/wagmi-dev/viem). To get started:
+This repo uses [Next.js](https://github.com/vercel/next.js/), [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss), [TypeScript](https://github.com/microsoft/TypeScript), [bun](https://bun.sh/), and [viem](https://github.com/wagmi-dev/viem).
+
+To get started building the app:
 
 ```sh
 # Install dependencies.
@@ -14,6 +16,16 @@ bun fmt
 
 # Lint.
 bun lint
+```
+
+Or, to fetch chain data:
+
+```bash
+# Fetch all data for a single chain.
+bun fetch-data [chainId]
+
+# Fetch all data for all chains.
+bun fetch-data
 ```
 
 See the open [issues](https://github.com/mds1/evm-diff/issues) for current needs, and feel free to create new issues for bugs, feature requests, or other ideas.

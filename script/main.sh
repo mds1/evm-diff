@@ -4,14 +4,14 @@ set -euo pipefail
 
 fetchDataForChainId() {
   bun lint # Lint for potential issues.
-  bun index.ts "$1" # Fetch data for the given chain ID.
-  bun postprocess.ts # Slice data by feature.
+  bun script/index.ts "$1" # Fetch data for the given chain ID.
+  bun script/postprocess.ts # Slice data by feature.
   bun fmt # Format the generated files.
 }
 
 if [ $# -eq 0 ]; then
   # No input provided, find all *.json files in the data/chain folder
-  chainFiles=(data/chain/*.json)
+  chainFiles=(script/data/chain/*.json)
   numChains=${#chainFiles[@]}
   echo "Found $numChains chains"
 

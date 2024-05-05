@@ -8,6 +8,7 @@ import {
 import { checkOpcodes } from './checks/opcodes';
 import { checkPrecompiles } from './checks/precompiles';
 import type { Metadata } from './types';
+import { join } from 'node:path';
 
 export type Chain = {
 	metadata: Metadata;
@@ -88,7 +89,8 @@ async function getMetadata(chainId: number): Promise<Metadata> {
 }
 
 async function save(chainId: number, chainObj: object) {
-	await Bun.write(`data/chain/${chainId}.json`, JSON.stringify(chainObj));
+	const outfile = join(import.meta.dir, 'data', 'chain', `${chainId}.json`);
+	await Bun.write(outfile, JSON.stringify(chainObj));
 	console.log(`✅ Chain data for chainId ${chainId} written to data/${chainId}.json`);
 }
 

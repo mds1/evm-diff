@@ -1,19 +1,5 @@
 # script
 
-Install dependencies:
+This directory contains the scripts to fetch chain data and generate the output files.
 
-```bash
-bun install
-```
-
-Fetch all data for a single chain:
-
-```bash
-bun main [chainId]
-```
-
-Fetch all data for all chains:
-
-```bash
-bun main
-```
+See the [CONTRIBUTING.md](../CONTRIBUTING.md) for more information on how to run these scripts.
