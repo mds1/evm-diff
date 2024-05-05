@@ -73,5 +73,12 @@ export const DiffDeployedContracts = ({ base, target, onlyShowDiff }: Props) => 
 		</>
 	);
 
-	return <RenderDiff content={diffContent} />;
+	return (
+		<>
+			<div className="text-secondary text-sm">
+				Whether common utility contracts used by developers and users exist.
+			</div>
+			<RenderDiff content={diffContent} />
+		</>
+	);
 };

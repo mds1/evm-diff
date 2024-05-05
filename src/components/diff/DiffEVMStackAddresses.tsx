@@ -89,5 +89,14 @@ export const DiffEVMStackAddresses = ({ base, target, onlyShowDiff }: Props) => 
 		</>
 	);
 
-	return <RenderDiff content={diffContent} />;
+	return (
+		<>
+			<div className="text-secondary text-sm">
+				Existence of &quot;stack-specific&quot; accounts on a chain, to determine what kind of chain
+				it is. If an account exists on both chains but shows up in the diff, it indicates the code
+				hash is different. This does not necessarily mean the contract is different.
+			</div>
+			<RenderDiff content={diffContent} />
+		</>
+	);
 };

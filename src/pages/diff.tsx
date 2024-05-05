@@ -29,7 +29,7 @@ const SECTION_MAP: Record<string, Section> = {
 	opcodes: { title: 'Opcodes', component: DiffOpcodes },
 	deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
 	precompiles: { title: 'Precompiles', component: DiffPrecompiles },
-	evmStackAddresses: { title: 'EVM Stack', component: DiffEVMStackAddresses },
+	evmStackAddresses: { title: 'EVM Stack Addresses', component: DiffEVMStackAddresses },
 	// signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
 	// accountTypes: { title: 'Account Types', component: DiffAccountTypes },
 	// eips: { title: 'Execution EIPs', component: DiffEIPs },

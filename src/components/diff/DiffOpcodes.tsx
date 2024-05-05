@@ -53,5 +53,10 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
 		</>
 	);
 
-	return <RenderDiff content={diffContent} />;
+	return (
+		<>
+			<div className="text-secondary text-sm">Whether or not standard opcodes are supported.</div>
+			<RenderDiff content={diffContent} />
+		</>
+	);
 };
