@@ -13,9 +13,17 @@ type Props = {
 };
 
 const hiddenField = (field: MetadataKey) => {
-	return ['networkId', 'ens', 'features', 'icon', 'slip44', 'faucets', 'chain', 'parent'].includes(
-		field,
-	);
+	return [
+		'networkId',
+		'ens',
+		'features',
+		'icon',
+		'slip44',
+		'faucets',
+		'chain',
+		'parent',
+		'status',
+	].includes(field);
 };
 
 const formatFieldDisplayName = (field: MetadataKey) => {

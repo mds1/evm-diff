@@ -3,7 +3,11 @@ import Image from 'next/image';
 import { Combobox } from '@headlessui/react';
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
 import { chainLogoUrl, classNames } from '@/lib/utils';
-import type { Chain } from '@/types';
+
+interface Chain {
+	name: string;
+	chainId: number;
+}
 
 interface Props {
 	label: string;
@@ -25,8 +29,8 @@ export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange 
 			? chains
 			: chains.filter((chain) => {
 					return (
-						chain.metadata.name.toLowerCase().includes(query.toLowerCase()) ||
-						chain.metadata.id.toString().includes(query.toLowerCase())
+						chain.name.toLowerCase().includes(query.toLowerCase()) ||
+						chain.chainId.toString().includes(query.toLowerCase())
 					);
 				});
 
@@ -46,7 +50,7 @@ export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange 
 				<Combobox.Input
 					className="text-primary bg-primary w-full rounded-md border-0 py-1.5 pl-3 pr-12 shadow-sm ring-1 ring-inset ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
 					onChange={(event) => setQuery(event.target.value)}
-					displayValue={(chain: Chain) => chain?.metadata.name}
+					displayValue={(chain: Chain) => chain.name}
 				/>
 				<Combobox.Button className="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
 					<ChevronUpDownIcon className="h-5 w-5 text-zinc-400" aria-hidden="true" />
@@ -56,7 +60,7 @@ export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange 
 					<Combobox.Options className="bg-primary absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md py-1 text-base shadow-lg ring-1 ring-zinc-1000 ring-opacity-5 focus:outline-none sm:text-sm">
 						{filteredChains.map((chain) => (
 							<Combobox.Option
-								key={chain.metadata.id}
+								key={chain.chainId}
 								value={chain}
 								className={({ active }) =>
 									classNames(
@@ -76,7 +80,7 @@ export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange 
 												height={24}
 											/>
 											<span className={classNames('ml-3 truncate', selected && 'font-semibold')}>
-												{chain.metadata.name}
+												{chain.name}
 											</span>
 										</div>
 

@@ -91,7 +91,7 @@ async function getMetadata(chainId: number): Promise<Metadata> {
 async function save(chainId: number, chainObj: object) {
 	const outfile = join(import.meta.dir, 'data', 'chain', `${chainId}.json`);
 	await Bun.write(outfile, JSON.stringify(chainObj));
-	console.log(`✅ Chain data for chainId ${chainId} written to data/${chainId}.json`);
+	console.log(`✅ Chain data for chainId ${chainId} written to script/data/${chainId}.json`);
 }
 
 function sortObjectKeys<T extends object>(obj: T, orderedKeys: (keyof T)[]): T {

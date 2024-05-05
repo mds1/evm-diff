@@ -1,0 +1,6 @@
+[
+	{ "chainId": 1, "name": "Ethereum Mainnet" },
+	{ "chainId": 10, "name": "OP Mainnet" },
+	{ "chainId": 42161, "name": "Arbitrum One" },
+	{ "chainId": 8453, "name": "Base" }
+]

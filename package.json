@@ -3,14 +3,15 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
+		"dev": "bun prepare-chain-data && next dev",
+		"build": "bun prepare-chain-data && next build",
+		"start": "bun prepare-chain-data && next start",
 		"lint": "next lint --fix && tsc --noEmit && bunx @biomejs/biome lint --apply .",
 		"fmt": "bunx @biomejs/biome format --write .",
-		"check": "bun lint && bun fmt",
+		"check": "bun prepare-chain-data && bun lint && bun fmt",
 		"check:watch": "chokidar 'src/**/*.{ts,tsx,js,jsx,md}' -c 'bun check'",
-		"fetch-data": "bash script/main.sh"
+		"fetch-data": "bash script/main.sh",
+		"prepare-chain-data": "bash script/prepare-chain-data.sh"
 	},
 	"dependencies": {
 		"@headlessui/react": "^1.7.16",

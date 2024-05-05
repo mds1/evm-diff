@@ -1,20 +1,24 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { chains } from '@/chains';
 import { ChainDiffSelectorChainCombobox } from '@/components/ui/ChainDiffSelectorChainCombobox';
-import type { Chain } from '@/types';
+import chains from '@/lib/chains.json';
 
 export const ChainDiffSelector = () => {
+	const findChainById = (id: number) => {
+		const chain = chains.find((chain) => chain.chainId === id);
+		if (!chain) throw new Error(`Could not find chain with id: ${id}`);
+		return chain;
+	};
+
 	const router = useRouter();
-	const [base, setBase] = useState(chains.mainnet);
-	const [target, setTarget] = useState(chains.optimism);
-	const chainsArray: Chain[] = Object.values(chains);
+	const [base, setBase] = useState(findChainById(1)); // Ethereum Mainnet.
+	const [target, setTarget] = useState(findChainById(10)); // OP Mainnet.
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		router.push({
 			pathname: '/diff',
-			query: { base: base.metadata.id, target: target.metadata.id },
+			query: { base: base.chainId, target: target.chainId },
 		});
 	};
 
@@ -25,13 +29,13 @@ export const ChainDiffSelector = () => {
 					<div className="bg-secondary px-6 py-12 shadow sm:rounded-lg sm:px-12">
 						<form className="space-y-6" onSubmit={onSubmit}>
 							<ChainDiffSelectorChainCombobox
-								chains={chainsArray}
+								chains={chains}
 								value={base}
 								onChange={setBase}
 								label="Compare"
 							/>
 							<ChainDiffSelectorChainCombobox
-								chains={chainsArray}
+								chains={chains}
 								value={target}
 								onChange={setTarget}
 								label="Against"
