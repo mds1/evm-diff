@@ -2,13 +2,13 @@ import { type Address, type Hex, type PublicClient, keccak256 } from 'viem';
 
 export type EVMStack = 'OP' | 'Orbit';
 
-type Predeploy = {
+type StackAccount = {
 	name: string;
 	address: Address;
 	kind: 'Predeploy' | 'Precompile';
 };
 
-export type EVMStackResult = Predeploy & {
+export type EVMStackResult = StackAccount & {
 	codeHash: Hex;
 	exists: boolean;
 };
@@ -52,7 +52,7 @@ function evmStackAddressExists(stack: EVMStack, codeHash: Hex): boolean {
 
 // Maps an EVM Stack to the expected predeploys for that stack.
 // biome-ignore format: Easier to skim and update with one line per address.
-export const evmStackAddresses: Record<EVMStack, Predeploy[]> = {
+export const evmStackAddresses: Record<EVMStack, StackAccount[]> = {
 	OP: [
 		{ address: '0x4200000000000000000000000000000000000000', name: 'LegacyMessagePasser', kind: 'Predeploy' },
 		{ address: '0x4200000000000000000000000000000000000002', name: 'DeployerWhitelist', kind: 'Predeploy' },
