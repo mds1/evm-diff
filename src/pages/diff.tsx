@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { LinkIcon } from '@heroicons/react/20/solid';
+import { LinkIcon, CogIcon } from '@heroicons/react/20/solid';
 import type { Chain } from '@/../script/index';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
@@ -88,7 +88,7 @@ const Diff = () => {
 	// -------- Show diff --------
 
 	const [onlyShowDiff, setOnlyShowDiff] = useState(true);
-	const [showPrettyDiff, setsSowPrettyDiff] = useState(false);
+	const [showPrettyDiff, setShowPrettyDiff] = useState(false);
 
 	const SectionComponent = ({
 		section,
@@ -113,21 +113,25 @@ const Diff = () => {
 		return (
 			<>
 				<main>
-					<div className="flex space-x-8">
-						<Toggle
-							enabled={onlyShowDiff}
-							setEnabled={setOnlyShowDiff}
-							label="Only show differences"
-						/>
-						<Toggle
-							enabled={showPrettyDiff}
-							setEnabled={setsSowPrettyDiff}
-							label="Show pretty diff"
-						/>
+					<div className="mb-8 border border-zinc-200 rounded-md p-4 bg-zinc-100 shadow-sm dark:bg-zinc-800 dark:border-zinc-700">
+						<div className="flex space-x-8">
+							<Toggle
+								enabled={onlyShowDiff}
+								setEnabled={setOnlyShowDiff}
+								enabledText="Show Diff"
+								disabledText="Show All"
+							/>
+							<Toggle
+								enabled={showPrettyDiff}
+								setEnabled={setShowPrettyDiff}
+								enabledText="Formatted"
+								disabledText="JSON Diff"
+							/>
+						</div>
 					</div>
 
 					{/* Show chain names at top */}
-					<div className="mt-12 mb-4 grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20">
+					<div className="my-4 grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20">
 						<div className="col-span-2 text-left" />
 						<div className="col-span-5 flex items-center space-x-2 text-lg font-bold">
 							<Image
