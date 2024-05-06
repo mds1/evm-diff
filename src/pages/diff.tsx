@@ -11,7 +11,8 @@ import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
-import { classNames } from '@/lib/utils';
+import { classNames, chainLogoUrl } from '@/lib/utils';
+import Image from 'next/image';
 
 interface Props<T> {
 	base: T;
@@ -126,10 +127,34 @@ const Diff = () => {
 					</div>
 
 					{/* Show chain names at top */}
-					<div className="my-4 grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20">
+					<div className="mt-12 mb-4 grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20">
 						<div className="col-span-2 text-left" />
-						<div className="col-span-5">{baseChain.metadata.name}</div>
-						<div className="col-span-5">{targetChain.metadata.name}</div>
+						<div className="col-span-5 flex items-center space-x-2 text-lg font-bold">
+							<Image
+								src={chainLogoUrl({
+									name: baseChain.metadata.name,
+									chainId: baseChain.metadata.chainId,
+								})}
+								alt=""
+								className="h-6 w-6 flex-shrink-0 rounded-full"
+								width={24}
+								height={24}
+							/>
+							<div>{baseChain.metadata.name}</div>
+						</div>
+						<div className="col-span-5 flex items-center space-x-2 text-lg font-bold">
+							<Image
+								src={chainLogoUrl({
+									name: targetChain.metadata.name,
+									chainId: targetChain.metadata.chainId,
+								})}
+								alt=""
+								className="h-6 w-6 flex-shrink-0 rounded-full"
+								width={24}
+								height={24}
+							/>
+							<div>{targetChain.metadata.name}</div>
+						</div>
 					</div>
 
 					{!showPrettyDiff && (
