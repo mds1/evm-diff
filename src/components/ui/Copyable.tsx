@@ -34,8 +34,8 @@ export const Copyable = ({
 	};
 
 	return (
-		<div className={classNames('group group relative flex w-max items-center', className)}>
-			<div className="relative flex w-full items-center">
+		<div className={classNames('group group relative flex items-center', className)}>
+			<div className="relative flex w-full items-center break-all">
 				{content}
 				<Icon
 					onClick={() => onCopy(String(textToCopy || content))}
