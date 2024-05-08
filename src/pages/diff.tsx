@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { LinkIcon, CogIcon } from '@heroicons/react/20/solid';
+import { LinkIcon } from '@heroicons/react/20/solid';
 import type { Chain } from '@/../script/index';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
@@ -42,13 +42,23 @@ const SECTION_MAP: Record<string, Section> = {
 const Diff = () => {
 	// -------- Parse query parameters --------
 	const router = useRouter();
-	const { base, target } = router.query;
+	const {
+		base,
+		target,
+		onlyShowDiff: onlyShowDiffParam,
+		showPrettyDiff: showPrettyDiffParam,
+	} = router.query;
 
 	const [baseChain, setBaseChain] = useState(null);
 	const [targetChain, setTargetChain] = useState(null);
+	const [onlyShowDiff, setOnlyShowDiff] = useState(true);
+	const [showPrettyDiff, setShowPrettyDiff] = useState(true);
 
 	useEffect(() => {
 		if (!base || !target) return;
+		if (onlyShowDiffParam !== undefined) setOnlyShowDiff(onlyShowDiffParam === 'true');
+		if (showPrettyDiffParam !== undefined) setShowPrettyDiff(showPrettyDiffParam === 'true');
+
 		const fetchData = async () => {
 			try {
 				const urls = [
@@ -71,7 +81,7 @@ const Diff = () => {
 		};
 
 		fetchData();
-	}, [base, target]);
+	}, [base, target, onlyShowDiffParam, showPrettyDiffParam]);
 
 	const ErrorDiv = () => (
 		<main className="text-center">
@@ -86,10 +96,6 @@ const Diff = () => {
 	);
 
 	// -------- Show diff --------
-
-	const [onlyShowDiff, setOnlyShowDiff] = useState(true);
-	const [showPrettyDiff, setShowPrettyDiff] = useState(false);
-
 	const SectionComponent = ({
 		section,
 		base,
@@ -120,12 +126,14 @@ const Diff = () => {
 								setEnabled={setOnlyShowDiff}
 								enabledText="Show Diff"
 								disabledText="Show All"
+								queryParamName="onlyShowDiff"
 							/>
 							<Toggle
 								enabled={showPrettyDiff}
 								setEnabled={setShowPrettyDiff}
 								enabledText="Formatted"
 								disabledText="JSON Diff"
+								queryParamName="showPrettyDiff"
 							/>
 						</div>
 					</div>
@@ -165,6 +173,7 @@ const Diff = () => {
 						<DiffJSON
 							base={JSON.stringify(baseChain, null, 2)}
 							target={JSON.stringify(targetChain, null, 2)}
+							onlyShowDiff={onlyShowDiff}
 						/>
 					)}
 

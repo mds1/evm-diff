@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes';
 type Props = {
 	base: string;
 	target: string;
+	onlyShowDiff: boolean;
 };
 
 const styles = {
@@ -84,7 +85,7 @@ const styles = {
 	wordRemoved: { padding: '0px', margin: '0px' },
 };
 
-export const DiffJSON = ({ base, target }: Props): JSX.Element => {
+export const DiffJSON = ({ base, target, onlyShowDiff }: Props): JSX.Element => {
 	const { resolvedTheme } = useTheme();
 	return (
 		<>
@@ -100,6 +101,7 @@ export const DiffJSON = ({ base, target }: Props): JSX.Element => {
 						splitView={true}
 						useDarkTheme={resolvedTheme !== 'light'}
 						styles={styles}
+						showDiffOnly={onlyShowDiff}
 					/>
 				</div>
 			</div>
