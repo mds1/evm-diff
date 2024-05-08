@@ -66,7 +66,7 @@ export const DiffEVMStackAddresses = ({ base, target, onlyShowDiff }: Props) => 
 											key={`${stack}-${addr}`}
 											className="grid grid-cols-12 items-center border-b border-zinc-500/10 py-2 dark:border-zinc-500/20"
 										>
-											<div className="col-span-2">
+											<div className="max-sm:pr-4 max-sm:col-span-8 col-span-6">
 												<div>{name}</div>
 												<Copyable
 													className="text-secondary text-sm"
@@ -74,10 +74,10 @@ export const DiffEVMStackAddresses = ({ base, target, onlyShowDiff }: Props) => 
 													textToCopy={addr}
 												/>
 											</div>
-											<div className="col-span-5 pr-4">
+											<div className="max-sm:col-span-2 col-span-3 pr-4 max-sm:text-right">
 												{baseStackAddress.exists ? 'Yes' : 'No'}
 											</div>
-											<div className="col-span-5">{targetStackAddress?.exists ? 'Yes' : 'No'}</div>
+											<div className="max-sm:col-span-2 col-span-3 max-sm:text-right">{targetStackAddress?.exists ? 'Yes' : 'No'}</div>
 										</div>
 									);
 								})

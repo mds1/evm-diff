@@ -37,12 +37,12 @@ const formatFieldDisplayName = (field: MetadataKey) => {
 	return field;
 };
 
-const formatShortName = (shortName: string) => {
-	return <Copyable content={shortName.replace(/^['"]|['"]$/g, '')} />; // Remove leading and trailing quotes.
+const formatShortName = (shortName: string, className:string='') => {
+	return <Copyable content={shortName.replace(/^['"]|['"]$/g, '')} className={className}/>; // Remove leading and trailing quotes.
 };
 
-const formatInfoURL = (infoURL: string) => {
-	return <ExternalLink href={infoURL} text={infoURL} />;
+const formatInfoURL = (infoURL: string, className:string='') => {
+	return <ExternalLink href={infoURL} text={infoURL} className={className} />;
 };
 
 const formatNativeCurrency = (nativeCurrency: Metadata['nativeCurrency']) => {
@@ -56,18 +56,18 @@ const formatNativeCurrency = (nativeCurrency: Metadata['nativeCurrency']) => {
 	);
 };
 
-const formatRpcUrls = (rpcUrls: Metadata['rpc']) => {
+const formatRpcUrls = (rpcUrls: Metadata['rpc'], className:string='') => {
 	return rpcUrls.map((url) => (
-		<Copyable className="text-secondary text-sm" key={url} content={url} />
+		<Copyable className={`text-secondary text-sm ${className}`} key={url} content={url}/>
 	));
 };
 
-const formatBlockExplorerUrls = (data: Metadata['explorers']) => {
+const formatBlockExplorerUrls = (data: Metadata['explorers'], className:string='') => {
 	if (!data) return null;
 	return (
 		<div>
 			{Object.entries(data).map(([key, blockExplorer]) => (
-				<div key={key}>
+				<div key={key} className={`w-full ${className}`}>
 					<Copyable
 						className="text-secondary text-sm"
 						content={<ExternalLink href={blockExplorer.url} text={blockExplorer.url} />}
@@ -79,16 +79,16 @@ const formatBlockExplorerUrls = (data: Metadata['explorers']) => {
 	);
 };
 
-const formatFieldInfo = (field: MetadataKey, contents: Metadata[MetadataKey]) => {
+const formatFieldInfo = (field: MetadataKey, contents: Metadata[MetadataKey], className:string='') => {	
 	if (field === 'chainId') return <Copyable content={contents?.toString() || ''} />;
 	if (field === 'name') return <Copyable content={contents?.toString() || ''} />;
-	if (field === 'rpc') return formatRpcUrls(contents as Metadata['rpc']);
-	if (field === 'shortName') return formatShortName(contents as Metadata['shortName']);
-	if (field === 'infoURL') return formatInfoURL(contents as Metadata['infoURL']);
+	if (field === 'rpc') return formatRpcUrls(contents as Metadata['rpc'], className);
+	if (field === 'shortName') return formatShortName(contents as Metadata['shortName'], className);
+	if (field === 'infoURL') return formatInfoURL(contents as Metadata['infoURL'], className);
 	if (field === 'nativeCurrency')
 		return formatNativeCurrency(contents as Metadata['nativeCurrency']);
 	if (field === 'explorers') {
-		return formatBlockExplorerUrls(contents as Metadata['explorers']);
+		return formatBlockExplorerUrls(contents as Metadata['explorers'], className);
 	}
 	return JSON.stringify(contents);
 };
@@ -106,11 +106,11 @@ export const DiffMetadata = ({ base, target, onlyShowDiff }: Props) => {
 				return (
 					<div
 						key={field}
-						className="grid grid-cols-12 border-b border-zinc-500/10 py-2 dark:border-zinc-500/20"
+						className=" max-sm:text-sm grid max-sm:grid-cols-11 grid-cols-12 border-b border-zinc-500/10 py-2 dark:border-zinc-500/20"
 					>
-						<div className="col-span-2">{formatFieldDisplayName(field)}</div>
-						<div className="col-span-5 pr-4">{formatFieldInfo(field, base[field])}</div>
-						<div className="col-span-5">{formatFieldInfo(field, target[field])}</div>
+						<div className="max-sm:col-span-3 col-span-2 pr-6 break-words">{formatFieldDisplayName(field)}</div>
+						<div className="max-sm:col-span-4 col-span-5 pr-4">{formatFieldInfo(field, base[field], 'pb-2')}</div>
+						<div className="max-sm:col-span-4 col-span-5">{formatFieldInfo(field, target[field], 'pb-2')}</div>
 					</div>
 				);
 			})}
