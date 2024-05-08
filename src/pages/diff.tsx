@@ -49,6 +49,7 @@ const Diff = () => {
 		showPrettyDiff: showPrettyDiffParam,
 	} = router.query;
 
+	const [loading, setLoading] = useState(true);
 	const [baseChain, setBaseChain] = useState(null);
 	const [targetChain, setTargetChain] = useState(null);
 	const [onlyShowDiff, setOnlyShowDiff] = useState(true);
@@ -75,8 +76,10 @@ const Diff = () => {
 
 				setBaseChain(chainData[0]);
 				setTargetChain(chainData[1]);
+				setLoading(false);
 			} catch (error) {
 				console.error('Error fetching data:', error);
+				setLoading(false);
 			}
 		};
 
@@ -92,6 +95,13 @@ const Diff = () => {
 			<div className="mx-auto mt-10 flex max-w-md gap-x-4 rounded-lg border border-zinc-200 dark:border-zinc-700">
 				<ChainDiffSelector />
 			</div>
+		</main>
+	);
+
+	const LoadingDiv = () => (
+		<main className="text-center">
+			<div className="inline-block h-8 w-8 animate-[spin_1.5s_linear_infinite] rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_2s_linear_infinite]" />
+			<h1 className="text-secondary text-md tracking-wide mt-4">Fetching Data...</h1>
 		</main>
 	);
 
@@ -207,8 +217,11 @@ const Diff = () => {
 
 	return (
 		<div>
-			{(!baseChain || !targetChain) && <ErrorDiv />}
-			{baseChain && targetChain && <DiffDiv baseChain={baseChain} targetChain={targetChain} />}
+			{loading && <LoadingDiv />}
+			{!loading && (!baseChain || !targetChain) && <ErrorDiv />}
+			{!loading && baseChain && targetChain && (
+				<DiffDiv baseChain={baseChain} targetChain={targetChain} />
+			)}
 		</div>
 	);
 };
