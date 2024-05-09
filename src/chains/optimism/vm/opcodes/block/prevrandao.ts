@@ -14,7 +14,7 @@ export const prevrandao: Omit<Opcode, 'supportedHardforks'> = {
   description:
     "Returns the random output of the L1 beacon chain's randomness oracle. This value lags behind the L1 block's prevrandao value by approximately 5 L1 blocks, and is updated when the `L1BlockInfo` predeploy is updated.",
   references: [
-    'https://github.com/ethereum-optimism/specs/blob/main/specs/derivation.md#building-individual-payload-attributes',
+    'https://github.com/ethereum-optimism/specs/blob/main/specs/protocol/derivation.md#building-individual-payload-attributes',
     'https://github.com/mds1/evm-diff/issues/21',
   ],
 };
