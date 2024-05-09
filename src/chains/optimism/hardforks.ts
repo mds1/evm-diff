@@ -1,6 +1,6 @@
 // List of Optimism's past Bedrock hard forks.
 // https://docs.optimism.io/builders/node-operators/network-upgrades/overview#activations
-// https://github.com/ethereum-optimism/specs/blob/main/specs/superchain-upgrades.md#post-bedrock-network-upgrades
+// https://github.com/ethereum-optimism/specs/protocol/blob/main/specs/superchain-upgrades.md#post-bedrock-network-upgrades
 export enum OptimismHardfork {
   Regolith,
   Canyon,
