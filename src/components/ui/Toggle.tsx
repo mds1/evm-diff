@@ -43,8 +43,8 @@ export const Toggle = ({
 						className={({ selected }) =>
 							classNames(
 								selected
-									? 'bg-white text-zinc-900 shadow dark:bg-zinc-900 dark:text-zinc-100'
-									: 'text-zinc-500 hover:bg-white/[0.12] hover:text-zinc-600 dark:text-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-zinc-300',
+									? 'bg-zinc-50 text-zinc-900 shadow dark:bg-zinc-900 dark:text-zinc-100'
+									: 'text-zinc-500 hover:bg-zinc-50/[0.12] hover:text-zinc-600 dark:text-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-zinc-300',
 								'rounded-md px-3 py-1.5 text-sm font-medium transition-colors duration-200 ease-in-out',
 							)
 						}
@@ -55,8 +55,8 @@ export const Toggle = ({
 						className={({ selected }) =>
 							classNames(
 								selected
-									? 'bg-white text-zinc-900 shadow dark:bg-zinc-900 dark:text-zinc-100'
-									: 'text-zinc-500 hover:bg-white/[0.12] hover:text-zinc-600 dark:text-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-zinc-300',
+									? 'bg-zinc-50 text-zinc-900 shadow dark:bg-zinc-900 dark:text-zinc-100'
+									: 'text-zinc-500 hover:bg-zinc-50/[0.12] hover:text-zinc-600 dark:text-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-zinc-300',
 								'rounded-md px-3 py-1.5 text-sm font-medium transition-colors duration-200 ease-in-out',
 							)
 						}

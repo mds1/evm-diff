@@ -60,12 +60,5 @@ export const DiffPrecompiles = ({ base, target, onlyShowDiff }: Props) => {
 		</>
 	);
 
-	return (
-		<>
-			<div className="text-secondary text-sm">
-				Whether or not standard precompiles are supported.
-			</div>
-			<RenderDiff content={diffContent} />
-		</>
-	);
+	return <RenderDiff content={diffContent} />;
 };

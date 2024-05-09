@@ -11,7 +11,7 @@ import { DiffOpcodes } from '@/components/diff/DiffOpcodes';
 import { DiffPrecompiles } from '@/components/diff/DiffPrecompiles';
 import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
-import { classNames, chainLogoUrl } from '@/lib/utils';
+import { chainLogoUrl } from '@/lib/utils';
 import Image from 'next/image';
 
 interface Props<T> {
@@ -22,16 +22,34 @@ interface Props<T> {
 
 interface Section {
 	title: string;
+	infoText?: string;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	component: React.ComponentType<Props<any>>;
 }
 
 const SECTION_MAP: Record<string, Section> = {
 	metadata: { title: 'Metadata', component: DiffMetadata },
-	opcodes: { title: 'Opcodes', component: DiffOpcodes },
-	deployedContracts: { title: 'Deployed Contracts', component: DiffDeployedContracts },
-	precompiles: { title: 'Precompiles', component: DiffPrecompiles },
-	evmStackAddresses: { title: 'EVM Stack Addresses', component: DiffEVMStackAddresses },
+	opcodes: {
+		title: 'Opcodes',
+		component: DiffOpcodes,
+		infoText: 'Whether or not standard opcodes are supported.',
+	},
+	deployedContracts: {
+		title: 'Deployed Contracts',
+		component: DiffDeployedContracts,
+		infoText: 'Whether common utility contracts used by developers and users exist.',
+	},
+	precompiles: {
+		title: 'Precompiles',
+		component: DiffPrecompiles,
+		infoText: 'Whether or not standard precompiles are supported.',
+	},
+	evmStackAddresses: {
+		title: 'EVM Stack Addresses',
+		component: DiffEVMStackAddresses,
+		infoText:
+			'Existence of "stack-specific" accounts on a chain, to determine what kind of chain it is. If an account exists on both chains but shows up in the diff, it indicates the code hash is different. This does not necessarily mean the contract is different.',
+	},
 	// signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
 	// accountTypes: { title: 'Account Types', component: DiffAccountTypes },
 	// eips: { title: 'Execution EIPs', component: DiffEIPs },
@@ -149,7 +167,7 @@ const Diff = () => {
 					</div>
 
 					{/* Show chain names at top */}
-					<div className="my-4 grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20">
+					<div className="grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20 sticky top-0 bg-zinc-50 dark:bg-zinc-900 z-10 p-4">
 						<div className="col-span-2 text-left" />
 						<div className="col-span-5 flex items-center space-x-2 text-lg font-bold">
 							<Image
@@ -189,24 +207,25 @@ const Diff = () => {
 
 					{/* Show content */}
 					{showPrettyDiff &&
-						sections.map((section, index) => {
+						sections.map((section) => {
 							const base = baseChain[section as keyof Chain];
 							const target = targetChain[section as keyof Chain];
 							return (
-								<div key={section} id={section} className="break-words">
-									{/* Header */}
-									<Copyable
-										content={SECTION_MAP[section].title || section}
-										textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
-										Icon={LinkIcon}
-										className={classNames(
-											'text-2xl font-bold leading-10 tracking-wide',
-											index === 0 ? 'mt-10' : 'mt-20',
-										)}
-									/>
-
-									{/* Diff */}
-									<SectionComponent {...{ section, base, target, onlyShowDiff }} />
+								<div key={section} id={section} className="mt-8">
+									<div className="sticky top-12 bg-zinc-100 dark:bg-zinc-800 z-10 rounded-t-lg border border-b-0 border-zinc-200 dark:border-zinc-700">
+										<div className="px-4 py-2">
+											<Copyable
+												content={SECTION_MAP[section].title || section}
+												textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
+												Icon={LinkIcon}
+												className="group relative flex w-max items-center text-xl font-bold leading-8 tracking-wide text-zinc-900 dark:text-zinc-100"
+											/>
+											<div className="text-secondary text-sm">{SECTION_MAP[section].infoText}</div>
+										</div>
+									</div>
+									<div className="rounded-b-lg border border-t-1 border-zinc-200 dark:border-zinc-700 px-4">
+										<SectionComponent {...{ section, base, target, onlyShowDiff }} />
+									</div>
 								</div>
 							);
 						})}

@@ -46,9 +46,16 @@ export const ChainDiffSelectorChainCombobox = ({ label, chains, value, onChange 
 			<Combobox.Label className="text-primary block text-sm font-medium leading-6">
 				{label}
 			</Combobox.Label>
-			<div className="relative mt-2">
+			<div className="relative mt-2 flex items-center">
+				<Image
+					src={chainLogoUrl(chain)}
+					alt=""
+					className="h-6 w-6 flex-shrink-0 rounded-full absolute left-2"
+					width={24}
+					height={24}
+				/>
 				<Combobox.Input
-					className="text-primary bg-primary w-full rounded-md border-0 py-1.5 pl-3 pr-12 shadow-sm ring-1 ring-inset ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
+					className="text-primary bg-primary w-full rounded-md border-0 py-1.5 pl-10 pr-12 shadow-sm ring-1 ring-inset ring-zinc-300 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
 					onChange={(event) => setQuery(event.target.value)}
 					displayValue={(chain: Chain) => chain.name}
 				/>

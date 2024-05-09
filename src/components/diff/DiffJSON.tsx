@@ -90,7 +90,7 @@ export const DiffJSON = ({ base, target, onlyShowDiff }: Props): JSX.Element => 
 	return (
 		<>
 			<div className="text-sm">
-				<div className="text-secondary">
+				<div className="text-secondary mb-2">
 					Note that not all chains have the same set of raw data. For example, not all L2s will have
 					JSON that clearly indicates its an L2.
 				</div>
