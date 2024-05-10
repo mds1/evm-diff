@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "bun prepare-chain-data && next dev",
-		"build": "bun prepare-chain-data && next build",
+		"build": "next build",
 		"start": "bun prepare-chain-data && next start",
 		"lint": "next lint --fix && tsc --noEmit && bunx @biomejs/biome lint --apply .",
 		"fmt": "bunx @biomejs/biome format --write .",
