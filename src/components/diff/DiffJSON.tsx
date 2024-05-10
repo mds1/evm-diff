@@ -91,8 +91,8 @@ export const DiffJSON = ({ base, target, onlyShowDiff }: Props): JSX.Element => 
 		<>
 			<div className="text-sm">
 				<div className="text-secondary mb-2">
-					Note that not all chains have the same set of raw data. For example, not all L2s will have
-					JSON that clearly indicates its an L2.
+					Note that not all chains have the same set of metadata fields. For example, not all L2s
+					will have a JSON field that indicates its an L2.
 				</div>
 				<div className="border rounded-xl border-zinc-500/10 py-2 dark:border-zinc-500/20">
 					<ReactDiffViewer
