@@ -1,0 +1,7 @@
+[
+	{ "feature": "deployedContracts" },
+	{ "feature": "evmStackAddresses" },
+	{ "feature": "metadata" },
+	{ "feature": "opcodes" },
+	{ "feature": "precompiles" }
+]

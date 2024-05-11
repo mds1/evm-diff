@@ -1,106 +1,127 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import { chains } from '@/chains';
+import type { Chain } from '@/../script/index';
+import { classNames } from '@/lib/utils';
+
+type Metadata = Chain['metadata'];
+type Opcodes = Chain['opcodes'];
+type DeployedContracts = Chain['deployedContracts'];
+type Precompiles = Chain['precompiles'];
+type EvmStackAddresses = Chain['evmStackAddresses'];
+
+interface Section {
+	title: string;
+	infoText?: string;
+}
+
+// metadata: TODO
+// opcodes: TODO
+// deployedContracts: TODO
+// precompiles: TODO
+// predeploys: TODO
+// evmStackAddresses: TODO
 
 export const FeatureTable = ({
-	kind,
-	name,
+	feature,
+	featureMap,
 	className,
-}: {
-	kind: string;
-	name: string;
-	className?: string;
-}) => {
-	const chainsArray = Object.values(chains);
-	const supportData = chainsArray.map((chain) => {
-		if (kind === 'opcode') {
-			const opcode = chain.opcodes.find((op) => op.name?.toLowerCase() === name.toLowerCase());
-			if (!opcode) return undefined;
-			return opcode.description?.includes('not supported') ? 'No' : 'Yes';
-		}
-	});
-	const adjustedChains = chainsArray.map((chain, i) => {
-		return { ...chain, supported: supportData[i] };
-	});
+}: { feature: string; featureMap: Record<string, Section>; className?: string }) => {
+	const [metadata, setMetadata] = useState<Record<string, Metadata> | null>(null);
+	const [featureData, setFeatureData] = useState<
+		| Record<string, Metadata>
+		| Record<string, Opcodes>
+		| Record<string, DeployedContracts>
+		| Record<string, Precompiles>
+		| Record<string, EvmStackAddresses>
+		| null
+	>(null);
 
-	// --- Sorting and filtering ---
-	const [sortField, setSortField] = useState(null as 'name' | 'col1' | null);
-	const [sortDirection, setSortDirection] = useState('ascending');
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const metadataUrl = `https://raw.githubusercontent.com/mds1/evm-diff/refactor/automated/script/data/feature/metadata.json`;
+				const metadataRes = await fetch(metadataUrl);
+				const metadata = await metadataRes.json();
+				setMetadata(metadata);
 
-	const onHeaderClick = (field: 'name' | 'col1') => {
-		if (sortField === field) {
-			setSortDirection(sortDirection === 'ascending' ? 'descending' : 'ascending');
-		} else {
-			setSortField(field);
-			setSortDirection('ascending');
-		}
-	};
+				const url = `https://raw.githubusercontent.com/mds1/evm-diff/refactor/automated/script/data/feature/${feature}.json`;
+				const res = await fetch(url);
+				const featureData = await res.json();
+				setFeatureData(featureData);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
 
-	const sortedChains = adjustedChains.sort((a, b) => {
-		// Don't change default sort order if sort field is null.
-		if (sortField === null) return 0;
-		let aValue: string | number = 0;
-		let bValue: string | number = 0;
+		fetchData();
+	}, [feature]);
 
-		if (sortField === 'name') {
-			aValue = a.metadata.name.toLowerCase();
-			bValue = b.metadata.name.toLowerCase();
-		} else if (sortField === 'col1') {
-			aValue = a.supported?.toLowerCase() === 'true' ? 0 : 1;
-			bValue = b.supported?.toLowerCase() === 'true' ? 0 : 1;
-		}
-
-		if (sortDirection === 'ascending') {
-			return aValue > bValue ? 1 : aValue < bValue ? -1 : 0;
-		}
-		return aValue < bValue ? 1 : aValue > bValue ? -1 : 0;
-	});
+	if (!metadata || !featureData) return null;
 
 	return (
 		<div className={className}>
-			<table className="inline-block overflow-hidden rounded-md border border-zinc-200 shadow-sm dark:border-zinc-600 dark:shadow-md">
-				<thead className="bg-primary">
-					<tr>
-						<th
-							scope="col"
-							className="text-primary py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6"
-						>
-							<div
-								className="group inline-flex cursor-pointer rounded-md p-1 hover:bg-zinc-200 hover:dark:bg-zinc-700"
-								onClick={() => onHeaderClick('name')}
-							>
-								Name
-								<span className="text-primary ml-2 flex-none rounded">
-									<ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
-								</span>
-							</div>
-						</th>
-						<th scope="col" className="text-primary px-3 py-3.5 text-left text-sm font-semibold">
-							<div
-								className="group inline-flex cursor-pointer rounded-md p-1 hover:bg-zinc-200 hover:dark:bg-zinc-700"
-								onClick={() => onHeaderClick('col1')}
-							>
-								Is {name} supported?
-								<span className="text-primary ml-2 flex-none rounded">
-									<ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
-								</span>
-							</div>
-						</th>
-					</tr>
-				</thead>
-				<tbody className="cursor-pointer divide-y-0 divide-zinc-200">
-					{sortedChains.map((chain) => (
-						<tr key={chain.metadata.id} className="bg-secondary group">
-							<td className="text-primary flex flex-col whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-6">
-								{chain.metadata.name}
-							</td>
-							<td className="text-primary whitespace-nowrap px-3 py-4 text-center text-sm">
-								{chain.supported}
-							</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
+			<div className="overflow-hidden rounded-md border border-zinc-300 shadow-sm dark:border-zinc-600 dark:shadow-md">
+				<div className="overflow-y-auto max-h-screen">
+					<table className="inline-block w-full">
+						<thead>
+							<tr>
+								<th
+									scope="col"
+									className="text-primary sticky top-0 py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6 bg-white dark:bg-zinc-800"
+								>
+									<div className="group inline-flex rounded-md p-1 hover:bg-zinc-200 hover:dark:bg-zinc-700">
+										{featureMap[feature].title.slice(0, -1)}
+									</div>
+								</th>
+								{Object.keys(featureData).map((chainId) => {
+									return (
+										<th
+											key={chainId}
+											scope="col"
+											className="text-primary sticky top-0 text-center px-3 py-3.5 text-sm font-semibold bg-white dark:bg-zinc-800"
+										>
+											<div className="group inline-flex rounded-md p-1 hover:bg-zinc-200 hover:dark:bg-zinc-700">
+												{metadata[chainId].name}
+											</div>
+										</th>
+									);
+								})}
+							</tr>
+						</thead>
+						<tbody className="divide-y divide-zinc-200 dark:divide-zinc-600">
+							{featureData['1' /* mainnet as source of truth for known opcodes */].map((op) => (
+								<tr key={op.number} className="bg-secondary group">
+									<td className="text-primary flex flex-col whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium sm:pl-6">
+										{op.name}
+										<div className="text-secondary text-sm">{op.number}</div>
+									</td>
+									{Object.keys(featureData).map((chainId) => {
+										const opcode = featureData[chainId].find(
+											(opcode) => opcode.number === op.number,
+										);
+										const bgColor = opcode
+											? opcode.supported
+												? 'bg-green-100/80 dark:bg-green-900/60'
+												: 'bg-red-100 dark:bg-red-900/80'
+											: '';
+										return (
+											<td
+												key={chainId}
+												className={classNames(
+													'text-primary whitespace-nowrap px-3 py-4 text-center text-sm',
+													bgColor,
+												)}
+											>
+												{opcode ? (opcode.supported ? 'Yes' : 'No') : 'Unknown'}
+											</td>
+										);
+									})}
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	);
 };
