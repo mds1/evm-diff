@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ExclamationTriangleIcon } from '@heroicons/react/20/solid';
+import { ArrowLeftIcon, ExclamationTriangleIcon } from '@heroicons/react/20/solid';
 import { FeatureTable } from '@/components/features/FeatureTable';
 import { BaseCombobox } from '@/components/ui/BaseCombobox';
 import features from '@/lib/features.json';
@@ -50,10 +50,12 @@ const Features = () => {
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		router.push({
-			pathname: '/features',
-			query: { feature: option.key },
-		});
+		router.push({ pathname: '/features', query: { feature: option.key } });
+	};
+
+	const onBack = (e: React.MouseEvent) => {
+		e.preventDefault();
+		router.push({ pathname: '/features' });
 	};
 
 	// --- Selector Div ---
@@ -88,12 +90,19 @@ const Features = () => {
 				<h2 className="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-zinc-1000 dark:text-zinc-0 sm:text-4xl">
 					Comparison of {featureMap[feature as keyof typeof featureMap].title}
 				</h2>
+
 				<div className="flex flex-col items-center">
-					<FeatureTable
-						feature={feature as string}
-						featureMap={featureMap}
-						className="mt-8 max-w-prose"
-					/>
+					<div className="mt-8 max-w-screen-lg">
+						<button
+							onClick={onBack}
+							className="mb-4 text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
+						>
+							<ArrowLeftIcon width="1.1rem" className="mr-1 inline-block" /> Back
+						</button>
+
+						<FeatureTable feature={feature as string} featureMap={featureMap} className="w-full" />
+					</div>
+
 					<p className="text-secondary mx-auto mt-4 max-w-sm text-sm">
 						<ExclamationTriangleIcon width="1rem" className="mr-2 inline-block text-amber-500" />
 						There may still be diffs between chains with the same support level. Be sure to{' '}

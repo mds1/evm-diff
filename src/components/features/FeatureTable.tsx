@@ -113,7 +113,8 @@ export const FeatureTable = ({
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const metadataUrl = `https://raw.githubusercontent.com/mds1/evm-diff/refactor/automated/script/data/feature/metadata.json`;
+				const metadataUrl =
+					'https://raw.githubusercontent.com/mds1/evm-diff/refactor/automated/script/data/feature/metadata.json';
 				const metadataRes = await fetch(metadataUrl);
 				const metadata = await metadataRes.json();
 				setMetadata(metadata);
