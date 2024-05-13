@@ -1,7 +1,7 @@
 import type { Chain } from '@/../script/index';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { ExternalLink } from '../layout/ExternalLink';
+import { ExternalLink } from '@/components/layout/ExternalLink';
 
 type Metadata = Chain['metadata'];
 type MetadataKey = keyof Metadata;

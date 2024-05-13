@@ -43,7 +43,7 @@ export const sortedArrayByFields = <T extends number | string | symbol, U, K ext
 };
 
 // Returns a hex string with a leading `0x` and padded to 2 characters.
-export const formatPrefixByte = (prefix: number) => {
+export const toUppercaseHex = (prefix: number) => {
 	return pad(`0x${prefix.toString(16).toUpperCase()}`, { size: 1 });
 };
 

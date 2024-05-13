@@ -1,7 +1,7 @@
 import type { Chain } from '@/../script/index';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
-import { formatPrefixByte } from '@/lib/utils';
+import { toUppercaseHex } from '@/lib/utils';
 
 type Opcodes = Chain['opcodes'];
 type Opcode = Opcodes[0];
@@ -43,7 +43,7 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
 					>
 						<div className="col-span-2">
 							<Copyable content={baseOpcode?.name.toLocaleUpperCase()} />
-							<Copyable content={formatPrefixByte(Number(baseOpcode?.number))} />
+							<Copyable content={toUppercaseHex(Number(baseOpcode?.number))} />
 						</div>
 						<div className="col-span-5 pr-4">{formatOpcode(baseOpcode)}</div>
 						<div className="col-span-5">{formatOpcode(targetOpcode)}</div>

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import type { Chain } from '@/../script/index';
 import { classNames } from '@/lib/utils';
+import { ExternalLink } from '@/components/layout/ExternalLink';
+import { toUppercaseHex } from '@/lib/utils';
 
 type Metadata = Chain['metadata'];
 type Opcodes = Chain['opcodes'];
@@ -15,11 +16,84 @@ interface Section {
 }
 
 // metadata: TODO
-// opcodes: TODO
+// opcodes: done
 // deployedContracts: TODO
 // precompiles: TODO
 // predeploys: TODO
 // evmStackAddresses: TODO
+
+const tbodyClasses = 'divide-y divide-zinc-200 dark:divide-zinc-600';
+const trClasses = 'bg-secondary group';
+const td1Classes = 'text-primary text-center py-2 text-sm font-medium';
+const td2Classes = 'text-primary px-3 py-4 text-center text-sm';
+const supportedClasses = 'bg-green-100/80 dark:bg-green-900/60';
+const unsupportedClasses = 'bg-red-100 dark:bg-red-900/80';
+
+const MetadataTable = ({ featureData }: { featureData: Record<string, Metadata> }) => {
+	return (
+		<tbody className={tbodyClasses}>
+			{/* Chain ID */}
+			<tr className={trClasses}>
+				<td className={td1Classes}>Chain ID</td>
+				{Object.keys(featureData).map((chainId) => (
+					<td key={chainId} className={td2Classes}>
+						{featureData[chainId].chainId}
+					</td>
+				))}
+			</tr>
+			{/* Native Currency */}
+			<tr className={trClasses}>
+				<td className={td1Classes}>Native Currency</td>
+				{Object.keys(featureData).map((chainId) => (
+					<td key={chainId} className={td2Classes}>
+						{`${featureData[chainId].nativeCurrency.name} (${featureData[chainId].nativeCurrency.symbol})`}
+					</td>
+				))}
+			</tr>
+			{/* Block Explorers */}
+			<tr className={trClasses}>
+				<td className={td1Classes}>Block Explorers</td>
+				{Object.keys(featureData).map((chainId) => (
+					<td key={chainId} className={td2Classes}>
+						{featureData[chainId].explorers?.map((explorer) => (
+							<div key={explorer.name}>
+								<ExternalLink href={explorer.url} text={explorer.url} />
+							</div>
+						))}
+					</td>
+				))}
+			</tr>
+		</tbody>
+	);
+};
+
+const OpcodesTable = ({ featureData }: { featureData: Record<string, Opcodes> }) => {
+	return (
+		<tbody className={tbodyClasses}>
+			{featureData['1'].map((op) => (
+				<tr key={op.number} className={trClasses}>
+					<td className={td1Classes}>
+						{op.name}
+						<div className="text-secondary text-sm">{toUppercaseHex(Number(op.number))}</div>
+					</td>
+					{Object.keys(featureData).map((chainId) => {
+						const opcode = featureData[chainId].find((opcode) => opcode.number === op.number);
+						const bgColor = opcode
+							? opcode.supported
+								? supportedClasses
+								: unsupportedClasses
+							: '';
+						return (
+							<td key={chainId} className={classNames(td2Classes, bgColor)}>
+								{opcode ? (opcode.supported ? 'Yes' : 'No') : 'Unknown'}
+							</td>
+						);
+					})}
+				</tr>
+			))}
+		</tbody>
+	);
+};
 
 export const FeatureTable = ({
 	feature,
@@ -58,6 +132,23 @@ export const FeatureTable = ({
 
 	if (!metadata || !featureData) return null;
 
+	const renderTableBody = () => {
+		switch (feature) {
+			case 'metadata':
+				return <MetadataTable featureData={featureData as Record<string, Metadata>} />;
+			case 'opcodes':
+				return <OpcodesTable featureData={featureData as Record<string, Opcodes>} />;
+			// case 'deployedContracts':
+			// 	return <DeployedContractsTable featureData={featureData as Record<string, DeployedContracts>} metadata={metadata} />;
+			// case 'precompiles':
+			// 	return <PrecompilesTable featureData={featureData as Record<string, Precompiles>} metadata={metadata} />;
+			// case 'evmStackAddresses':
+			// 	return <EvmStackAddressesTable featureData={featureData as Record<string, EvmStackAddresses>} metadata={metadata} />;
+			default:
+				return null;
+		}
+	};
+
 	return (
 		<div className={className}>
 			<div className="overflow-hidden rounded-md border border-zinc-300 shadow-sm dark:border-zinc-600 dark:shadow-md">
@@ -67,10 +158,10 @@ export const FeatureTable = ({
 							<tr>
 								<th
 									scope="col"
-									className="text-primary sticky top-0 py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6 bg-white dark:bg-zinc-800"
+									className="text-primary text-center sticky top-0 py-3.5 px-2 text-sm font-semibold bg-white dark:bg-zinc-800"
 								>
-									<div className="group inline-flex rounded-md p-1 hover:bg-zinc-200 hover:dark:bg-zinc-700">
-										{featureMap[feature].title.slice(0, -1)}
+									<div className="group inline-flex rounded-md p-1">
+										{feature === 'metadata' ? 'Property' : featureMap[feature].title.slice(0, -1)}
 									</div>
 								</th>
 								{Object.keys(featureData).map((chainId) => {
@@ -80,7 +171,7 @@ export const FeatureTable = ({
 											scope="col"
 											className="text-primary sticky top-0 text-center px-3 py-3.5 text-sm font-semibold bg-white dark:bg-zinc-800"
 										>
-											<div className="group inline-flex rounded-md p-1 hover:bg-zinc-200 hover:dark:bg-zinc-700">
+											<div className="group inline-flex rounded-md p-1">
 												{metadata[chainId].name}
 											</div>
 										</th>
@@ -88,37 +179,7 @@ export const FeatureTable = ({
 								})}
 							</tr>
 						</thead>
-						<tbody className="divide-y divide-zinc-200 dark:divide-zinc-600">
-							{featureData['1' /* mainnet as source of truth for known opcodes */].map((op) => (
-								<tr key={op.number} className="bg-secondary group">
-									<td className="text-primary flex flex-col whitespace-nowrap py-2 pl-4 pr-3 text-sm font-medium sm:pl-6">
-										{op.name}
-										<div className="text-secondary text-sm">{op.number}</div>
-									</td>
-									{Object.keys(featureData).map((chainId) => {
-										const opcode = featureData[chainId].find(
-											(opcode) => opcode.number === op.number,
-										);
-										const bgColor = opcode
-											? opcode.supported
-												? 'bg-green-100/80 dark:bg-green-900/60'
-												: 'bg-red-100 dark:bg-red-900/80'
-											: '';
-										return (
-											<td
-												key={chainId}
-												className={classNames(
-													'text-primary whitespace-nowrap px-3 py-4 text-center text-sm',
-													bgColor,
-												)}
-											>
-												{opcode ? (opcode.supported ? 'Yes' : 'No') : 'Unknown'}
-											</td>
-										);
-									})}
-								</tr>
-							))}
-						</tbody>
+						{renderTableBody()}
 					</table>
 				</div>
 			</div>
