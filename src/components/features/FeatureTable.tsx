@@ -3,31 +3,42 @@ import type { Chain } from '@/../script/index';
 import { classNames } from '@/lib/utils';
 import { ExternalLink } from '@/components/layout/ExternalLink';
 import { toUppercaseHex } from '@/lib/utils';
+import { deployedContracts } from '@/../script/checks/deployed-contracts';
+import { precompiles } from '@/../script/checks/precompiles';
+import { Copyable } from '@/components/ui/Copyable';
+import { evmStackAddresses, type EVMStackResult } from '@/../script/checks/evm-stack-addresses';
+import { getAddress, type Address } from 'viem';
 
 type Metadata = Chain['metadata'];
 type Opcodes = Chain['opcodes'];
 type DeployedContracts = Chain['deployedContracts'];
 type Precompiles = Chain['precompiles'];
-type EvmStackAddresses = Chain['evmStackAddresses'];
+type EvmStackResults = Chain['evmStackAddresses'];
 
 interface Section {
 	title: string;
 	infoText?: string;
 }
 
-// metadata: TODO
-// opcodes: done
-// deployedContracts: TODO
-// precompiles: TODO
-// predeploys: TODO
-// evmStackAddresses: TODO
-
 const tbodyClasses = 'divide-y divide-zinc-200 dark:divide-zinc-600';
 const trClasses = 'bg-secondary group';
-const td1Classes = 'text-primary text-center py-2 text-sm font-medium';
+const td1Classes = 'text-primary text-center p-2 text-sm font-medium';
 const td2Classes = 'text-primary px-3 py-4 text-center text-sm';
 const supportedClasses = 'bg-green-100/80 dark:bg-green-900/60';
 const unsupportedClasses = 'bg-red-100 dark:bg-red-900/80';
+
+// TODO Dedupe this helper method
+const formatAddress = (addr: Address) => {
+	const a = getAddress(addr);
+	return <code>{`${a.slice(0, 6)}...${a.slice(-4)}`}</code>;
+};
+
+// TODO Dedupe this helper method
+const formatStackHeader = (stack: keyof EvmStackResults) => {
+	if (stack === 'OP') return 'OP Stack';
+	if (stack === 'Orbit') return 'Orbit';
+	return stack;
+};
 
 const MetadataTable = ({ featureData }: { featureData: Record<string, Metadata> }) => {
 	return (
@@ -67,6 +78,72 @@ const MetadataTable = ({ featureData }: { featureData: Record<string, Metadata> 
 	);
 };
 
+const DeployedContractsTable = ({
+	featureData,
+}: { featureData: Record<string, DeployedContracts> }) => {
+	return (
+		<tbody className={tbodyClasses}>
+			{deployedContracts.map((contract) => (
+				<tr key={contract.name} className={trClasses}>
+					<td className={td1Classes}>
+						<div className="text-left">{contract.name}</div>
+						<Copyable
+							className="text-secondary text-sm"
+							content={formatAddress(contract.address)}
+							textToCopy={getAddress(contract.address)}
+						/>
+					</td>
+					{Object.keys(featureData).map((chainId) => {
+						const contractData = featureData[chainId].find((c) => c.name === contract.name);
+						const bgColor = contractData
+							? contractData.hasCode
+								? supportedClasses
+								: unsupportedClasses
+							: '';
+						return (
+							<td key={chainId} className={classNames(td2Classes, bgColor)}>
+								{contractData ? (contractData.hasCode ? 'Yes' : 'No') : 'Unknown'}
+							</td>
+						);
+					})}
+				</tr>
+			))}
+		</tbody>
+	);
+};
+
+const PrecompilesTable = ({ featureData }: { featureData: Record<string, Precompiles> }) => {
+	return (
+		<tbody className={tbodyClasses}>
+			{precompiles.map((precompile) => (
+				<tr key={precompile.name} className={trClasses}>
+					<td className={td1Classes}>
+						<div className="text-left">{precompile.name}</div>
+						<Copyable
+							className="text-secondary text-sm"
+							content={formatAddress(precompile.address)}
+							textToCopy={getAddress(precompile.address)}
+						/>
+					</td>
+					{Object.keys(featureData).map((chainId) => {
+						const precompileData = featureData[chainId].find((p) => p.name === precompile.name);
+						const bgColor = precompileData
+							? precompileData.implemented
+								? supportedClasses
+								: unsupportedClasses
+							: '';
+						return (
+							<td key={chainId} className={classNames(td2Classes, bgColor)}>
+								{precompileData ? (precompileData.implemented ? 'Yes' : 'No') : 'Unknown'}
+							</td>
+						);
+					})}
+				</tr>
+			))}
+		</tbody>
+	);
+};
+
 const OpcodesTable = ({ featureData }: { featureData: Record<string, Opcodes> }) => {
 	return (
 		<tbody className={tbodyClasses}>
@@ -95,6 +172,48 @@ const OpcodesTable = ({ featureData }: { featureData: Record<string, Opcodes> })
 	);
 };
 
+const EvmStackAddressesTable = ({
+	featureData,
+}: { featureData: Record<string, EvmStackResults> }) => {
+	const stacks = Object.keys(evmStackAddresses) as Array<keyof EvmStackResults>;
+	return (
+		<tbody className={tbodyClasses}>
+			{stacks.map((stack) => {
+				return evmStackAddresses[stack].map((account) => {
+					return (
+						<tr key={account.name} className={trClasses}>
+							<td className={td1Classes}>
+								<div className="text-left text-xs">{formatStackHeader(stack)}</div>
+								<div className="text-left">{account.name}</div>
+								<Copyable
+									className="text-secondary text-sm"
+									content={formatAddress(account.address)}
+									textToCopy={getAddress(account.address)}
+								/>
+							</td>
+							{Object.keys(featureData).map((chainId) => {
+								const accountData = featureData[chainId][stack].find(
+									(a: EVMStackResult) => a.name === account.name,
+								);
+								const bgColor = accountData
+									? accountData.exists
+										? supportedClasses
+										: unsupportedClasses
+									: '';
+								return (
+									<td key={chainId} className={classNames(td2Classes, bgColor)}>
+										{accountData ? (accountData.exists ? 'Yes' : 'No') : 'Unknown'}
+									</td>
+								);
+							})}
+						</tr>
+					);
+				});
+			})}
+		</tbody>
+	);
+};
+
 export const FeatureTable = ({
 	feature,
 	featureMap,
@@ -106,7 +225,7 @@ export const FeatureTable = ({
 		| Record<string, Opcodes>
 		| Record<string, DeployedContracts>
 		| Record<string, Precompiles>
-		| Record<string, EvmStackAddresses>
+		| Record<string, EvmStackResults>
 		| null
 	>(null);
 
@@ -139,12 +258,16 @@ export const FeatureTable = ({
 				return <MetadataTable featureData={featureData as Record<string, Metadata>} />;
 			case 'opcodes':
 				return <OpcodesTable featureData={featureData as Record<string, Opcodes>} />;
-			// case 'deployedContracts':
-			// 	return <DeployedContractsTable featureData={featureData as Record<string, DeployedContracts>} metadata={metadata} />;
-			// case 'precompiles':
-			// 	return <PrecompilesTable featureData={featureData as Record<string, Precompiles>} metadata={metadata} />;
-			// case 'evmStackAddresses':
-			// 	return <EvmStackAddressesTable featureData={featureData as Record<string, EvmStackAddresses>} metadata={metadata} />;
+			case 'deployedContracts':
+				return (
+					<DeployedContractsTable featureData={featureData as Record<string, DeployedContracts>} />
+				);
+			case 'precompiles':
+				return <PrecompilesTable featureData={featureData as Record<string, Precompiles>} />;
+			case 'evmStackAddresses':
+				return (
+					<EvmStackAddressesTable featureData={featureData as Record<string, EvmStackResults>} />
+				);
 			default:
 				return null;
 		}

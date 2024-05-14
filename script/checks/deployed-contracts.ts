@@ -13,7 +13,7 @@ export async function checkDeployedContracts(
 	return await Promise.all(result);
 }
 
-const deployedContracts: { name: string; address: Address }[] = [
+export const deployedContracts: { name: string; address: Address }[] = [
 	// Deterministic Deployer contracts.
 	{ name: 'CreateX', address: '0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed' },
 	{
