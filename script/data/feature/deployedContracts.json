@@ -87,6 +87,50 @@
 			"hasCode": true
 		}
 	],
+	"137": [
+		{
+			"name": "CreateX",
+			"address": "0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed",
+			"codeHash": "0xbd8a7ea8cfca7b4e5f5041d7d4b17bc317c5ce42cfbc42066a00cf26b43eb53f",
+			"hasCode": true
+		},
+		{
+			"name": "Arachnid's Deterministic Deployment Proxy",
+			"address": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+			"codeHash": "0x2fa86add0aed31f33a762c9d88e807c475bd51d0f52bd0955754b2608f7e4989",
+			"hasCode": true
+		},
+		{
+			"name": "Create2Deployer",
+			"address": "0x13b0D85CcB8bf860b6b79AF3029fCA081AE9beF2",
+			"codeHash": "0x99620e2b8c35367629c21fa0691e69597c468ca24dc83a024fdb46ad6cba533d",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Entry Point v0.6",
+			"address": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
+			"codeHash": "0xc93c806e738300b5357ecdc2e971d6438d34d8e4e17b99b758b1f9cac91c8e70",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Simple Account Factory v0.6",
+			"address": "0x9406Cc6185a346906296840746125a0E44976454",
+			"codeHash": "0xe7ca0f7aa741031b27df24056c8000e7df56cf8a4ff434e28b1bbe1aa6eaa515",
+			"hasCode": true
+		},
+		{
+			"name": "Multicall3",
+			"address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+			"codeHash": "0xd5c15df687b16f2ff992fc8d767b4216323184a2bbc6ee2f9c398c318e770891",
+			"hasCode": true
+		},
+		{
+			"name": "Permit2",
+			"address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+			"codeHash": "0xdb0dd198c1767513d04589d8b3da05423ddc97e543440f84afe0e216693af9bb",
+			"hasCode": true
+		}
+	],
 	"8453": [
 		{
 			"name": "CreateX",
@@ -131,6 +175,50 @@
 			"hasCode": true
 		}
 	],
+	"34443": [
+		{
+			"name": "CreateX",
+			"address": "0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed",
+			"codeHash": "0xbd8a7ea8cfca7b4e5f5041d7d4b17bc317c5ce42cfbc42066a00cf26b43eb53f",
+			"hasCode": true
+		},
+		{
+			"name": "Arachnid's Deterministic Deployment Proxy",
+			"address": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+			"codeHash": "0x2fa86add0aed31f33a762c9d88e807c475bd51d0f52bd0955754b2608f7e4989",
+			"hasCode": true
+		},
+		{
+			"name": "Create2Deployer",
+			"address": "0x13b0D85CcB8bf860b6b79AF3029fCA081AE9beF2",
+			"codeHash": "0xb0550b5b431e30d38000efb7107aaa0ade03d48a7198a140edda9d27134468b2",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Entry Point v0.6",
+			"address": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
+			"codeHash": "0xc93c806e738300b5357ecdc2e971d6438d34d8e4e17b99b758b1f9cac91c8e70",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Simple Account Factory v0.6",
+			"address": "0x9406Cc6185a346906296840746125a0E44976454",
+			"codeHash": "0xe7ca0f7aa741031b27df24056c8000e7df56cf8a4ff434e28b1bbe1aa6eaa515",
+			"hasCode": true
+		},
+		{
+			"name": "Multicall3",
+			"address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+			"codeHash": "0x8ec8aa5d07a37e47597b3a254f5cbf39fa2080526ae34db3a564fffed82b99ad",
+			"hasCode": true
+		},
+		{
+			"name": "Permit2",
+			"address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+			"codeHash": "0xa60f5be4cb47b577bface325f828fb1075b9b0bc5e88a5f7586543ec3986381c",
+			"hasCode": true
+		}
+	],
 	"42161": [
 		{
 			"name": "CreateX",
@@ -172,6 +260,138 @@
 			"name": "Permit2",
 			"address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
 			"codeHash": "0x9e51dcb64cf56fc09a82cb41edbc17c6a2250f18dbd1b91e884c0aca02acd57c",
+			"hasCode": true
+		}
+	],
+	"43114": [
+		{
+			"name": "CreateX",
+			"address": "0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed",
+			"codeHash": "0xbd8a7ea8cfca7b4e5f5041d7d4b17bc317c5ce42cfbc42066a00cf26b43eb53f",
+			"hasCode": true
+		},
+		{
+			"name": "Arachnid's Deterministic Deployment Proxy",
+			"address": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+			"codeHash": "0x2fa86add0aed31f33a762c9d88e807c475bd51d0f52bd0955754b2608f7e4989",
+			"hasCode": true
+		},
+		{
+			"name": "Create2Deployer",
+			"address": "0x13b0D85CcB8bf860b6b79AF3029fCA081AE9beF2",
+			"codeHash": "0x99620e2b8c35367629c21fa0691e69597c468ca24dc83a024fdb46ad6cba533d",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Entry Point v0.6",
+			"address": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
+			"codeHash": "0xc93c806e738300b5357ecdc2e971d6438d34d8e4e17b99b758b1f9cac91c8e70",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Simple Account Factory v0.6",
+			"address": "0x9406Cc6185a346906296840746125a0E44976454",
+			"codeHash": "0xe7ca0f7aa741031b27df24056c8000e7df56cf8a4ff434e28b1bbe1aa6eaa515",
+			"hasCode": true
+		},
+		{
+			"name": "Multicall3",
+			"address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+			"codeHash": "0xd5c15df687b16f2ff992fc8d767b4216323184a2bbc6ee2f9c398c318e770891",
+			"hasCode": true
+		},
+		{
+			"name": "Permit2",
+			"address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+			"codeHash": "0x081beff14e75c5a5c1e60740445f58d54ba0fef228148a11d3e4287dc3551cbb",
+			"hasCode": true
+		}
+	],
+	"59144": [
+		{
+			"name": "CreateX",
+			"address": "0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed",
+			"codeHash": "0xbd8a7ea8cfca7b4e5f5041d7d4b17bc317c5ce42cfbc42066a00cf26b43eb53f",
+			"hasCode": true
+		},
+		{
+			"name": "Arachnid's Deterministic Deployment Proxy",
+			"address": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+			"codeHash": "0x2fa86add0aed31f33a762c9d88e807c475bd51d0f52bd0955754b2608f7e4989",
+			"hasCode": true
+		},
+		{
+			"name": "Create2Deployer",
+			"address": "0x13b0D85CcB8bf860b6b79AF3029fCA081AE9beF2",
+			"codeHash": "0xb24b52fb04a5cf32eb702c01f9dee003e7191e57252ef7690a222c55b4d35d17",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Entry Point v0.6",
+			"address": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
+			"codeHash": "0xc93c806e738300b5357ecdc2e971d6438d34d8e4e17b99b758b1f9cac91c8e70",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Simple Account Factory v0.6",
+			"address": "0x9406Cc6185a346906296840746125a0E44976454",
+			"codeHash": "0xe7ca0f7aa741031b27df24056c8000e7df56cf8a4ff434e28b1bbe1aa6eaa515",
+			"hasCode": true
+		},
+		{
+			"name": "Multicall3",
+			"address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+			"codeHash": "0x8ec8aa5d07a37e47597b3a254f5cbf39fa2080526ae34db3a564fffed82b99ad",
+			"hasCode": true
+		},
+		{
+			"name": "Permit2",
+			"address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+			"codeHash": "0x939f3d8fd3d2ffc9dd506aae79fb3827c60a629d41f9a7f6b85e26275e0ec649",
+			"hasCode": true
+		}
+	],
+	"534352": [
+		{
+			"name": "CreateX",
+			"address": "0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed",
+			"codeHash": "0xbd8a7ea8cfca7b4e5f5041d7d4b17bc317c5ce42cfbc42066a00cf26b43eb53f",
+			"hasCode": true
+		},
+		{
+			"name": "Arachnid's Deterministic Deployment Proxy",
+			"address": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+			"codeHash": "0x2fa86add0aed31f33a762c9d88e807c475bd51d0f52bd0955754b2608f7e4989",
+			"hasCode": true
+		},
+		{
+			"name": "Create2Deployer",
+			"address": "0x13b0D85CcB8bf860b6b79AF3029fCA081AE9beF2",
+			"codeHash": "0xb24b52fb04a5cf32eb702c01f9dee003e7191e57252ef7690a222c55b4d35d17",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Entry Point v0.6",
+			"address": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
+			"codeHash": "0xc93c806e738300b5357ecdc2e971d6438d34d8e4e17b99b758b1f9cac91c8e70",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Simple Account Factory v0.6",
+			"address": "0x9406Cc6185a346906296840746125a0E44976454",
+			"codeHash": "0xe7ca0f7aa741031b27df24056c8000e7df56cf8a4ff434e28b1bbe1aa6eaa515",
+			"hasCode": true
+		},
+		{
+			"name": "Multicall3",
+			"address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+			"codeHash": "0xd5c15df687b16f2ff992fc8d767b4216323184a2bbc6ee2f9c398c318e770891",
+			"hasCode": true
+		},
+		{
+			"name": "Permit2",
+			"address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+			"codeHash": "0x3f850215845af8f051808200d4f02a01d5eeb9fcf4eaed568e25e3278c23de3a",
 			"hasCode": true
 		}
 	]

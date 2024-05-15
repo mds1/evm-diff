@@ -81,6 +81,41 @@
 			"wss://optimism.drpc.org"
 		]
 	},
+	"137": {
+		"name": "Polygon Mainnet",
+		"shortName": "matic",
+		"chainId": 137,
+		"networkId": 137,
+		"infoURL": "https://polygon.technology/",
+		"nativeCurrency": { "name": "MATIC", "symbol": "MATIC", "decimals": 18 },
+		"chain": "Polygon",
+		"explorers": [
+			{ "name": "polygonscan", "url": "https://polygonscan.com", "standard": "EIP3091" },
+			{
+				"name": "dexguru",
+				"url": "https://polygon.dex.guru",
+				"icon": "dexguru",
+				"standard": "EIP3091"
+			}
+		],
+		"faucets": [],
+		"icon": "polygon",
+		"rpc": [
+			"https://polygon-rpc.com/",
+			"https://rpc-mainnet.matic.network",
+			"https://matic-mainnet.chainstacklabs.com",
+			"https://rpc-mainnet.maticvigil.com",
+			"https://rpc-mainnet.matic.quiknode.pro",
+			"https://matic-mainnet-full-rpc.bwarelabs.com",
+			"https://polygon-bor-rpc.publicnode.com",
+			"wss://polygon-bor-rpc.publicnode.com",
+			"https://polygon.gateway.tenderly.co",
+			"wss://polygon.gateway.tenderly.co",
+			"https://polygon.drpc.org",
+			"wss://polygon.drpc.org"
+		],
+		"slip44": 966
+	},
 	"8453": {
 		"name": "Base",
 		"shortName": "base",
@@ -116,6 +151,21 @@
 		],
 		"status": "active"
 	},
+	"34443": {
+		"name": "Mode",
+		"shortName": "mode",
+		"chainId": 34443,
+		"networkId": 34443,
+		"infoURL": "https://docs.mode.network/",
+		"nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
+		"chain": "ETH",
+		"explorers": [
+			{ "name": "modescout", "url": "https://explorer.mode.network", "standard": "none" }
+		],
+		"faucets": [],
+		"icon": "mode",
+		"rpc": ["https://mainnet.mode.network", "https://mode.drpc.org", "wss://mode.drpc.org"]
+	},
 	"42161": {
 		"name": "Arbitrum One",
 		"shortName": "arb1",
@@ -147,5 +197,85 @@
 			"https://arbitrum-one.publicnode.com",
 			"wss://arbitrum-one.publicnode.com"
 		]
+	},
+	"43114": {
+		"name": "Avalanche C-Chain",
+		"shortName": "avax",
+		"chainId": 43114,
+		"networkId": 43114,
+		"infoURL": "https://www.avax.network/",
+		"nativeCurrency": { "name": "Avalanche", "symbol": "AVAX", "decimals": 18 },
+		"chain": "AVAX",
+		"explorers": [{ "name": "snowtrace", "url": "https://snowtrace.io", "standard": "EIP3091" }],
+		"faucets": [],
+		"features": [{ "name": "EIP1559" }],
+		"icon": "avax",
+		"rpc": [
+			"https://api.avax.network/ext/bc/C/rpc",
+			"https://avalanche-c-chain-rpc.publicnode.com",
+			"wss://avalanche-c-chain-rpc.publicnode.com"
+		],
+		"slip44": 9005
+	},
+	"59144": {
+		"name": "Linea",
+		"shortName": "linea",
+		"chainId": 59144,
+		"networkId": 59144,
+		"infoURL": "https://linea.build",
+		"nativeCurrency": { "name": "Linea Ether", "symbol": "ETH", "decimals": 18 },
+		"chain": "ETH",
+		"explorers": [
+			{
+				"name": "Etherscan",
+				"url": "https://lineascan.build",
+				"standard": "EIP3091",
+				"icon": "linea"
+			},
+			{
+				"name": "Blockscout",
+				"url": "https://explorer.linea.build",
+				"standard": "EIP3091",
+				"icon": "linea"
+			},
+			{ "name": "L2scan", "url": "https://linea.l2scan.co", "standard": "EIP3091", "icon": "linea" }
+		],
+		"faucets": [],
+		"icon": "linea",
+		"parent": {
+			"type": "L2",
+			"chain": "eip155-1",
+			"bridges": [{ "url": "https://bridge.linea.build" }]
+		},
+		"rpc": [
+			"https://rpc.linea.build",
+			"wss://rpc.linea.build",
+			"https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"wss://linea-mainnet.infura.io/ws/v3/${INFURA_API_KEY}"
+		],
+		"status": "active",
+		"title": "Linea Mainnet"
+	},
+	"534352": {
+		"name": "Scroll",
+		"shortName": "scr",
+		"chainId": 534352,
+		"networkId": 534352,
+		"infoURL": "https://scroll.io",
+		"nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
+		"chain": "ETH",
+		"explorers": [{ "name": "Scrollscan", "url": "https://scrollscan.com", "standard": "EIP3091" }],
+		"faucets": [],
+		"parent": {
+			"type": "L2",
+			"chain": "eip155-1",
+			"bridges": [{ "url": "https://scroll.io/bridge" }]
+		},
+		"rpc": [
+			"https://rpc.scroll.io",
+			"https://rpc.ankr.com/scroll",
+			"https://scroll-mainnet.chainstacklabs.com"
+		],
+		"status": "active"
 	}
 }

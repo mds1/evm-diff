@@ -4,9 +4,14 @@ export async function checkPrecompiles(
 	client: PublicClient,
 ): Promise<{ name: string; address: Address; implemented: boolean }[]> {
 	const result = precompiles.map(async ({ name, address, testCalldata, expectedResponse }) => {
-		const res = await client.call({ to: address, data: testCalldata });
-		const implemented = res.data === expectedResponse;
-		return { name, address, implemented };
+		try {
+			const res = await client.call({ to: address, data: testCalldata });
+			const implemented = res.data === expectedResponse;
+			return { name, address, implemented };
+		} catch (e) {
+			// If the call fails, the precompile is not implemented.
+			return { name, address, implemented: false };
+		}
 	});
 	return await Promise.all(result);
 }

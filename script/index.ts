@@ -124,6 +124,7 @@ function selectRpcUrls(rpcUrls: string[]): string[] {
 		'blocknative.com', // Transaction creation failed.
 		'flashbots.net', // 403 (also on eth_call with no to).
 		'mevblocker.io', // 429's easily.
+		'matic-mainnet-full-rpc.bwarelabs.com', // "This endpoint is deprecated".
 	];
 	const filteredRpcUrls = rpcUrls.filter(
 		(url) => !domainsToSkip.some((domain) => url.includes(domain)),
