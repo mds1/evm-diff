@@ -101,4 +101,14 @@ export const precompiles: {
 		expectedResponse:
 			'0x000000000000000000000000000000000000000000000000000000000000100073eda753299d7d483339d80809a1d80553bda402fffe5bfeffffffff00000001',
 	},
+	{
+		// RIP-7212: Precompile for secp256r1 Curve Support
+		// This test vector is from https://github.com/maticnetwork/bor/blob/bade7f57df5c09ae060c15fc66aed488c526149e/core/vm/testdata/precompiles/p256Verify.json#L3
+		// The secp256r1 precompile returns bytes32(1) if the signature is valid, and 0x otherwise.
+		address: '0x0000000000000000000000000000000000000100',
+		name: 'secp256r1',
+		testCalldata:
+			'0x4cee90eb86eaa050036147a12d49004b6b9c72bd725d39d4785011fe190f0b4da73bd4903f0ce3b639bbbf6e8e80d16931ff4bcf5993d58468e8fb19086e8cac36dbcd03009df8c59286b162af3bd7fcc0450c9aa81be5d10d312af6c66b1d604aebd3099c618202fcfe16ae7770b0c49ab5eadf74b754204a3bb6060e44eff37618b065f9832de4ca6ca971a7a1adc826d0f7c00181a5fb2ddf79ae00b4e10e',
+		expectedResponse: '0x0000000000000000000000000000000000000000000000000000000000000001',
+	},
 ];
