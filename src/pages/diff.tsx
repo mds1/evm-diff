@@ -52,10 +52,6 @@ const SECTION_MAP: Record<string, Section> = {
 			'Existence of "stack-specific" accounts on a chain, to determine what kind of chain it is. If an account exists on both chains but shows up in the diff, it indicates the code hash is different. This does not necessarily mean the contract is different.',
 	},
 	// signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
-	// accountTypes: { title: 'Account Types', component: DiffAccountTypes },
-	// eips: { title: 'Execution EIPs', component: DiffEIPs },
-	// executionNodes: { title: 'Execution Nodes', component: DiffNodes },
-	// consensusNodes: { title: 'Consensus Nodes', component: DiffNodes, hide: true }, // Hidden to scope UI to execution data
 };
 
 const Diff = () => {

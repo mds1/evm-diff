@@ -1,72 +1,15 @@
 import type { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
-import { getAddress } from 'viem';
-import { getChainById } from '@/chains';
+import { getChainById } from '@/lib/utils';
 import { SITE_DESCRIPTION } from '@/lib/constants';
-import type { Chain, Opcode, Precompile, Predeploy, SignatureType } from '@/types';
 
 export const config = {
 	runtime: 'edge',
 };
 
-type Comparator<T> = (a: T, b: T) => boolean;
-type ObjectKeyExtractor<T> = (item: T) => string | number;
-
-function countDifferences<T>(
-	base: T[],
-	target: T[],
-	getKey: ObjectKeyExtractor<T>,
-	isEqual: Comparator<T>,
-): number {
-	const sortedKeys = [...base.map(getKey), ...target.map(getKey)].sort((a, b) => {
-		if (typeof a === 'string' && typeof b === 'string') {
-			return a.localeCompare(b);
-		}
-		if (typeof a === 'number' && typeof b === 'number') {
-			return a - b;
-		}
-		throw new Error('Invalid key types for sorting.');
-	});
-	const keys = [...new Set(sortedKeys)];
-
-	return keys.reduce((acc: number, key: string | number) => {
-		let count = acc;
-		const baseItem = base.find((item) => getKey(item) === key);
-		const targetItem = target.find((item) => getKey(item) === key);
-		if (!baseItem || !targetItem) {
-			count++;
-			return count;
-		}
-
-		if (!isEqual(baseItem, targetItem)) {
-			count++;
-		}
-		return count;
-	}, 0);
-}
-
-const countPrecompilesDiff = (base: Precompile[], target: Precompile[]): number => {
-	const getKey = (p: Precompile) => getAddress(p.address);
-	const isEqual = (a: Precompile, b: Precompile) => JSON.stringify(a) === JSON.stringify(b);
-	return countDifferences(base, target, getKey, isEqual);
-};
-
-const countPredeployDiffs = (base: Predeploy[], target: Predeploy[]): number => {
-	const getKey = (p: Predeploy) => getAddress(p.address);
-	const isEqual = (a: Predeploy, b: Predeploy) => JSON.stringify(a) === JSON.stringify(b);
-	return countDifferences(base, target, getKey, isEqual);
-};
-
-const countOpcodeDiffs = (base: Opcode[], target: Opcode[]): number => {
-	const getKey = (o: Opcode) => o.number;
-	const isEqual = (a: Opcode, b: Opcode) => JSON.stringify(a) === JSON.stringify(b);
-	return countDifferences(base, target, getKey, isEqual);
-};
-
-const countSignatureTypeDiffs = (base: SignatureType[], target: SignatureType[]): number => {
-	const getKey = (s: SignatureType) => s.prefixByte;
-	const isEqual = (a: SignatureType, b: SignatureType) => JSON.stringify(a) === JSON.stringify(b);
-	return countDifferences(base, target, getKey, isEqual);
+type Chain = {
+	chainId: number;
+	name: string;
 };
 
 export default async function handler(request: NextRequest) {
@@ -123,20 +66,8 @@ export default async function handler(request: NextRequest) {
 		);
 	};
 
-	const generateDiffImage = async (baseChain: Chain, targetChain: Chain) => {
+	const generateDiffImage = async (_baseChain: Chain, _targetChain: Chain) => {
 		const imageData = await getLogoImageData();
-
-		const precompileDiffs = countPrecompilesDiff(baseChain.precompiles, targetChain.precompiles);
-		const predeployDiffs = countPredeployDiffs(baseChain.predeploys, targetChain.predeploys);
-		const opcodeDiffs = countOpcodeDiffs(
-			baseChain.opcodes as Opcode[],
-			targetChain.opcodes as Opcode[],
-		);
-		const signatureTypeDiffs = countSignatureTypeDiffs(
-			baseChain.signatureTypes,
-			targetChain.signatureTypes,
-		);
-		const totalDiffs = precompileDiffs + predeployDiffs + opcodeDiffs + signatureTypeDiffs;
 
 		return new ImageResponse(
 			<div
@@ -160,35 +91,6 @@ export default async function handler(request: NextRequest) {
 				{/* @ts-ignore */}
 				<img width="400" src={imageData} />
 				{/* eslint-enable */}
-				<p style={{ fontSize: 34, paddingTop: '40px' }}>
-					{`${totalDiffs} difference${totalDiffs !== 1 ? 's' : ''} between ${
-						baseChain.metadata.name
-					} and ${targetChain.metadata.name}`}
-				</p>
-
-				<div
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						fontSize: 24,
-						lineHeight: 1.5,
-					}}
-				>
-					<ul
-						style={{
-							display: 'flex',
-							flexDirection: 'column',
-							alignItems: 'center',
-							justifyContent: 'center',
-						}}
-					>
-						<li>{`Precompiles: ${precompileDiffs} differences`}</li>
-						<li>{`Predeploys: ${predeployDiffs} differences`}</li>
-						<li>{`Opcodes: ${opcodeDiffs} differences`}</li>
-						<li>{`SignatureTypes: ${signatureTypeDiffs} differences`}</li>
-					</ul>
-				</div>
 			</div>,
 			{
 				width: 1200,
@@ -203,10 +105,10 @@ export default async function handler(request: NextRequest) {
 		const target = searchParams.get('target')?.slice(0, 100); // ?target=<target>
 		if (!base || !target) return generateDefaultImage();
 
-		const baseChain = getChainById(base as string);
+		const baseChain = getChainById(Number(base));
 		if (baseChain === undefined) return generateDefaultImage();
 
-		const targetChain = getChainById(target as string);
+		const targetChain = getChainById(Number(target));
 		if (targetChain === undefined) return generateDefaultImage();
 
 		return await generateDiffImage(baseChain, targetChain);

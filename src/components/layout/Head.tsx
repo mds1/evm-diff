@@ -1,6 +1,6 @@
 import NextHead from 'next/head';
 import { type NextRouter, useRouter } from 'next/router';
-import { getChainById } from '@/chains';
+import { getChainById } from '@/lib/utils';
 import {
 	COMPANY_URL,
 	OG_ENDPOINT,
@@ -18,8 +18,8 @@ const getRouteData = (router: NextRouter) => {
 		const { base, target } = router.query;
 		if (!base || !target) defaultRouteData;
 
-		const baseTitle = getChainById(base as string)?.metadata.name;
-		const targetTitle = getChainById(target as string)?.metadata.name;
+		const baseTitle = getChainById(Number(base))?.name;
+		const targetTitle = getChainById(Number(target))?.name;
 		if (!baseTitle || !targetTitle) return defaultRouteData;
 
 		const title = `${baseTitle} vs ${targetTitle} | ${SITE_NAME}`;

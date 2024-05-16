@@ -1,4 +1,5 @@
 import { pad } from 'viem';
+import chains from '@/lib/chains.json';
 
 // Takes an arbitrary number of class names, filtering out any falsey values.
 export const classNames = (...classes: (string | boolean)[]) => classes.filter(Boolean).join(' ');
@@ -55,4 +56,9 @@ export const chainLogoUrl = (chain: { name: string; chainId: number }) => {
 	if (chain.chainId === 42161) return 'https://icons.llamao.fi/icons/chains/rsz_arbitrum.jpg';
 	if (chain.chainId === 43114) return 'https://icons.llamao.fi/icons/chains/rsz_avalanche.jpg';
 	return `https://icons.llamao.fi/icons/chains/rsz_${chain.name.toLowerCase()}.jpg`;
+};
+
+export const getChainById = (chainId: number) => {
+	if (!chainId) return undefined;
+	return chains.find((chain) => chain.chainId === chainId);
 };
