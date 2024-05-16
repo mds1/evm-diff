@@ -25,7 +25,8 @@ interface Section {
 
 const tbodyClasses = 'divide-y divide-zinc-200 dark:divide-zinc-600';
 const trClasses = 'bg-secondary group';
-const td1Classes = 'text-primary text-center p-2 text-sm font-medium sticky z-10 left-0 bg-zinc-50 dark:bg-zinc-900';
+const td1Classes =
+	'text-primary text-center p-2 text-sm font-medium sticky z-10 left-0 bg-zinc-50 dark:bg-zinc-900';
 const td2Classes = 'text-primary px-3 py-4 text-center text-sm';
 const supportedClasses = 'bg-green-100/80 dark:bg-green-900/60';
 const unsupportedClasses = 'bg-red-100 dark:bg-red-900/80';
@@ -288,7 +289,7 @@ export const FeatureTable = ({
 								<th
 									scope="col"
 									className="text-primary text-center sticky top-0 left-0 z-20 py-3.5 px-2 text-sm font-semibold bg-white dark:bg-zinc-800"
-									>
+								>
 									<div className="group inline-flex rounded-md p-1">
 										{feature === 'metadata' ? 'Property' : featureMap[feature].title.slice(0, -1)}
 									</div>
