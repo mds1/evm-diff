@@ -42,7 +42,7 @@ async function checkOpcode(opcode: Opcode, client: PublicClient): Promise<boolea
 	}
 }
 
-const knownOpcodes: Record<Opcode, string> = {
+export const knownOpcodes: Record<Opcode, string> = {
 	0x00: 'STOP',
 	0x01: 'ADD',
 	0x02: 'MUL',

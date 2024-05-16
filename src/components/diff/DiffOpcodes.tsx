@@ -2,6 +2,7 @@ import type { Chain } from '@/../script/index';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
 import { toUppercaseHex } from '@/lib/utils';
+import { knownOpcodes } from '@/../script/checks/opcodes';
 
 type Opcodes = Chain['opcodes'];
 type Opcode = Opcodes[0];
@@ -21,7 +22,7 @@ const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {
 export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element => {
 	if (!Array.isArray(base) || !Array.isArray(target)) return <></>;
 
-	const opcodeNumbers = Array.from(Array(0xff + 1).keys());
+	const opcodeNumbers = Object.keys(knownOpcodes).map(Number);
 
 	const diffContent = (
 		<>
@@ -42,8 +43,8 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
 						className="grid grid-cols-12 items-center border-b border-zinc-500/10 py-2 dark:border-zinc-500/20"
 					>
 						<div className="col-span-2">
-							<Copyable content={baseOpcode?.name.toLocaleUpperCase()} />
-							<Copyable content={toUppercaseHex(Number(baseOpcode?.number))} />
+							<Copyable content={knownOpcodes[number].toLocaleUpperCase()} />
+							<Copyable content={toUppercaseHex(number)} className="text-secondary text-sm" />
 						</div>
 						<div className="col-span-5 pr-4">{formatOpcode(baseOpcode)}</div>
 						<div className="col-span-5">{formatOpcode(targetOpcode)}</div>

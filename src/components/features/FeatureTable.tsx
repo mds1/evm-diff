@@ -7,6 +7,7 @@ import { deployedContracts } from '@/../script/checks/deployed-contracts';
 import { precompiles } from '@/../script/checks/precompiles';
 import { Copyable } from '@/components/ui/Copyable';
 import { evmStackAddresses, type EVMStackResult } from '@/../script/checks/evm-stack-addresses';
+import { knownOpcodes } from '@/../script/checks/opcodes';
 import { getAddress, type Address } from 'viem';
 
 type Metadata = Chain['metadata'];
@@ -147,27 +148,29 @@ const PrecompilesTable = ({ featureData }: { featureData: Record<string, Precomp
 const OpcodesTable = ({ featureData }: { featureData: Record<string, Opcodes> }) => {
 	return (
 		<tbody className={tbodyClasses}>
-			{featureData['1'].map((op) => (
-				<tr key={op.number} className={trClasses}>
-					<td className={td1Classes}>
-						{op.name}
-						<div className="text-secondary text-sm">{toUppercaseHex(Number(op.number))}</div>
-					</td>
-					{Object.keys(featureData).map((chainId) => {
-						const opcode = featureData[chainId].find((opcode) => opcode.number === op.number);
-						const bgColor = opcode
-							? opcode.supported
-								? supportedClasses
-								: unsupportedClasses
-							: '';
-						return (
-							<td key={chainId} className={classNames(td2Classes, bgColor)}>
-								{opcode ? (opcode.supported ? 'Yes' : 'No') : 'Unknown'}
-							</td>
-						);
-					})}
-				</tr>
-			))}
+			{Object.keys(knownOpcodes)
+				.map(Number)
+				.map((op: number) => (
+					<tr key={op} className={trClasses}>
+						<td className={td1Classes}>
+							{knownOpcodes[op]}
+							<div className="text-secondary text-sm">{toUppercaseHex(op)}</div>
+						</td>
+						{Object.keys(featureData).map((chainId) => {
+							const opcode = featureData[chainId].find((opcode) => Number(opcode.number) === op);
+							const bgColor = opcode
+								? opcode.supported
+									? supportedClasses
+									: unsupportedClasses
+								: '';
+							return (
+								<td key={chainId} className={classNames(td2Classes, bgColor)}>
+									{opcode ? (opcode.supported ? 'Yes' : 'No') : 'Unknown'}
+								</td>
+							);
+						})}
+					</tr>
+				))}
 		</tbody>
 	);
 };
