@@ -51,6 +51,8 @@ export const toUppercase = (str: string) => str.charAt(0).toUpperCase() + str.sl
 
 export const chainLogoUrl = (chain: { name: string; chainId: number }) => {
 	if (chain.chainId === 1) return 'https://icons.llamao.fi/icons/chains/rsz_ethereum.jpg';
+	if (chain.chainId === 137) return 'https://icons.llamao.fi/icons/chains/rsz_polygon.jpg';
 	if (chain.chainId === 42161) return 'https://icons.llamao.fi/icons/chains/rsz_arbitrum.jpg';
+	if (chain.chainId === 43114) return 'https://icons.llamao.fi/icons/chains/rsz_avalanche.jpg';
 	return `https://icons.llamao.fi/icons/chains/rsz_${chain.name.toLowerCase()}.jpg`;
 };

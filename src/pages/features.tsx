@@ -36,7 +36,7 @@ const Features = () => {
 
 	const onBack = (e: React.MouseEvent) => {
 		e.preventDefault();
-		router.push({ pathname: '/features' });
+		router.push({ pathname: '/' });
 	};
 
 	return (

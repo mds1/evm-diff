@@ -13,6 +13,7 @@ import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
 import { chainLogoUrl } from '@/lib/utils';
 import Image from 'next/image';
+import { ArrowLeftIcon } from '@heroicons/react/20/solid';
 
 interface Props<T> {
 	base: T;
@@ -144,9 +145,20 @@ const Diff = () => {
 	// and remove the need for `?` and `!` operators.
 	const DiffDiv = ({ baseChain, targetChain }: { baseChain: Chain; targetChain: Chain }) => {
 		const sections = Object.keys(SECTION_MAP);
+		const onBack = (e: React.MouseEvent) => {
+			e.preventDefault();
+			router.push({ pathname: '/' });
+		};
+
 		return (
 			<>
 				<main>
+					<button
+						onClick={onBack}
+						className="mb-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
+					>
+						<ArrowLeftIcon width="1.1rem" className="mr-1 inline-block" /> Back
+					</button>
 					<div className="mb-8 border border-zinc-200 rounded-md p-4 bg-zinc-100 shadow-sm dark:bg-zinc-800 dark:border-zinc-700">
 						<div className="flex space-x-8">
 							<Toggle
