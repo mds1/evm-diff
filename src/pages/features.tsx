@@ -1,7 +1,8 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ArrowLeftIcon, ExclamationTriangleIcon } from '@heroicons/react/20/solid';
 import { FeatureTable } from '@/components/features/FeatureTable';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { FeatureDiffSelector } from '@/components/FeatureDiffSelector';
 
 interface Section {
 	title: string;
@@ -29,8 +30,26 @@ const featureMap: Record<string, Section> = {
 	},
 };
 
+const LoadingDiv = () => (
+	<div className="text-center">
+		<LoadingSpinner />
+		<h1 className="text-secondary text-md tracking-wide mt-4">Fetching Data...</h1>
+	</div>
+);
+
+const ErrorDiv = () => (
+	<main className="text-center">
+		<h1 className="text-primary text-3xl font-bold tracking-tight sm:text-5xl">Oops!</h1>
+		<p className="text-secondary mt-6 text-base leading-7">
+			Invalid feature provided, please try again below.
+		</p>
+		<div className="mx-auto mt-10 flex max-w-md gap-x-4 rounded-lg border border-zinc-200 dark:border-zinc-700">
+			<FeatureDiffSelector />
+		</div>
+	</main>
+);
+
 const Features = () => {
-	// --- URL Parsing ---
 	const router = useRouter();
 	const { feature } = router.query;
 
@@ -38,6 +57,9 @@ const Features = () => {
 		e.preventDefault();
 		router.push({ pathname: '/' });
 	};
+
+	if (!router.isReady) return <LoadingDiv />;
+	if (!((feature as string) in featureMap)) return <ErrorDiv />;
 
 	return (
 		<main>
@@ -54,17 +76,14 @@ const Features = () => {
 						<ArrowLeftIcon width="1.1rem" className="mr-1 inline-block" /> Back
 					</button>
 
+					<p className="text-secondary mb-2 text-sm">
+						<ExclamationTriangleIcon width="1rem" className="mr-2 inline-block text-amber-500" />
+						There may still be diffs between chains with the same support level. For example, an
+						opcode may behave differently between chains. Be sure to read a chain&apos;s
+						documentation to learn more.
+					</p>
 					<FeatureTable feature={feature as string} featureMap={featureMap} className="w-full" />
 				</div>
-
-				<p className="text-secondary mx-auto mt-4 max-w-sm text-sm">
-					<ExclamationTriangleIcon width="1rem" className="mr-2 inline-block text-amber-500" />
-					There may still be diffs between chains with the same support level. Be sure to{' '}
-					<Link className="hyperlink" href="/">
-						view a diff
-					</Link>{' '}
-					of specific chains to see details.
-				</p>
 			</div>
 		</main>
 	);

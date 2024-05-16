@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { LinkIcon } from '@heroicons/react/20/solid';
+import { LinkIcon, ArrowLeftIcon, ExclamationTriangleIcon } from '@heroicons/react/20/solid';
 import type { Chain } from '@/../script/index';
 import { ChainDiffSelector } from '@/components/ChainDiffSelector';
 import { DiffDeployedContracts } from '@/components/diff/DiffDeployedContracts';
@@ -13,7 +13,7 @@ import { Copyable } from '@/components/ui/Copyable';
 import { Toggle } from '@/components/ui/Toggle';
 import { chainLogoUrl } from '@/lib/utils';
 import Image from 'next/image';
-import { ArrowLeftIcon } from '@heroicons/react/20/solid';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 interface Props<T> {
 	base: T;
@@ -115,7 +115,7 @@ const Diff = () => {
 
 	const LoadingDiv = () => (
 		<main className="text-center">
-			<div className="inline-block h-8 w-8 animate-[spin_1.5s_linear_infinite] rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_2s_linear_infinite]" />
+			<LoadingSpinner />
 			<h1 className="text-secondary text-md tracking-wide mt-4">Fetching Data...</h1>
 		</main>
 	);
@@ -155,7 +155,7 @@ const Diff = () => {
 					>
 						<ArrowLeftIcon width="1.1rem" className="mr-1 inline-block" /> Back
 					</button>
-					<div className="mb-8 border border-zinc-200 rounded-md p-4 bg-zinc-100 shadow-sm dark:bg-zinc-800 dark:border-zinc-700">
+					<div className="border border-zinc-200 rounded-md p-4 bg-zinc-100 shadow-sm dark:bg-zinc-800 dark:border-zinc-700">
 						<div className="flex space-x-8">
 							<Toggle
 								enabled={onlyShowDiff}
@@ -173,6 +173,12 @@ const Diff = () => {
 							/>
 						</div>
 					</div>
+					<p className="text-secondary my-1 text-sm">
+						<ExclamationTriangleIcon width="1rem" className="mr-2 inline-block text-amber-500" />
+						There may still be diffs between chains with the same support level. For example, an
+						opcode may behave differently between chains. Be sure to read a chain&apos;s
+						documentation to learn more.
+					</p>
 
 					{/* Show chain names at top */}
 					<div className="grid grid-cols-12 border-zinc-500/10 dark:border-zinc-500/20 sticky top-0 bg-zinc-50 dark:bg-zinc-900 z-10 p-4">
