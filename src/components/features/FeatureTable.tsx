@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { Chain } from '@/../script/index';
-import { classNames } from '@/lib/utils';
+import { chainLogoUrl, classNames } from '@/lib/utils';
 import { ExternalLink } from '@/components/layout/ExternalLink';
 import { toUppercaseHex } from '@/lib/utils';
 import { deployedContracts } from '@/../script/checks/deployed-contracts';
@@ -9,6 +9,8 @@ import { Copyable } from '@/components/ui/Copyable';
 import { evmStackAddresses, type EVMStackResult } from '@/../script/checks/evm-stack-addresses';
 import { knownOpcodes } from '@/../script/checks/opcodes';
 import { getAddress, type Address } from 'viem';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
+import Image from 'next/image';
 
 type Metadata = Chain['metadata'];
 type Opcodes = Chain['opcodes'];
@@ -23,7 +25,7 @@ interface Section {
 
 const tbodyClasses = 'divide-y divide-zinc-200 dark:divide-zinc-600';
 const trClasses = 'bg-secondary group';
-const td1Classes = 'text-primary text-center p-2 text-sm font-medium';
+const td1Classes = 'text-primary text-center p-2 text-sm font-medium sticky z-10 left-0 bg-zinc-50 dark:bg-zinc-900';
 const td2Classes = 'text-primary px-3 py-4 text-center text-sm';
 const supportedClasses = 'bg-green-100/80 dark:bg-green-900/60';
 const unsupportedClasses = 'bg-red-100 dark:bg-red-900/80';
@@ -279,14 +281,14 @@ export const FeatureTable = ({
 	return (
 		<div className={className}>
 			<div className="overflow-hidden rounded-md border border-zinc-300 shadow-sm dark:border-zinc-600 dark:shadow-md">
-				<div className="overflow-y-auto max-h-screen">
+				<div className="overflow-auto max-h-screen">
 					<table className="inline-block w-full">
 						<thead>
 							<tr>
 								<th
 									scope="col"
-									className="text-primary text-center sticky top-0 py-3.5 px-2 text-sm font-semibold bg-white dark:bg-zinc-800"
-								>
+									className="text-primary text-center sticky top-0 left-0 z-20 py-3.5 px-2 text-sm font-semibold bg-white dark:bg-zinc-800"
+									>
 									<div className="group inline-flex rounded-md p-1">
 										{feature === 'metadata' ? 'Property' : featureMap[feature].title.slice(0, -1)}
 									</div>
@@ -296,10 +298,27 @@ export const FeatureTable = ({
 										<th
 											key={chainId}
 											scope="col"
-											className="text-primary sticky top-0 text-center px-3 py-3.5 text-sm font-semibold bg-white dark:bg-zinc-800"
+											className="text-primary sticky top-0 text-center z-10 px-6 py-3.5 text-sm font-semibold bg-white dark:bg-zinc-800"
 										>
-											<div className="group inline-flex rounded-md p-1">
-												{metadata[chainId].name}
+											<div className="group inline-flex items-center rounded-md p-1">
+												<Image
+													src={chainLogoUrl({
+														name: metadata[chainId].name,
+														chainId: Number(chainId),
+													})}
+													alt=""
+													className="h-4 w-4 flex-shrink-0 rounded-full left-2 mr-2"
+													width={24}
+													height={24}
+												/>
+												<div className="mr-2">{metadata[chainId].name}</div>
+												<a
+													href={metadata[chainId].infoURL}
+													target="_blank"
+													rel="noopener noreferrer"
+												>
+													<ArrowTopRightOnSquareIcon width="1rem" className="inline-block" />
+												</a>
 											</div>
 										</th>
 									);

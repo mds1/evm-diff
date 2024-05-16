@@ -12,7 +12,7 @@ const Home = () => {
 								Diff Two Chains
 							</div>
 							<p className="text-secondary mx-auto mt-2 max-w-xl text-center text-lg leading-8">
-								Compare all execution layer differences between chains in a friendly format
+								Compare all execution layer differences between chains in various formats
 							</p>
 							<div className="mx-auto mt-10 flex max-w-md gap-x-4 rounded-lg border border-zinc-200 dark:border-zinc-700">
 								<ChainDiffSelector />
@@ -23,7 +23,7 @@ const Home = () => {
 								Compare Across Chains
 							</div>
 							<p className="text-secondary mx-auto mt-2 max-w-prose text-center text-lg leading-8">
-								Choose a feature or property and check its support across chains.
+								Choose a feature or property and see its support across chains.
 							</p>
 							<div className="mx-auto mt-10 flex max-w-md gap-x-4 rounded-lg border border-zinc-200 dark:border-zinc-700">
 								<FeatureDiffSelector />
