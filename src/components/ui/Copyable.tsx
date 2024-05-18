@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ClipboardDocumentIcon } from '@heroicons/react/24/outline';
-import { classNames, copyToClipboard } from '@/lib/utils';
+import { classNames } from '@/lib/utils';
 import { Tooltip } from './Tooltip';
 
 // When content is a string, `textToCopy` is optional.
@@ -26,6 +26,13 @@ export const Copyable = ({
 	className = '',
 }: ContentStringProps | ContentElementProps) => {
 	const [isShowing, setIsShowing] = useState(false);
+
+	const copyToClipboard = (text: string) => {
+		navigator.clipboard.writeText(text).then(
+			() => {},
+			(err) => console.error('Could not copy text to clipboard: ', err),
+		);
+	};
 
 	const onCopy = (text: string) => {
 		setIsShowing(true);

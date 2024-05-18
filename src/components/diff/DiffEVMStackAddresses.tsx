@@ -1,19 +1,15 @@
-import { type Address, getAddress } from 'viem';
+import { getAddress } from 'viem';
 import { evmStackAddresses, type EVMStackResult } from '@/../script/checks/evm-stack-addresses';
 import type { Chain } from '@/../script/index';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
+import { FormattedAddress } from '@/lib/utils';
 
 type EvmStackResults = Chain['evmStackAddresses'];
 type Props = {
 	base: EvmStackResults;
 	target: EvmStackResults;
 	onlyShowDiff: boolean;
-};
-
-const formatAddress = (addr: Address) => {
-	const a = getAddress(addr);
-	return <code>{`${a.slice(0, 6)}...${a.slice(-4)}`}</code>;
 };
 
 const formatStackHeader = (stack: keyof EvmStackResults) => {
@@ -70,7 +66,7 @@ export const DiffEVMStackAddresses = ({ base, target, onlyShowDiff }: Props) => 
 												<div>{name}</div>
 												<Copyable
 													className="text-secondary text-sm"
-													content={formatAddress(addr)}
+													content={<FormattedAddress addr={addr} />}
 													textToCopy={addr}
 												/>
 											</div>

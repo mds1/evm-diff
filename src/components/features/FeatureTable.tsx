@@ -8,10 +8,11 @@ import { precompiles } from '@/../script/checks/precompiles';
 import { Copyable } from '@/components/ui/Copyable';
 import { evmStackAddresses, type EVMStackResult } from '@/../script/checks/evm-stack-addresses';
 import { knownOpcodes } from '@/../script/checks/opcodes';
-import { getAddress, type Address } from 'viem';
+import { getAddress } from 'viem';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import { BASE_DATA_URL, type Feature } from '@/lib/constants';
+import { FormattedAddress } from '@/lib/utils';
 
 type Metadata = Chain['metadata'];
 type Opcodes = Chain['opcodes'];
@@ -26,12 +27,6 @@ const td1Classes =
 const td2Classes = 'text-primary px-3 py-4 text-center text-sm';
 const supportedClasses = 'bg-green-100/80 dark:bg-green-900/60';
 const unsupportedClasses = 'bg-red-100 dark:bg-red-900/80';
-
-// TODO Dedupe this helper method
-const formatAddress = (addr: Address) => {
-	const a = getAddress(addr);
-	return <code>{`${a.slice(0, 6)}...${a.slice(-4)}`}</code>;
-};
 
 // TODO Dedupe this helper method
 const formatStackHeader = (stack: keyof EvmStackResults) => {
@@ -89,7 +84,7 @@ const DeployedContractsTable = ({
 						<div className="text-left">{contract.name}</div>
 						<Copyable
 							className="text-secondary text-sm"
-							content={formatAddress(contract.address)}
+							content={<FormattedAddress addr={contract.address} />}
 							textToCopy={getAddress(contract.address)}
 						/>
 					</td>
@@ -121,7 +116,7 @@ const PrecompilesTable = ({ featureData }: { featureData: Record<string, Precomp
 						<div className="text-left">{precompile.name}</div>
 						<Copyable
 							className="text-secondary text-sm"
-							content={formatAddress(precompile.address)}
+							content={<FormattedAddress addr={precompile.address} />}
 							textToCopy={getAddress(precompile.address)}
 						/>
 					</td>
@@ -189,7 +184,7 @@ const EvmStackAddressesTable = ({
 								<div className="text-left">{account.name}</div>
 								<Copyable
 									className="text-secondary text-sm"
-									content={formatAddress(account.address)}
+									content={<FormattedAddress addr={account.address} />}
 									textToCopy={getAddress(account.address)}
 								/>
 							</td>

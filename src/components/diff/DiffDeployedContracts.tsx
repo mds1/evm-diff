@@ -1,7 +1,8 @@
-import { type Address, getAddress } from 'viem';
+import { getAddress } from 'viem';
 import type { Chain } from '@/../script/index';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
+import { FormattedAddress } from '@/lib/utils';
 
 type DeployedContract = Chain['deployedContracts'][0];
 type Props = {
@@ -10,7 +11,9 @@ type Props = {
 	onlyShowDiff: boolean;
 };
 
-const formatDeployedContract = (deployedContract: DeployedContract | undefined) => {
+const FormattedDeployedContract = ({
+	deployedContract,
+}: { deployedContract: DeployedContract | undefined }) => {
 	if (!deployedContract) return <p>Not present</p>;
 	const addr = getAddress(deployedContract.address);
 	return (
@@ -18,7 +21,10 @@ const formatDeployedContract = (deployedContract: DeployedContract | undefined) 
 			<div className="grid grid-cols-8 space-y-1">
 				<div className="col-span-2">Address</div>
 				<div className="col-span-6">
-					<Copyable content={formatAddress(addr)} textToCopy={getAddress(addr)} />
+					<Copyable
+						content={<FormattedAddress addr={addr} className="text-sm" />}
+						textToCopy={getAddress(addr)}
+					/>
 				</div>
 
 				<div className="col-span-2">Deployed?</div>
@@ -33,11 +39,6 @@ export const convertToComparableContract = (contract: DeployedContract | undefin
 	const slimmedContract = contract as any; // eslint-disable-line @typescript-eslint/no-explicit-any
 	slimmedContract.codeHash = undefined;
 	return slimmedContract;
-};
-
-const formatAddress = (addr: Address) => {
-	const a = getAddress(addr);
-	return <code className="text-sm">{`${a.slice(0, 6)}...${a.slice(-4)}`}</code>;
 };
 
 export const DiffDeployedContracts = ({ base, target, onlyShowDiff }: Props) => {
@@ -65,8 +66,12 @@ export const DiffDeployedContracts = ({ base, target, onlyShowDiff }: Props) => 
 						className="grid grid-cols-12 items-center border-b border-zinc-500/10 py-2 dark:border-zinc-500/20"
 					>
 						<div className="col-span-2">{name}</div>
-						<div className="col-span-5 pr-4">{formatDeployedContract(baseDeployedContract)}</div>
-						<div className="col-span-5">{formatDeployedContract(targetDeployedContract)}</div>
+						<div className="col-span-5 pr-4">
+							<FormattedDeployedContract deployedContract={baseDeployedContract} />
+						</div>
+						<div className="col-span-5">
+							<FormattedDeployedContract deployedContract={targetDeployedContract} />
+						</div>
 					</div>
 				);
 			})}

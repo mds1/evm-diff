@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
-import { getChainById } from '@/lib/utils';
+import { chainNameFromId } from '@/lib/utils';
 import { SITE_DESCRIPTION } from '@/lib/constants';
 
 export const config = {
@@ -105,13 +105,16 @@ export default async function handler(request: NextRequest) {
 		const target = searchParams.get('target')?.slice(0, 100); // ?target=<target>
 		if (!base || !target) return generateDefaultImage();
 
-		const baseChain = getChainById(Number(base));
-		if (baseChain === undefined) return generateDefaultImage();
+		const baseChainName = chainNameFromId(Number(base));
+		if (baseChainName === undefined) return generateDefaultImage();
 
-		const targetChain = getChainById(Number(target));
-		if (targetChain === undefined) return generateDefaultImage();
+		const targetChainName = chainNameFromId(Number(target));
+		if (targetChainName === undefined) return generateDefaultImage();
 
-		return await generateDiffImage(baseChain, targetChain);
+		return await generateDiffImage(
+			{ chainId: Number(base), name: baseChainName },
+			{ chainId: Number(target), name: targetChainName },
+		);
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	} catch (e: any) {

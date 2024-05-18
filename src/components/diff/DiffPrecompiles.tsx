@@ -1,7 +1,8 @@
-import { type Address, getAddress } from 'viem';
+import { getAddress } from 'viem';
 import type { Chain } from '@/../script/index';
 import { RenderDiff } from '@/components/diff/utils/RenderDiff';
 import { Copyable } from '@/components/ui/Copyable';
+import { FormattedAddress } from '@/lib/utils';
 
 type Precompile = Chain['precompiles'][0];
 type Props = {
@@ -10,15 +11,9 @@ type Props = {
 	onlyShowDiff: boolean;
 };
 
-const formatPrecompile = (precompile: Precompile | undefined) => {
+const FormattedPrecompile = ({ precompile }: { precompile: Precompile | undefined }) => {
 	if (!precompile) return <div>Not present</div>;
 	return <div>{precompile.implemented ? 'Yes' : 'No'}</div>;
-};
-
-// TODO Dedupe this helper method
-const formatAddress = (addr: Address) => {
-	const a = getAddress(addr);
-	return <code>{`${a.slice(0, 6)}...${a.slice(-4)}`}</code>;
 };
 
 export const DiffPrecompiles = ({ base, target, onlyShowDiff }: Props) => {
@@ -48,12 +43,16 @@ export const DiffPrecompiles = ({ base, target, onlyShowDiff }: Props) => {
 							<div>{basePrecompile?.name || targetPrecompile?.name}</div>
 							<Copyable
 								className="text-secondary text-sm"
-								content={formatAddress(addr)}
+								content={<FormattedAddress addr={addr} />}
 								textToCopy={addr}
 							/>
 						</div>
-						<div className="col-span-5 pr-4">{formatPrecompile(basePrecompile)}</div>
-						<div className="col-span-5">{formatPrecompile(targetPrecompile)}</div>
+						<div className="col-span-5 pr-4">
+							<FormattedPrecompile precompile={basePrecompile} />
+						</div>
+						<div className="col-span-5">
+							<FormattedPrecompile precompile={targetPrecompile} />
+						</div>
 					</div>
 				);
 			})}

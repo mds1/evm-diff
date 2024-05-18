@@ -1,11 +1,7 @@
-import { type Address, getAddress } from 'viem';
+import type { Address } from 'viem';
 import { Collapsible } from '@/components/diff/utils/Collapsible';
 import { Copyable } from '@/components/ui/Copyable';
-
-const formatAddress = (addr: Address) => {
-	const a = getAddress(addr);
-	return <code className="text-sm">{`${a.slice(0, 6)}...${a.slice(-4)}`}</code>;
-};
+import { FormattedAddress } from '@/lib/utils';
 
 type StandardContractAbi = {
 	logicAbi: string[];
@@ -68,7 +64,7 @@ export const Abi = ({ contract }: { contract: ContractAbi }) => {
 							Implementation at
 						</div>
 						<Copyable
-							content={formatAddress(contract.logicAddress)}
+							content={<FormattedAddress addr={contract.logicAddress} className="text-sm" />}
 							textToCopy={contract.logicAddress}
 						/>
 					</div>

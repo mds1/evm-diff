@@ -13,7 +13,7 @@ type Props = {
 	onlyShowDiff: boolean;
 };
 
-const formatOpcode = (opcode: Opcode | undefined): JSX.Element => {
+const FormattedOpcode = ({ opcode }: { opcode: Opcode | undefined }): JSX.Element => {
 	return (
 		<div>{opcode?.supported === 'unknown' ? 'Unknown' : opcode?.supported ? 'Yes' : 'No'}</div>
 	);
@@ -46,8 +46,12 @@ export const DiffOpcodes = ({ base, target, onlyShowDiff }: Props): JSX.Element 
 							<Copyable content={knownOpcodes[number].toLocaleUpperCase()} />
 							<Copyable content={toUppercaseHex(number)} className="text-secondary text-sm" />
 						</div>
-						<div className="col-span-5 pr-4">{formatOpcode(baseOpcode)}</div>
-						<div className="col-span-5">{formatOpcode(targetOpcode)}</div>
+						<div className="col-span-5 pr-4">
+							<FormattedOpcode opcode={baseOpcode} />
+						</div>
+						<div className="col-span-5">
+							<FormattedOpcode opcode={targetOpcode} />
+						</div>
 					</div>
 				);
 			})}
