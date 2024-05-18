@@ -30,7 +30,8 @@ bun lint
 bun check
 ```
 
-Or, to fetch chain data:
+To fetch chain data use the below commands.
+It's recommend to have an `INFURA_API_KEY` set in your environment to improve performance.
 
 ```bash
 # Fetch all data for a single chain.
