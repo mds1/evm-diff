@@ -11,6 +11,7 @@ import { knownOpcodes } from '@/../script/checks/opcodes';
 import { getAddress, type Address } from 'viem';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
+import { BASE_DATA_URL } from '@/lib/constants';
 
 type Metadata = Chain['metadata'];
 type Opcodes = Chain['opcodes'];
@@ -238,15 +239,19 @@ export const FeatureTable = ({
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const metadataUrl =
-					'https://raw.githubusercontent.com/mds1/evm-diff/refactor/automated/script/data/feature/metadata.json';
-				const metadataRes = await fetch(metadataUrl);
-				const metadata = await metadataRes.json();
-				setMetadata(metadata);
+				const urls = [
+					`${BASE_DATA_URL}/feature/metadata.json`,
+					`${BASE_DATA_URL}/feature/${feature}.json`,
+				];
 
-				const url = `https://raw.githubusercontent.com/mds1/evm-diff/refactor/automated/script/data/feature/${feature}.json`;
-				const res = await fetch(url);
-				const featureData = await res.json();
+				const [metadata, featureData] = await Promise.all(
+					urls.map(async (url) => {
+						const response = await fetch(url);
+						return response.json();
+					}),
+				);
+
+				setMetadata(metadata);
 				setFeatureData(featureData);
 			} catch (error) {
 				console.error('Error fetching data:', error);

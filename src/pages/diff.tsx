@@ -14,6 +14,7 @@ import { Toggle } from '@/components/ui/Toggle';
 import { chainLogoUrl } from '@/lib/utils';
 import Image from 'next/image';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { BASE_DATA_URL } from '@/lib/constants';
 
 interface Props<T> {
 	base: T;
@@ -78,8 +79,8 @@ const Diff = () => {
 		const fetchData = async () => {
 			try {
 				const urls = [
-					`https://raw.githubusercontent.com/mds1/evm-diff/refactor/automated/script/data/chain/${base}.json`,
-					`https://raw.githubusercontent.com/mds1/evm-diff/refactor/automated/script/data/chain/${target}.json`,
+					`${BASE_DATA_URL}/chain/${base}.json`,
+					`${BASE_DATA_URL}/chain/${target}.json`,
 				];
 
 				const chainData = await Promise.all(
