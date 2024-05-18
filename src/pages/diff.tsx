@@ -14,7 +14,7 @@ import { Toggle } from '@/components/ui/Toggle';
 import { chainLogoUrl } from '@/lib/utils';
 import Image from 'next/image';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import { BASE_DATA_URL } from '@/lib/constants';
+import { BASE_DATA_URL, featureMap } from '@/lib/constants';
 
 interface Props<T> {
 	base: T;
@@ -22,37 +22,14 @@ interface Props<T> {
 	onlyShowDiff: boolean;
 }
 
-interface Section {
-	title: string;
-	infoText?: string;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	component: React.ComponentType<Props<any>>;
-}
-
-const SECTION_MAP: Record<string, Section> = {
-	metadata: { title: 'Metadata', component: DiffMetadata },
-	opcodes: {
-		title: 'Opcodes',
-		component: DiffOpcodes,
-		infoText: 'Whether or not standard opcodes are supported.',
-	},
-	deployedContracts: {
-		title: 'Deployed Contracts',
-		component: DiffDeployedContracts,
-		infoText: 'Whether common utility contracts used by developers and users exist.',
-	},
-	precompiles: {
-		title: 'Precompiles',
-		component: DiffPrecompiles,
-		infoText: 'Whether or not standard precompiles are supported.',
-	},
-	evmStackAddresses: {
-		title: 'EVM Stack Addresses',
-		component: DiffEVMStackAddresses,
-		infoText:
-			'Existence of "stack-specific" accounts on a chain, to determine what kind of chain it is. If an account exists on both chains but shows up in the diff, it indicates the code hash is different. This does not necessarily mean the contract is different.',
-	},
-	// signatureTypes: { title: 'Transaction and Signature Types', component: DiffSignatureTypes },
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const componentMap: Record<string, React.ComponentType<Props<any>>> = {
+	metadata: DiffMetadata,
+	opcodes: DiffOpcodes,
+	deployedContracts: DiffDeployedContracts,
+	precompiles: DiffPrecompiles,
+	evmStackAddresses: DiffEVMStackAddresses,
+	// signatureTypes:  DiffSignatureTypes ,
 };
 
 const Diff = () => {
@@ -134,14 +111,14 @@ const Diff = () => {
 		onlyShowDiff: boolean;
 	}) => {
 		// if (!SECTION_MAP[section]) return <></>;
-		const Component = SECTION_MAP[section].component;
+		const Component = componentMap[section];
 		return <Component {...{ base, target, onlyShowDiff }} />;
 	};
 
 	// We take `baseChain` and `targetChain` as arguments to ensure that they are not `undefined`
 	// and remove the need for `?` and `!` operators.
 	const DiffDiv = ({ baseChain, targetChain }: { baseChain: Chain; targetChain: Chain }) => {
-		const sections = Object.keys(SECTION_MAP);
+		const sections = Object.keys(featureMap);
 		const onBack = (e: React.MouseEvent) => {
 			e.preventDefault();
 			router.push({ pathname: '/' });
@@ -223,6 +200,7 @@ const Diff = () => {
 					{/* Show content */}
 					{showPrettyDiff &&
 						sections.map((section) => {
+							if (featureMap[section].hide) return null;
 							const base = baseChain[section as keyof Chain];
 							const target = targetChain[section as keyof Chain];
 							return (
@@ -230,12 +208,12 @@ const Diff = () => {
 									<div className="sticky top-12 bg-zinc-100 dark:bg-zinc-800 z-10 rounded-t-lg border border-b-0 border-zinc-200 dark:border-zinc-700">
 										<div className="px-4 py-2">
 											<Copyable
-												content={SECTION_MAP[section].title || section}
+												content={featureMap[section].title || section}
 												textToCopy={`${location.href.replace(location.hash, '')}#${section}`}
 												Icon={LinkIcon}
 												className="group relative flex w-max items-center text-xl font-bold leading-8 tracking-wide text-zinc-900 dark:text-zinc-100"
 											/>
-											<div className="text-secondary text-sm">{SECTION_MAP[section].infoText}</div>
+											<div className="text-secondary text-sm">{featureMap[section].infoText}</div>
 										</div>
 									</div>
 									<div className="rounded-b-lg border border-t-1 border-zinc-200 dark:border-zinc-700 px-4">

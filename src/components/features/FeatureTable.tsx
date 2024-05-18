@@ -11,18 +11,13 @@ import { knownOpcodes } from '@/../script/checks/opcodes';
 import { getAddress, type Address } from 'viem';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
-import { BASE_DATA_URL } from '@/lib/constants';
+import { BASE_DATA_URL, type Feature } from '@/lib/constants';
 
 type Metadata = Chain['metadata'];
 type Opcodes = Chain['opcodes'];
 type DeployedContracts = Chain['deployedContracts'];
 type Precompiles = Chain['precompiles'];
 type EvmStackResults = Chain['evmStackAddresses'];
-
-interface Section {
-	title: string;
-	infoText?: string;
-}
 
 const tbodyClasses = 'divide-y divide-zinc-200 dark:divide-zinc-600';
 const trClasses = 'bg-secondary group';
@@ -225,7 +220,7 @@ export const FeatureTable = ({
 	feature,
 	featureMap,
 	className,
-}: { feature: string; featureMap: Record<string, Section>; className?: string }) => {
+}: { feature: string; featureMap: Record<string, Feature>; className?: string }) => {
 	const [metadata, setMetadata] = useState<Record<string, Metadata> | null>(null);
 	const [featureData, setFeatureData] = useState<
 		| Record<string, Metadata>

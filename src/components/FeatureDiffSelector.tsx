@@ -2,42 +2,19 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { BaseCombobox } from '@/components/ui/BaseCombobox';
 import features from '@/lib/features.json';
-
-interface Section {
-	title: string;
-	infoText?: string;
-}
-
-const featureMap: Record<string, Section> = {
-	metadata: { title: 'Metadata' },
-	opcodes: {
-		title: 'Opcodes',
-		infoText: 'Whether or not standard opcodes are supported.',
-	},
-	deployedContracts: {
-		title: 'Deployed Contracts',
-		infoText: 'Whether common utility contracts used by developers and users exist.',
-	},
-	precompiles: {
-		title: 'Precompiles',
-		infoText: 'Whether or not standard precompiles are supported.',
-	},
-	evmStackAddresses: {
-		title: 'EVM Stack Addresses',
-		infoText:
-			'Existence of "stack-specific" accounts on a chain, to determine what kind of chain it is. If an account exists on both chains but shows up in the diff, it indicates the code hash is different. This does not necessarily mean the contract is different.',
-	},
-};
+import { featureMap } from '@/lib/constants';
 
 export const FeatureDiffSelector = () => {
 	// --- URL Parsing ---
 	const router = useRouter();
 
 	// --- Prepare options ---
-	const options = features.map(({ feature }) => ({
-		key: feature,
-		name: featureMap[feature as keyof typeof featureMap].title,
-	}));
+	const options = features
+		.filter(({ feature }) => !featureMap[feature as keyof typeof featureMap].hide)
+		.map(({ feature }) => ({
+			key: feature,
+			name: featureMap[feature as keyof typeof featureMap].title,
+		}));
 
 	// --- Form handling ---
 	// Set PUSH0 as the default.

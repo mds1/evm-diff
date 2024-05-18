@@ -3,32 +3,7 @@ import { ArrowLeftIcon, ExclamationTriangleIcon } from '@heroicons/react/20/soli
 import { FeatureTable } from '@/components/features/FeatureTable';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { FeatureDiffSelector } from '@/components/FeatureDiffSelector';
-
-interface Section {
-	title: string;
-	infoText?: string;
-}
-
-const featureMap: Record<string, Section> = {
-	metadata: { title: 'Metadata' },
-	opcodes: {
-		title: 'Opcodes',
-		infoText: 'Whether or not standard opcodes are supported.',
-	},
-	deployedContracts: {
-		title: 'Deployed Contracts',
-		infoText: 'Whether common utility contracts used by developers and users exist.',
-	},
-	precompiles: {
-		title: 'Precompiles',
-		infoText: 'Whether or not standard precompiles are supported.',
-	},
-	evmStackAddresses: {
-		title: 'EVM Stack Addresses',
-		infoText:
-			'Existence of "stack-specific" accounts on a chain, to determine what kind of chain it is. If an account exists on both chains but shows up in the diff, it indicates the code hash is different. This does not necessarily mean the contract is different.',
-	},
-};
+import { featureMap } from '@/lib/constants';
 
 const LoadingDiv = () => (
 	<div className="text-center">
