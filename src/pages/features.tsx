@@ -39,7 +39,7 @@ const Features = () => {
 	return (
 		<main>
 			<h2 className="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-zinc-1000 dark:text-zinc-0 sm:text-4xl">
-				Comparison of {featureMap[feature as keyof typeof featureMap].title}
+				{featureMap[feature as keyof typeof featureMap].title} Comparison
 			</h2>
 
 			<div className="flex flex-col items-center">

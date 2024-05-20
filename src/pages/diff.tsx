@@ -49,7 +49,11 @@ const Diff = () => {
 	const [showPrettyDiff, setShowPrettyDiff] = useState(true);
 
 	useEffect(() => {
-		if (!base || !target) return;
+		if (!base || !target) {
+			setLoading(false);
+			return;
+		}
+
 		if (onlyShowDiffParam !== undefined) setOnlyShowDiff(onlyShowDiffParam === 'true');
 		if (showPrettyDiffParam !== undefined) setShowPrettyDiff(showPrettyDiffParam === 'true');
 

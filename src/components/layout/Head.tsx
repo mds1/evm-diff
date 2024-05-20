@@ -1,6 +1,7 @@
 import NextHead from 'next/head';
 import { type NextRouter, useRouter } from 'next/router';
 import { chainNameFromId } from '@/lib/utils';
+import { featureMap } from '@/lib/constants';
 import {
 	COMPANY_URL,
 	OG_ENDPOINT,
@@ -22,10 +23,19 @@ const getRouteData = (router: NextRouter) => {
 		const targetTitle = chainNameFromId(Number(target));
 		if (!baseTitle || !targetTitle) return defaultRouteData;
 
-		const title = `${baseTitle} vs ${targetTitle} | ${SITE_NAME}`;
+		const title = `${baseTitle} vs. ${targetTitle} | ${SITE_NAME}`;
 		const imageUrl = `?base=${base}&target=${target}`;
 		return { title, imageUrl };
 	}
+
+	if (path === '/features') {
+		const { feature } = router.query;
+		if (!feature) return defaultRouteData;
+
+		const title = `${featureMap[feature as string].title} Comparison | ${SITE_NAME}`;
+		return { title, imageUrl: '' };
+	}
+
 	return defaultRouteData;
 };
 
