@@ -33,7 +33,7 @@ jobs:
         id: existing_issue
         run: |
           issue_title="Chain Data Updated"
-          issue_search=$(gh issue list --state open --label "data update" --limit 1 --json title --jq '.[].title')
+          issue_search=$(gh issue list --state open --label "data mismatch" --limit 1 --json title --jq '.[].title')
           if [[ "$issue_search" == "$issue_title" ]]; then
             echo "::set-output name=exists::true"
           else
@@ -50,6 +50,6 @@ jobs:
 
           Triggered by GitHub Actions run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
-          gh issue create --title "$title" --body "$body" --label "data update"
+          gh issue create --title "$title" --body "$body" --label "data mismatch"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
