@@ -1,6 +1,7 @@
 name: Fetch Chain Data
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 * * * *'
 
