@@ -45,5 +45,5 @@ jobs:
         run: bun prepare-chain-data
 
       # When this fails, run `bun prepare-chain-data` locally and commit the changes
-      - name: Ensure there was no diff
+      - name: Ensure no diff
         run: git diff --exit-code
