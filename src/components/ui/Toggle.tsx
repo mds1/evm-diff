@@ -1,34 +1,70 @@
-import { Switch } from '@headlessui/react';
+import { Tab } from '@headlessui/react';
 import { classNames } from '@/lib/utils';
+import { useRouter } from 'next/router';
 
 type Props = {
-  enabled: boolean;
-  setEnabled: (enabled: boolean) => void;
-  label: string;
+	enabled: boolean;
+	setEnabled: (enabled: boolean) => void;
+	enabledText: string;
+	disabledText: string;
+	queryParamName?: string;
 };
 
-export const Toggle = ({ enabled, setEnabled, label }: Props) => {
-  return (
-    <Switch.Group as='div' className='flex items-center'>
-      <Switch
-        checked={enabled}
-        onChange={setEnabled}
-        className={classNames(
-          enabled ? 'bg-green-600' : 'bg-primary',
-          'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out'
-        )}
-      >
-        <span
-          aria-hidden='true'
-          className={classNames(
-            enabled ? 'translate-x-5' : 'translate-x-0',
-            'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-zinc-0 shadow ring-0 transition duration-200 ease-in-out'
-          )}
-        />
-      </Switch>
-      <Switch.Label as='span' className='ml-3 text-sm'>
-        <span className='text-secondary'>{label}</span>
-      </Switch.Label>
-    </Switch.Group>
-  );
+export const Toggle = ({
+	enabled,
+	setEnabled,
+	enabledText,
+	disabledText,
+	queryParamName,
+}: Props) => {
+	const router = useRouter();
+
+	const setQueryParam = (newValue: boolean) => {
+		if (!queryParamName) return;
+
+		const currentQueryParams = router.query;
+		const isParamPresent = Object.prototype.hasOwnProperty.call(currentQueryParams, queryParamName);
+		const newQueryParams = { ...currentQueryParams, [queryParamName]: newValue.toString() };
+
+		if (isParamPresent && currentQueryParams[queryParamName] === newValue.toString()) return;
+		router.replace({ pathname: router.pathname, query: newQueryParams });
+	};
+
+	const onChange = (index: number) => {
+		setEnabled(index === 0);
+		setQueryParam(index === 0);
+	};
+
+	return (
+		<div className="flex items-center">
+			<Tab.Group selectedIndex={enabled ? 0 : 1} onChange={(index) => onChange(index)}>
+				<Tab.List className="flex space-x-1 rounded-md bg-zinc-100 p-1 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-700">
+					<Tab
+						className={({ selected }) =>
+							classNames(
+								selected
+									? 'bg-zinc-50 text-zinc-900 shadow dark:bg-zinc-900 dark:text-zinc-100'
+									: 'text-zinc-500 hover:bg-zinc-50/[0.12] hover:text-zinc-600 dark:text-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-zinc-300',
+								'rounded-md px-3 py-1.5 text-sm font-medium transition-colors duration-200 ease-in-out',
+							)
+						}
+					>
+						{enabledText}
+					</Tab>
+					<Tab
+						className={({ selected }) =>
+							classNames(
+								selected
+									? 'bg-zinc-50 text-zinc-900 shadow dark:bg-zinc-900 dark:text-zinc-100'
+									: 'text-zinc-500 hover:bg-zinc-50/[0.12] hover:text-zinc-600 dark:text-zinc-500 dark:hover:bg-zinc-700 dark:hover:text-zinc-300',
+								'rounded-md px-3 py-1.5 text-sm font-medium transition-colors duration-200 ease-in-out',
+							)
+						}
+					>
+						{disabledText}
+					</Tab>
+				</Tab.List>
+			</Tab.Group>
+		</div>
+	);
 };

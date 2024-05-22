@@ -1,0 +1,33 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
+	"files": {
+		"ignore": ["archive/**/*", ".next/**/*"]
+	},
+	"organizeImports": {
+		"enabled": true
+	},
+	"formatter": {
+		"lineWidth": 100
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "single"
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"suspicious": {
+				"noExplicitAny": "off", // Checked by eslint.
+				"noArrayIndexKey": "off" // Sometimes required based on array data.
+			},
+			"a11y": {
+				"all": false // This causes a lot of changes, will enable it later.
+			},
+			"complexity": {
+				"useSimpleNumberKeys": "off"
+			}
+		}
+	}
+}

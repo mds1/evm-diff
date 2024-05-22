@@ -10,43 +10,40 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: latest
-
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18.x
-          cache: 'pnpm'
+      - uses: oven-sh/setup-bun@v1
 
       - name: Install dependencies
-        run: pnpm install
+        run: bun install
 
-      # This runs `next lint` before building.
       - name: Build
-        run: pnpm build
+        run: bun run build
 
-  fmt:
+  lint:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: latest
-
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18.x
-          cache: 'pnpm'
+      - uses: oven-sh/setup-bun@v1
 
       - name: Install dependencies
-        run: pnpm install
+        run: bun install
 
-      - name: Check formatting
-        run: pnpm fmt:check
+      - name: Check linting and formatting
+        run: bun check
+
+  chain-list:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Generate list of chains for the UI
+        run: bun prepare-chain-data
+
+      # When this fails, run `bun prepare-chain-data` locally and commit the changes
+      - name: Ensure no diff
+        run: git diff --exit-code script/data

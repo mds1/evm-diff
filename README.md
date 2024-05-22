@@ -2,9 +2,6 @@
 
 Diff EVM-compatible chains in a friendly format.
 
-> [!NOTE]
-> This site is under active development. Check out the [issues](https://github.com/mds1/evm-diff/issues) if you'd like to contribute.
-
 ## Overview
 
 There are lots of EVM-compatible chains, and they can differ in various, subtle ways.

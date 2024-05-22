@@ -1,0 +1,511 @@
+{
+	"metadata": {
+		"name": "Ethereum Mainnet",
+		"shortName": "eth",
+		"chainId": 1,
+		"networkId": 1,
+		"infoURL": "https://ethereum.org",
+		"nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
+		"chain": "ETH",
+		"ens": { "registry": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e" },
+		"explorers": [
+			{ "name": "etherscan", "url": "https://etherscan.io", "standard": "EIP3091" },
+			{
+				"name": "blockscout",
+				"url": "https://eth.blockscout.com",
+				"icon": "blockscout",
+				"standard": "EIP3091"
+			},
+			{
+				"name": "dexguru",
+				"url": "https://ethereum.dex.guru",
+				"icon": "dexguru",
+				"standard": "EIP3091"
+			}
+		],
+		"faucets": [],
+		"features": [{ "name": "EIP155" }, { "name": "EIP1559" }],
+		"icon": "ethereum",
+		"rpc": [
+			"https://mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"wss://mainnet.infura.io/ws/v3/${INFURA_API_KEY}",
+			"https://api.mycryptoapi.com/eth",
+			"https://cloudflare-eth.com",
+			"https://ethereum-rpc.publicnode.com",
+			"wss://ethereum-rpc.publicnode.com",
+			"https://mainnet.gateway.tenderly.co",
+			"wss://mainnet.gateway.tenderly.co",
+			"https://rpc.blocknative.com/boost",
+			"https://rpc.flashbots.net",
+			"https://rpc.flashbots.net/fast",
+			"https://rpc.mevblocker.io",
+			"https://rpc.mevblocker.io/fast",
+			"https://rpc.mevblocker.io/noreverts",
+			"https://rpc.mevblocker.io/fullprivacy",
+			"https://eth.drpc.org",
+			"wss://eth.drpc.org"
+		],
+		"slip44": 60
+	},
+	"opcodes": [
+		{ "number": "0x00", "name": "STOP", "supported": true },
+		{ "number": "0x01", "name": "ADD", "supported": true },
+		{ "number": "0x02", "name": "MUL", "supported": true },
+		{ "number": "0x03", "name": "SUB", "supported": true },
+		{ "number": "0x04", "name": "DIV", "supported": true },
+		{ "number": "0x05", "name": "SDIV", "supported": true },
+		{ "number": "0x06", "name": "MOD", "supported": true },
+		{ "number": "0x07", "name": "SMOD", "supported": true },
+		{ "number": "0x08", "name": "ADDMOD", "supported": true },
+		{ "number": "0x09", "name": "MULMOD", "supported": true },
+		{ "number": "0x0a", "name": "EXP", "supported": true },
+		{ "number": "0x0b", "name": "SIGNEXTEND", "supported": true },
+		{ "number": "0x10", "name": "LT", "supported": true },
+		{ "number": "0x11", "name": "GT", "supported": true },
+		{ "number": "0x12", "name": "SLT", "supported": true },
+		{ "number": "0x13", "name": "SGT", "supported": true },
+		{ "number": "0x14", "name": "EQ", "supported": true },
+		{ "number": "0x15", "name": "ISZERO", "supported": true },
+		{ "number": "0x16", "name": "AND", "supported": true },
+		{ "number": "0x17", "name": "OR", "supported": true },
+		{ "number": "0x18", "name": "XOR", "supported": true },
+		{ "number": "0x19", "name": "NOT", "supported": true },
+		{ "number": "0x1a", "name": "BYTE", "supported": true },
+		{ "number": "0x1b", "name": "SHL", "supported": true },
+		{ "number": "0x1c", "name": "SHR", "supported": true },
+		{ "number": "0x1d", "name": "SAR", "supported": true },
+		{ "number": "0x20", "name": "KECCAK256", "supported": true },
+		{ "number": "0x30", "name": "ADDRESS", "supported": true },
+		{ "number": "0x31", "name": "BALANCE", "supported": true },
+		{ "number": "0x32", "name": "ORIGIN", "supported": true },
+		{ "number": "0x33", "name": "CALLER", "supported": true },
+		{ "number": "0x34", "name": "CALLVALUE", "supported": true },
+		{ "number": "0x35", "name": "CALLDATALOAD", "supported": true },
+		{ "number": "0x36", "name": "CALLDATASIZE", "supported": true },
+		{ "number": "0x37", "name": "CALLDATACOPY", "supported": true },
+		{ "number": "0x38", "name": "CODESIZE", "supported": true },
+		{ "number": "0x39", "name": "CODECOPY", "supported": true },
+		{ "number": "0x3a", "name": "GASPRICE", "supported": true },
+		{ "number": "0x3b", "name": "EXTCODESIZE", "supported": true },
+		{ "number": "0x3c", "name": "EXTCODECOPY", "supported": true },
+		{ "number": "0x3d", "name": "RETURNDATASIZE", "supported": true },
+		{ "number": "0x3e", "name": "RETURNDATACOPY", "supported": true },
+		{ "number": "0x3f", "name": "EXTCODEHASH", "supported": true },
+		{ "number": "0x40", "name": "BLOCKHASH", "supported": true },
+		{ "number": "0x41", "name": "COINBASE", "supported": true },
+		{ "number": "0x42", "name": "TIMESTAMP", "supported": true },
+		{ "number": "0x43", "name": "NUMBER", "supported": true },
+		{ "number": "0x44", "name": "PREVRANDAO", "supported": true },
+		{ "number": "0x45", "name": "GASLIMIT", "supported": true },
+		{ "number": "0x46", "name": "CHAINID", "supported": true },
+		{ "number": "0x47", "name": "SELFBALANCE", "supported": true },
+		{ "number": "0x48", "name": "BASEFEE", "supported": true },
+		{ "number": "0x49", "name": "BLOBHASH", "supported": true },
+		{ "number": "0x4a", "name": "BLOBBASEFEE", "supported": true },
+		{ "number": "0x50", "name": "POP", "supported": true },
+		{ "number": "0x51", "name": "MLOAD", "supported": true },
+		{ "number": "0x52", "name": "MSTORE", "supported": true },
+		{ "number": "0x53", "name": "MSTORE8", "supported": true },
+		{ "number": "0x54", "name": "SLOAD", "supported": true },
+		{ "number": "0x55", "name": "SSTORE", "supported": true },
+		{ "number": "0x56", "name": "JUMP", "supported": true },
+		{ "number": "0x57", "name": "JUMPI", "supported": true },
+		{ "number": "0x58", "name": "PC", "supported": true },
+		{ "number": "0x59", "name": "MSIZE", "supported": true },
+		{ "number": "0x5a", "name": "GAS", "supported": true },
+		{ "number": "0x5b", "name": "JUMPDEST", "supported": true },
+		{ "number": "0x5c", "name": "TLOAD", "supported": true },
+		{ "number": "0x5d", "name": "TSTORE", "supported": true },
+		{ "number": "0x5e", "name": "MCOPY", "supported": true },
+		{ "number": "0x5f", "name": "PUSH0", "supported": true },
+		{ "number": "0x60", "name": "PUSH1", "supported": true },
+		{ "number": "0x61", "name": "PUSH2", "supported": true },
+		{ "number": "0x62", "name": "PUSH3", "supported": true },
+		{ "number": "0x63", "name": "PUSH4", "supported": true },
+		{ "number": "0x64", "name": "PUSH5", "supported": true },
+		{ "number": "0x65", "name": "PUSH6", "supported": true },
+		{ "number": "0x66", "name": "PUSH7", "supported": true },
+		{ "number": "0x67", "name": "PUSH8", "supported": true },
+		{ "number": "0x68", "name": "PUSH9", "supported": true },
+		{ "number": "0x69", "name": "PUSH10", "supported": true },
+		{ "number": "0x6a", "name": "PUSH11", "supported": true },
+		{ "number": "0x6b", "name": "PUSH12", "supported": true },
+		{ "number": "0x6c", "name": "PUSH13", "supported": true },
+		{ "number": "0x6d", "name": "PUSH14", "supported": true },
+		{ "number": "0x6e", "name": "PUSH15", "supported": true },
+		{ "number": "0x6f", "name": "PUSH16", "supported": true },
+		{ "number": "0x70", "name": "PUSH17", "supported": true },
+		{ "number": "0x71", "name": "PUSH18", "supported": true },
+		{ "number": "0x72", "name": "PUSH19", "supported": true },
+		{ "number": "0x73", "name": "PUSH20", "supported": true },
+		{ "number": "0x74", "name": "PUSH21", "supported": true },
+		{ "number": "0x75", "name": "PUSH22", "supported": true },
+		{ "number": "0x76", "name": "PUSH23", "supported": true },
+		{ "number": "0x77", "name": "PUSH24", "supported": true },
+		{ "number": "0x78", "name": "PUSH25", "supported": true },
+		{ "number": "0x79", "name": "PUSH26", "supported": true },
+		{ "number": "0x7a", "name": "PUSH27", "supported": true },
+		{ "number": "0x7b", "name": "PUSH28", "supported": true },
+		{ "number": "0x7c", "name": "PUSH29", "supported": true },
+		{ "number": "0x7d", "name": "PUSH30", "supported": true },
+		{ "number": "0x7e", "name": "PUSH31", "supported": true },
+		{ "number": "0x7f", "name": "PUSH32", "supported": true },
+		{ "number": "0x80", "name": "DUP1", "supported": true },
+		{ "number": "0x81", "name": "DUP2", "supported": true },
+		{ "number": "0x82", "name": "DUP3", "supported": true },
+		{ "number": "0x83", "name": "DUP4", "supported": true },
+		{ "number": "0x84", "name": "DUP5", "supported": true },
+		{ "number": "0x85", "name": "DUP6", "supported": true },
+		{ "number": "0x86", "name": "DUP7", "supported": true },
+		{ "number": "0x87", "name": "DUP8", "supported": true },
+		{ "number": "0x88", "name": "DUP9", "supported": true },
+		{ "number": "0x89", "name": "DUP10", "supported": true },
+		{ "number": "0x8a", "name": "DUP11", "supported": true },
+		{ "number": "0x8b", "name": "DUP12", "supported": true },
+		{ "number": "0x8c", "name": "DUP13", "supported": true },
+		{ "number": "0x8d", "name": "DUP14", "supported": true },
+		{ "number": "0x8e", "name": "DUP15", "supported": true },
+		{ "number": "0x8f", "name": "DUP16", "supported": true },
+		{ "number": "0x90", "name": "SWAP1", "supported": true },
+		{ "number": "0x91", "name": "SWAP2", "supported": true },
+		{ "number": "0x92", "name": "SWAP3", "supported": true },
+		{ "number": "0x93", "name": "SWAP4", "supported": true },
+		{ "number": "0x94", "name": "SWAP5", "supported": true },
+		{ "number": "0x95", "name": "SWAP6", "supported": true },
+		{ "number": "0x96", "name": "SWAP7", "supported": true },
+		{ "number": "0x97", "name": "SWAP8", "supported": true },
+		{ "number": "0x98", "name": "SWAP9", "supported": true },
+		{ "number": "0x99", "name": "SWAP10", "supported": true },
+		{ "number": "0x9a", "name": "SWAP11", "supported": true },
+		{ "number": "0x9b", "name": "SWAP12", "supported": true },
+		{ "number": "0x9c", "name": "SWAP13", "supported": true },
+		{ "number": "0x9d", "name": "SWAP14", "supported": true },
+		{ "number": "0x9e", "name": "SWAP15", "supported": true },
+		{ "number": "0x9f", "name": "SWAP16", "supported": true },
+		{ "number": "0xa0", "name": "LOG0", "supported": true },
+		{ "number": "0xa1", "name": "LOG1", "supported": true },
+		{ "number": "0xa2", "name": "LOG2", "supported": true },
+		{ "number": "0xa3", "name": "LOG3", "supported": true },
+		{ "number": "0xa4", "name": "LOG4", "supported": true },
+		{ "number": "0xf0", "name": "CREATE", "supported": true },
+		{ "number": "0xf1", "name": "CALL", "supported": true },
+		{ "number": "0xf2", "name": "CALLCODE", "supported": true },
+		{ "number": "0xf3", "name": "RETURN", "supported": true },
+		{ "number": "0xf4", "name": "DELEGATECALL", "supported": true },
+		{ "number": "0xf5", "name": "CREATE2", "supported": true },
+		{ "number": "0xfa", "name": "STATICCALL", "supported": true },
+		{ "number": "0xfd", "name": "REVERT", "supported": true },
+		{ "number": "0xfe", "name": "INVALID", "supported": true },
+		{ "number": "0xff", "name": "SELFDESTRUCT", "supported": true }
+	],
+	"deployedContracts": [
+		{
+			"name": "CreateX",
+			"address": "0xba5Ed099633D3B313e4D5F7bdc1305d3c28ba5Ed",
+			"codeHash": "0xbd8a7ea8cfca7b4e5f5041d7d4b17bc317c5ce42cfbc42066a00cf26b43eb53f",
+			"hasCode": true
+		},
+		{
+			"name": "Arachnid's Deterministic Deployment Proxy",
+			"address": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+			"codeHash": "0x2fa86add0aed31f33a762c9d88e807c475bd51d0f52bd0955754b2608f7e4989",
+			"hasCode": true
+		},
+		{
+			"name": "Create2Deployer",
+			"address": "0x13b0D85CcB8bf860b6b79AF3029fCA081AE9beF2",
+			"codeHash": "0x2a300e3fee0eee59e0a1b184d1531c4bea54b843b28426f227d12145e8918663",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Entry Point v0.6",
+			"address": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
+			"codeHash": "0xc93c806e738300b5357ecdc2e971d6438d34d8e4e17b99b758b1f9cac91c8e70",
+			"hasCode": true
+		},
+		{
+			"name": "ERC-4337 Simple Account Factory v0.6",
+			"address": "0x9406Cc6185a346906296840746125a0E44976454",
+			"codeHash": "0xe7ca0f7aa741031b27df24056c8000e7df56cf8a4ff434e28b1bbe1aa6eaa515",
+			"hasCode": true
+		},
+		{
+			"name": "Multicall3",
+			"address": "0xcA11bde05977b3631167028862bE2a173976CA11",
+			"codeHash": "0xd5c15df687b16f2ff992fc8d767b4216323184a2bbc6ee2f9c398c318e770891",
+			"hasCode": true
+		},
+		{
+			"name": "Permit2",
+			"address": "0x000000000022D473030F116dDEE9F6B43aC78BA3",
+			"codeHash": "0xc67d1657868aa5146eaf24fb879fb1fdec3d2d493b3683a61c9c2f4fb2851131",
+			"hasCode": true
+		}
+	],
+	"precompiles": [
+		{
+			"name": "ecRecover",
+			"address": "0x0000000000000000000000000000000000000001",
+			"implemented": true
+		},
+		{
+			"name": "SHA2-256",
+			"address": "0x0000000000000000000000000000000000000002",
+			"implemented": true
+		},
+		{
+			"name": "RIPEMD-160",
+			"address": "0x0000000000000000000000000000000000000003",
+			"implemented": true
+		},
+		{
+			"name": "identity",
+			"address": "0x0000000000000000000000000000000000000004",
+			"implemented": true
+		},
+		{
+			"name": "modexp",
+			"address": "0x0000000000000000000000000000000000000005",
+			"implemented": true
+		},
+		{
+			"name": "ecAdd",
+			"address": "0x0000000000000000000000000000000000000006",
+			"implemented": true
+		},
+		{
+			"name": "ecMul",
+			"address": "0x0000000000000000000000000000000000000007",
+			"implemented": true
+		},
+		{
+			"name": "ecPairing",
+			"address": "0x0000000000000000000000000000000000000008",
+			"implemented": true
+		},
+		{
+			"name": "blake2f",
+			"address": "0x0000000000000000000000000000000000000009",
+			"implemented": true
+		},
+		{
+			"name": "point evaluation",
+			"address": "0x000000000000000000000000000000000000000a",
+			"implemented": true
+		},
+		{
+			"name": "secp256r1",
+			"address": "0x0000000000000000000000000000000000000100",
+			"implemented": false
+		}
+	],
+	"evmStackAddresses": {
+		"OP": [
+			{
+				"name": "LegacyMessagePasser",
+				"address": "0x4200000000000000000000000000000000000000",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "DeployerWhitelist",
+				"address": "0x4200000000000000000000000000000000000002",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "LegacyERC20ETH",
+				"address": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "WETH9",
+				"address": "0x4200000000000000000000000000000000000006",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L2CrossDomainMessenger",
+				"address": "0x4200000000000000000000000000000000000007",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L2StandardBridge",
+				"address": "0x4200000000000000000000000000000000000010",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "SequencerFeeVault",
+				"address": "0x4200000000000000000000000000000000000011",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "OptimismMintableERC20Factory",
+				"address": "0x4200000000000000000000000000000000000012",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L1BlockNumber",
+				"address": "0x4200000000000000000000000000000000000013",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "GasPriceOracle",
+				"address": "0x420000000000000000000000000000000000000F",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "GovernanceToken",
+				"address": "0x4200000000000000000000000000000000000042",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L1Block",
+				"address": "0x4200000000000000000000000000000000000015",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L2ToL1MessagePasser",
+				"address": "0x4200000000000000000000000000000000000016",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L2ERC721Bridge",
+				"address": "0x4200000000000000000000000000000000000014",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "OptimismMintableERC721Factory",
+				"address": "0x4200000000000000000000000000000000000017",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ProxyAdmin",
+				"address": "0x4200000000000000000000000000000000000018",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "BaseFeeVault",
+				"address": "0x4200000000000000000000000000000000000019",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L1FeeVault",
+				"address": "0x420000000000000000000000000000000000001a",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			}
+		],
+		"Orbit": [
+			{
+				"name": "ArbAddressTable",
+				"address": "0x0000000000000000000000000000000000000066",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbAggregator",
+				"address": "0x000000000000000000000000000000000000006D",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbFunctionTable",
+				"address": "0x0000000000000000000000000000000000000068",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbGasInfo",
+				"address": "0x000000000000000000000000000000000000006C",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbInfo",
+				"address": "0x0000000000000000000000000000000000000065",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbOwner",
+				"address": "0x0000000000000000000000000000000000000070",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbOwnerPublic",
+				"address": "0x000000000000000000000000000000000000006b",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbRetryableTx",
+				"address": "0x000000000000000000000000000000000000006E",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbStatistics",
+				"address": "0x000000000000000000000000000000000000006F",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbSys",
+				"address": "0x0000000000000000000000000000000000000064",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "NodeInterface",
+				"address": "0x00000000000000000000000000000000000000C8",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			}
+		]
+	}
+}

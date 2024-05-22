@@ -1,107 +1,330 @@
-import { useState } from 'react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
-import { chains } from '@/chains';
+import { useState, useEffect } from 'react';
+import type { Chain } from '@/../script/index';
+import { chainLogoUrl, classNames } from '@/lib/utils';
+import { ExternalLink } from '@/components/layout/ExternalLink';
+import { toUppercaseHex } from '@/lib/utils';
+import { deployedContracts } from '@/../script/checks/deployed-contracts';
+import { precompiles } from '@/../script/checks/precompiles';
+import { Copyable } from '@/components/ui/Copyable';
+import { evmStackAddresses, type EVMStackResult } from '@/../script/checks/evm-stack-addresses';
+import { knownOpcodes } from '@/../script/checks/opcodes';
+import { getAddress } from 'viem';
+import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
+import Image from 'next/image';
+import { BASE_DATA_URL, type Feature } from '@/lib/constants';
+import { FormattedAddress } from '@/lib/utils';
+
+type Metadata = Chain['metadata'];
+type Opcodes = Chain['opcodes'];
+type DeployedContracts = Chain['deployedContracts'];
+type Precompiles = Chain['precompiles'];
+type EvmStackResults = Chain['evmStackAddresses'];
+
+const tbodyClasses = 'divide-y divide-zinc-200 dark:divide-zinc-600';
+const trClasses = 'bg-secondary group';
+const td1Classes =
+	'text-primary text-center p-2 text-sm font-medium sticky z-10 left-0 bg-zinc-50 dark:bg-zinc-900';
+const td2Classes = 'text-primary px-3 py-4 text-center text-sm';
+const supportedClasses = 'bg-green-100/80 dark:bg-green-900/60';
+const unsupportedClasses = 'bg-red-100 dark:bg-red-900/80';
+
+// TODO Dedupe this helper method
+const formatStackHeader = (stack: keyof EvmStackResults) => {
+	if (stack === 'OP') return 'OP Stack';
+	if (stack === 'Orbit') return 'Orbit';
+	return stack;
+};
+
+const MetadataTable = ({ featureData }: { featureData: Record<string, Metadata> }) => {
+	return (
+		<tbody className={tbodyClasses}>
+			{/* Chain ID */}
+			<tr className={trClasses}>
+				<td className={td1Classes}>Chain ID</td>
+				{Object.keys(featureData).map((chainId) => (
+					<td key={chainId} className={td2Classes}>
+						{featureData[chainId].chainId}
+					</td>
+				))}
+			</tr>
+			{/* Native Currency */}
+			<tr className={trClasses}>
+				<td className={td1Classes}>Native Currency</td>
+				{Object.keys(featureData).map((chainId) => (
+					<td key={chainId} className={td2Classes}>
+						{`${featureData[chainId].nativeCurrency.name} (${featureData[chainId].nativeCurrency.symbol})`}
+					</td>
+				))}
+			</tr>
+			{/* Block Explorers */}
+			<tr className={trClasses}>
+				<td className={td1Classes}>Block Explorers</td>
+				{Object.keys(featureData).map((chainId) => (
+					<td key={chainId} className={td2Classes}>
+						{featureData[chainId].explorers?.map((explorer) => (
+							<div key={explorer.name}>
+								<ExternalLink href={explorer.url} text={explorer.url} />
+							</div>
+						))}
+					</td>
+				))}
+			</tr>
+		</tbody>
+	);
+};
+
+const DeployedContractsTable = ({
+	featureData,
+}: { featureData: Record<string, DeployedContracts> }) => {
+	return (
+		<tbody className={tbodyClasses}>
+			{deployedContracts.map((contract) => (
+				<tr key={contract.name} className={trClasses}>
+					<td className={td1Classes}>
+						<div className="text-left">{contract.name}</div>
+						<Copyable
+							className="text-secondary text-sm"
+							content={<FormattedAddress addr={contract.address} />}
+							textToCopy={getAddress(contract.address)}
+						/>
+					</td>
+					{Object.keys(featureData).map((chainId) => {
+						const contractData = featureData[chainId].find((c) => c.name === contract.name);
+						const bgColor = contractData
+							? contractData.hasCode
+								? supportedClasses
+								: unsupportedClasses
+							: '';
+						return (
+							<td key={chainId} className={classNames(td2Classes, bgColor)}>
+								{contractData ? (contractData.hasCode ? 'Yes' : 'No') : 'Unknown'}
+							</td>
+						);
+					})}
+				</tr>
+			))}
+		</tbody>
+	);
+};
+
+const PrecompilesTable = ({ featureData }: { featureData: Record<string, Precompiles> }) => {
+	return (
+		<tbody className={tbodyClasses}>
+			{precompiles.map((precompile) => (
+				<tr key={precompile.name} className={trClasses}>
+					<td className={td1Classes}>
+						<div className="text-left">{precompile.name}</div>
+						<Copyable
+							className="text-secondary text-sm"
+							content={<FormattedAddress addr={precompile.address} />}
+							textToCopy={getAddress(precompile.address)}
+						/>
+					</td>
+					{Object.keys(featureData).map((chainId) => {
+						const precompileData = featureData[chainId].find((p) => p.name === precompile.name);
+						const bgColor = precompileData
+							? precompileData.implemented
+								? supportedClasses
+								: unsupportedClasses
+							: '';
+						return (
+							<td key={chainId} className={classNames(td2Classes, bgColor)}>
+								{precompileData ? (precompileData.implemented ? 'Yes' : 'No') : 'Unknown'}
+							</td>
+						);
+					})}
+				</tr>
+			))}
+		</tbody>
+	);
+};
+
+const OpcodesTable = ({ featureData }: { featureData: Record<string, Opcodes> }) => {
+	return (
+		<tbody className={tbodyClasses}>
+			{Object.keys(knownOpcodes)
+				.map(Number)
+				.map((op: number) => (
+					<tr key={op} className={trClasses}>
+						<td className={td1Classes}>
+							{knownOpcodes[op]}
+							<div className="text-secondary text-sm">{toUppercaseHex(op)}</div>
+						</td>
+						{Object.keys(featureData).map((chainId) => {
+							const opcode = featureData[chainId].find((opcode) => Number(opcode.number) === op);
+							const bgColor = opcode
+								? opcode.supported
+									? supportedClasses
+									: unsupportedClasses
+								: '';
+							return (
+								<td key={chainId} className={classNames(td2Classes, bgColor)}>
+									{opcode ? (opcode.supported ? 'Yes' : 'No') : 'Unknown'}
+								</td>
+							);
+						})}
+					</tr>
+				))}
+		</tbody>
+	);
+};
+
+const EvmStackAddressesTable = ({
+	featureData,
+}: { featureData: Record<string, EvmStackResults> }) => {
+	const stacks = Object.keys(evmStackAddresses) as Array<keyof EvmStackResults>;
+	return (
+		<tbody className={tbodyClasses}>
+			{stacks.map((stack) => {
+				return evmStackAddresses[stack].map((account) => {
+					return (
+						<tr key={account.name} className={trClasses}>
+							<td className={td1Classes}>
+								<div className="text-left text-xs">{formatStackHeader(stack)}</div>
+								<div className="text-left">{account.name}</div>
+								<Copyable
+									className="text-secondary text-sm"
+									content={<FormattedAddress addr={account.address} />}
+									textToCopy={getAddress(account.address)}
+								/>
+							</td>
+							{Object.keys(featureData).map((chainId) => {
+								const accountData = featureData[chainId][stack].find(
+									(a: EVMStackResult) => a.name === account.name,
+								);
+								const bgColor = accountData
+									? accountData.exists
+										? supportedClasses
+										: unsupportedClasses
+									: '';
+								return (
+									<td key={chainId} className={classNames(td2Classes, bgColor)}>
+										{accountData ? (accountData.exists ? 'Yes' : 'No') : 'Unknown'}
+									</td>
+								);
+							})}
+						</tr>
+					);
+				});
+			})}
+		</tbody>
+	);
+};
 
 export const FeatureTable = ({
-  kind,
-  name,
-  className,
-}: {
-  kind: string;
-  name: string;
-  className?: string;
-}) => {
-  const chainsArray = Object.values(chains);
-  const supportData = chainsArray.map((chain) => {
-    if (kind === 'opcode') {
-      const opcode = chain.opcodes.find((op) => op.name?.toLowerCase() === name.toLowerCase());
-      if (!opcode) return undefined;
-      return opcode.description?.includes('not supported') ? 'No' : 'Yes';
-    }
-  });
-  const adjustedChains = chainsArray.map((chain, i) => {
-    return { ...chain, supported: supportData[i] };
-  });
+	feature,
+	featureMap,
+	className,
+}: { feature: string; featureMap: Record<string, Feature>; className?: string }) => {
+	const [metadata, setMetadata] = useState<Record<string, Metadata> | null>(null);
+	const [featureData, setFeatureData] = useState<
+		| Record<string, Metadata>
+		| Record<string, Opcodes>
+		| Record<string, DeployedContracts>
+		| Record<string, Precompiles>
+		| Record<string, EvmStackResults>
+		| null
+	>(null);
 
-  // --- Sorting and filtering ---
-  const [sortField, setSortField] = useState(null as 'name' | 'col1' | null);
-  const [sortDirection, setSortDirection] = useState('ascending');
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const urls = [
+					`${BASE_DATA_URL}/feature/metadata.json`,
+					`${BASE_DATA_URL}/feature/${feature}.json`,
+				];
 
-  const onHeaderClick = (field: 'name' | 'col1') => {
-    if (sortField === field) {
-      setSortDirection(sortDirection === 'ascending' ? 'descending' : 'ascending');
-    } else {
-      setSortField(field);
-      setSortDirection('ascending');
-    }
-  };
+				const [metadata, featureData] = await Promise.all(
+					urls.map(async (url) => {
+						const response = await fetch(url);
+						return response.json();
+					}),
+				);
 
-  const sortedChains = adjustedChains.sort((a, b) => {
-    // Don't change default sort order if sort field is null.
-    if (sortField === null) return 0;
-    let aValue: string | number = 0;
-    let bValue: string | number = 0;
+				setMetadata(metadata);
+				setFeatureData(featureData);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
 
-    if (sortField === 'name') {
-      aValue = a.metadata.name.toLowerCase();
-      bValue = b.metadata.name.toLowerCase();
-    } else if (sortField === 'col1') {
-      aValue = a.supported?.toLowerCase() === 'true' ? 0 : 1;
-      bValue = b.supported?.toLowerCase() === 'true' ? 0 : 1;
-    }
+		fetchData();
+	}, [feature]);
 
-    if (sortDirection === 'ascending') {
-      return aValue > bValue ? 1 : aValue < bValue ? -1 : 0;
-    } else {
-      return aValue < bValue ? 1 : aValue > bValue ? -1 : 0;
-    }
-  });
+	if (!metadata || !featureData) return null;
 
-  return (
-    <div className={className}>
-      <table className='inline-block overflow-hidden rounded-md border border-zinc-200 shadow-sm dark:border-zinc-600 dark:shadow-md'>
-        <thead className='bg-primary'>
-          <tr>
-            <th
-              scope='col'
-              className='text-primary py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6'
-            >
-              <div
-                className='group inline-flex cursor-pointer rounded-md p-1 hover:bg-zinc-200 hover:dark:bg-zinc-700'
-                onClick={() => onHeaderClick('name')}
-              >
-                Name
-                <span className='text-primary ml-2 flex-none rounded'>
-                  <ChevronDownIcon className='h-5 w-5' aria-hidden='true' />
-                </span>
-              </div>
-            </th>
-            <th scope='col' className='text-primary px-3 py-3.5 text-left text-sm font-semibold'>
-              <div
-                className='group inline-flex cursor-pointer rounded-md p-1 hover:bg-zinc-200 hover:dark:bg-zinc-700'
-                onClick={() => onHeaderClick('col1')}
-              >
-                Is {name} supported?
-                <span className='text-primary ml-2 flex-none rounded'>
-                  <ChevronDownIcon className='h-5 w-5' aria-hidden='true' />
-                </span>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody className='cursor-pointer divide-y-0 divide-zinc-200'>
-          {sortedChains.map((chain) => (
-            <tr key={chain.metadata.id} className='bg-secondary group'>
-              <td className='text-primary flex flex-col whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-6'>
-                {chain.metadata.name}
-              </td>
-              <td className='text-primary whitespace-nowrap px-3 py-4 text-center text-sm'>
-                {chain.supported}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+	const renderTableBody = () => {
+		switch (feature) {
+			case 'metadata':
+				return <MetadataTable featureData={featureData as Record<string, Metadata>} />;
+			case 'opcodes':
+				return <OpcodesTable featureData={featureData as Record<string, Opcodes>} />;
+			case 'deployedContracts':
+				return (
+					<DeployedContractsTable featureData={featureData as Record<string, DeployedContracts>} />
+				);
+			case 'precompiles':
+				return <PrecompilesTable featureData={featureData as Record<string, Precompiles>} />;
+			case 'evmStackAddresses':
+				return (
+					<EvmStackAddressesTable featureData={featureData as Record<string, EvmStackResults>} />
+				);
+			default:
+				return null;
+		}
+	};
+
+	return (
+		<div className={className}>
+			<div className="overflow-hidden rounded-md border border-zinc-300 shadow-sm dark:border-zinc-600 dark:shadow-md">
+				<div className="overflow-auto max-h-screen">
+					<table className="inline-block w-full">
+						<thead>
+							<tr>
+								<th
+									scope="col"
+									className="text-primary text-center sticky top-0 left-0 z-20 py-3.5 px-2 text-sm font-semibold bg-white dark:bg-zinc-800"
+								>
+									<div className="group inline-flex rounded-md p-1">
+										{feature === 'metadata' ? 'Property' : featureMap[feature].title.slice(0, -1)}
+									</div>
+								</th>
+								{Object.keys(featureData).map((chainId) => {
+									return (
+										<th
+											key={chainId}
+											scope="col"
+											className="text-primary sticky top-0 text-center z-10 px-6 py-3.5 text-sm font-semibold bg-white dark:bg-zinc-800"
+										>
+											<div className="group inline-flex items-center rounded-md p-1">
+												<Image
+													src={chainLogoUrl({
+														name: metadata[chainId].name,
+														chainId: Number(chainId),
+													})}
+													alt=""
+													className="h-4 w-4 flex-shrink-0 rounded-full left-2 mr-2"
+													width={24}
+													height={24}
+												/>
+												<div className="mr-2">{metadata[chainId].name}</div>
+												<a
+													href={metadata[chainId].infoURL}
+													target="_blank"
+													rel="noopener noreferrer"
+												>
+													<ArrowTopRightOnSquareIcon width="1rem" className="inline-block" />
+												</a>
+											</div>
+										</th>
+									);
+								})}
+							</tr>
+						</thead>
+						{renderTableBody()}
+					</table>
+				</div>
+			</div>
+		</div>
+	);
 };

@@ -1,0 +1,55 @@
+name: Fetch Chain Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Fetch data for all chains
+        run: bun fetch-data
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if git diff --exit-code --quiet script/data; then
+            echo "No changes detected"
+          else
+            echo "::set-output name=changed::true"
+            exit 1
+          fi
+
+      - name: Check for existing open issue
+        if: failure() && steps.diff.outputs.changed == 'true'
+        id: existing_issue
+        run: |
+          issue_title="Chain Data Updated"
+          issue_search=$(gh issue list --state open --label "data mismatch" --limit 1 --json title --jq '.[].title')
+          if [[ "$issue_search" == "$issue_title" ]]; then
+            echo "::set-output name=exists::true"
+          else
+            echo "::set-output name=exists::false"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Open issue if changes detected and no existing open issue
+        if: failure() && steps.diff.outputs.changed == 'true' && steps.existing_issue.outputs.exists == 'false'
+        run: |
+          title="Chain Data Updated"
+          body="The chain data has been updated. Please review the changes.
+
+          Triggered by GitHub Actions run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+
+          gh issue create --title "$title" --body "$body" --label "data mismatch"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
