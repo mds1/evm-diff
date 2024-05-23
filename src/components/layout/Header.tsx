@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import logoDark from 'public/logo-dark.png';
-import logoLight from 'public/logo-light.png';
+import logoDark from '@/../public/logo-dark.png';
+import logoLight from '@/../public/logo-light.png';
 import { COMPANY_NAME, GITHUB_URL, TWITTER_URL } from '@/lib/constants';
 import { ExternalLink } from './ExternalLink';
 import { ThemeSwitcher } from '@/components/layout/ThemeSwitcher';
