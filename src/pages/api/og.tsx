@@ -8,8 +8,8 @@ export const config = {
 
 export default async function handler(_request: NextRequest) {
 	const getLogoImageData = async () => {
-		return await fetch(new URL('public/logo-dark-tight.png', new URL(import.meta.url))).then((res) =>
-			res.arrayBuffer(),
+		return await fetch(new URL('public/logo-dark-tight.png', new URL(import.meta.url))).then(
+			(res) => res.arrayBuffer(),
 		);
 	};
 
