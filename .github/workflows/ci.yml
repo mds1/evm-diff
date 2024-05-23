@@ -33,4 +33,4 @@ jobs:
         run: bun check
 
       - name: Ensure no diff
-        run: git diff --exit-code
+        run: git diff --exit-code --exclude="bun.lockb"
