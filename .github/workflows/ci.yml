@@ -32,18 +32,5 @@ jobs:
       - name: Check linting and formatting
         run: bun check
 
-  chain-list:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
-
-      - name: Install dependencies
-        run: bun install
-
-      - name: Generate list of chains for the UI
-        run: bun prepare-chain-data
-
-      # When this fails, run `bun prepare-chain-data` locally and commit the changes
       - name: Ensure no diff
-        run: git diff --exit-code script/data
+        run: git diff --exit-code
