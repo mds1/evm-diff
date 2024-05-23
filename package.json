@@ -20,7 +20,7 @@
     "@wagmi/chains": "^0.3.1",
     "next": "^14.2.3",
     "next-themes": "^0.2.1",
-    "react": "^18.3.1",
+    "react": "18.2.0",
     "react-diff-viewer-continued": "^3.4.0",
     "react-dom": "^18.3.1",
     "react-markdown": "^8.0.7",
