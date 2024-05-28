@@ -626,6 +626,215 @@
 			}
 		]
 	},
+	"1088": {
+		"OP": [
+			{
+				"name": "LegacyMessagePasser",
+				"address": "0x4200000000000000000000000000000000000000",
+				"kind": "Predeploy",
+				"codeHash": "0x91fb40f83717ed27e3e76c22af38ca5d7053c6c44010dd452ac75d45c97131fa",
+				"exists": true
+			},
+			{
+				"name": "DeployerWhitelist",
+				"address": "0x4200000000000000000000000000000000000002",
+				"kind": "Predeploy",
+				"codeHash": "0xdd7c5fe5bc5754de49da4bfc41b2dc627f1e00b948bd1f8e0dd0484e0c1984b0",
+				"exists": true
+			},
+			{
+				"name": "LegacyERC20ETH",
+				"address": "0xDeadDeAddeAddEAddeadDEaDDEAdDeaDDeAD0000",
+				"kind": "Predeploy",
+				"codeHash": "0xcaf944c2c05ce2fa9f5fb1a832759082612937b4543c038b3c0648d693f57f44",
+				"exists": true
+			},
+			{
+				"name": "WETH9",
+				"address": "0x4200000000000000000000000000000000000006",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L2CrossDomainMessenger",
+				"address": "0x4200000000000000000000000000000000000007",
+				"kind": "Predeploy",
+				"codeHash": "0xf95b459e5eb7a3731c59bbdb47e4d7a8af3452f6eb3b31b56600473b775a94ad",
+				"exists": true
+			},
+			{
+				"name": "L2StandardBridge",
+				"address": "0x4200000000000000000000000000000000000010",
+				"kind": "Predeploy",
+				"codeHash": "0xe1df78b6947cd33f109899a936190d5fa79ce8581a6077dc4b801309cd3a4c9e",
+				"exists": true
+			},
+			{
+				"name": "SequencerFeeVault",
+				"address": "0x4200000000000000000000000000000000000011",
+				"kind": "Predeploy",
+				"codeHash": "0x84b7d6d8c14269f0f14fd8089100745b2b2f7711794f47f5cd3f801c2007accc",
+				"exists": true
+			},
+			{
+				"name": "OptimismMintableERC20Factory",
+				"address": "0x4200000000000000000000000000000000000012",
+				"kind": "Predeploy",
+				"codeHash": "0xd6ab6f7de5230a7d250a9b4eed5bc769faabcd9428d34cc6753e10b3b90fd00c",
+				"exists": true
+			},
+			{
+				"name": "L1BlockNumber",
+				"address": "0x4200000000000000000000000000000000000013",
+				"kind": "Predeploy",
+				"codeHash": "0xfab90d3a32b245623bee66d280f816968575ddcdef1f69452a0beeba519b190b",
+				"exists": true
+			},
+			{
+				"name": "GasPriceOracle",
+				"address": "0x420000000000000000000000000000000000000F",
+				"kind": "Predeploy",
+				"codeHash": "0xec5351ca2e2959e1952e9b910e196467b85a32c0af7fa9f337bf1fcd94b6ef8b",
+				"exists": true
+			},
+			{
+				"name": "GovernanceToken",
+				"address": "0x4200000000000000000000000000000000000042",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L1Block",
+				"address": "0x4200000000000000000000000000000000000015",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L2ToL1MessagePasser",
+				"address": "0x4200000000000000000000000000000000000016",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L2ERC721Bridge",
+				"address": "0x4200000000000000000000000000000000000014",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "OptimismMintableERC721Factory",
+				"address": "0x4200000000000000000000000000000000000017",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ProxyAdmin",
+				"address": "0x4200000000000000000000000000000000000018",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "BaseFeeVault",
+				"address": "0x4200000000000000000000000000000000000019",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "L1FeeVault",
+				"address": "0x420000000000000000000000000000000000001a",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			}
+		],
+		"Orbit": [
+			{
+				"name": "ArbAddressTable",
+				"address": "0x0000000000000000000000000000000000000066",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbAggregator",
+				"address": "0x000000000000000000000000000000000000006D",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbFunctionTable",
+				"address": "0x0000000000000000000000000000000000000068",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbGasInfo",
+				"address": "0x000000000000000000000000000000000000006C",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbInfo",
+				"address": "0x0000000000000000000000000000000000000065",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbOwner",
+				"address": "0x0000000000000000000000000000000000000070",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbOwnerPublic",
+				"address": "0x000000000000000000000000000000000000006b",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbRetryableTx",
+				"address": "0x000000000000000000000000000000000000006E",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbStatistics",
+				"address": "0x000000000000000000000000000000000000006F",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "ArbSys",
+				"address": "0x0000000000000000000000000000000000000064",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			},
+			{
+				"name": "NodeInterface",
+				"address": "0x00000000000000000000000000000000000000C8",
+				"kind": "Predeploy",
+				"codeHash": "0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+				"exists": false
+			}
+		]
+	},
 	"8453": {
 		"OP": [
 			{
