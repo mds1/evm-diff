@@ -1,0 +1,11 @@
+[
+	{ "chainId": 1 },
+	{ "chainId": 10 },
+	{ "chainId": 137 },
+	{ "chainId": 8453 },
+	{ "chainId": 34443 },
+	{ "chainId": 42161 },
+	{ "chainId": 43114 },
+	{ "chainId": 59144 },
+	{ "chainId": 534352 }
+]

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# Function to handle final preparation steps
+# Function to handle final preparation steps.
 final_preparation() {
     local exitStatus=$?
 
@@ -16,27 +16,25 @@ final_preparation() {
     fi
 }
 
-# Set up a trap to run final preparation steps on script exit
+# Set up a trap to run final preparation steps on script exit.
 trap final_preparation EXIT
 
 
 if [ $# -eq 0 ]; then
-  # No input provided, find all *.json files in the data/chain folder
-  chainFiles=(script/data/chain/*.json)
-  numChains=${#chainFiles[@]}
+  # No input provided, read from `input.json`.
+  chainIds=$(jq -r '.[].chainId' script/input.json)
+  numChains=$(echo "$chainIds" | wc -l | xargs)
   echo "Found $numChains chains"
 
   index=1
-  for file in "${chainFiles[@]}"; do
-    input="${file%.json}" # Extract the file name without the extension
-    input="${input##*/}" # Extract the file name without the path
+  for chainId in $chainIds; do
     echo ""
-    echo "Running for chain ID $input (chain $index of $numChains)"
-    bun script/index.ts "$input"
+    echo "Running for chain ID $chainId (chain $index of $numChains)"
+    bun script/index.ts "$chainId"
     index=$((index + 1))
   done
 else
-  # Input provided, run the script with the provided input
+  # Input provided, run the script with the provided input.
   echo "Running for chain ID $1"
   bun script/index.ts "$1"
 fi
