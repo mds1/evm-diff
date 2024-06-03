@@ -37,8 +37,8 @@ async function checkOpcode(opcode: Opcode, client: PublicClient): Promise<boolea
 		if (err.details.includes('not defined')) return false;
 		if (err.details.includes('not supported')) return false;
 		if (err.details.includes('invalid opcode')) return false;
-
-		throw new Error(`Unexpected error: ${err}`);
+		return false;
+		// throw new Error(`Unexpected error: ${err}`);
 	}
 }
 
