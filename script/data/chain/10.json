@@ -24,6 +24,8 @@
 		],
 		"faucets": [],
 		"rpc": [
+			"https://{QUICKNODE_OP_ENDPOIONT_NAME}.optimism.quiknode.pro/${QUICKNODE_OP_ENDPOIONT_API_KEY}",
+			"wss://{QUICKNODE_OP_ENDPOIONT_NAME}.optimism.quiknode.pro/${QUICKNODE_OP_ENDPOIONT_API_KEY}",
 			"https://mainnet.optimism.io",
 			"https://optimism-rpc.publicnode.com",
 			"wss://optimism-rpc.publicnode.com",

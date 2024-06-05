@@ -27,6 +27,8 @@
 		"features": [{ "name": "EIP155" }, { "name": "EIP1559" }],
 		"icon": "ethereum",
 		"rpc": [
+			"https://{QUICKNODE_ETH_ENDPOIONT_NAME}.quiknode.pro/${QUICKNODE_ETH_ENDPOIONT_API_KEY}",
+			"wss://{QUICKNODE_ETH_ENDPOIONT_NAME}.quiknode.pro/${QUICKNODE_ETH_ENDPOIONT_API_KEY}",
 			"https://mainnet.infura.io/v3/${INFURA_API_KEY}",
 			"wss://mainnet.infura.io/ws/v3/${INFURA_API_KEY}",
 			"https://api.mycryptoapi.com/eth",

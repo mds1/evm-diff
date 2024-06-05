@@ -19,6 +19,8 @@
 		"faucets": [],
 		"icon": "polygon",
 		"rpc": [
+			"https://{QUICKNODE_MATIC_ENDPOIONT_NAME}.matic.quiknode.pro/${QUICKNODE_MATIC_ENDPOIONT_API_KEY}",
+			"wss://{QUICKNODE_MATIC_ENDPOIONT_NAME}.matic.quiknode.pro/${QUICKNODE_MATIC_ENDPOIONT_API_KEY}",
 			"https://polygon-rpc.com/",
 			"https://rpc-mainnet.matic.network",
 			"https://matic-mainnet.chainstacklabs.com",

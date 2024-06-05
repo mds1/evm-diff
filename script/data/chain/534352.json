@@ -15,6 +15,8 @@
 			"bridges": [{ "url": "https://scroll.io/bridge" }]
 		},
 		"rpc": [
+			"https://{QUICKNODE_SCROLL_ENDPOIONT_NAME}.scroll-mainnet.quiknode.pro/${QUICKNODE_SCROLL_ENDPOIONT_API_KEY}",
+			"wss://{QUICKNODE_SCROLL_ENDPOIONT_NAME}.scroll-mainnet.quiknode.pro/${QUICKNODE_SCROLL_ENDPOIONT_API_KEY}",
 			"https://rpc.scroll.io",
 			"https://rpc.ankr.com/scroll",
 			"https://scroll-mainnet.chainstacklabs.com"

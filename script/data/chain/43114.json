@@ -12,6 +12,8 @@
 		"features": [{ "name": "EIP1559" }],
 		"icon": "avax",
 		"rpc": [
+			"https://{QUICKNODE_AVAX_ENDPOIONT_NAME}.avalanche-mainnet.quiknode.pro/${QUICKNODE_AVAX_ENDPOIONT_API_KEY}/ext/bc/C/rpc/",
+			"wss://{QUICKNODE_AVAX_ENDPOIONT_NAME}.avalanche-mainnet.quiknode.pro/${QUICKNODE_AVAX_ENDPOIONT_API_KEY}/ext/bc/C/rpc/",
 			"https://api.avax.network/ext/bc/C/rpc",
 			"https://avalanche-c-chain-rpc.publicnode.com",
 			"wss://avalanche-c-chain-rpc.publicnode.com"

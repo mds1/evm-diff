@@ -27,6 +27,8 @@
 		"features": [{ "name": "EIP155" }, { "name": "EIP1559" }],
 		"icon": "ethereum",
 		"rpc": [
+			"https://{QUICKNODE_ETH_ENDPOIONT_NAME}.quiknode.pro/${QUICKNODE_ETH_ENDPOIONT_API_KEY}",
+			"wss://{QUICKNODE_ETH_ENDPOIONT_NAME}.quiknode.pro/${QUICKNODE_ETH_ENDPOIONT_API_KEY}",
 			"https://mainnet.infura.io/v3/${INFURA_API_KEY}",
 			"wss://mainnet.infura.io/ws/v3/${INFURA_API_KEY}",
 			"https://api.mycryptoapi.com/eth",
@@ -72,6 +74,8 @@
 		],
 		"faucets": [],
 		"rpc": [
+			"https://{QUICKNODE_OP_ENDPOIONT_NAME}.optimism.quiknode.pro/${QUICKNODE_OP_ENDPOIONT_API_KEY}",
+			"wss://{QUICKNODE_OP_ENDPOIONT_NAME}.optimism.quiknode.pro/${QUICKNODE_OP_ENDPOIONT_API_KEY}",
 			"https://mainnet.optimism.io",
 			"https://optimism-rpc.publicnode.com",
 			"wss://optimism-rpc.publicnode.com",
@@ -101,6 +105,8 @@
 		"faucets": [],
 		"icon": "polygon",
 		"rpc": [
+			"https://{QUICKNODE_MATIC_ENDPOIONT_NAME}.matic.quiknode.pro/${QUICKNODE_MATIC_ENDPOIONT_API_KEY}",
+			"wss://{QUICKNODE_MATIC_ENDPOIONT_NAME}.matic.quiknode.pro/${QUICKNODE_MATIC_ENDPOIONT_API_KEY}",
 			"https://polygon-rpc.com/",
 			"https://rpc-mainnet.matic.network",
 			"https://matic-mainnet.chainstacklabs.com",
@@ -142,6 +148,8 @@
 		"faucets": [],
 		"icon": "base",
 		"rpc": [
+			"https://{QUICKNODE_BASE_ENDPOIONT_NAME}.base-mainnet.quiknode.pro/${QUICKNODE_BASE_ENDPOIONT_API_KEY}",
+			"wss://{QUICKNODE_BASE_ENDPOIONT_NAME}.base-mainnet.quiknode.pro/${QUICKNODE_BASE_ENDPOIONT_API_KEY}",
 			"https://mainnet.base.org/",
 			"https://developer-access-mainnet.base.org/",
 			"https://base.gateway.tenderly.co",
@@ -191,6 +199,8 @@
 			"bridges": [{ "url": "https://bridge.arbitrum.io" }]
 		},
 		"rpc": [
+			"https://{QUICKNODE_ARB_ENDPOIONT_NAME}.arbitrum-mainnet.quiknode.pro/${QUICKNODE_ARB_ENDPOIONT_API_KEY}",
+			"wss://{QUICKNODE_ARB_ENDPOIONT_NAME}.arbitrum-mainnet.quiknode.pro/${QUICKNODE_ARB_ENDPOIONT_API_KEY}",
 			"https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}",
 			"https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}",
 			"https://arb1.arbitrum.io/rpc",
@@ -211,6 +221,8 @@
 		"features": [{ "name": "EIP1559" }],
 		"icon": "avax",
 		"rpc": [
+			"https://{QUICKNODE_AVAX_ENDPOIONT_NAME}.avalanche-mainnet.quiknode.pro/${QUICKNODE_AVAX_ENDPOIONT_API_KEY}/ext/bc/C/rpc/",
+			"wss://{QUICKNODE_AVAX_ENDPOIONT_NAME}.avalanche-mainnet.quiknode.pro/${QUICKNODE_AVAX_ENDPOIONT_API_KEY}/ext/bc/C/rpc/",
 			"https://api.avax.network/ext/bc/C/rpc",
 			"https://avalanche-c-chain-rpc.publicnode.com",
 			"wss://avalanche-c-chain-rpc.publicnode.com"
@@ -272,6 +284,8 @@
 			"bridges": [{ "url": "https://scroll.io/bridge" }]
 		},
 		"rpc": [
+			"https://{QUICKNODE_SCROLL_ENDPOIONT_NAME}.scroll-mainnet.quiknode.pro/${QUICKNODE_SCROLL_ENDPOIONT_API_KEY}",
+			"wss://{QUICKNODE_SCROLL_ENDPOIONT_NAME}.scroll-mainnet.quiknode.pro/${QUICKNODE_SCROLL_ENDPOIONT_API_KEY}",
 			"https://rpc.scroll.io",
 			"https://rpc.ankr.com/scroll",
 			"https://scroll-mainnet.chainstacklabs.com"

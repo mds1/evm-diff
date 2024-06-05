@@ -25,6 +25,8 @@
 		"faucets": [],
 		"icon": "base",
 		"rpc": [
+			"https://{QUICKNODE_BASE_ENDPOIONT_NAME}.base-mainnet.quiknode.pro/${QUICKNODE_BASE_ENDPOIONT_API_KEY}",
+			"wss://{QUICKNODE_BASE_ENDPOIONT_NAME}.base-mainnet.quiknode.pro/${QUICKNODE_BASE_ENDPOIONT_API_KEY}",
 			"https://mainnet.base.org/",
 			"https://developer-access-mainnet.base.org/",
 			"https://base.gateway.tenderly.co",
