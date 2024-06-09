@@ -7,6 +7,7 @@ import {
 } from './checks/evm-stack-addresses';
 import { checkOpcodes } from './checks/opcodes';
 import { checkPrecompiles } from './checks/precompiles';
+import { checkGas, type GasBenchmarkResult } from './checks/gas';
 import type { Metadata } from './types';
 import { join } from 'node:path';
 
@@ -28,6 +29,7 @@ export type Chain = {
 		address: `0x${string}`;
 		implemented: boolean;
 	}[];
+	gas: GasBenchmarkResult[];
 	evmStackAddresses: Record<EVMStack, EVMStackResult[]>;
 };
 
@@ -39,10 +41,11 @@ async function main() {
 	const client = initClient(rpcUrls);
 
 	// Fetch data.
-	const [opcodes, deployedContracts, precompiles, evmStackAddresses] = await Promise.all([
+	const [opcodes, deployedContracts, precompiles, gas, evmStackAddresses] = await Promise.all([
 		checkOpcodes(client),
 		checkDeployedContracts(client),
 		checkPrecompiles(client),
+		checkGas(client),
 		checkEvmStackAddresses(client),
 	]);
 
@@ -59,6 +62,7 @@ async function main() {
 		opcodes,
 		deployedContracts,
 		precompiles,
+		gas,
 		evmStackAddresses,
 	};
 	await save(chainId, chain);
@@ -90,7 +94,16 @@ async function getMetadata(chainId: number): Promise<Metadata> {
 
 async function save(chainId: number, chainObj: object) {
 	const outfile = join(import.meta.dir, 'data', 'chain', `${chainId}.json`);
-	await Bun.write(outfile, JSON.stringify(chainObj));
+	// Serialize BigInts as strings, since JSON.stringify doesn't support them natively.
+	const stringifiedJSON = JSON.stringify(chainObj, (_, v) =>
+		typeof v === 'bigint' ? v.toString() : v,
+	);
+	// TODO For some chains (notably Arbitrum chains), gas estimates vary between runs because they
+	// are a function of L1 gas price. We must figure out a good way to handle this to avoid a
+	// constantly changing diff. One option is to have the output JSON store the min and max gas
+	// estimates seen, but this might mislead users into thinking that range is fixed. Additionally,
+	// it enables frequent changes to the JSON file updating the min and max values, which isn't ideal.
+	await Bun.write(outfile, stringifiedJSON);
 	console.log(`✅ Chain data for chainId ${chainId} written to script/data/${chainId}.json`);
 }
 
