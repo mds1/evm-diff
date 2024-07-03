@@ -21,7 +21,7 @@ jobs:
       - name: Check for changes
         id: diff
         run: |
-          if git diff --exit-code --quiet script/data; then
+          if git diff --exit-code script/data; then
             echo "No changes detected"
           else
             echo "::set-output name=changed::true"
