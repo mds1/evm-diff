@@ -1,7 +1,7 @@
 [
-	{ "chainId": 1, "name": "Ethereum Mainnet" },
 	{ "chainId": 10, "name": "OP Mainnet" },
 	{ "chainId": 137, "name": "Polygon Mainnet" },
+	{ "chainId": 1, "name": "Ethereum Mainnet" },
 	{ "chainId": 34443, "name": "Mode" },
 	{ "chainId": 42161, "name": "Arbitrum One" },
 	{ "chainId": 43114, "name": "Avalanche C-Chain" },

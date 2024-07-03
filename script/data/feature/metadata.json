@@ -9,6 +9,7 @@
 		"chain": "ETH",
 		"ens": { "registry": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e" },
 		"explorers": [
+			{ "name": "routescan", "url": "https://ethereum.routescan.io", "standard": "EIP3091" },
 			{ "name": "etherscan", "url": "https://etherscan.io", "standard": "EIP3091" },
 			{
 				"name": "blockscout",
@@ -56,6 +57,7 @@
 		"nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
 		"chain": "ETH",
 		"explorers": [
+			{ "name": "routescan", "url": "https://mainnet.superscan.network", "standard": "EIP3091" },
 			{ "name": "etherscan", "url": "https://optimistic.etherscan.io", "standard": "EIP3091" },
 			{
 				"name": "blockscout",
@@ -125,6 +127,7 @@
 		"nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
 		"chain": "ETH",
 		"explorers": [
+			{ "name": "routescan", "url": "https://base.superscan.network", "standard": "none" },
 			{ "name": "basescan", "url": "https://basescan.org", "standard": "none" },
 			{
 				"name": "basescout",
@@ -160,6 +163,7 @@
 		"nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
 		"chain": "ETH",
 		"explorers": [
+			{ "name": "routescan", "url": "https://modescan.io", "standard": "none" },
 			{ "name": "modescout", "url": "https://explorer.mode.network", "standard": "none" }
 		],
 		"faucets": [],
@@ -175,6 +179,7 @@
 		"nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
 		"chain": "ETH",
 		"explorers": [
+			{ "name": "routescan", "url": "https://arbitrum.routescan.io", "standard": "EIP3091" },
 			{ "name": "Arbiscan", "url": "https://arbiscan.io", "standard": "EIP3091" },
 			{ "name": "Arbitrum Explorer", "url": "https://explorer.arbitrum.io", "standard": "EIP3091" },
 			{
@@ -206,7 +211,10 @@
 		"infoURL": "https://www.avax.network/",
 		"nativeCurrency": { "name": "Avalanche", "symbol": "AVAX", "decimals": 18 },
 		"chain": "AVAX",
-		"explorers": [{ "name": "snowtrace", "url": "https://snowtrace.io", "standard": "EIP3091" }],
+		"explorers": [
+			{ "name": "routescan", "url": "https://snowtrace.io", "standard": "EIP3091" },
+			{ "name": "avascan", "url": "https://avascan.info", "standard": "EIP3091" }
+		],
 		"faucets": [],
 		"features": [{ "name": "EIP1559" }],
 		"icon": "avax",
