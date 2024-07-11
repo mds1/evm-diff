@@ -110,7 +110,7 @@
 		{
 			"name": "secp256r1",
 			"address": "0x0000000000000000000000000000000000000100",
-			"implemented": false
+			"implemented": true
 		}
 	],
 	"137": [
@@ -224,7 +224,7 @@
 		{
 			"name": "secp256r1",
 			"address": "0x0000000000000000000000000000000000000100",
-			"implemented": false
+			"implemented": true
 		}
 	],
 	"34443": [
@@ -281,7 +281,7 @@
 		{
 			"name": "secp256r1",
 			"address": "0x0000000000000000000000000000000000000100",
-			"implemented": false
+			"implemented": true
 		}
 	],
 	"42161": [

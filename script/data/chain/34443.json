@@ -263,7 +263,7 @@
 		{
 			"name": "secp256r1",
 			"address": "0x0000000000000000000000000000000000000100",
-			"implemented": false
+			"implemented": true
 		}
 	],
 	"evmStackAddresses": {
