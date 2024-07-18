@@ -10,6 +10,7 @@
 		"ens": { "registry": "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e" },
 		"explorers": [
 			{ "name": "etherscan", "url": "https://etherscan.io", "standard": "EIP3091" },
+			{ "name": "routescan", "url": "https://ethereum.routescan.io", "standard": "EIP3091" },
 			{
 				"name": "blockscout",
 				"url": "https://eth.blockscout.com",
