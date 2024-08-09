@@ -41,7 +41,7 @@ export const Copyable = ({
 	};
 
 	return (
-		<div className={classNames('group group relative flex w-max items-center', className)}>
+		<div className={classNames('group relative flex w-max items-center', className)}>
 			<div className="relative flex w-full items-center">
 				{content}
 				<Icon

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { Chain } from '@/../script/index';
 import { chainLogoUrl, classNames } from '@/lib/utils';
 import { ExternalLink } from '@/components/layout/ExternalLink';
@@ -9,7 +9,7 @@ import { Copyable } from '@/components/ui/Copyable';
 import { evmStackAddresses, type EVMStackResult } from '@/../script/checks/evm-stack-addresses';
 import { knownOpcodes } from '@/../script/checks/opcodes';
 import { getAddress } from 'viem';
-import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
+import { ArrowTopRightOnSquareIcon, LinkIcon } from '@heroicons/react/20/solid';
 import Image from 'next/image';
 import { BASE_DATA_URL, type Feature } from '@/lib/constants';
 import { FormattedAddress } from '@/lib/utils';
@@ -140,15 +140,42 @@ const PrecompilesTable = ({ featureData }: { featureData: Record<string, Precomp
 };
 
 const OpcodesTable = ({ featureData }: { featureData: Record<string, Opcodes> }) => {
+	const opcodeRefs = useRef<Record<string, HTMLTableRowElement | null>>({});
+
+	useEffect(() => {
+		const hash = window.location.hash.substring(1);
+		if (hash && opcodeRefs.current[hash]) {
+			opcodeRefs.current[hash]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+	}, []);
+
 	return (
 		<tbody className={tbodyClasses}>
 			{Object.keys(knownOpcodes)
 				.map(Number)
 				.map((op: number) => (
-					<tr key={op} className={trClasses}>
-						<td className={td1Classes}>
-							{knownOpcodes[op]}
-							<div className="text-secondary text-sm">{toUppercaseHex(op)}</div>
+					<tr
+						key={op}
+						className={trClasses}
+						ref={(el) => {
+							opcodeRefs.current[knownOpcodes[op]] = el;
+						}}
+					>
+						<td className={classNames(td1Classes, 'text-center')}>
+							<div className="relative inline-block">
+								<Copyable
+									content={
+										<div>
+											{knownOpcodes[op]}
+											<div className="text-secondary text-sm">{toUppercaseHex(op)}</div>
+										</div>
+									}
+									Icon={LinkIcon}
+									textToCopy={`${location.href.replace(location.hash, '')}#${knownOpcodes[op]}`}
+									// Use negative margin to "center" since the hidden link icon makes it look off-center.
+									className="ml-2 -mr-2"
+								/>
+							</div>
 						</td>
 						{Object.keys(featureData).map((chainId) => {
 							const opcode = featureData[chainId].find((opcode) => Number(opcode.number) === op);
