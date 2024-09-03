@@ -1,11 +1,11 @@
 {
 	"metadata": {
 		"name": "Polygon Mainnet",
-		"shortName": "matic",
+		"shortName": "pol",
 		"chainId": 137,
 		"networkId": 137,
 		"infoURL": "https://polygon.technology/",
-		"nativeCurrency": { "name": "MATIC", "symbol": "MATIC", "decimals": 18 },
+		"nativeCurrency": { "name": "POL", "symbol": "POL", "decimals": 18 },
 		"chain": "Polygon",
 		"explorers": [
 			{ "name": "polygonscan", "url": "https://polygonscan.com", "standard": "EIP3091" },
