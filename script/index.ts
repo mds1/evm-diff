@@ -7,6 +7,7 @@ import {
 } from './checks/evm-stack-addresses';
 import { checkOpcodes } from './checks/opcodes';
 import { checkPrecompiles } from './checks/precompiles';
+import { createRetryClient } from './checks/utils';
 import type { Metadata } from './types';
 import { join } from 'node:path';
 
@@ -77,7 +78,7 @@ function initClient(rpcUrls: string[]) {
 	// Websocket seems to hang and script doesn't exit, so we only use HTTP.
 	const https = rpcUrls.filter((url) => url.startsWith('https')).map((url) => http(url));
 	const transport = fallback([...https]);
-	return createPublicClient({ transport });
+	return createRetryClient(createPublicClient({ transport }));
 }
 
 async function getMetadata(chainId: number): Promise<Metadata> {
