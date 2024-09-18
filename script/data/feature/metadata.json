@@ -116,6 +116,29 @@
 		],
 		"slip44": 966
 	},
+	"1088": {
+		"name": "Metis Andromeda Mainnet",
+		"shortName": "metis-andromeda",
+		"chainId": 1088,
+		"networkId": 1088,
+		"infoURL": "https://www.metis.io",
+		"nativeCurrency": { "name": "Metis", "symbol": "METIS", "decimals": 18 },
+		"chain": "ETH",
+		"explorers": [
+			{ "name": "blockscout", "url": "https://andromeda-explorer.metis.io", "standard": "EIP3091" }
+		],
+		"faucets": [],
+		"parent": {
+			"type": "L2",
+			"chain": "eip155-1",
+			"bridges": [{ "url": "https://bridge.metis.io" }]
+		},
+		"rpc": [
+			"https://andromeda.metis.io/?owner=1088",
+			"https://metis.drpc.org",
+			"wss://metis.drpc.org"
+		]
+	},
 	"8453": {
 		"name": "Base",
 		"shortName": "base",
