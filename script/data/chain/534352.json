@@ -17,7 +17,9 @@
 		"rpc": [
 			"https://rpc.scroll.io",
 			"https://rpc.ankr.com/scroll",
-			"https://scroll-mainnet.chainstacklabs.com"
+			"https://scroll-mainnet.chainstacklabs.com",
+			"https://scroll-rpc.publicnode.com",
+			"wss://scroll-rpc.publicnode.com"
 		],
 		"status": "active"
 	},
