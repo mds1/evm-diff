@@ -7,7 +7,11 @@
 		"infoURL": "https://www.avax.network/",
 		"nativeCurrency": { "name": "Avalanche", "symbol": "AVAX", "decimals": 18 },
 		"chain": "AVAX",
-		"explorers": [{ "name": "snowtrace", "url": "https://snowtrace.io", "standard": "EIP3091" }],
+		"explorers": [
+			{ "name": "Etherscan", "url": "https://snowscan.xyz", "standard": "EIP3091" },
+			{ "name": "Routescan", "url": "https://snowtrace.io", "standard": "EIP3091" },
+			{ "name": "Avascan", "url": "https://avascan.info", "standard": "EIP3091" }
+		],
 		"faucets": [],
 		"features": [{ "name": "EIP1559" }],
 		"icon": "avax",
