@@ -8,7 +8,7 @@
 		"nativeCurrency": { "name": "Ether", "symbol": "ETH", "decimals": 18 },
 		"chain": "ETH",
 		"explorers": [
-			{ "name": "basescan", "url": "https://basescan.org", "standard": "none" },
+			{ "name": "basescan", "url": "https://basescan.org", "standard": "EIP3091" },
 			{
 				"name": "basescout",
 				"url": "https://base.blockscout.com",
@@ -20,7 +20,8 @@
 				"url": "https://base.dex.guru",
 				"icon": "dexguru",
 				"standard": "EIP3091"
-			}
+			},
+			{ "name": "Routescan", "url": "https://base.superscan.network", "standard": "EIP3091" }
 		],
 		"faucets": [],
 		"icon": "base",
