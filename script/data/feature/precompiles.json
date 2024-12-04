@@ -170,6 +170,63 @@
 			"implemented": true
 		}
 	],
+	"5234": [
+		{
+			"name": "ecRecover",
+			"address": "0x0000000000000000000000000000000000000001",
+			"implemented": true
+		},
+		{
+			"name": "SHA2-256",
+			"address": "0x0000000000000000000000000000000000000002",
+			"implemented": true
+		},
+		{
+			"name": "RIPEMD-160",
+			"address": "0x0000000000000000000000000000000000000003",
+			"implemented": true
+		},
+		{
+			"name": "identity",
+			"address": "0x0000000000000000000000000000000000000004",
+			"implemented": true
+		},
+		{
+			"name": "modexp",
+			"address": "0x0000000000000000000000000000000000000005",
+			"implemented": true
+		},
+		{
+			"name": "ecAdd",
+			"address": "0x0000000000000000000000000000000000000006",
+			"implemented": true
+		},
+		{
+			"name": "ecMul",
+			"address": "0x0000000000000000000000000000000000000007",
+			"implemented": true
+		},
+		{
+			"name": "ecPairing",
+			"address": "0x0000000000000000000000000000000000000008",
+			"implemented": true
+		},
+		{
+			"name": "blake2f",
+			"address": "0x0000000000000000000000000000000000000009",
+			"implemented": true
+		},
+		{
+			"name": "point evaluation",
+			"address": "0x000000000000000000000000000000000000000a",
+			"implemented": false
+		},
+		{
+			"name": "secp256r1",
+			"address": "0x0000000000000000000000000000000000000100",
+			"implemented": false
+		}
+	],
 	"8453": [
 		{
 			"name": "ecRecover",

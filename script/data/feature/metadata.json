@@ -118,6 +118,26 @@
 		],
 		"slip44": 966
 	},
+	"5234": {
+		"name": "Humanode Mainnet",
+		"shortName": "hmnd",
+		"chainId": 5234,
+		"networkId": 5234,
+		"infoURL": "https://humanode.io",
+		"nativeCurrency": { "name": "eHMND", "symbol": "eHMND", "decimals": 18 },
+		"chain": "HMND",
+		"explorers": [
+			{
+				"name": "Subscan",
+				"url": "https://humanode.subscan.io",
+				"standard": "EIP3091",
+				"icon": "subscan"
+			}
+		],
+		"faucets": [],
+		"icon": "humanode",
+		"rpc": ["https://explorer-rpc-http.mainnet.stages.humanode.io"]
+	},
 	"8453": {
 		"name": "Base",
 		"shortName": "base",

@@ -2,6 +2,7 @@
 	{ "chainId": 1 },
 	{ "chainId": 10 },
 	{ "chainId": 137 },
+	{ "chainId": 5234 },
 	{ "chainId": 8453 },
 	{ "chainId": 34443 },
 	{ "chainId": 42161 },
