@@ -5,6 +5,7 @@
 	{ "chainId": 34443, "name": "Mode" },
 	{ "chainId": 42161, "name": "Arbitrum One" },
 	{ "chainId": 43114, "name": "Avalanche C-Chain" },
+	{ "chainId": 5234, "name": "Humanode Mainnet" },
 	{ "chainId": 534352, "name": "Scroll" },
 	{ "chainId": 59144, "name": "Linea" },
 	{ "chainId": 8453, "name": "Base" }
