@@ -3,7 +3,7 @@ import type { PublicClient } from 'viem';
 
 async function retryOnRateLimit<T>(
 	fn: () => Promise<T>,
-	maxRetries = 5,
+	maxRetries = 8,
 	initialDelay = 1000,
 ): Promise<T> {
 	let retries = 0;
