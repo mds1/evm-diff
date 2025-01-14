@@ -1,6 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
+# Load API keys from the repo root.
+repoRoot=$(git rev-parse --show-toplevel)
+# shellcheck disable=SC1091
+source "$repoRoot"/.env
+
 # Function to handle final preparation steps.
 final_preparation() {
     local exitStatus=$?

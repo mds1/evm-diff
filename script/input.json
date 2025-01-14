@@ -1,11 +1,56 @@
 [
-	{ "chainId": 1 },
-	{ "chainId": 10 },
-	{ "chainId": 137 },
-	{ "chainId": 8453 },
-	{ "chainId": 34443 },
-	{ "chainId": 42161 },
-	{ "chainId": 43114 },
-	{ "chainId": 59144 },
-	{ "chainId": 534352 }
+	{
+		"chainId": 1,
+		"rpcUrls": [
+			"https://mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
+		]
+	},
+	{
+		"chainId": 10,
+		"rpcUrls": [
+			"https://optimism-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
+		]
+	},
+	{
+		"chainId": 137,
+		"rpcUrls": [
+			"https://polygon-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://polygon-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
+		]
+	},
+	{
+		"chainId": 8453,
+		"rpcUrls": [
+			"https://base-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://base-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
+		]
+	},
+	{
+		"chainId": 34443,
+		"rpcUrls": []
+	},
+	{
+		"chainId": 42161,
+		"rpcUrls": [
+			"https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
+		]
+	},
+	{
+		"chainId": 43114,
+		"rpcUrls": ["https://avalanche-mainnet.infura.io/v3/${INFURA_API_KEY}"]
+	},
+	{
+		"chainId": 59144,
+		"rpcUrls": ["https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}"]
+	},
+	{
+		"chainId": 534352,
+		"rpcUrls": [
+			"https://scroll-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://scroll-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
+		]
+	}
 ]
