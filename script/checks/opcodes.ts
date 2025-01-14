@@ -1,4 +1,4 @@
-import { type Hex, type PublicClient, toHex } from 'viem';
+import { type Hex, type PublicClient, toHex, zeroAddress } from 'viem';
 
 type Opcode = number;
 type CallError = { details: string };
@@ -27,7 +27,7 @@ export async function checkOpcodes(
 
 async function checkOpcode(opcode: Opcode, client: PublicClient): Promise<boolean | 'unknown'> {
 	try {
-		await client.call({ data: toHex(opcode, { size: 1 }) });
+		await client.call({ data: toHex(opcode, { size: 1 }), to: zeroAddress });
 		return true; // Call succeeded so opcode is supported.
 	} catch (e: unknown) {
 		const err = e as CallError;
