@@ -86,6 +86,13 @@ async function getMetadata(chainId: number): Promise<Metadata> {
 	const data = await response.json();
 	const metadata = data.find((chain: Metadata) => chain.chainId === chainId);
 	if (!metadata) throw new Error(`Chain with ID ${chainId} not found.`);
+
+	// Add in the custom RPC URLs from input.json.
+	const chains = await Bun.file('script/input.json').json();
+	const chain = chains.find((chain: Metadata) => chain.chainId === chainId);
+	if (chain?.rpcUrls) metadata.rpc.push(...chain.rpcUrls);
+	metadata.rpc = [...new Set(metadata.rpc)]; // Deduplicate RPC URLs.
+
 	return metadata;
 }
 
@@ -128,6 +135,8 @@ function selectRpcUrls(rpcUrls: string[]): string[] {
 		'matic-mainnet-full-rpc.bwarelabs.com', // "This endpoint is deprecated".
 		'publicnode.com', // Transaction creation failed.
 		'cloudflare', // Requested resource not found.
+		'api.avax.network', // Doesn't support empty "to" for eth_call.
+		'rpc.linea.build', // Doesn't support empty "to" for eth_call.
 	];
 	const filteredRpcUrls = rpcUrls.filter(
 		(url) => !domainsToSkip.some((domain) => url.includes(domain)),
