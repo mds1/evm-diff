@@ -44,7 +44,9 @@
 			"https://rpc.mevblocker.io/noreverts",
 			"https://rpc.mevblocker.io/fullprivacy",
 			"https://eth.drpc.org",
-			"wss://eth.drpc.org"
+			"wss://eth.drpc.org",
+			"https://api.securerpc.com/v1",
+			"https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		],
 		"slip44": 60
 	},

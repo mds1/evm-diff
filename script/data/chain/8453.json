@@ -31,7 +31,9 @@
 			"https://base.gateway.tenderly.co",
 			"wss://base.gateway.tenderly.co",
 			"https://base-rpc.publicnode.com",
-			"wss://base-rpc.publicnode.com"
+			"wss://base-rpc.publicnode.com",
+			"https://base-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://base-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		],
 		"status": "active"
 	},

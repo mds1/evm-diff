@@ -18,7 +18,10 @@
 		"rpc": [
 			"https://api.avax.network/ext/bc/C/rpc",
 			"https://avalanche-c-chain-rpc.publicnode.com",
-			"wss://avalanche-c-chain-rpc.publicnode.com"
+			"wss://avalanche-c-chain-rpc.publicnode.com",
+			"https://rpc.ankr.com/avalanche",
+			"https://ava-mainnet.public.blastapi.io/ext/bc/C/rpc",
+			"https://avalanche-mainnet.infura.io/v3/${INFURA_API_KEY}"
 		],
 		"slip44": 9005
 	},
@@ -75,8 +78,8 @@
 		{ "number": "0x46", "name": "CHAINID", "supported": true },
 		{ "number": "0x47", "name": "SELFBALANCE", "supported": true },
 		{ "number": "0x48", "name": "BASEFEE", "supported": true },
-		{ "number": "0x49", "name": "BLOBHASH", "supported": false },
-		{ "number": "0x4a", "name": "BLOBBASEFEE", "supported": false },
+		{ "number": "0x49", "name": "BLOBHASH", "supported": true },
+		{ "number": "0x4a", "name": "BLOBBASEFEE", "supported": true },
 		{ "number": "0x50", "name": "POP", "supported": true },
 		{ "number": "0x51", "name": "MLOAD", "supported": true },
 		{ "number": "0x52", "name": "MSTORE", "supported": true },
@@ -89,9 +92,9 @@
 		{ "number": "0x59", "name": "MSIZE", "supported": true },
 		{ "number": "0x5a", "name": "GAS", "supported": true },
 		{ "number": "0x5b", "name": "JUMPDEST", "supported": true },
-		{ "number": "0x5c", "name": "TLOAD", "supported": false },
-		{ "number": "0x5d", "name": "TSTORE", "supported": false },
-		{ "number": "0x5e", "name": "MCOPY", "supported": false },
+		{ "number": "0x5c", "name": "TLOAD", "supported": true },
+		{ "number": "0x5d", "name": "TSTORE", "supported": true },
+		{ "number": "0x5e", "name": "MCOPY", "supported": true },
 		{ "number": "0x5f", "name": "PUSH0", "supported": true },
 		{ "number": "0x60", "name": "PUSH1", "supported": true },
 		{ "number": "0x61", "name": "PUSH2", "supported": true },
@@ -266,7 +269,7 @@
 		{
 			"name": "point evaluation",
 			"address": "0x000000000000000000000000000000000000000a",
-			"implemented": false
+			"implemented": true
 		},
 		{
 			"name": "secp256r1",

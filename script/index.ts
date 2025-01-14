@@ -135,8 +135,8 @@ function selectRpcUrls(rpcUrls: string[]): string[] {
 		'matic-mainnet-full-rpc.bwarelabs.com', // "This endpoint is deprecated".
 		'publicnode.com', // Transaction creation failed.
 		'cloudflare', // Requested resource not found.
-		'api.avax.network', // Doesn't support empty "to" for eth_call.
-		'rpc.linea.build', // Doesn't support empty "to" for eth_call.
+		'api.avax.network', // Unrecognized token '<', 429's easily.
+		'rpc.linea.build', // All error messages are identical so can't distinguish opcode support.
 	];
 	const filteredRpcUrls = rpcUrls.filter(
 		(url) => !domainsToSkip.some((domain) => url.includes(domain)),

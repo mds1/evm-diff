@@ -24,7 +24,6 @@ final_preparation() {
 # Set up a trap to run final preparation steps on script exit.
 trap final_preparation EXIT
 
-
 if [ $# -eq 0 ]; then
   # No input provided, read from `input.json`.
   chainIds=$(jq -r '.[].chainId' script/input.json)

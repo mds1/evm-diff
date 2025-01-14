@@ -35,7 +35,8 @@
 			"https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}",
 			"wss://linea-mainnet.infura.io/ws/v3/${INFURA_API_KEY}",
 			"https://linea-rpc.publicnode.com",
-			"wss://linea-rpc.publicnode.com"
+			"wss://linea-rpc.publicnode.com",
+			"https://linea-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		],
 		"status": "active",
 		"title": "Linea Mainnet"
@@ -188,7 +189,7 @@
 		{ "number": "0xf5", "name": "CREATE2", "supported": true },
 		{ "number": "0xfa", "name": "STATICCALL", "supported": true },
 		{ "number": "0xfd", "name": "REVERT", "supported": true },
-		{ "number": "0xfe", "name": "INVALID", "supported": true },
+		{ "number": "0xfe", "name": "INVALID", "supported": false },
 		{ "number": "0xff", "name": "SELFDESTRUCT", "supported": true }
 	],
 	"deployedContracts": [

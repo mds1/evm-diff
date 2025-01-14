@@ -19,7 +19,9 @@
 			"https://rpc.ankr.com/scroll",
 			"https://scroll-mainnet.chainstacklabs.com",
 			"https://scroll-rpc.publicnode.com",
-			"wss://scroll-rpc.publicnode.com"
+			"wss://scroll-rpc.publicnode.com",
+			"https://scroll-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://scroll-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		],
 		"status": "active"
 	},
