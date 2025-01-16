@@ -3,7 +3,7 @@ name: Fetch Chain Data
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 */4 * * *'
 
 jobs:
   fetch-data:
