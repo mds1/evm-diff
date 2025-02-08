@@ -44,7 +44,9 @@
 			"https://rpc.mevblocker.io/noreverts",
 			"https://rpc.mevblocker.io/fullprivacy",
 			"https://eth.drpc.org",
-			"wss://eth.drpc.org"
+			"wss://eth.drpc.org",
+			"https://api.securerpc.com/v1",
+			"https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		],
 		"slip44": 60
 	},
@@ -80,7 +82,9 @@
 			"https://optimism.gateway.tenderly.co",
 			"wss://optimism.gateway.tenderly.co",
 			"https://optimism.drpc.org",
-			"wss://optimism.drpc.org"
+			"wss://optimism.drpc.org",
+			"https://optimism-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://opt-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		]
 	},
 	"137": {
@@ -114,7 +118,9 @@
 			"https://polygon.gateway.tenderly.co",
 			"wss://polygon.gateway.tenderly.co",
 			"https://polygon.drpc.org",
-			"wss://polygon.drpc.org"
+			"wss://polygon.drpc.org",
+			"https://polygon-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://polygon-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		],
 		"slip44": 966
 	},
@@ -150,7 +156,9 @@
 			"https://base.gateway.tenderly.co",
 			"wss://base.gateway.tenderly.co",
 			"https://base-rpc.publicnode.com",
-			"wss://base-rpc.publicnode.com"
+			"wss://base-rpc.publicnode.com",
+			"https://base-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://base-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		],
 		"status": "active"
 	},
@@ -198,8 +206,8 @@
 			"https://arbitrum-mainnet.infura.io/v3/${INFURA_API_KEY}",
 			"https://arb-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}",
 			"https://arb1.arbitrum.io/rpc",
-			"https://arbitrum-one.publicnode.com",
-			"wss://arbitrum-one.publicnode.com"
+			"https://arbitrum-one-rpc.publicnode.com",
+			"wss://arbitrum-one-rpc.publicnode.com"
 		]
 	},
 	"43114": {
@@ -221,7 +229,10 @@
 		"rpc": [
 			"https://api.avax.network/ext/bc/C/rpc",
 			"https://avalanche-c-chain-rpc.publicnode.com",
-			"wss://avalanche-c-chain-rpc.publicnode.com"
+			"wss://avalanche-c-chain-rpc.publicnode.com",
+			"https://rpc.ankr.com/avalanche",
+			"https://ava-mainnet.public.blastapi.io/ext/bc/C/rpc",
+			"https://avalanche-mainnet.infura.io/v3/${INFURA_API_KEY}"
 		],
 		"slip44": 9005
 	},
@@ -261,7 +272,8 @@
 			"https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}",
 			"wss://linea-mainnet.infura.io/ws/v3/${INFURA_API_KEY}",
 			"https://linea-rpc.publicnode.com",
-			"wss://linea-rpc.publicnode.com"
+			"wss://linea-rpc.publicnode.com",
+			"https://linea-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		],
 		"status": "active",
 		"title": "Linea Mainnet"
@@ -286,7 +298,9 @@
 			"https://rpc.ankr.com/scroll",
 			"https://scroll-mainnet.chainstacklabs.com",
 			"https://scroll-rpc.publicnode.com",
-			"wss://scroll-rpc.publicnode.com"
+			"wss://scroll-rpc.publicnode.com",
+			"https://scroll-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://scroll-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		],
 		"status": "active"
 	}

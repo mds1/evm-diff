@@ -31,13 +31,17 @@ async function checkOpcode(opcode: Opcode, client: PublicClient): Promise<boolea
 		return true; // Call succeeded so opcode is supported.
 	} catch (e: unknown) {
 		const err = e as CallError;
+		const details = err.details.toLowerCase();
 		// TODO These might be specific to the node implementation, can this be more robust?
-		if (opcode === 0xfe && err.details === 'invalid opcode: INVALID') return true; // Designated invalid opcode.
-		if (err.details.includes('stack underflow')) return true; // Implies opcode is supported.
-		if (err.details.includes('not defined')) return false;
-		if (err.details.includes('not supported')) return false;
-		if (err.details.includes('invalid opcode')) return false;
+		if (opcode === 0xfe && details.includes('invalid opcode: invalid')) return true; // Designated invalid opcode.
+		if (details.includes('stack underflow')) return true; // Implies opcode is supported.
+		if (details.includes('not defined')) return false;
+		if (details.includes('not supported')) return false;
+		if (details.includes('invalid opcode')) return false;
 
+		console.log(`\n======== Opcode ${opcode} ========`);
+		console.log('err.details:', err.details);
+		console.log(JSON.stringify(err, null, 2));
 		throw new Error(`Unexpected error: ${err}`);
 	}
 }

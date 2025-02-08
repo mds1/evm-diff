@@ -390,7 +390,7 @@
 		{
 			"name": "point evaluation",
 			"address": "0x000000000000000000000000000000000000000a",
-			"implemented": false
+			"implemented": true
 		},
 		{
 			"name": "secp256r1",

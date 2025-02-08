@@ -35,7 +35,8 @@
 			"https://linea-mainnet.infura.io/v3/${INFURA_API_KEY}",
 			"wss://linea-mainnet.infura.io/ws/v3/${INFURA_API_KEY}",
 			"https://linea-rpc.publicnode.com",
-			"wss://linea-rpc.publicnode.com"
+			"wss://linea-rpc.publicnode.com",
+			"https://linea-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		],
 		"status": "active",
 		"title": "Linea Mainnet"

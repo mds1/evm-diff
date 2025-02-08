@@ -1,6 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
+# Load API keys from the repo root.
+repoRoot=$(git rev-parse --show-toplevel)
+# shellcheck disable=SC1091
+source "$repoRoot"/.env
+
 # Function to handle final preparation steps.
 final_preparation() {
     local exitStatus=$?
@@ -18,7 +23,6 @@ final_preparation() {
 
 # Set up a trap to run final preparation steps on script exit.
 trap final_preparation EXIT
-
 
 if [ $# -eq 0 ]; then
   # No input provided, read from `input.json`.
