@@ -8,6 +8,19 @@ if [ -f "$repoRoot/.env" ]; then
   source "$repoRoot/.env"
 fi
 
+if [ -n "${INFURA_API_KEY:-}" ]; then
+  echo "INFURA_API_KEY exists"
+else
+  echo "INFURA_API_KEY does not exist"
+fi
+
+# Log "alchemy exists"
+if [ -n "${ALCHEMY_API_KEY:-}" ]; then
+  echo "ALCHEMY_API_KEY exists"
+else
+  echo "ALCHEMY_API_KEY does not exist"
+fi
+
 # Function to handle final preparation steps.
 final_preparation() {
     local exitStatus=$?
