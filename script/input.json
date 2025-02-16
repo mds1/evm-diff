@@ -22,10 +22,7 @@
 	},
 	{
 		"chainId": 8453,
-		"rpcUrls": [
-			"https://base-mainnet.infura.io/v3/${INFURA_API_KEY}",
-			"https://base-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
-		]
+		"rpcUrls": ["https://base-mainnet.infura.io/v3/${INFURA_API_KEY}"]
 	},
 	{
 		"chainId": 34443,
