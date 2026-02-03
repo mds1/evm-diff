@@ -32,7 +32,12 @@ async function checkOpcode(opcode: Opcode, client: PublicClient): Promise<boolea
 		await client.call({ data: toHex(opcode, { size: 1 }) });
 		return true; // Call succeeded so opcode is supported.
 	} catch (err: unknown) {
-		if (typeof err !== 'object' || err === null || !('details' in err) || typeof err.details !== 'string') {
+		if (
+			typeof err !== 'object' ||
+			err === null ||
+			!('details' in err) ||
+			typeof err.details !== 'string'
+		) {
 			throw err;
 		}
 		const details = err.details.toLowerCase();
