@@ -126,37 +126,22 @@ function selectRpcUrls(rpcUrls: string[]): string[] {
 		return str;
 	};
 
-	// These domains have various issues that make them unsuitable for our purposes.
-	const domainsToSkip = [
-		'drpc.org', // Required "to" is empty.
-		'blocknative.com', // Transaction creation failed.
-		'flashbots.net', // 403 (also on eth_call with no to).
-		'mevblocker.io', // 429's easily.
-		'matic-mainnet-full-rpc.bwarelabs.com', // "This endpoint is deprecated".
-		'publicnode.com', // Transaction creation failed.
-		'cloudflare', // Requested resource not found.
-		'api.avax.network', // Unrecognized token '<', 429's easily.
-		'rpc.linea.build', // All error messages are identical so can't distinguish opcode support.
-	];
-	const filteredRpcUrls = rpcUrls.filter(
-		(url) => !domainsToSkip.some((domain) => url.includes(domain)),
-	);
-
-	// Check for URLs with placeholders and replace with API key if available. In this case, we
-	// return this URL as the selected RPC URL. Preferring URLs with API keys this way helps
-	// avoid rate limits and other issues.
+	// Use only URLs with placeholders and replace with API key if available. In this case, we
+	// return this URL as the selected RPC URL.
 	const replacedUrls: string[] = [];
-	const normalUrls: string[] = [];
-	for (const url of filteredRpcUrls) {
+	for (const url of rpcUrls) {
 		if (hasPlaceholder(url)) {
 			const replacedUrl = replacePlaceholder(url);
 			if (replacedUrl !== url) replacedUrls.push(replacedUrl);
-		} else {
-			normalUrls.push(url);
 		}
 	}
 
-	return [...replacedUrls, ...normalUrls]; // Prefer URLs with API keys.
+	if (replacedUrls.length === 0) {
+		console.error('No RPC URLs with API keys found for this chain');
+		process.exit(1);
+	}
+
+	return replacedUrls;
 }
 
 main().catch((error) => {
