@@ -68,6 +68,7 @@
 		{ "number": "0x1b", "name": "SHL", "supported": true },
 		{ "number": "0x1c", "name": "SHR", "supported": true },
 		{ "number": "0x1d", "name": "SAR", "supported": true },
+		{ "number": "0x1e", "name": "CLZ", "supported": true },
 		{ "number": "0x20", "name": "KECCAK256", "supported": true },
 		{ "number": "0x30", "name": "ADDRESS", "supported": true },
 		{ "number": "0x31", "name": "BALANCE", "supported": true },
@@ -94,8 +95,8 @@
 		{ "number": "0x46", "name": "CHAINID", "supported": true },
 		{ "number": "0x47", "name": "SELFBALANCE", "supported": true },
 		{ "number": "0x48", "name": "BASEFEE", "supported": true },
-		{ "number": "0x49", "name": "BLOBHASH", "supported": false },
-		{ "number": "0x4a", "name": "BLOBBASEFEE", "supported": false },
+		{ "number": "0x49", "name": "BLOBHASH", "supported": true },
+		{ "number": "0x4a", "name": "BLOBBASEFEE", "supported": true },
 		{ "number": "0x50", "name": "POP", "supported": true },
 		{ "number": "0x51", "name": "MLOAD", "supported": true },
 		{ "number": "0x52", "name": "MSTORE", "supported": true },
@@ -108,10 +109,10 @@
 		{ "number": "0x59", "name": "MSIZE", "supported": true },
 		{ "number": "0x5a", "name": "GAS", "supported": true },
 		{ "number": "0x5b", "name": "JUMPDEST", "supported": true },
-		{ "number": "0x5c", "name": "TLOAD", "supported": false },
-		{ "number": "0x5d", "name": "TSTORE", "supported": false },
-		{ "number": "0x5e", "name": "MCOPY", "supported": false },
-		{ "number": "0x5f", "name": "PUSH0", "supported": false },
+		{ "number": "0x5c", "name": "TLOAD", "supported": true },
+		{ "number": "0x5d", "name": "TSTORE", "supported": true },
+		{ "number": "0x5e", "name": "MCOPY", "supported": true },
+		{ "number": "0x5f", "name": "PUSH0", "supported": true },
 		{ "number": "0x60", "name": "PUSH1", "supported": true },
 		{ "number": "0x61", "name": "PUSH2", "supported": true },
 		{ "number": "0x62", "name": "PUSH3", "supported": true },
@@ -285,12 +286,12 @@
 		{
 			"name": "point evaluation",
 			"address": "0x000000000000000000000000000000000000000a",
-			"implemented": false
+			"implemented": true
 		},
 		{
 			"name": "secp256r1",
 			"address": "0x0000000000000000000000000000000000000100",
-			"implemented": false
+			"implemented": true
 		}
 	],
 	"evmStackAddresses": {
