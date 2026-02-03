@@ -1,7 +1,6 @@
 import { type Hex, type PublicClient, toHex } from 'viem';
 
 type Opcode = number;
-type CallError = { details: string };
 
 export async function checkOpcodes(
 	client: PublicClient,
@@ -29,15 +28,29 @@ async function checkOpcode(opcode: Opcode, client: PublicClient): Promise<boolea
 	try {
 		await client.call({ data: toHex(opcode, { size: 1 }) });
 		return true; // Call succeeded so opcode is supported.
-	} catch (e: unknown) {
-		const err = e as CallError;
+	} catch (err: unknown) {
+		if (typeof err !== 'object' || err === null || !('details' in err) || typeof err.details !== 'string') {
+			throw err;
+		}
 		const details = err.details.toLowerCase();
 		// TODO These might be specific to the node implementation, can this be more robust?
-		if (opcode === 0xfe && details.includes('invalid opcode: invalid')) return true; // Designated invalid opcode.
-		if (details.includes('stack underflow')) return true; // Implies opcode is supported.
+		if (
+			opcode === 0xfe &&
+			(details.includes('invalid opcode: invalid') || details.includes('invalidfeopcode'))
+		)
+			return true; // Designated invalid opcode.
+		if (
+			details.includes('stack underflow') ||
+			details.includes('stackunderflow') ||
+			details.includes('stackoverflow')
+		) {
+			return true; // Implies opcode is supported.
+		}
 		if (details.includes('not defined')) return false;
 		if (details.includes('not supported')) return false;
+		if (details.includes('notactivated')) return false;
 		if (details.includes('invalid opcode')) return false;
+		if (details.includes('opcodenotfound')) return false;
 
 		console.log(`\n======== Opcode ${opcode} ========`);
 		console.log('err.details:', err.details);
