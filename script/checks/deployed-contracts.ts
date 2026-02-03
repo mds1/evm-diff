@@ -5,12 +5,13 @@ const NO_CODE_HASH = keccak256('0x');
 export async function checkDeployedContracts(
 	client: PublicClient,
 ): Promise<{ name: string; address: Address; codeHash: Hex; hasCode: boolean }[]> {
-	const result = deployedContracts.map(async ({ name, address }) => {
+	const result = [];
+	for (const { name, address } of deployedContracts) {
 		const code = await client.getBytecode({ address });
 		const codeHash = (code && keccak256(code)) || NO_CODE_HASH;
-		return { name, address, codeHash, hasCode: codeHash !== NO_CODE_HASH };
-	});
-	return await Promise.all(result);
+		result.push({ name, address, codeHash, hasCode: codeHash !== NO_CODE_HASH });
+	}
+	return result;
 }
 
 export const deployedContracts: { name: string; address: Address }[] = [

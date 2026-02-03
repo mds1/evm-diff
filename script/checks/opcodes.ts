@@ -6,7 +6,10 @@ export async function checkOpcodes(
 	client: PublicClient,
 ): Promise<{ number: Hex; name: string; supported: boolean | string }[]> {
 	const opcodes = Array.from(Array(0xff + 1).keys());
-	const supported = await Promise.all(opcodes.map(async (opcode) => checkOpcode(opcode, client)));
+	const supported: Array<boolean | 'unknown'> = [];
+	for (const opcode of opcodes) {
+		supported.push(await checkOpcode(opcode, client));
+	}
 
 	const result: { number: Hex; name: string; supported: boolean | string }[] = [];
 	opcodes.forEach((opcode, index) => {

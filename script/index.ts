@@ -40,12 +40,12 @@ async function main() {
 	const client = initClient(rpcUrls);
 
 	// Fetch data.
-	const [opcodes, deployedContracts, precompiles, evmStackAddresses] = await Promise.all([
-		checkOpcodes(client),
-		checkDeployedContracts(client),
-		checkPrecompiles(client),
-		checkEvmStackAddresses(client),
-	]);
+	const [opcodes, deployedContracts, precompiles, evmStackAddresses] = [
+		await checkOpcodes(client),
+		await checkDeployedContracts(client),
+		await checkPrecompiles(client),
+		await checkEvmStackAddresses(client),
+	];
 
 	// Format and save the output.
 	const chain: Chain = {

@@ -26,13 +26,13 @@ export async function checkEvmStackAddresses(
 
 	for (const stack of Object.keys(evmStackAddresses)) {
 		const stackPredploys = evmStackAddresses[stack as EVMStack];
-		const res = stackPredploys.map(async ({ name, address, kind }) => {
+		result[stack as EVMStack] = [];
+		for (const { name, address, kind } of stackPredploys) {
 			const code = await client.getBytecode({ address });
 			const codeHash = (code && keccak256(code)) || NO_CODE_HASH;
 			const exists = evmStackAddressExists(stack as EVMStack, codeHash);
-			return { name, address, kind, codeHash, exists };
-		});
-		result[stack as EVMStack] = await Promise.all(res);
+			result[stack as EVMStack].push({ name, address, kind, codeHash, exists });
+		}
 	}
 
 	return result;
