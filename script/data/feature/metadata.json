@@ -215,6 +215,26 @@
 			"wss://arbitrum-one-rpc.publicnode.com"
 		]
 	},
+	"42220": {
+		"name": "Celo",
+		"shortName": "Celo",
+		"chainId": 42220,
+		"networkId": 42220,
+		"infoURL": "https://docs.celo.org/",
+		"nativeCurrency": { "name": "CELO", "symbol": "CELO", "decimals": 18 },
+		"chain": "CELO",
+		"explorers": [
+			{ "name": "Celoscan", "url": "https://celoscan.io", "standard": "EIP3091" },
+			{ "name": "blockscout", "url": "https://explorer.celo.org", "standard": "none" }
+		],
+		"faucets": [],
+		"rpc": [
+			"https://celo-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://celo-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
+		],
+		"status": "active",
+		"title": "Celo Mainnet"
+	},
 	"43114": {
 		"name": "Avalanche C-Chain",
 		"shortName": "avax",

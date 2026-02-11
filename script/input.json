@@ -61,5 +61,12 @@
 			"https://scroll-mainnet.infura.io/v3/${INFURA_API_KEY}",
 			"https://scroll-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
 		]
+	},
+	{
+		"chainId": 42220,
+		"rpcUrls": [
+			"https://celo-mainnet.infura.io/v3/${INFURA_API_KEY}",
+			"https://celo-mainnet.g.alchemy.com/v2/${ALCHEMY_API_KEY}"
+		]
 	}
 ]

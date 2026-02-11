@@ -4,6 +4,7 @@
 	{ "chainId": 137, "name": "Polygon Mainnet" },
 	{ "chainId": 34443, "name": "Mode" },
 	{ "chainId": 42161, "name": "Arbitrum One" },
+	{ "chainId": 42220, "name": "Celo Mainnet" },
 	{ "chainId": 43114, "name": "Avalanche C-Chain" },
 	{ "chainId": 534352, "name": "Scroll" },
 	{ "chainId": 59144, "name": "Linea" },
