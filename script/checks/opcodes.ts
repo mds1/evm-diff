@@ -1,13 +1,15 @@
 import { type Hex, type PublicClient, toHex } from 'viem';
 
 type Opcode = number;
-type CallError = { details: string };
 
 export async function checkOpcodes(
 	client: PublicClient,
 ): Promise<{ number: Hex; name: string; supported: boolean | string }[]> {
 	const opcodes = Array.from(Array(0xff + 1).keys());
-	const supported = await Promise.all(opcodes.map(async (opcode) => checkOpcode(opcode, client)));
+	const supported: Array<boolean | 'unknown'> = [];
+	for (const opcode of opcodes) {
+		supported.push(await checkOpcode(opcode, client));
+	}
 
 	const result: { number: Hex; name: string; supported: boolean | string }[] = [];
 	opcodes.forEach((opcode, index) => {
@@ -29,15 +31,34 @@ async function checkOpcode(opcode: Opcode, client: PublicClient): Promise<boolea
 	try {
 		await client.call({ data: toHex(opcode, { size: 1 }) });
 		return true; // Call succeeded so opcode is supported.
-	} catch (e: unknown) {
-		const err = e as CallError;
+	} catch (err: unknown) {
+		if (
+			typeof err !== 'object' ||
+			err === null ||
+			!('details' in err) ||
+			typeof err.details !== 'string'
+		) {
+			throw err;
+		}
 		const details = err.details.toLowerCase();
 		// TODO These might be specific to the node implementation, can this be more robust?
-		if (opcode === 0xfe && details.includes('invalid opcode: invalid')) return true; // Designated invalid opcode.
-		if (details.includes('stack underflow')) return true; // Implies opcode is supported.
+		if (
+			opcode === 0xfe &&
+			(details.includes('invalid opcode: invalid') || details.includes('invalidfeopcode'))
+		)
+			return true; // Designated invalid opcode.
+		if (
+			details.includes('stack underflow') ||
+			details.includes('stackunderflow') ||
+			details.includes('stackoverflow')
+		) {
+			return true; // Implies opcode is supported.
+		}
 		if (details.includes('not defined')) return false;
 		if (details.includes('not supported')) return false;
+		if (details.includes('notactivated')) return false;
 		if (details.includes('invalid opcode')) return false;
+		if (details.includes('opcodenotfound')) return false;
 
 		console.log(`\n======== Opcode ${opcode} ========`);
 		console.log('err.details:', err.details);
@@ -73,6 +94,7 @@ export const knownOpcodes: Record<Opcode, string> = {
 	0x1b: 'SHL',
 	0x1c: 'SHR',
 	0x1d: 'SAR',
+	0x1e: 'CLZ',
 	0x20: 'KECCAK256',
 	0x30: 'ADDRESS',
 	0x31: 'BALANCE',

@@ -4,7 +4,7 @@
 // they are precompiles or predeploys, and prints the result.
 // Example usage:
 //   bun script/precompile-check.ts optimism
-import { http, type Address, createPublicClient, getAddress } from 'viem';
+import { http, type Address, createPublicClient, getAddress, type GetBytecodeReturnType } from 'viem';
 import { type Chain, arbitrum, optimism } from 'viem/chains';
 
 type ChainConfig = {
@@ -74,8 +74,11 @@ async function main() {
 	const transport = http(rpcUrl, { batch: true });
 	const client = createPublicClient({ chain, transport });
 
-	const promises = addresses.map((address) => client.getBytecode({ address }));
-	const codes = await Promise.all(promises);
+	const codes: GetBytecodeReturnType[] = []
+	for (const address of addresses) {
+		const code = await client.getBytecode({ address });
+		codes.push(code);
+	}
 	const kinds = codes.map((code) =>
 		code === '0x' || code === '0xfe' ? 'precompile' : 'predeploy',
 	);

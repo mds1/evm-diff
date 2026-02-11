@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+# Ensure deterministic glob ordering across environments
+export LC_ALL=C
+
 # First we get list of all chains.
 CHAIN_DIR="./script/data/chain"
 OUTPUT_FILE="./src/lib/chains.json"

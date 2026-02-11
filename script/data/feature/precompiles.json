@@ -53,7 +53,7 @@
 		{
 			"name": "secp256r1",
 			"address": "0x0000000000000000000000000000000000000100",
-			"implemented": false
+			"implemented": true
 		}
 	],
 	"10": [
@@ -162,7 +162,7 @@
 		{
 			"name": "point evaluation",
 			"address": "0x000000000000000000000000000000000000000a",
-			"implemented": false
+			"implemented": true
 		},
 		{
 			"name": "secp256r1",
@@ -395,7 +395,7 @@
 		{
 			"name": "secp256r1",
 			"address": "0x0000000000000000000000000000000000000100",
-			"implemented": false
+			"implemented": true
 		}
 	],
 	"59144": [
@@ -447,12 +447,12 @@
 		{
 			"name": "point evaluation",
 			"address": "0x000000000000000000000000000000000000000a",
-			"implemented": false
+			"implemented": true
 		},
 		{
 			"name": "secp256r1",
 			"address": "0x0000000000000000000000000000000000000100",
-			"implemented": false
+			"implemented": true
 		}
 	],
 	"534352": [
@@ -509,7 +509,7 @@
 		{
 			"name": "secp256r1",
 			"address": "0x0000000000000000000000000000000000000100",
-			"implemented": false
+			"implemented": true
 		}
 	]
 }

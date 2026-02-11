@@ -3,17 +3,19 @@ import type { Address, Hex, PublicClient } from 'viem';
 export async function checkPrecompiles(
 	client: PublicClient,
 ): Promise<{ name: string; address: Address; implemented: boolean }[]> {
-	const result = precompiles.map(async ({ name, address, testCalldata, expectedResponse }) => {
+	const result = [];
+
+	for (const { name, address, testCalldata, expectedResponse } of precompiles) {
 		try {
 			const res = await client.call({ to: address, data: testCalldata });
 			const implemented = res.data === expectedResponse;
-			return { name, address, implemented };
+			result.push({ name, address, implemented });
 		} catch (e) {
 			// If the call fails, the precompile is not implemented.
-			return { name, address, implemented: false };
+			result.push({ name, address, implemented: false });
 		}
-	});
-	return await Promise.all(result);
+	}
+	return result;
 }
 
 // By default a call to an EOA succeeds and returns no data, therefore we cannot simply use a

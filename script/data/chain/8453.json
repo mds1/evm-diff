@@ -64,6 +64,7 @@
 		{ "number": "0x1b", "name": "SHL", "supported": true },
 		{ "number": "0x1c", "name": "SHR", "supported": true },
 		{ "number": "0x1d", "name": "SAR", "supported": true },
+		{ "number": "0x1e", "name": "CLZ", "supported": false },
 		{ "number": "0x20", "name": "KECCAK256", "supported": true },
 		{ "number": "0x30", "name": "ADDRESS", "supported": true },
 		{ "number": "0x31", "name": "BALANCE", "supported": true },
