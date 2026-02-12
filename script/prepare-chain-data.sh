@@ -44,4 +44,9 @@ cat > "$OUTPUT_FILE" <<EOL
 EOL
 
 bun fmt
-echo "✅ Successfully updated chains.json file"
+echo "✅ Successfully updated features.json file"
+
+# Copy data to public/ so Next.js can serve it locally in dev mode.
+rm -rf ./public/data
+cp -r ./script/data ./public/data
+echo "✅ Copied data to public/data for local dev"

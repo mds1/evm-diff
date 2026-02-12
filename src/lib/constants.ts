@@ -11,7 +11,10 @@ export const TWITTER_URL = 'https://twitter.com/msolomon44';
 
 // -------- Other Data --------
 const BRANCH_NAME = process.env.NEXT_PUBLIC_BRANCH_NAME;
-export const BASE_DATA_URL = `https://raw.githubusercontent.com/mds1/evm-diff/${BRANCH_NAME}/script/data`;
+export const BASE_DATA_URL =
+	process.env.NODE_ENV === 'development'
+		? '/data'
+		: `https://raw.githubusercontent.com/mds1/evm-diff/${BRANCH_NAME}/script/data`;
 
 // This defines the source of truth for the data that is shown/hidden on the website.
 export interface Feature {
